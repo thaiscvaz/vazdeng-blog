@@ -1,0 +1,19 @@
+{{/*
+  Snippets injetados no fim do <head>: verificacoes de SEO.
+  Analytics: Cloudflare Web Analytics e ativado pelo dashboard, nao precisa codigo
+  aqui (Cloudflare injeta no edge, sem afetar nosso CSP).
+*/}}
+
+{{/* Google Search Console verification.
+     Como obter: search.google.com/search-console -> Add property -> URL prefix
+     -> https://vazdeng.pages.dev -> escolher metodo "HTML tag" -> copiar o `content`.
+     Setar em hugo.yaml: params.googleSiteVerification: "abc123..." */}}
+{{ with site.Params.googleSiteVerification }}
+<meta name="google-site-verification" content="{{ . }}" />
+{{ end }}
+
+{{/* IndieAuth / personal verification (opcional).
+     Setar em hugo.yaml: params.indieAuth: "https://github.com/thaiscvaz" */}}
+{{ with site.Params.indieAuth }}
+<link rel="me" href="{{ . }}" />
+{{ end }}

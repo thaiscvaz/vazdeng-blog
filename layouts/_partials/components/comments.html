@@ -1,0 +1,12 @@
+{{/*
+  Override do partial "components/comments.html" do Hextra.
+  Renderizado no fim de cada post (chamado por blog/single.html).
+  Hoje contem o subscribe widget. Quando adicionar comments (Giscus etc), os dois moram aqui.
+*/}}
+<aside class="vazdeng-subscribe" aria-label="{{ T "subscribeAria" }}">
+  <p class="vazdeng-subscribe-headline">{{ T "subscribeHeadline" }}</p>
+  <p class="vazdeng-subscribe-sub">{{ T "subscribeSub" }}</p>
+  <a class="vazdeng-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">
+    {{ T "subscribeCta" }}
+  </a>
+</aside>

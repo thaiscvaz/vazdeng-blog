@@ -1,0 +1,110 @@
+# Hugo config para o blog VazDEng.
+# Cloudflare Pages é o host principal. GitHub Actions sobrescreve via --baseURL dinâmico.
+# Local dev: --baseURL http://localhost:1313/
+baseURL: https://vazdeng.pages.dev/
+title: VazDEng
+languageCode: pt-BR
+defaultContentLanguage: pt
+enableRobotsTXT: false  # static/robots.txt é a fonte da verdade
+enableGitInfo: false
+
+# Hextra via Hugo Modules
+module:
+  imports:
+    - path: github.com/imfing/hextra
+
+# Permalink estilo AkitaOnRails
+permalinks:
+  blog: /:year/:month/:day/:slug/
+
+# Idiomas (sufixo de arquivo .en.md para inglês)
+languages:
+  pt:
+    languageName: Português
+    weight: 1
+  en:
+    languageName: English
+    weight: 2
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+# RSS global + saídas
+outputs:
+  home: [html, rss]
+  section: [html, rss]
+
+menu:
+  main:
+    - name: Sobre
+      pageRef: /sobre
+      weight: 1
+    - name: Busca
+      weight: 2
+      params:
+        type: search
+    - name: GitHub
+      weight: 3
+      url: https://github.com/thaiscvaz
+      params:
+        icon: github
+    - name: LinkedIn
+      weight: 4
+      url: https://linkedin.com/in/thacvaz
+      params:
+        icon: linkedin
+    - name: Substack
+      weight: 5
+      url: https://vazdeng.substack.com
+      params:
+        icon: substack
+
+params:
+  description: "Engenharia de dados de produção. Agente de IA para cripto. Mestrado traduzido para a prática."
+  author:
+    name: Thais Vaz
+    link: https://linkedin.com/in/thacvaz
+
+  # SEO e verificações (descomentar e preencher quando disponível)
+  # googleSiteVerification: ""   # Google Search Console: search.google.com/search-console
+  # indieAuth: ""                # rel=me link (ex: https://github.com/thaiscvaz)
+
+  navbar:
+    displayTitle: true
+    displayLogo: false
+    width: normal
+
+  theme:
+    default: light
+    displayToggle: true
+
+  page:
+    width: normal
+
+  blog:
+    list:
+      displayTags: false
+    article:
+      displayPagination: true
+
+  footer:
+    displayCopyright: true
+    displayPoweredBy: false
+
+  search:
+    enable: true
+    type: flexsearch
+    flexsearch:
+      index: content
+      tokenize: forward
+
+  # Custom assets
+  customCSS:
+    - css/custom.css
+
+  images:
+    - images/og-default.png

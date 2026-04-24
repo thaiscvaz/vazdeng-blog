@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vazdeng.pages.dev/sitemap.xml
