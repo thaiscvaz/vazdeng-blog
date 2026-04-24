@@ -2,6 +2,7 @@
 title: "Engenharia de dados em português de verdade é rara. Vou ajudar a mudar isso."
 slug: engenharia-dados-em-portugues
 date: 2026-04-18
+publishDate: 2026-04-18
 draft: false
 description: "Por que uma engenheira de dados sênior com passagens por Apple, Itaú, EBANX e Bradesco decidiu começar a escrever, e o que você vai encontrar aqui."
 tags: ["manifesto", "data engineering", "databricks", "cripto", "mestrado"]

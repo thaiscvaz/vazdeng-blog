@@ -2,6 +2,7 @@
 title: "LGPD na ingestão de dados: 4 princípios que mudam sua arquitetura"
 slug: lgpd-ingestao-de-dados
 date: 2026-04-16
+publishDate: 2026-04-16
 draft: false
 description: "LGPD não é checklist no fim do pipeline. É restrição de design desde o primeiro byte que entra. O que isso significa na prática."
 tags: ["lgpd", "data engineering", "privacidade", "arquitetura", "compliance"]
