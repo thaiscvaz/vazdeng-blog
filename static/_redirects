@@ -1,0 +1,6 @@
+# Redirects 301 servidos pelo Cloudflare Pages.
+# Doc: https://developers.cloudflare.com/pages/configuration/redirects/
+
+# /blog/ duplica conteúdo de / desde a reorganização do menu. Manda pra raiz.
+/blog/        /        301
+/en/blog/     /en/     301

@@ -1,0 +1,56 @@
+{{ define "main" }}
+  <main class="vazdeng-page">
+    {{/* Editorial header (igual em / e em /blog/) */}}
+    {{ $isArchive := or .IsHome (and .IsSection (eq .Section "blog")) }}
+    {{ if $isArchive }}
+      {{ $home := .Site.Home }}
+      <header class="vazdeng-site-header">
+        <h1 class="vazdeng-site-title">{{ $home.Title }}</h1>
+        <p class="vazdeng-site-subtitle">{{ T "siteSubtitle" }}</p>
+
+        {{ if hugo.IsMultilingual }}
+          <nav class="vazdeng-lang-switch" aria-label="Idioma">
+            {{ range $i, $t := $home.AllTranslations }}
+              {{ if $i }}<span class="vazdeng-lang-sep">·</span>{{ end }}
+              {{ if eq $t.Language.Lang $.Language.Lang }}
+                <span class="vazdeng-lang-current">{{ upper $t.Language.Lang }}</span>
+              {{ else }}
+                <a class="vazdeng-lang-link" href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
+              {{ end }}
+            {{ end }}
+          </nav>
+        {{ end }}
+      </header>
+    {{ else }}
+      <h1 class="vazdeng-heading">{{ .Title }}</h1>
+      {{ with .Content }}
+        <div class="vazdeng-intro">{{ . }}</div>
+      {{ end }}
+    {{ end }}
+
+    {{ $posts := where .Site.RegularPages "Section" "blog" }}
+    {{ $posts = $posts.ByDate.Reverse }}
+
+    {{ if $posts }}
+      <div class="vazdeng-archive">
+        {{ range ($posts.GroupByDate "2006") }}
+          <section class="vazdeng-year-section">
+            <h2 class="vazdeng-year">{{ .Key }}</h2>
+            <ul class="vazdeng-post-list">
+              {{ range .Pages }}
+                <li class="vazdeng-post-item">
+                  <time class="vazdeng-date" datetime="{{ .Date.Format "2006-01-02" }}">
+                    {{ .Date.Format "02 Jan" }}
+                  </time>
+                  <a class="vazdeng-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </li>
+              {{ end }}
+            </ul>
+          </section>
+        {{ end }}
+      </div>
+    {{ else }}
+      <p class="vazdeng-empty">Nenhum post ainda.</p>
+    {{ end }}
+  </main>
+{{ end }}
