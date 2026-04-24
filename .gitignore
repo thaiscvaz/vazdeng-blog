@@ -1,0 +1,17 @@
+# Segredos
+.env
+.env.local
+.env.*.local
+
+# Hugo build
+public/
+resources/_gen/
+.hugo_build.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
