@@ -1,38 +1,70 @@
 ---
 title: "When the model should say 'I don't know'"
-description: "After the -1.14 Sharpe, what still bothered me about my HMM was something else. It never said 'I don't know'. It always returned BULL, SIDEWAYS, or BEAR, even when the market entered a zone it had never seen."
-tags: ["crypto", "hmm", "quant", "risk-management", "agente-quant"]
+description: "In 1998 LTCM lost $4.6 billion because its models trusted territory they had never seen. Twenty-seven years later my HMM was doing the same, at smaller scale. Here's what I learned to put between it and the trade."
+tags: ["crypto", "hmm", "quant", "risk-management", "agente-quant", "ood-detection"]
 images:
   - cover.png
 ---
 
-The previous post closed the chapter on -1.14 Sharpe: the number is bad on alpha, honest on risk, and I'd rather have an honest system than a decorative one.
+In September 1998, Long-Term Capital Management lost $4.6 billion in a few weeks. The spread models had been trained on normal-times correlations. The Russian default and the subsequent flight-to-quality made correlations historically around 0.3 converge to 1 within days. In *When Genius Failed*, Lowenstein cites the fund's internal calculation of the probability of what happened:
 
-But there was a blind spot the Sharpe didn't show. A different, more subtle problem. I solved it this week.
+> *"An event so freakish as to be unlikely to occur even once over the entire life of the universe."*
 
-## What was left after fixing the data leakage
+The models were technically correct. They were just extrapolating confidence into a region of the space they had never seen. They had no "I don't know" button.
 
-My quant agent's HMM regime classifier labels each candle as one of three states: BULL, SIDEWAYS, BEAR. It's trained on 8 features (price vs EMA200, ADX, RSI, BB width, vol ratio, return 7, DI spread, funding zscore). After the data leakage fix, the posterior became causal (forward-only), the Sharpe fell from a spurious +0.66 to a real -1.14, and that was fine.
+My quant agent had the same problem, at incomparably smaller scale but with the same nature. I solved it this week.
 
-The problem was that the model still classified, always. Even when the features entered a region it had never seen in training.
+## In one sentence
 
-A concrete scenario: daily ATR 4x above the 90-day average, funding rate in extreme negative zone, volume 10x above normal. A spike the model has no reference point for. What does the HMM return? "BULL with 73% confidence", because its posterior sums to 1.0 across the three classes and one of them has to win.
+> Conservative degradation is the principle that says a model must have the right to abstain. When data is outside what it has seen, returning "I don't know" is more useful than returning a spurious classification with mathematically high confidence.
+
+## The blind spot left after the data leakage fix
+
+The previous post closed the chapter on Sharpe -1.14. The posterior became causal, the data leakage went away, the number became honest. But there was a blind spot the Sharpe didn't show.
+
+The 3-state Gaussian HMM always classifies. It receives a candle, computes the posterior over BULL/SIDEWAYS/BEAR, and returns the one with highest probability. By construction. If the features are in the normal training zone, fine. If they're completely outside, it keeps classifying, and the posterior keeps summing to 1.
+
+Concrete scenario: daily ATR 4x above the 90-day average, funding rate in historical extreme negative, volume 10x above normal. A spike the model simply has no reference point for. The HMM returns something like "BULL with 73% confidence", because one of the three classes has to win.
 
 Mathematically legitimate. Operationally dangerous.
 
-## Where I learned to name this
+## What the literature calls this
 
-The literature calls this the **out-of-distribution problem**. In critical systems (medicine, fraud, infrastructure), there's an established practice: the model needs the option to abstain. Instead of guessing among the classes it knows, return a label like `unknown`, `OOD`, `low confidence`, and let the operator decide.
+I looked at the literature before implementing anything. Three threads converge.
 
-I saw this described as **conservative degradation**: when the signal is weak or the data is outside what the model has seen, the system prefers to stop rather than fabricate. Current models for fact-vs-rumor classification in AI apply exactly this principle, and I wanted to bring it to my quant agent.
+**Out-of-Distribution detection (computer vision, classical ML).** The lineage starts with Hendrycks & Gimpel 2017 ("A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks"), showing that maximum softmax probability is already a reasonable confidence signal. Liang et al 2018 (ODIN) adds temperature scaling and adversarial perturbation, reducing false positive rate from 34.7% to 4.3%. Lee et al 2018 proposes Mahalanobis distance in feature space to capture covariance between dimensions. The three are the OOD canon.
 
-The practical question: how do you detect OOD in a 3-state Gaussian HMM without adding 200 lines of code?
+**Selective classification (statistics, pattern recognition).** Chow 1957 already formalized the reject option in IRE Trans. Electronic Computers. In 1970 he derived the optimal error-reject curve. In 2017, Geifman and El-Yaniv brought the concept to deep learning with formal risk guarantee:
 
-## An implementation that fits in 20 lines
+> *"We can achieve a target coverage with a guaranteed level of risk."*
 
-The HMM features go through a `StandardScaler` before training. That means, in the scaled space, the mean of each feature in training is zero and the standard deviation is one. Any new candle that shows up with a feature at high absolute z-score is, by definition, outside the distribution the model learned.
+The canonical metric for evaluating abstention is AURC (Area Under Risk-Coverage curve): shows how error falls as the model is allowed to reject more cases.
 
-I set the limit at 5 sigmas (conservative, given crypto has fat tails). And I added a static method to `MarketRegimeHMM`:
+**Critical systems with conservative degradation.** Aviation has explicit regulation (FAA AC 25.1329-1B): autopilot must alert when envelope protection is invoked and disengage in off-nominal conditions. SAE J3016 (autonomous driving) defines Operational Design Domain (ODD) and requires the system to exit operation or request takeover when operating outside it. The principle is the same: a model trained for conditions X does not operate in Y, it alerts and returns control.
+
+Trading benefits from this vocabulary. It was what was missing.
+
+## Someone has done this in finance
+
+Two precedents to anchor on.
+
+**Kritzman and Li 2010** ("Skulls, Financial Turbulence, and Risk Management", Financial Analysts Journal). They define the Turbulence Index as the multivariate Mahalanobis distance of returns against historical mean and covariance. Central quote:
+
+> *"The more asset returns, volatilities and correlations differ from their historical norms, the more likely it is that these differences result from a significant market event rather than from random noise."*
+
+Empirically the index aligns with 1987, the 1998 Russian default, 9/11, and the 2008 crisis. Turbulence is persistent, which justifies abstaining by windows, not by isolated tick.
+
+**Chalkidis et al 2021** ("Trading via Selective Classification", ACM ICAIF, arXiv 2110.14914). This paper is the direct case of what I did. A binary up/down classifier becomes a strategy that only takes a position when it's confident, and abstains when it's not. Empirical result: smaller coverage with same risk improves Sharpe. The abstract's quote:
+
+> *"Selective classifiers give rise to trading strategies that do not take a trading position when the classifier abstains."*
+
+Selective classification in trading is not my insight. It's a documented topic at ACM. What was missing was bringing it to my HMM.
+
+## How I implemented it
+
+The HMM features pass through `StandardScaler` before training. In the scaled space, each feature's mean is zero and standard deviation is one. Any new candle with one feature at very high absolute z-score is, by definition, outside the distribution the model has seen.
+
+Threshold at 5 sigmas (conservative, crypto has fat tails). Static method on `MarketRegimeHMM`:
 
 ```python
 @staticmethod
@@ -42,7 +74,7 @@ def is_ood(x_scaled_row, threshold=OOD_SIGMA_THRESHOLD):
     return bool(np.nanmax(np.abs(x_scaled_row)) > threshold)
 ```
 
-And I changed `predict_state` to check this before calling the posterior:
+And `predict_state` checks before calling the posterior:
 
 ```python
 if self.is_ood(last_features):
@@ -55,28 +87,41 @@ The downstream decision (`decide_position` in layer 4) already had a lookup in `
 
 70 tests passed, plus 2 new ones covering the OOD path. Full suite in 6 seconds.
 
-## What changes in the agent's behavior
+| Scenario | Before | After |
+|---|---|---|
+| Features inside distribution | Classifies BULL/SIDEWAYS/BEAR with real posterior | Same |
+| Features 5+ sigmas outside (rare) | Classifies anyway, with spurious posterior | Returns OOD, sizing zeros |
+| Log of the OOD tick | No distinction | "ABSTAIN: regime without playbook (OOD, conf=0.000)" |
+| Trade opened in anomalous condition | Possible, with 2% cap | Impossible |
 
-Before: the system guessed a regime even in market conditions it had never seen. That guess fed into the sizing function, which respected the 2% cap but still opened a position.
+## Why 5 sigmas, not 3
 
-After: the system reads the current tick, recognizes it's outside the training distribution, returns `OOD` instead of BULL/SIDEWAYS/BEAR, and the decider zeroes the sizing automatically. The log shows explicitly "ABSTAIN: regime without playbook (OOD, conf=0.000). Sizing=0". No operating in the dark.
+Threshold choice is where theory meets real crypto data. In perfectly Gaussian features, 3 sigmas would cover 99.73% and be reasonable. Crypto is not Gaussian. Realized volatility, funding rate, and DI spread have heavy tails. Bulla 2011 (Quantitative Finance) already showed that Gaussian HMM underestimates tails in financial returns, proposing Student-t instead.
 
-In practical terms: the agent now has three output options, not two. Operate with conviction. Wait with conviction. And now also admit it doesn't know.
+At 5 sigmas, the detector fires only when the tick is in genuinely unprecedented region. At 3, it would fire on big but historical moves, generating excessive abstention. The next iteration is to swap univariate z-score for multivariate Mahalanobis (captures correlation between features), which is exactly what Kritzman-Li did in 2010 for returns.
 
-## Why this matters more than chasing alpha
+## What changed in my sleep
 
-The common intuition is that adding an `OOD` class reduces trade frequency and therefore return. True. In historical backtest, I can cut the number of operations by some percentage.
+The most useful number for me isn't the increase or decrease in Sharpe (I'll measure in backtest next week). It's this:
 
-But the trade I skipped was a trade taken in a state of model confusion. Capital preservation first, remember? Each time the system abstains, it gives me time to manually inspect what's happening. It could be a flash crash, a macro regime change, a feature ingestion error. In all cases, I'd rather have the system stopped than fabricating a decision I later couldn't explain.
+Before, when the agent took a position overnight and I woke up with Telegram blinking, I needed to open the auditor and read decision by decision to understand if the model had any logic at that moment or if it was guessing in chaotic market.
 
-The rule ended up being: if the model leaves the comfort of the distribution it has seen, it calls me. And I decide whether to replace the abstention with a manual intervention, or accept that this isn't a moment to operate.
+Now, if the system abstains, the log says `ABSTAIN`. If it operates, it's because it was in territory it has seen. The question "does this decision have a basis?" became binary: there's an ABSTAIN log before it, or there isn't.
 
-This doesn't replace improving the model. It's just the honest recognition that no 3-state model with 8 features will cover every possible regime of a market that has adoption cycles, macro events, halvings, and regulatory changes.
+Nick Leeson, Jérôme Kerviel, LTCM, Knight Capital. The history of operational losses in finance almost always has the same pattern: a system continuing to make decisions when it shouldn't. The cost of "I don't know" has always been cheaper than the cost of "I thought it was".
+
+## Anti-patterns to avoid
+
+1. **Accepting high posterior as evidence of good decision.** An HMM's posterior always sums to 1. Confidence is intra-model metric, not evidence that the model understands what it's seeing.
+2. **Using OOD threshold based on intuition, not on distribution.** 3 sigmas works in pure Gaussian. Crypto is not Gaussian. Measure the real tail of your data first.
+3. **Abstaining on isolated tick and going back to operating on the next.** Turbulence is persistent. Good design abstains by window, not by candle.
+4. **Adding OOD without touching the decider.** A detector that doesn't change downstream behavior is decoration. `REGIME_MULTIPLIER` is where the effect happens.
+5. **Hiding the abstention from the log.** If the system preferred not to operate, that's a decision. It must appear in the audit trail with reason, not silently.
 
 ## The next chapter
 
-The current version accepts a single OOD criterion (absolute z-score). I already have two extensions in mind: Mahalanobis distance in the full space (captures correlations z-score misses) and tick likelihood under the trained HMM (more sensitive, more expensive). Both in backlog.
+The current version uses a single criterion (absolute z-score per feature). Two extensions are already in the backlog: Mahalanobis distance in the full space (captures covariance, which is what Kritzman-Li implemented for returns in 2010) and tick likelihood under the trained HMM (more sensitive, more expensive).
 
-For now, what's in production is the simple version. And it has already changed my sleep.
+For now, what's in production is the simple version. And it has already changed what I look at when I wake up.
 
-Have you ever had a model return high confidence on a decision that shouldn't have been made? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com) to get the next posts.
+Have you ever had a model return high confidence on a decision that shouldn't have been made? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com) to receive the next posts.
