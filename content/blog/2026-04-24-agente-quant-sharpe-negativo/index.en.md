@@ -15,13 +15,11 @@ Goal: maximize returns.
 
 Result: Sharpe ratio of **-1.14**. Not good on paper.
 
-But here's the thing: the system didn't fail. It failed at one objective (generating alpha) but succeeded at another (capital preservation).
-
-In this post, I'll show you how to build a robust, tested, auditable trading system, and why even "failures" are victories when you learn from them.
+The system didn't fail. It failed at one objective (generating alpha) and succeeded at another (capital preservation).
 
 ---
 
-## Architecture: 7 Layers
+## Architecture by layers
 
 Quant trading isn't simple. It's not "buy here, sell there." It's this:
 
@@ -73,7 +71,7 @@ BEAR (downtrend)  → RSI < 40 + negative momentum
 
 LightGBM regressor predicts returns over the next 4 candles (walk-forward).
 
-**Critical insight:** You don't need 60% accuracy for alpha. You need *consistency*. A model that's right 45% of the time but with low drawdown beats one that's right 70% but with 30% max DD.
+You don't need 60% accuracy for alpha. You need *consistency*. A model that's right 45% of the time but with low drawdown beats one that's right 70% but with 30% max DD.
 
 ### L4: Decision
 
@@ -226,7 +224,7 @@ All runs on **one cheap machine**. No Kubernetes, no scary AWS bill.
 
 ---
 
-## 7 Durable Lessons
+## Durable lessons
 
 ### 1. Test-First (TDD)
 

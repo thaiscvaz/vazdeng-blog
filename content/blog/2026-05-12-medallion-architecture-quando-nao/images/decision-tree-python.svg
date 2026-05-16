@@ -1,0 +1,104 @@
+<svg width="700" height="500" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#f0ece2"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#e07b30"/>
+    </marker>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="700" height="500" fill="#1a2035"/>
+
+  <!-- Título -->
+  <text x="350" y="38" font-family="Inter, system-ui, sans-serif" font-size="15"
+        font-weight="700" fill="#f0ece2" text-anchor="middle" letter-spacing="0.04em">
+    Preciso de Medallion Architecture?
+  </text>
+
+  <!-- INÍCIO -->
+  <rect x="250" y="58" width="200" height="38" rx="19" fill="#1e2740" stroke="#f0ece2" stroke-width="1.2"/>
+  <text x="350" y="82" font-family="Inter, system-ui, sans-serif" font-size="12"
+        fill="#f0ece2" text-anchor="middle" font-weight="600">INÍCIO</text>
+
+  <!-- seta inicio → P1 -->
+  <line x1="350" y1="96" x2="350" y2="118" stroke="#f0ece2" stroke-width="1.4" marker-end="url(#arr)"/>
+
+  <!-- Pergunta 1 -->
+  <rect x="90" y="120" width="520" height="50" rx="8" fill="#1e2740" stroke="#f0ece2" stroke-width="1.2"/>
+  <text x="350" y="141" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">Há múltiplos consumidores com necessidades</text>
+  <text x="350" y="158" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">diferentes?</text>
+
+  <!-- NÃO → resultado laranja (direita) -->
+  <line x1="610" y1="145" x2="648" y2="145" stroke="#e07b30" stroke-width="1.4" marker-end="url(#arr-orange)"/>
+  <text x="628" y="139" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#e07b30" text-anchor="middle">NÃO</text>
+  <rect x="648" y="118" width="42" height="54" rx="0" fill="none"/>
+
+  <!-- SIM → seta para baixo -->
+  <line x1="350" y1="170" x2="350" y2="192" stroke="#f0ece2" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="362" y="184" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#f0ece2">SIM</text>
+
+  <!-- Pergunta 2 -->
+  <rect x="90" y="194" width="520" height="50" rx="8" fill="#1e2740" stroke="#f0ece2" stroke-width="1.2"/>
+  <text x="350" y="215" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">Reprocessar dados na fonte é caro</text>
+  <text x="350" y="232" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">ou impossível?</text>
+
+  <!-- NÃO direita P2 -->
+  <line x1="610" y1="219" x2="648" y2="219" stroke="#e07b30" stroke-width="1.4" marker-end="url(#arr-orange)"/>
+  <text x="628" y="213" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#e07b30" text-anchor="middle">NÃO</text>
+
+  <!-- SIM → seta para baixo -->
+  <line x1="350" y1="244" x2="350" y2="266" stroke="#f0ece2" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="362" y="258" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#f0ece2">SIM</text>
+
+  <!-- Pergunta 3 -->
+  <rect x="90" y="268" width="520" height="50" rx="8" fill="#1e2740" stroke="#f0ece2" stroke-width="1.2"/>
+  <text x="350" y="289" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">A latência de cada camada cabe</text>
+  <text x="350" y="306" font-family="Inter, system-ui, sans-serif" font-size="11.5"
+        fill="#f0ece2" text-anchor="middle">no prazo que o negócio exige?</text>
+
+  <!-- NÃO direita P3 -->
+  <line x1="610" y1="293" x2="648" y2="293" stroke="#e07b30" stroke-width="1.4" marker-end="url(#arr-orange)"/>
+  <text x="628" y="287" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#e07b30" text-anchor="middle">NÃO</text>
+
+  <!-- SIM → seta para baixo -->
+  <line x1="350" y1="318" x2="350" y2="340" stroke="#f0ece2" stroke-width="1.4" marker-end="url(#arr)"/>
+  <text x="362" y="332" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#f0ece2">SIM</text>
+
+  <!-- Resultado: USE MEDALLION -->
+  <rect x="195" y="342" width="310" height="48" rx="8" fill="#2d6a4f" stroke="#2d6a4f" stroke-width="0"/>
+  <text x="350" y="361" font-family="Inter, system-ui, sans-serif" font-size="13"
+        fill="#ffffff" text-anchor="middle" font-weight="700">Use Medallion Architecture</text>
+  <text x="350" y="379" font-family="Inter, system-ui, sans-serif" font-size="10.5"
+        fill="rgba(255,255,255,0.75)" text-anchor="middle">Os três problemas justificam o custo</text>
+
+  <!-- Linha vertical laranja unindo os 3 NAOs -->
+  <line x1="660" y1="145" x2="660" y2="293" stroke="#e07b30" stroke-width="1.4"/>
+
+  <!-- Resultado laranja (lado direito, centralizado nos 3 NAOs) -->
+  <line x1="660" y1="219" x2="660" y2="249" stroke="#e07b30" stroke-width="1.4" marker-end="url(#arr-orange)"/>
+
+  <!-- Caixa laranja resultado NAO -->
+  <rect x="598" y="390" width="92" height="58" rx="8" fill="#e07b30"/>
+  <text x="644" y="412" font-family="Inter, system-ui, sans-serif" font-size="10"
+        fill="#ffffff" text-anchor="middle" font-weight="700">Questione</text>
+  <text x="644" y="426" font-family="Inter, system-ui, sans-serif" font-size="10"
+        fill="#ffffff" text-anchor="middle">quantas</text>
+  <text x="644" y="440" font-family="Inter, system-ui, sans-serif" font-size="10"
+        fill="#ffffff" text-anchor="middle">camadas</text>
+
+  <!-- Linha do NAO para a caixa -->
+  <line x1="660" y1="350" x2="660" y2="390" stroke="#e07b30" stroke-width="1.4" marker-end="url(#arr-orange)"/>
+
+  <!-- Nota de rodapé -->
+  <text x="350" y="475" font-family="Inter, system-ui, sans-serif" font-size="9.5"
+        fill="#8a8880" text-anchor="middle">
+    vazdeng.substack.com · Databricks: "a recommended best practice, not a requirement"
+  </text>
+</svg>

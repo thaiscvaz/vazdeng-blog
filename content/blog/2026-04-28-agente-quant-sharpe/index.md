@@ -15,13 +15,11 @@ Objetivo: maximizar retorno.
 
 Resultado: Sharpe ratio de **-1.14**. Não é bom.
 
-Mas aqui está o ponto: o sistema não fracassou. Fracassou em um objetivo (alpha), mas se saiu bem em outro (capital preservation).
-
-Neste post, vou contar como construir um agente robusto, testado, auditável, e por que até "falhas" são vitórias quando você aprende delas.
+O sistema não fracassou. Fracassou em um objetivo (alpha) e se saiu bem em outro (capital preservation).
 
 ---
 
-## A Arquitetura: 7 Camadas
+## A arquitetura por camadas
 
 Quant trading é complexo. Não é "compre aqui, venda ali". É isso:
 
@@ -73,7 +71,7 @@ BEAR (downtrend)  → RSI < 40 + momentum negative
 
 LightGBM regressor prediz retornos nos próximos 4 candles (walk-forward).
 
-**Insight crítico:** Você não precisa de accuracy 60% pra ter alpha. Você precisa de *consistency*. Um modelo que acerta 45% das vezes, mas com low drawdown, supera um modelo que acerta 70% mas com 30% max DD.
+Você não precisa de accuracy 60% pra ter alpha. Precisa de *consistency*. Um modelo que acerta 45% das vezes mas com low drawdown supera um modelo que acerta 70% com 30% max DD.
 
 ### L4: Decision
 
@@ -226,7 +224,7 @@ Tudo roda em **uma máquina barata**. Sem Kubernetes, sem AWS bill assustador.
 
 ---
 
-## 7 Lições Duradouras
+## Lições duradouras
 
 ### 1. Testes Primeiro (TDD)
 

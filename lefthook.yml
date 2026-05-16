@@ -1,0 +1,30 @@
+# Lefthook config — vazdeng-blog
+# Hooks locais que rodam antes do commit, antecipando o CI.
+#
+# Instalar Lefthook uma vez por workstation:
+#   npm install -g @evilmartians/lefthook    (ou: brew install lefthook)
+#   lefthook install
+#
+# Bypass pontual (ex: editando post antigo que conhecidamente nao passa o gate):
+#   git commit --no-verify -m "..."
+
+pre-commit:
+  parallel: true
+  commands:
+    validate-posts:
+      glob: "content/blog/**/index*.md"
+      run: python scripts/validate_post.py {staged_files}
+      fail_text: "Posts modificados falharam no validador. Veja regras em WRITER.md ou rode --no-verify se for cleanup deliberado de post antigo."
+
+    check-yaml-frontmatter:
+      glob: "content/blog/**/index*.md"
+      run: |
+        for f in {staged_files}; do
+          head -n 1 "$f" | grep -q "^---$" || { echo "Frontmatter ausente em $f"; exit 1; }
+        done
+
+pre-push:
+  commands:
+    full-validate:
+      run: python scripts/validate_post.py content/blog
+      fail_text: "Validacao completa falhou. Push abortado."
