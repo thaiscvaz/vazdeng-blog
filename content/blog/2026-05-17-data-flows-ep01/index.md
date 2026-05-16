@@ -4,77 +4,115 @@ slug: data-flows-ep01
 date: 2026-05-17
 publishDate: 2026-05-17
 draft: false
-description: "Primeiro episódio da série Zero to Expert. Dado sai de um lugar e chega em outro. Por que esse modelo mental simples resolve metade das dificuldades em produção."
+description: "A Knight Capital perdeu 440 milhões de dólares em 45 minutos porque um servidor rodava código velho. Antes de qualquer ferramenta, existe um conceito que separa pipeline robusto de pipeline frágil: data flow."
 tags: ["zero-to-expert", "data-flows", "fundamentos", "data-engineering"]
 images:
   - cover.png
 ---
 
-Antes de qualquer ferramenta, qualquer linguagem, qualquer framework, existe um conceito simples que está por baixo de tudo em engenharia de dados.
+Em 1 de agosto de 2012, a Knight Capital perdeu 440 milhões de dólares em 45 minutos.
 
-Dado sai de um lugar e chega em outro. Isso é um fluxo de dados.
+Não foi bug de algoritmo. Não foi crise de mercado. Foi um único servidor entre oito que recebeu o deploy do novo código, enquanto outro manteve uma flag antiga reativada (Power Peg, código de 2003). Os dois rodaram em paralelo. O resultado foi uma cascata de ordens automáticas que ninguém conseguiu parar.
 
-Parece simples demais. Mas a maioria das dificuldades que engenheiros de dados enfrentam em produção, desde pipelines quebrados até dados que chegam atrasados ou inconsistentes, pode ser rastreada até uma confusão sobre onde o dado nasce, o que acontece com ele no caminho, e onde ele termina.
+O SEC documentou o caso (Release No. 70694, outubro 2013): a causa raiz não era um erro de lógica de trading. Era inconsistência de estado entre servidores que deveriam estar sincronizados. Em linguagem de engenharia de dados, era um data flow quebrado.
 
-Esse é o primeiro episódio da série Zero to Expert que eu venho construindo. O objetivo não é ensinar ferramenta. É construir o modelo mental que faz todas as ferramentas fazerem sentido.
+A Knight Capital tinha algoritmos sofisticados. Tinha mais de uma década de operação. O que não tinha era um modelo mental claro sobre onde o dado nascia, por onde passava, e onde precisava chegar de forma consistente.
 
-## De onde vem o dado
+Esse modelo mental é o que define o resto. Eu trabalho com dados há tempo suficiente pra ter visto, em escalas menores, variações dessa mesma falha. Antes de Apache Spark, antes de dbt, antes de Snowflake, antes de qualquer ferramenta, existe um conceito que separa pipeline robusto de pipeline frágil.
 
-Todo fluxo começa numa fonte. A fonte é qualquer sistema que produz informação: um banco de dados de um e-commerce com os pedidos dos clientes, uma API de pagamentos que registra cada transação, sensores IoT numa linha de produção, arquivos de log de um servidor.
+## Em uma frase
 
-A fonte não se preocupa com análise. Ela se preocupa com a operação. O banco de dados do e-commerce foi construído para processar pedidos rápido, não para responder à pergunta "qual produto vende mais nas terças-feiras de novembro".
+> Data flow é o caminho que o dado percorre da fonte até o destino, com toda transformação no meio. Acertar esse caminho é decisão arquitetural. Errar custa caro.
 
-Essa tensão é o ponto de partida de toda arquitetura de dados: os sistemas operacionais são otimizados para escrever, os sistemas analíticos são otimizados para ler e agregar. Um fluxo de dados conecta os dois.
+## De onde veio essa ideia
 
-## O que acontece no meio
+Não é nova. Bill Inmon publicou *Building the Data Warehouse* em 1992 defendendo arquitetura top-down, normalizada, enterprise-wide. Ralph Kimball respondeu em 1996 com *The Data Warehouse Toolkit*: bottom-up, modelagem dimensional, data marts compondo o todo. O debate Inmon vs Kimball dominou os anos 90 e ainda aparece em qualquer revisão de arquitetura.
 
-Entre a fonte e o destino, o dado passa por transformações. Essas transformações podem ser simples ou complexas, mas elas sempre existem.
+O que mudou entre 1996 e 2026 não foi o conceito, foi a escala. Em 2017, Martin Kleppmann publicou *Designing Data-Intensive Applications* e formalizou no capítulo 11 a distinção que organiza a engenharia de dados moderna:
 
-**Ingestão** é o primeiro passo: trazer o dado da fonte para o seu ambiente. Pode ser uma cópia completa da tabela, pode ser apenas o que mudou desde a última vez, pode ser um stream em tempo real de eventos.
+> *"A stream refers to data that is incrementally made available over time... in contrast to batch processing, where the input is a known, finite size."*
 
-**Transformação** é onde o dado bruto vira informação útil. Nomes padronizados, valores nulos tratados, duplicatas removidas, tabelas diferentes combinadas, agregações calculadas. É aqui que a regra de negócio entra: o que significa um pedido "completo"? Quando uma transação é considerada fraude? Qual é o critério de retenção desse cliente?
+Bounded vs unbounded. Um conjunto de dados com tamanho conhecido (batch) versus um que nunca termina (stream). Toda decisão de arquitetura de dados começa nessa distinção.
 
-**Destino** é onde o dado transformado vai viver para ser consumido: um dashboard, um modelo de machine learning, um relatório que chega por email toda segunda-feira, um sistema que toma decisões automatizadas.
+Em 2021, o paper do Lakehouse (Armbrust, Ghodsi, Xin, Zaharia, CIDR) propôs unificar warehouse e lake via metadata layer (Delta, Iceberg, Hudi). Em 2020, o pessoal da dbt Labs popularizou ELT no lugar de ETL: transformação dentro do warehouse, não antes. Cada onda mudou ferramenta, não princípio.
 
-## A diferença entre batch e streaming
+## Bounded vs unbounded: a decisão que define tudo
 
-Essa é a primeira decisão arquitetural que define como um pipeline se comporta.
+Toda decisão de pipeline começa aqui. Resumo prático em tabela:
 
-**Batch** processa dados em blocos, num horário definido. O relatório roda todo dia às 6h da manhã e cobre as transações das últimas 24 horas. O dado não é em tempo real, mas é muito mais simples de construir, debugar e manter. A maioria dos pipelines analíticos do mundo é batch.
+| Tipo | Característica | Quando usar | Custo |
+|---|---|---|---|
+| **Batch** | Dataset finito, processado em janela definida | SLA de horas, relatórios contábeis, snapshots históricos | Simples de construir, debugar, recuperar |
+| **Streaming** | Dataset infinito, evento processado quando chega | SLA de segundos a poucos minutos, fraude em tempo real, dashboards operacionais | Complexo, exige watermarks, exactly-once, observabilidade pesada |
+| **Micro-batch** | Streaming em janelas curtas (segundos a minutos) | Meio termo: dashboard de minutos, ML feature store próximo do real-time | Spark Structured Streaming, Flink mini-batches |
 
-**Streaming** processa cada evento no momento em que acontece. Quando você abre o aplicativo do banco e a última transação já aparece lá, é streaming. Quando o sistema de fraude bloqueia um cartão em milissegundos, é streaming.
+Tyler Akidau e equipe (Google) publicaram em VLDB 2015 o paper *The Dataflow Model* que formalizou o vocabulário moderno: event time, processing time, watermarks, triggers, windowing. A frase central:
 
-A escolha não é sobre qual é melhor. É sobre qual o caso de uso exige.
+> *"A practical approach to balancing the inherent tension between correctness, latency, and cost in massive-scale, unbounded, out-of-order data."*
 
-Um relatório de vendas mensal para a diretoria não precisa de streaming. Forçar streaming aqui adiciona complexidade sem benefício.
+Tradução: streaming é correto em três variáveis ao mesmo tempo. Você não maximiza as três, escolhe duas e paga a terceira.
 
-Uma detecção de fraude em cartão de crédito não pode ser batch. Um ciclo de processamento a cada 24h deixaria fraudes acontecerem por horas antes de detectar.
+## Quando batch, quando streaming
 
-O erro mais comum é usar streaming quando batch resolve, porque streaming parece mais sofisticado. O custo é real: infraestrutura mais complexa, debugging mais difícil, mais pontos de falha.
+A regra prática que eu uso é simples: SLA de latência aceitável define a resposta.
 
-## Por que isso importa no seu trabalho
+- **SLA acima de 1h** tende a batch. Reprocessamento simples, debugging direto, infraestrutura barata.
+- **SLA abaixo de 1 minuto** exige streaming. Quem tenta forçar batch nesse cenário cria janelas tão curtas que reinventa streaming com o pior dos dois mundos.
+- **SLA entre 1 minuto e 1h** é zona de micro-batch. Spark Structured Streaming ou Flink mini-batches resolvem.
 
-Aprendi com o tempo que quando um pipeline quebra em produção, a primeira pergunta sempre é: onde no fluxo o problema aconteceu?
+Jay Kreps, fundador do Confluent, escreveu em 2014 o ensaio *Questioning the Lambda Architecture* atacando o modelo proposto por Nathan Marz, que mantinha duas camadas paralelas (batch + speed). A frase que ficou:
 
-Na fonte? O dado não chegou, a API caiu, o schema mudou.
+> *"The problem with the Lambda Architecture is that maintaining code that needs to produce the same result in two complex distributed systems is exactly as painful as it seems."*
 
-Na ingestão? O job falhou, o horário mudou, a conexão expirou.
+Kreps propôs Kappa: log unificado (Kafka) como fonte de verdade, reprocessamento via replay. Kappa virou padrão em quem opera streaming sério.
 
-Na transformação? Uma regra de negócio produziu um resultado inesperado, um valor nulo não foi tratado, uma tabela que deveria existir não existe.
+O erro mais comum que eu vejo é forçar streaming porque "soa moderno". Streaming não é versão melhor de batch. É contrato diferente, custo diferente, modelo mental diferente. Quando a decisão é tomada por moda em vez de por SLA, a equipe gasta meses construindo complexidade que o problema não pediu, e eu já passei por essa armadilha mais de uma vez.
 
-No destino? O dashboard está mostrando o dado errado, o modelo recebeu features desatualizadas, o email enviou antes do processamento terminar.
+## O que dá errado quando ignoram o flow
 
-Ter clareza sobre cada etapa do fluxo é o que permite debugar rápido. Sem esse modelo mental, você fica olhando para logs sem saber por onde começar.
+Knight Capital não foi um acidente isolado. O padrão se repete em outras escalas.
 
-## O que vem nos próximos episódios
+**GitHub, outubro de 2018**: outage de 24 horas. Causa raiz documentada pelo Jason Warner (post-mortem oficial): 43 segundos de partição de rede entre data centers no US East causaram divergência no failover do MySQL Orchestrator, replication storm e inconsistência cross-DC. Foi falha pura de data flow na camada de replicação.
 
-Nas próximas edições da série Zero to Expert, vou entrar em cada parte desse fluxo com mais profundidade:
+**Airbnb, antes da Minerva**: equipes diferentes calculavam "active user" com queries divergentes no mesmo Spark cluster. Métricas batiam de cabeça em reuniões executivas. A solução não foi outro dashboard, foi uma camada única de definição de métricas com lineage explícito da fonte ao destino. O Minerva indexa hoje mais de 200 mil data assets.
 
-- Como a ingestão funciona na prática, os formatos que importam e os erros que todo engenheiro vai cometer ao menos uma vez
-- O que é uma camada de transformação e quando usar SQL, Python ou Spark
-- Como escolher onde o dado vai viver: data warehouse, data lake, lakehouse
-- Orquestração: o que mantém esse fluxo inteiro funcionando de forma confiável
+Esses casos cabem em padrões nomeados na literatura. Vale conhecer cada um:
 
-Cada episódio vai ter exemplos reais e a decisão no centro, não teoria.
+- **Pipeline jungle** (Sculley et al, NeurIPS 2015, *Hidden Technical Debt in Machine Learning Systems*): *"pipeline jungles often appear as data preparation evolves organically... testing such pipelines requires expensive end-to-end integration tests."* É o que acontece quando ninguém desenhou o flow no começo e ele cresce por adição.
+- **Data swamp** (Nick Heudecker, Gartner 2014): *"lakes turn into swamps when there is no metadata, governance, or quality control."* Lake virou pasta de arquivos jogados em qualquer lugar.
+- **Schema drift**: campos mudam sem aviso entre runs, contratos downstream quebram silenciosamente.
+- **Lineage gaps**: ninguém sabe de onde veio o dado que está no dashboard.
+- **Reverse-ETL chaos**: dado volta do warehouse pra SaaS sem governança, vira fonte secreta de verdade que ninguém audita.
 
-Se tem algum conceito específico que você quer que eu cubra na série, me manda no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com) para receber os próximos episódios.
+## Como os grandes documentam o próprio flow
+
+Empresas que operam dado em produção real publicam a arquitetura. Vale ler.
+
+| Empresa | Documento | Anchor |
+|---|---|---|
+| **Netflix** | *Maestro: Netflix's Workflow Orchestrator* (TechBlog, jul 2024) | Orquestra centenas de milhares de workflows por dia, padrão WAP (Write-Audit-Publish) sobre Iceberg |
+| **Uber** | *Uber's Big Data Platform* (Eng Blog, out 2018) | Hudi reduziu latência de ingestão de 24h para menos de 1h em 100+ PB |
+| **Airbnb** | *Democratizing Data at Airbnb* (mai 2017) | Dataportal indexa 200K+ data assets com lineage explícito |
+| **Stripe** | *Online migrations at scale* (Eng Blog, fev 2017) | Dual-write + backfill + reconciliation para migrar dados financeiros sem perda |
+| **Slack** | *How We Built Slack's Data Warehouse* (set 2023) | Migração de Presto+Hive para Trino+Iceberg, 60K queries por dia |
+
+Padrão comum: cada uma documentou o flow antes de construir a próxima ferramenta. Ferramenta nasceu a partir do diagrama, não o contrário.
+
+## Anti-padrões pra evitar
+
+1. **Forçar streaming porque soa moderno**. Se SLA é diário, batch resolve com 10% da complexidade.
+2. **Construir pipeline sem desenhar o flow primeiro**. Pipeline jungle é literalmente isso: crescer sem mapa.
+3. **Aceitar lake como "joga tudo aqui que organizo depois"**. Vira swamp em 6 meses.
+4. **Ignorar schema contracts**. Schema drift quebra downstream silenciosamente. Use Schema Registry ou contrato versionado em SQL.
+5. **Manter duas implementações paralelas (Lambda)**. Custo de manutenção dobra, comportamentos divergem, ninguém confia em nenhuma.
+6. **Pular lineage**. Lineage não é luxo. É a única forma de responder "de onde veio esse número" sem abrir 12 jobs.
+
+## Onde começar
+
+Você consegue desenhar, em um guardanapo, o data flow do seu pipeline mais crítico? Fonte exata, transformações principais, destinos, SLA por etapa.
+
+Se sim, está à frente da maioria. Se não, comece por aí. Antes de Spark, antes de dbt, antes de qualquer ferramenta nova.
+
+Os próximos episódios da série Zero to Expert vão entrar em cada camada com profundidade: ingestão (formatos, idempotência, CDC), transformação (SQL vs Python vs Spark), destino (warehouse vs lake vs lakehouse), orquestração. Cada episódio com caso concreto e decisão no centro, não teoria.
+
+Se tem algum conceito específico que você quer ver coberto, me manda no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com) pra receber os próximos episódios.
