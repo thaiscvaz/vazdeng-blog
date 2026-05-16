@@ -1,0 +1,61 @@
+name: validate-posts
+
+on:
+  pull_request:
+    paths:
+      - 'content/blog/**'
+      - 'scripts/validate_post.py'
+  push:
+    branches: [main]
+    paths:
+      - 'content/blog/**'
+      - 'scripts/validate_post.py'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'all | diff'
+        required: true
+        default: 'diff'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decidir alvo (diff vs all)
+        id: target
+        shell: bash
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "pull_request" ] || [ "$MODE" = "diff" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+            HEAD="${{ github.sha }}"
+            if [ -z "$BASE" ]; then BASE="HEAD^"; fi
+            FILES=$(git diff --name-only "$BASE" "$HEAD" -- 'content/blog/**/index*.md' | tr '\n' ' ')
+            echo "files=$FILES" >> "$GITHUB_OUTPUT"
+            echo "mode=diff" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validar (diff)
+        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.files != ''
+        run: |
+          for f in ${{ steps.target.outputs.files }}; do
+            python scripts/validate_post.py "$f"
+          done
+
+      - name: Validar (all)
+        if: steps.target.outputs.mode == 'all'
+        run: python scripts/validate_post.py content/blog
+
+      - name: Sem posts alterados
+        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.files == ''
+        run: echo "Nenhum post alterado no diff. Skip."

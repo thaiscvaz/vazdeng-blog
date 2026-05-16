@@ -15,13 +15,11 @@ Goal: maximize returns.
 
 Result: Sharpe ratio of **-1.14**. Not good.
 
-But here's the thing: the system didn't fail. It failed at one objective (alpha), but excelled at another (capital preservation).
-
-In this post, I'll show you how to build a robust, tested, auditable agent, and why even "failures" are wins when you learn from them.
+The system didn't fail. It failed at one objective (alpha) and excelled at another (capital preservation).
 
 ---
 
-## The Architecture: 7 Layers
+## Architecture by layers
 
 Quant trading is complex. It's not "buy here, sell there." It's this:
 
@@ -73,7 +71,7 @@ BEAR (downtrend)  → RSI < 40 + momentum negative
 
 LightGBM regressor predicts returns on the next 4 candles (walk-forward).
 
-**Critical insight:** You don't need 60% accuracy to have alpha. You need *consistency*. A model that's right 45% of the time but with low drawdown beats one that's 70% accurate with 30% max DD.
+You don't need 60% accuracy to have alpha. You need *consistency*. A model that's right 45% of the time but with low drawdown beats one that's 70% accurate with 30% max DD.
 
 ### L4: Decision
 
@@ -226,7 +224,7 @@ Runs on **a cheap machine**. No Kubernetes, no scary AWS bills.
 
 ---
 
-## 7 Lasting Lessons
+## Lasting lessons
 
 ### 1. Test First (TDD)
 

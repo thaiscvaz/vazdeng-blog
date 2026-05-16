@@ -1,0 +1,69 @@
+<svg width="700" viewBox="0 0 700 490" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Preciso de Medallion Architecture? — Diagrama de Decisão</title>
+<desc>Fluxograma com três perguntas que guiam se você precisa implementar Medallion Architecture</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    text { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  </style>
+</defs>
+
+<rect width="700" height="490" fill="#1a2035"/>
+
+<text x="350" y="30" text-anchor="middle" font-size="17" font-weight="600" fill="#f0ece2" letter-spacing="0.3">Preciso de Medallion Architecture?</text>
+<line x1="110" y1="38" x2="590" y2="38" stroke="#f0ece2" stroke-width="0.5" opacity="0.2"/>
+
+<rect x="290" y="50" width="120" height="30" rx="15" fill="none" stroke="#f0ece2" stroke-width="1" opacity="0.6"/>
+<text x="350" y="65" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#f0ece2" opacity="0.8">INÍCIO</text>
+
+<line x1="350" y1="80" x2="350" y2="108" stroke="#f0ece2" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="40" y="110" width="386" height="58" rx="6" fill="#1e2740" stroke="#f0ece2" stroke-width="1"/>
+<text x="233" y="132" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">Há múltiplos consumidores com</text>
+<text x="233" y="152" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">necessidades diferentes?</text>
+
+<line x1="426" y1="139" x2="458" y2="139" stroke="#e07b30" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="442" y="130" text-anchor="middle" font-size="10" fill="#e07b30" font-weight="600">NÃO</text>
+
+<rect x="460" y="117" width="200" height="44" rx="6" fill="#e07b30"/>
+<text x="560" y="133" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">Questione quantas</text>
+<text x="560" y="149" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">camadas você precisa</text>
+
+<line x1="350" y1="168" x2="350" y2="208" stroke="#f0ece2" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="191" font-size="10" fill="#f0ece2" font-weight="600">SIM</text>
+
+<rect x="40" y="210" width="386" height="58" rx="6" fill="#1e2740" stroke="#f0ece2" stroke-width="1"/>
+<text x="233" y="232" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">Reprocessar dados na fonte é</text>
+<text x="233" y="252" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">caro ou impossível?</text>
+
+<line x1="426" y1="239" x2="458" y2="239" stroke="#e07b30" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="442" y="230" text-anchor="middle" font-size="10" fill="#e07b30" font-weight="600">NÃO</text>
+
+<rect x="460" y="217" width="200" height="44" rx="6" fill="#e07b30"/>
+<text x="560" y="233" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">Questione quantas</text>
+<text x="560" y="249" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">camadas você precisa</text>
+
+<line x1="350" y1="268" x2="350" y2="308" stroke="#f0ece2" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="291" font-size="10" fill="#f0ece2" font-weight="600">SIM</text>
+
+<rect x="40" y="310" width="386" height="58" rx="6" fill="#1e2740" stroke="#f0ece2" stroke-width="1"/>
+<text x="233" y="332" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">A latência de cada camada cabe</text>
+<text x="233" y="352" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#f0ece2">no prazo do negócio?</text>
+
+<line x1="426" y1="339" x2="458" y2="339" stroke="#e07b30" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="442" y="330" text-anchor="middle" font-size="10" fill="#e07b30" font-weight="600">NÃO</text>
+
+<rect x="460" y="317" width="200" height="44" rx="6" fill="#e07b30"/>
+<text x="560" y="333" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">Questione quantas</text>
+<text x="560" y="349" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#ffffff">camadas você precisa</text>
+
+<line x1="350" y1="368" x2="350" y2="408" stroke="#f0ece2" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="360" y="391" font-size="10" fill="#f0ece2" font-weight="600">SIM</text>
+
+<rect x="160" y="410" width="380" height="46" rx="6" fill="#2d6a4f"/>
+<text x="350" y="433" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#ffffff">✓  Use Medallion Architecture</text>
+
+<text x="350" y="476" text-anchor="middle" font-size="10" fill="#f0ece2" opacity="0.35">Três SIMs = arquitetura justificada</text>
+</svg>

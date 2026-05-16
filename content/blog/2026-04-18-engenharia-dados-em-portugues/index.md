@@ -12,7 +12,7 @@ images:
 
 Conteúdo de engenharia de dados em português, daquele tipo que você abre e sente que a pessoa viveu o que está escrevendo, é raro de achar.
 
-Procura agora. Você vai encontrar muito material de qualidade pra começar: traduções de artigos gringos, tutoriais que partem da documentação oficial, cursos de Pandas com datasets simples. Tudo isso tem espaço, é por onde a maioria das pessoas começa, e quem produz esse material está fazendo um trabalho importante.
+Procura agora. Você vai encontrar muito material de qualidade pra começar: traduções de artigos gringos, tutoriais que partem da documentação oficial, cursos de Pandas com datasets simples. Tudo isso tem espaço, é por onde muita gente começa, e quem produz esse material está fazendo um trabalho importante.
 
 O que ainda é difícil de achar é alguém te contando como decidiu usar Delta Lake em vez de Parquet num ambiente que processa centenas de milhões de transações por dia. Ou em quais momentos a Medallion Architecture ajuda e em quais ela só atrapalha. Ou como a LGPD muda, na prática, a forma como você desenha uma camada de ingestão.
 
@@ -34,7 +34,7 @@ Em 2024 entrei no mestrado em Métodos Numéricos em Engenharia na UFPR. Minha p
 
 Alguns anos atrás eu comecei a estudar análise on-chain. E percebi uma coisa que pouca gente parece estar dizendo de forma clara: cripto, em boa parte, é um problema de engenharia de dados ainda mal resolvido.
 
-Os dados estão todos ali. Na blockchain, abertos, públicos. Mas a maioria das pessoas que investe não sabe tratá-los, e grande parte das engenheiras de dados ainda não está olhando pra eles.
+Os dados estão todos ali. Na blockchain, abertos, públicos. Mas boa parte de quem investe não sabe tratá-los, e grande parte das engenheiras de dados ainda não está olhando pra eles.
 
 Então decidi construir um agente de IA especialista em cripto. Do zero, em público, documentando cada decisão de arquitetura. Com as mesmas ferramentas que uso no trabalho: pipelines reais, backtesting rigoroso, modelos estatísticos de verdade. Sem hype, sem promessa de enriquecimento rápido.
 

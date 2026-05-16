@@ -1,0 +1,34 @@
+<svg width="700" height="340" viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="340" fill="#1a2035"/>
+  <text x="350" y="32" font-family="Inter,system-ui,sans-serif" font-size="13" font-weight="700"
+        fill="#f0ece2" text-anchor="middle" letter-spacing="0.05em">UNITY CATALOG LINEAGE: COBERTURA REAL</text>
+  <rect x="30" y="50" width="305" height="270" rx="8" fill="#1e2740" stroke="#2d6a4f" stroke-width="1.5"/>
+  <rect x="30" y="50" width="305" height="36" rx="8" fill="#2d6a4f"/>
+  <rect x="30" y="72" width="305" height="14" fill="#2d6a4f"/>
+  <text x="182" y="73" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700"
+        fill="#ffffff" text-anchor="middle" letter-spacing="0.06em">CAPTURADO AUTOMATICAMENTE</text>
+  <text x="52" y="108" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  SELECT, CREATE TABLE AS SELECT</text>
+  <text x="52" y="133" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  INSERT INTO SELECT</text>
+  <text x="52" y="158" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  Lineage de colunas (Runtime 11.3+)</text>
+  <text x="52" y="183" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  Python, SQL, Scala, R</text>
+  <text x="52" y="208" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  Jobs, notebooks, dashboards</text>
+  <text x="52" y="233" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  Multi-workspace (mesmo metastore)</text>
+  <text x="52" y="258" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">ok  365 dias de retencao historica</text>
+  <text x="52" y="283" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8a8880">   system.access.table_lineage</text>
+  <text x="52" y="301" font-family="Inter,system-ui,sans-serif" font-size="10" fill="#8a8880">   system.access.column_lineage</text>
+  <rect x="365" y="50" width="305" height="270" rx="8" fill="#1e2740" stroke="#e07b30" stroke-width="1.5"/>
+  <rect x="365" y="50" width="305" height="36" rx="8" fill="#e07b30"/>
+  <rect x="365" y="72" width="305" height="14" fill="#e07b30"/>
+  <text x="517" y="73" font-family="Inter,system-ui,sans-serif" font-size="11" font-weight="700"
+        fill="#ffffff" text-anchor="middle" letter-spacing="0.06em">NAO CAPTURADO</text>
+  <text x="387" y="108" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  UPDATE, DELETE, INSERT VALUES</text>
+  <text x="387" y="133" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  MERGE INTO (sem config manual)</text>
+  <text x="387" y="158" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  RDDs e pandas puro</text>
+  <text x="387" y="183" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  JDBC connections</text>
+  <text x="387" y="208" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  Objetos renomeados (historico quebra)</text>
+  <text x="387" y="233" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  Tabelas Hive metastore legadas</text>
+  <text x="387" y="258" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  BI tools sem connector (Tableau, etc.)</text>
+  <text x="387" y="283" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  Multi-hop visual (so 1 nivel no UI)</text>
+  <text x="387" y="308" font-family="Inter,system-ui,sans-serif" font-size="11.5" fill="#f0ece2">X  Dados anteriores a set/2024</text>
+  <text x="350" y="328" font-family="Inter,system-ui,sans-serif" font-size="9" fill="#8a8880" text-anchor="middle">vazdeng.substack.com  |  Fonte: docs.databricks.com/aws/en/data-governance/unity-catalog/data-lineage</text>
+</svg>

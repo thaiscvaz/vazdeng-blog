@@ -10,7 +10,7 @@ images:
   - lifecycle.png
 ---
 
-A maioria dos times trata LGPD como algo pra resolver "depois".
+Vi a maioria dos times tratar LGPD como algo pra resolver "depois".
 
 Primeiro o pipeline é montado, os dados entram no lake, os dashboards começam a sair. Aí, um dia, chega uma requisição de titular pedindo exclusão de dados pessoais. E o time descobre que não sabe onde aquele CPF está, quantas cópias existem no Bronze, quantos modelos de ML já foram treinados com ele.
 
@@ -22,7 +22,7 @@ LGPD não é compliance no fim do pipeline. É uma restrição de design que com
 
 O Art. 6º, III da LGPD fala em **necessidade**: só trate dados adequados e limitados ao que é necessário para a finalidade.
 
-A tradução prática é simples. Não ingira o que você não vai usar.
+A tradução prática que aprendi é simples. Não ingira o que você não vai usar.
 
 Parece óbvio, mas não é. A maioria dos pipelines ingere tabelas inteiras (incluindo colunas de CPF, RG, telefone, endereço, e-mail) "porque está na fonte". Aí o compliance chega, pede o mapeamento desses campos, e descobre que 80% deles nunca foram consumidos por ninguém.
 
@@ -60,7 +60,7 @@ O teste prático é direto: você consegue, em menos de uma hora, listar todas a
 
 O Art. 15 diz que o tratamento termina quando a finalidade for alcançada. O Art. 16 completa: depois disso, os dados devem ser eliminados.
 
-Na prática da engenharia de dados, isso significa que cada dado tem um relógio próprio. Não dá pra criar uma política única de "retenção igual a 5 anos" pra todas as tabelas. Algumas finalidades exigem meses, outras anos, outras são indefinidas (por base legal diferente).
+Na prática da engenharia de dados, cada dado passa a ter um relógio próprio. Não dá pra criar uma política única de "retenção igual a 5 anos" pra todas as tabelas. Algumas finalidades exigem meses, outras anos, outras são indefinidas (por base legal diferente).
 
 Padrões que funcionam: tabelas particionadas por data de tratamento, com `VACUUM` ou `TRUNCATE PARTITION` no fim do ciclo. Mapa de finalidades documentado em código, num YAML que define, por tabela e por campo, qual finalidade justifica, qual base legal e qual prazo. E jobs de expiração automáticos, sem confiar em processo manual: configura retention policies que rodam sozinhas.
 
