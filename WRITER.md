@@ -110,12 +110,44 @@ gate  = score >= 8 AND errors == 0
 
 `--strict`: warnings também reprovam (score deve ser 10).
 
+## Cadência editorial (atualizado 2026-05-24)
+
+| Slot | Trilha fixa | Formato |
+|---|---|---|
+| Terça 12h | **DE Produção** | Anti-padrão técnico standalone |
+| Quinta 12h | **Tool Verdict** | Verdict honesto de ferramenta |
+| Sábado 10h | **Zero to Expert** | Série didática numerada (Ep 01, 02, 03...) |
+| Sábado 14h | **IA Foundations** | Série didática numerada (01, 02, 03...) |
+
+Reservas (sem dia fixo): Cripto Chronicles, Architecture Lab, Manifesto.
+
+Nomes de séries (Zero to Expert, IA Foundations, Cripto Chronicles, Tool Verdict) ficam em inglês como marca, não traduzir.
+
+## Regra de imagens por post (decidido 2026-05-24)
+
+Texto longo sem quebra visual cansa o leitor sênior. Mínimos por post:
+
+| Item | Quando | Tipo aceito |
+|---|---|---|
+| Cover editorial | Sempre | gerado via `vazdeng/scripts/cover_gen.js` |
+| Imagens inline | A cada 600-800 palavras (post de 1500 palavras = 2-3 imagens) | diagrama, antes/depois de código, quote card, flowchart, tabela visualizada |
+| Quote card | Mínimo 1 por post | frase-chave em destaque visual |
+
+**Tipos obrigatórios por trilha:**
+- **Tool Verdict:** 1 diagrama arquitetural + 1 antes/depois de código
+- **DE Produção:** 1 flowchart de decisão
+- **Zero to Expert / IA Foundations:** 2 diagramas progressivos por episódio
+- **Architecture Lab:** 1 diagrama da arquitetura analisada (obrigatório)
+
+Tooling em `vazdeng/scripts/`: `cover_gen.js` (cover), `gen_diagram.js` (diagramas Mermaid), `quote_card.js` (quote cards — a criar).
+
 ## Antes de commitar um post
 
 1. `python scripts/validate_post.py content/blog/SEU-POST/` em ambos `index.md` e `index.en.md`
 2. Conferir paridade: ambos arquivos existem e cobrem as mesmas seções H2
-3. Conferir `cover.png` ou pular se `images: []`
-4. Conferir `publishDate` cai em terça ou quinta
+3. Conferir `cover.png` presente
+4. Conferir mínimo de imagens inline conforme regra acima
+5. Conferir `publishDate` cai no dia da trilha (ter/qui/sáb conforme grade)
 
 ## Quando o validador erra (falso positivo)
 
