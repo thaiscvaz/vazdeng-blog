@@ -8,6 +8,9 @@ public/
 resources/_gen/
 .hugo_build.lock
 
+# Mockups internos de design (nao deployaveis)
+preview/
+
 # OS
 .DS_Store
 Thumbs.db
