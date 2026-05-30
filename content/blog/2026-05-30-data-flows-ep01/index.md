@@ -16,6 +16,8 @@ Não foi bug de algoritmo. Não foi crise de mercado. Foi um único servidor ent
 
 O SEC documentou o caso (Release No. 70694, outubro 2013): a causa raiz não era um erro de lógica de trading. Era inconsistência de estado entre servidores que deveriam estar sincronizados. Em linguagem de engenharia de dados, era um data flow quebrado.
 
+![Timeline 1 de agosto de 2012: Knight Capital perde 440 milhões em 45 minutos por estado divergente entre servidores](images/01-knight-timeline.png)
+
 A Knight Capital tinha algoritmos sofisticados. Tinha mais de uma década de operação. O que não tinha era um modelo mental claro sobre onde o dado nascia, por onde passava, e onde precisava chegar de forma consistente.
 
 Esse modelo mental é o que define o resto. Eu trabalho com dados há tempo suficiente pra ter visto, em escalas menores, variações dessa mesma falha. Antes de Apache Spark, antes de dbt, antes de Snowflake, antes de qualquer ferramenta, existe um conceito que separa pipeline robusto de pipeline frágil.
@@ -39,6 +41,9 @@ Em 2021, o paper do Lakehouse (Armbrust, Ghodsi, Xin, Zaharia, CIDR) propôs uni
 ## Bounded vs unbounded: a decisão que define tudo
 
 Toda decisão de pipeline começa aqui. Resumo prático em tabela:
+
+![Diagrama do fluxo de dados: fonte, transformação, destino, com batch, micro-batch e streaming por SLA](images/02-data-flow-overview.png)
+
 
 | Tipo | Característica | Quando usar | Custo |
 |---|---|---|---|
@@ -97,6 +102,9 @@ Empresas que operam dado em produção real publicam a arquitetura. Vale ler.
 | **Slack** | *How We Built Slack's Data Warehouse* (set 2023) | Migração de Presto+Hive para Trino+Iceberg, 60K queries por dia |
 
 Padrão comum: cada uma documentou o flow antes de construir a próxima ferramenta. Ferramenta nasceu a partir do diagrama, não o contrário.
+
+![Citação: ferramenta nasceu a partir do diagrama, não o contrário](images/03-quote-ferramenta.png)
+
 
 ## Anti-padrões pra evitar
 

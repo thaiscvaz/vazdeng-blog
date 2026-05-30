@@ -12,6 +12,8 @@ Not an algorithm bug. Not a market crash. One server out of eight received the n
 
 The SEC documented the case (Release No. 70694, October 2013): the root cause was not a trading logic error. It was state inconsistency between servers that should have been in sync. In data engineering language, a broken data flow.
 
+![Timeline August 1st, 2012: Knight Capital loses 440 million dollars in 45 minutes from divergent state between servers](images/01-knight-timeline.png)
+
 Knight Capital had sophisticated algorithms. Over a decade of operation. What it did not have was a clear mental model of where the data was born, where it traveled, and where it had to arrive consistently.
 
 That mental model defines everything else. I have worked with data long enough to have seen, at smaller scales, variations of the same failure. Before Apache Spark, before dbt, before Snowflake, before any tool, there is a concept that separates a robust pipeline from a fragile one.
@@ -35,6 +37,9 @@ In 2021, the Lakehouse paper (Armbrust, Ghodsi, Xin, Zaharia, CIDR) proposed uni
 ## Bounded vs unbounded: the decision that defines everything
 
 Every pipeline decision starts here. Practical summary in a table:
+
+![Data flow diagram: source, transformation, destination, with batch, micro-batch and streaming by SLA](images/02-data-flow-overview.png)
+
 
 | Type | Trait | When to use | Cost |
 |---|---|---|---|
@@ -93,6 +98,9 @@ Companies running real data in production publish the architecture. Worth readin
 | **Slack** | *How We Built Slack's Data Warehouse* (Sep 2023) | Presto+Hive to Trino+Iceberg migration, 60K queries per day |
 
 Common pattern: each one documented the flow before building the next tool. The tool was born from the diagram, not the other way around.
+
+![Quote: the tool was born from the diagram, not the other way around](images/03-quote-ferramenta.png)
+
 
 ## Anti-patterns to avoid
 
