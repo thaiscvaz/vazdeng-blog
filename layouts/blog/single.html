@@ -1,42 +1,94 @@
 {{ define "main" }}
-{{ $tag := "" }}
-{{ with .Params.tags }}{{ $tag = index . 0 }}{{ end }}
+{{ $colorMap := site.Params.track_colors }}
+{{ $tag := "" }}{{ $color := "amber" }}
+{{ with .Params.tags }}
+  {{ $tag = index . 0 }}
+  {{ with index $colorMap (lower $tag) }}{{ $color = . }}{{ end }}
+{{ end }}
 {{ $minutes := math.Ceil (div .WordCount 200.0) }}
+{{ $cover := "" }}
+{{ with .Resources.GetMatch "cover.*" }}{{ $cover = .RelPermalink }}{{ end }}
 
-<article class="vz-post-page">
-  <header class="vz-post-header">
-    {{ with $tag }}<div class="vz-post-eyebrow">{{ . }}</div>{{ end }}
-    <h1 class="vz-post-h1">{{ .Title }}</h1>
-    {{ with .Params.description }}<p class="vz-post-lead">{{ . }}</p>{{ end }}
-    <div class="vz-post-byline">
-      <span>{{ T "bylineBy" }} <strong>{{ with site.Params.author }}{{ .name }}{{ end }}</strong></span>
-      <span>{{ .Date.Format "02 Jan · 2006" }}</span>
-      <span>{{ $minutes }} {{ T "bylineReadMin" }}</span>
-      {{ if hugo.IsMultilingual }}
-        <span>
-          {{ range $i, $t := .AllTranslations }}
-            {{ if $i }} · {{ end }}
-            {{ if eq $t.Language.Lang $.Language.Lang }}
-              <strong>{{ upper $t.Language.Lang }}</strong>
-            {{ else }}
-              <a href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
-            {{ end }}
+{{/* Related posts (3 mais proximos por data, excluindo o atual) */}}
+{{ $current := . }}
+{{ $allPosts := where .Site.RegularPages "Section" "blog" }}
+{{ $related := first 3 (where $allPosts.ByDate.Reverse "Permalink" "!=" $current.Permalink) }}
+
+<nav class="vz-crumb">
+  <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
+  <span class="sep">/</span>
+  <span class="cur">{{ .Title }}</span>
+</nav>
+
+<header class="vz-post-header">
+  <svg class="vz-doodle vz-doodle-tr" viewBox="0 0 48 48" aria-hidden="true">
+    <circle cx="12" cy="14" r="5"/>
+    <circle cx="36" cy="14" r="5"/>
+    <circle cx="24" cy="36" r="5"/>
+    <line x1="17" y1="14" x2="31" y2="14"/>
+    <line x1="15" y1="18" x2="21" y2="32"/>
+    <line x1="33" y1="18" x2="27" y2="32"/>
+  </svg>
+
+  {{ with $tag }}<div class="vz-post-eyebrow {{ $color }}">{{ . }}</div>{{ end }}
+  <h1 class="vz-post-h1">{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="vz-post-lead">{{ . }}</p>{{ end }}
+  <div class="vz-post-byline">
+    <span>{{ T "postBy" }} <strong>{{ with site.Params.author }}{{ .name }}{{ end }}</strong></span>
+    <span>{{ .Date.Format "02 Jan · 2006" }}</span>
+    <span>{{ $minutes }} {{ T "postReadMin" }}</span>
+    {{ if hugo.IsMultilingual }}
+      <span>
+        {{ range $i, $t := .AllTranslations }}
+          {{ if $i }} · {{ end }}
+          {{ if eq $t.Language.Lang $.Language.Lang }}
+            <strong>{{ upper $t.Language.Lang }}</strong>
+          {{ else }}
+            <a href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
           {{ end }}
-        </span>
-      {{ end }}
-    </div>
-  </header>
-
-  <div class="vz-article">
-    {{ .Content }}
+        {{ end }}
+      </span>
+    {{ end }}
   </div>
+</header>
 
-  {{/* Subscribe block (no fim de todo post) */}}
-  <aside class="vz-subscribe">
+{{ with $cover }}
+<div class="vz-post-cover">
+  <img src="{{ . }}" alt="Cover do post" />
+</div>
+{{ end }}
+
+<article class="vz-article">
+  {{ .Content }}
+</article>
+
+<aside class="vz-subscribe">
+  <div class="vz-subscribe-inner">
     <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
-    <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }}</h3>
+    <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
     <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
     <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
-  </aside>
-</article>
+  </div>
+</aside>
+
+{{ if $related }}
+<section class="vz-related">
+  <div class="vz-related-head">{{ T "relatedHead" }}</div>
+  <div class="vz-related-grid">
+    {{ range $related }}
+      {{ $rtag := "" }}{{ $rcolor := "amber" }}
+      {{ with .Params.tags }}
+        {{ $rtag = index . 0 }}
+        {{ with index $colorMap (lower $rtag) }}{{ $rcolor = . }}{{ end }}
+      {{ end }}
+      <a class="vz-related-card" href="{{ .RelPermalink }}">
+        {{ with $rtag }}<span class="vz-related-card-eyebrow {{ $rcolor }}">{{ . }}</span>{{ end }}
+        <h4 class="vz-related-card-h">{{ .Title }}</h4>
+        <span class="vz-related-card-date">{{ .Date.Format "02 Jan 2006" }}</span>
+      </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
 {{ end }}

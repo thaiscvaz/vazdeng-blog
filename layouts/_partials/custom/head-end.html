@@ -1,9 +1,8 @@
-{{/* VazDEng v3 — Fraunces (display variable) + Manrope (corpo) + Space Mono (UI/terminal).
-     Stack escolhida pra fugir do "AI startup default" (Inter / Source Serif / JetBrains Mono).
-     Fraunces traz swashes editoriais; Manrope é geometric humanista; Space Mono é retro-terminal. */}}
+{{/* VazDEng v5 — Fraunces (display variable) + Inter (corpo) + Space Mono (UI/code).
+     Identidade Bauhaus boutique anti-AI-startup, com toggle light/dark interativo. */}}
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
 {{/* SEO verifications */}}
 {{ with site.Params.googleSiteVerification }}
@@ -13,14 +12,24 @@
 <link rel="me" href="{{ . }}" />
 {{ end }}
 
-{{/* Dark-first default */}}
+{{/* Dark-first default + sincroniza com Hextra (que usa class .dark no <html>).
+     Persistencia via localStorage.theme = "dark" | "light". */}}
 <script>
 (function() {
   try {
     var stored = localStorage.getItem('theme');
-    if (stored === 'light') return;
-    document.documentElement.classList.add('dark');
+    var theme = stored === 'light' ? 'light' : 'dark';
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
     if (!stored) localStorage.setItem('theme', 'dark');
   } catch (e) {}
 })();
+function vzToggleTheme() {
+  var html = document.documentElement;
+  var current = html.getAttribute('data-theme') || 'dark';
+  var next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  html.classList.toggle('dark', next === 'dark');
+  try { localStorage.setItem('theme', next); } catch (e) {}
+}
 </script>

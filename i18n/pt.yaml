@@ -1,31 +1,44 @@
-copyright: "© 2026 Thais Vaz · VazDEng"
+copyright: "© 2026 · vazdeng.pages.dev"
 poweredBy: ""
 siteSubtitle: "Onde escrevo sobre o que construo em dados, IA e cripto."
 
 # Hero homepage
-heroEyebrow: "Engenharia de dados em produção"
-heroTitleA: "Pipeline robusto começa antes da ferramenta."
-heroTitleB: "Aqui mostro como."
-heroLead: "Anti-padrões de produção, tool verdicts honestos e a saga de um agente quant que perdeu dinheiro até aprender a dizer 'não sei'. Escrito por uma engenheira sênior, em português que não é tradução automática."
-heroMetaCadence: "4 posts por semana"
-heroMetaSlot: "Próximo: sábado 10h BRT"
-heroMetaTrack: "Trilha ativa: Zero to Expert"
+heroPillCount: "posts ·"
+heroPillNext: "próximo sábado 10h BRT"
+heroTitleA: "Pipeline robusto começa"
+heroTitleB: "antes"
+heroTitleC: "da ferramenta."
+heroLead: "Engenharia de dados em produção, agente quant em cripto, fundamentos didáticos. Em português que não é tradução automática."
+
+# Cronograma
+scheduleLabel: "Próximos<br/>posts"
+
+# Trilhas ativas
+tracksEyebrow: "3 trilhas ativas"
+tracksSeeAll: "Ver todas →"
 
 # Archive
 archiveTitle: "Arquivo"
+archiveTitleAccent: "completo"
 archivePostsCount: "posts"
 archiveEmpty: "Nenhum post ainda."
+filterAll: "Tudo"
 
-# Post byline
-bylineBy: "Por"
-bylineReadMin: "min de leitura"
+# Post page
+crumbHome: "Início"
+postReadMin: "min de leitura"
+postBy: "Por"
 
 # Subscribe (no fim do post + na CTA)
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Próximo episódio sai sábado, 10h BRT"
+subscribeHeadline: "Próximo episódio sai"
+subscribeHeadlineAccent: "sábado, 10h BRT"
 subscribeSub: "Engenharia de dados em português, com decisão técnica no centro. 4 posts por semana, sem fluff."
 subscribeCta: "Assinar no Substack"
 subscribeAria: "Assinar a newsletter VazDEng"
 
-# Footer
-footerBuiltBy: "construído por Thais Vaz"
+# Related
+relatedHead: "Continue lendo"
+
+# Nav CTA
+navCta: "Assinar"

@@ -2,64 +2,126 @@
 {{ $isArchive := or .IsHome (and .IsSection (eq .Section "blog")) }}
 {{ $posts := where .Site.RegularPages "Section" "blog" }}
 {{ $posts = $posts.ByDate.Reverse }}
+{{ $colorMap := site.Params.track_colors }}
 
 {{ if $isArchive }}
-  {{/* ============ HERO BAUHAUS ============ */}}
+
+  {{/* ============ HERO ============ */}}
   <section class="vz-hero">
-    <div class="vz-hero-rule"></div>
-    <div class="vz-hero-grid">
-      <div class="vz-hero-number">
-        <sup>№</sup>{{ printf "%02d" (len $posts) }}
-      </div>
-      <div class="vz-hero-body">
-        <div class="vz-hero-eyebrow">{{ T "heroEyebrow" }}</div>
-        <h1 class="vz-hero-title">{{ T "heroTitleA" | safeHTML }} <em>{{ T "heroTitleB" }}</em></h1>
-        <p class="vz-hero-lead">{{ T "heroLead" }}</p>
-        <div class="vz-hero-meta">
-          <span><span class="dot"></span>{{ T "heroMetaCadence" }}</span>
-          <span>{{ T "heroMetaSlot" }}</span>
-          <span>{{ T "heroMetaTrack" }}</span>
-        </div>
-      </div>
+    <svg class="vz-doodle vz-doodle-tl" viewBox="0 0 48 48" aria-hidden="true">
+      <polyline points="6,38 14,28 22,32 30,18 38,24 42,14"/>
+      <line x1="6" y1="42" x2="42" y2="42"/>
+      <line x1="6" y1="14" x2="6" y2="42"/>
+    </svg>
+    <svg class="vz-doodle vz-doodle-tr" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="12" cy="14" r="5"/>
+      <circle cx="36" cy="14" r="5"/>
+      <circle cx="24" cy="36" r="5"/>
+      <line x1="17" y1="14" x2="31" y2="14"/>
+      <line x1="15" y1="18" x2="21" y2="32"/>
+      <line x1="33" y1="18" x2="27" y2="32"/>
+    </svg>
+
+    <div class="vz-hero-pill">
+      <span class="dot"></span>{{ len $posts }} {{ T "heroPillCount" }} {{ T "heroPillNext" }}
     </div>
+    <h1 class="vz-hero-title">{{ T "heroTitleA" }} <em>{{ T "heroTitleB" }}</em> {{ T "heroTitleC" }}</h1>
+    <p class="vz-hero-lead">{{ T "heroLead" }}</p>
   </section>
 
-  {{/* ============ ARCHIVE ============ */}}
-  <section class="vz-section vz-archive">
-    <div class="vz-section-head">
-      <h2 class="vz-section-title">{{ T "archiveTitle" }}</h2>
-      <span class="vz-section-meta">{{ len $posts }} {{ T "archivePostsCount" }}</span>
+  {{/* ============ CRONOGRAMA ============ */}}
+  {{ with site.Params.upcoming }}
+  <div class="vz-schedule">
+    <div class="vz-schedule-box">
+      <div class="vz-schedule-label">{{ T "scheduleLabel" | safeHTML }}</div>
+      <div class="vz-schedule-list">
+        {{ range . }}
+          <div class="vz-schedule-item">
+            <span class="date">{{ .date }}</span><strong>{{ .slug }}</strong> · {{ .title }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  {{/* ============ TRILHAS ATIVAS ============ */}}
+  {{ with site.Params.tracks }}
+  <section class="vz-tracks">
+    <div class="vz-tracks-head">
+      <span class="vz-tracks-eyebrow">{{ T "tracksEyebrow" }}</span>
+    </div>
+    <div class="vz-tracks-grid">
+      {{ range . }}
+        <a class="vz-track-card {{ .color }}" href="#">
+          <span class="vz-track-pill">{{ .label }}</span>
+          <h3 class="vz-track-h">{{ .title }}</h3>
+          <p class="vz-track-sub">{{ .sub }}</p>
+          <span class="vz-track-cta">{{ .cta }} →</span>
+          <span class="vz-track-decoration">{{ .sigil }}</span>
+        </a>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* ============ ARCHIVE COM FILTROS ============ */}}
+  <section class="vz-archive">
+    <svg class="vz-doodle vz-doodle-r" viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M 10 8 L 28 8 L 36 16 L 36 40 L 10 40 Z"/>
+      <path d="M 28 8 L 28 16 L 36 16"/>
+      <line x1="15" y1="24" x2="31" y2="24"/>
+      <line x1="15" y1="30" x2="31" y2="30"/>
+      <line x1="15" y1="36" x2="26" y2="36"/>
+    </svg>
+    <svg class="vz-doodle vz-doodle-l" viewBox="0 0 48 48" aria-hidden="true">
+      <rect x="8" y="12" width="32" height="24" rx="1"/>
+      <line x1="13" y1="22" x2="22" y2="22"/>
+      <line x1="13" y1="28" x2="35" y2="28"/>
+      <path d="M 25 22 L 28 22"/>
+    </svg>
+
+    <div class="vz-archive-head">
+      <h2 class="vz-archive-title">{{ T "archiveTitle" }} <em>{{ T "archiveTitleAccent" }}</em></h2>
+      <span class="vz-archive-count">{{ len $posts }} {{ T "archivePostsCount" }}</span>
     </div>
 
-    {{ if $posts }}
-      {{ range ($posts.GroupByDate "2006") }}
-        <div class="vz-year">
-          <p class="vz-year-label">{{ .Key }}</p>
-          <ul class="vz-post-list">
-            {{ range .Pages }}
-              {{ $tag := "" }}
-              {{ with .Params.tags }}{{ $tag = index . 0 }}{{ end }}
-              <li class="vz-post-item">
-                <a class="vz-post-link" href="{{ .RelPermalink }}">
-                  <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">
-                    {{ .Date.Format "02 Jan" }}
-                  </time>
-                  <div class="vz-post-title">
-                    {{ .Title }}
-                    {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}
-                  </div>
-                  <div class="vz-post-track">{{ with $tag }}<span class="pill">{{ . }}</span>{{ end }}</div>
-                </a>
-              </li>
-            {{ end }}
-          </ul>
-        </div>
+    {{ with site.Params.tracks }}
+    <div class="vz-filters">
+      <button class="vz-filter active">{{ T "filterAll" }}</button>
+      {{ range . }}
+        <button class="vz-filter">{{ .label }}</button>
       {{ end }}
+    </div>
+    {{ end }}
+
+    {{ if $posts }}
+      <ul class="vz-post-list">
+        {{ range $posts }}
+          {{ $tag := "" }}{{ $color := "amber" }}
+          {{ with .Params.tags }}
+            {{ $tag = index . 0 }}
+            {{ with index $colorMap (lower $tag) }}{{ $color = . }}{{ end }}
+          {{ end }}
+          <li class="vz-post-item">
+            <a class="vz-post-link" href="{{ .RelPermalink }}">
+              <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan" }}</time>
+              <div class="vz-post-title">
+                {{ .Title }}
+                {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}
+              </div>
+              <div class="vz-post-track">{{ with $tag }}<span class="pill {{ $color }}">{{ . }}</span>{{ end }}</div>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
     {{ else }}
       <p style="color: var(--text-muted); padding: 32px 0;">{{ T "archiveEmpty" }}</p>
     {{ end }}
   </section>
+
 {{ else }}
+  {{/* Fallback pra outras paginas */}}
   <main class="vz-page-narrow">
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div>{{ . }}</div>{{ end }}

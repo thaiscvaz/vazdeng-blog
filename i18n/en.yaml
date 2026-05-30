@@ -1,31 +1,44 @@
-copyright: "© 2026 Thais Vaz · VazDEng"
+copyright: "© 2026 · vazdeng.pages.dev"
 poweredBy: ""
 siteSubtitle: "Where I write about what I build in data, AI and crypto."
 
 # Hero homepage
-heroEyebrow: "Data engineering in production"
-heroTitleA: "Robust pipelines start before the tool."
-heroTitleB: "Here is how."
-heroLead: "Production anti-patterns, honest tool verdicts and the saga of a quant agent that lost money until it learned to say 'I don't know'. Written by a senior engineer."
-heroMetaCadence: "4 posts a week"
-heroMetaSlot: "Next: saturday 10h BRT"
-heroMetaTrack: "Active track: Zero to Expert"
+heroPillCount: "posts ·"
+heroPillNext: "next saturday 10h BRT"
+heroTitleA: "Robust pipelines start"
+heroTitleB: "before"
+heroTitleC: "the tool."
+heroLead: "Data engineering in production, quant agent in crypto, didactic fundamentals. Written by a senior engineer."
+
+# Schedule
+scheduleLabel: "Coming<br/>up"
+
+# Active tracks
+tracksEyebrow: "3 active tracks"
+tracksSeeAll: "See all →"
 
 # Archive
 archiveTitle: "Archive"
+archiveTitleAccent: "complete"
 archivePostsCount: "posts"
 archiveEmpty: "No posts yet."
+filterAll: "All"
 
-# Post byline
-bylineBy: "By"
-bylineReadMin: "min read"
+# Post page
+crumbHome: "Home"
+postReadMin: "min read"
+postBy: "By"
 
 # Subscribe
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Next episode drops saturday, 10h BRT"
+subscribeHeadline: "Next episode drops"
+subscribeHeadlineAccent: "saturday, 10h BRT"
 subscribeSub: "Data engineering with a technical decision at the center. 4 posts a week, no fluff."
 subscribeCta: "Subscribe on Substack"
 subscribeAria: "Subscribe to the VazDEng newsletter"
 
-# Footer
-footerBuiltBy: "built by Thais Vaz"
+# Related
+relatedHead: "Keep reading"
+
+# Nav CTA
+navCta: "Subscribe"

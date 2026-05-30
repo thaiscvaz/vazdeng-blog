@@ -108,3 +108,53 @@ params:
 
   images:
     - images/og-default.png
+
+  # Cronograma de proximos posts (mostrado na home)
+  upcoming:
+    - date: "SAB 10h"
+      slug: "ZTE-002"
+      title: "Ingestão na prática"
+    - date: "SAB 14h"
+      slug: "IA-002"
+      title: "Embeddings sem hype"
+    - date: "TER 12h"
+      slug: "DE-008"
+      title: "Schema drift na fronteira"
+    - date: "QUI 12h"
+      slug: "TV-002"
+      title: "Dagster, sério?"
+
+  # Trilhas ativas (cards coloridos na home)
+  tracks:
+    - color: amber
+      label: "DE Produção"
+      title: "Anti-padrões reais em batch e streaming."
+      sub: "Decisão técnica com SLA no centro. Toda terça, 12h BRT."
+      cta: "Ver últimos"
+      sigil: "DE"
+    - color: rose
+      label: "Cripto Chronicles"
+      title: "A saga de um agente quant que perde dinheiro."
+      sub: "Capítulos numerados sobre o cripto_invest. Sharpe, abstenção, drawdown."
+      cta: "Ler do começo"
+      sigil: "CA"
+    - color: lavender
+      label: "Zero to Expert"
+      title: "Fundamentos antes da ferramenta."
+      sub: "Série didática progressiva de DE. Toda sábado, 10h BRT."
+      cta: "Episódio 01"
+      sigil: "ZTE"
+
+  # Mapping tag -> cor (pills coloridas no archive e cards relacionados)
+  track_colors:
+    data-engineering: amber
+    batch: amber
+    streaming: amber
+    cripto: rose
+    quant: rose
+    zero-to-expert: lavender
+    fundamentos: lavender
+    ia: sage
+    machine-learning: sage
+    tool-verdict: coral
+    airflow: coral

@@ -1,7 +1,10 @@
-{{/* Override do footer Hextra — visual VazDEng v2. */}}
+{{/* VazDEng v5 — footer requintado com wave amarela + brand italic */}}
 <footer class="vz-footer">
+  <svg class="vz-footer-wave" width="80" height="20" viewBox="0 0 80 20" aria-hidden="true">
+    <path d="M 4 10 Q 14 2, 24 10 T 44 10 T 64 10 T 76 10"/>
+  </svg>
   <div class="vz-footer-brand">
-    Vaz<em>D</em>Eng · {{ T "footerBuiltBy" }}
+    Vaz<em>D</em>Eng · construído por <em>Thais Vaz</em>
   </div>
   <div class="vz-footer-links">
     <a href="/index.xml">RSS</a>
@@ -9,4 +12,5 @@
     <a href="https://linkedin.com/in/thacvaz" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://vazdeng.substack.com" target="_blank" rel="noopener">Substack</a>
   </div>
+  <div class="vz-footer-copy">{{ T "copyright" }}</div>
 </footer>
