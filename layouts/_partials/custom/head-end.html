@@ -1,19 +1,26 @@
-{{/*
-  Snippets injetados no fim do <head>: verificacoes de SEO.
-  Analytics: Cloudflare Web Analytics e ativado pelo dashboard, nao precisa codigo
-  aqui (Cloudflare injeta no edge, sem afetar nosso CSP).
-*/}}
+{{/* VazDEng v3 — Fraunces (display variable) + Manrope (corpo) + Space Mono (UI/terminal).
+     Stack escolhida pra fugir do "AI startup default" (Inter / Source Serif / JetBrains Mono).
+     Fraunces traz swashes editoriais; Manrope é geometric humanista; Space Mono é retro-terminal. */}}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
-{{/* Google Search Console verification.
-     Como obter: search.google.com/search-console -> Add property -> URL prefix
-     -> https://vazdeng.pages.dev -> escolher metodo "HTML tag" -> copiar o `content`.
-     Setar em hugo.yaml: params.googleSiteVerification: "abc123..." */}}
+{{/* SEO verifications */}}
 {{ with site.Params.googleSiteVerification }}
 <meta name="google-site-verification" content="{{ . }}" />
 {{ end }}
-
-{{/* IndieAuth / personal verification (opcional).
-     Setar em hugo.yaml: params.indieAuth: "https://github.com/thaiscvaz" */}}
 {{ with site.Params.indieAuth }}
 <link rel="me" href="{{ . }}" />
 {{ end }}
+
+{{/* Dark-first default */}}
+<script>
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    if (stored === 'light') return;
+    document.documentElement.classList.add('dark');
+    if (!stored) localStorage.setItem('theme', 'dark');
+  } catch (e) {}
+})();
+</script>

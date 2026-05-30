@@ -1,0 +1,42 @@
+{{ define "main" }}
+{{ $tag := "" }}
+{{ with .Params.tags }}{{ $tag = index . 0 }}{{ end }}
+{{ $minutes := math.Ceil (div .WordCount 200.0) }}
+
+<article class="vz-post-page">
+  <header class="vz-post-header">
+    {{ with $tag }}<div class="vz-post-eyebrow">{{ . }}</div>{{ end }}
+    <h1 class="vz-post-h1">{{ .Title }}</h1>
+    {{ with .Params.description }}<p class="vz-post-lead">{{ . }}</p>{{ end }}
+    <div class="vz-post-byline">
+      <span>{{ T "bylineBy" }} <strong>{{ with site.Params.author }}{{ .name }}{{ end }}</strong></span>
+      <span>{{ .Date.Format "02 Jan · 2006" }}</span>
+      <span>{{ $minutes }} {{ T "bylineReadMin" }}</span>
+      {{ if hugo.IsMultilingual }}
+        <span>
+          {{ range $i, $t := .AllTranslations }}
+            {{ if $i }} · {{ end }}
+            {{ if eq $t.Language.Lang $.Language.Lang }}
+              <strong>{{ upper $t.Language.Lang }}</strong>
+            {{ else }}
+              <a href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
+            {{ end }}
+          {{ end }}
+        </span>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="vz-article">
+    {{ .Content }}
+  </div>
+
+  {{/* Subscribe block (no fim de todo post) */}}
+  <aside class="vz-subscribe">
+    <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
+    <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }}</h3>
+    <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
+    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+  </aside>
+</article>
+{{ end }}

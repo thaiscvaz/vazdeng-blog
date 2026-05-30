@@ -1,7 +1,11 @@
-/* VazDEng custom styles.
-   Estilo editorial minimalista, arquivo-first (inspirado em AkitaOnRails). */
+/* ==========================================================================
+   VazDEng — Identidade v3 (Editorial Bauhaus brutalista, anti-AI-startup)
+   Fraunces (display, italic com swashes) + Manrope (corpo) + Space Mono (UI).
+   Amarelo Psyduck #F0BE3D como única cor de marca.
+   Zero glass blur. Zero radial glow. Zero gradient cards.
+   Linhas grossas, numeração visível, terminal-magazine.
+   ========================================================================== */
 
-/* Inter variable font (self-hosted em /fonts/) */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -10,396 +14,598 @@
   src: url("/fonts/InterVariable.woff2") format("woff2-variations"),
        url("/fonts/InterVariable.woff2") format("woff2");
 }
-@font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/InterVariable-Italic.woff2") format("woff2-variations"),
-       url("/fonts/InterVariable-Italic.woff2") format("woff2");
-}
 
 :root {
-  --hextra-font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --hextra-font-family-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  /* Hextra hooks */
+  --hextra-font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --hextra-font-family-mono: "Space Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --vaz-text: rgb(15 23 42);
-  --vaz-text-soft: rgb(71 85 105);
-  --vaz-text-muted: rgb(100 116 139);
-  --vaz-border: rgb(226 232 240);
-  /* Cyan VazDEng (referencia o banner brand fundo_topo.png que usa #00D4FF) */
-  --vaz-link: rgb(14 116 144);
-  --vaz-link-hover: rgb(8 87 109);
-  --vaz-link-soft: rgb(14 116 144 / 0.18);
-  --vaz-bg-code: rgb(241 245 249);
+  /* Brand tokens */
+  --serif: "Fraunces", "Times New Roman", Georgia, serif;
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --mono: "Space Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Mostarda Psyduck */
+  --amber: #F0BE3D;
+  --amber-light: #F7D673;
+  --amber-deep: #C99520;
+  --amber-soft: rgba(240, 190, 61, 0.12);
+
+  /* Light defaults */
+  --ink-950: #0A0A0A;
+  --ink-900: #F7F4EC;
+  --ink-800: #ECE7D8;
+  --ink-700: #DDD7C5;
+  --line: rgba(10, 10, 10, 0.12);
+  --line-strong: rgba(10, 10, 10, 0.32);
+  --text: #0A0A0A;
+  --text-soft: #2E2E2E;
+  --text-muted: #5E5E5E;
+  --text-faint: #8A8A8A;
+  --bg-code: #ECE7D8;
+  --bg-body: var(--ink-900);
+  --bg-elevated: #FFFFFF;
+
+  --max: 1280px;
+  --reading: 720px;
+  --radius: 0px;
+  --radius-lg: 0px;
 }
 
 :is(html.dark) {
-  --vaz-text: rgb(241 245 249);
-  --vaz-text-soft: rgb(203 213 225);
-  --vaz-text-muted: rgb(148 163 184);
-  --vaz-border: rgb(30 41 59);
-  --vaz-link: rgb(34 211 238);
-  --vaz-link-hover: rgb(103 232 249);
-  --vaz-link-soft: rgb(34 211 238 / 0.22);
-  --vaz-bg-code: rgb(30 41 59);
+  --ink-950: #050505;
+  --ink-900: #0E0E10;
+  --ink-800: #16161A;
+  --ink-700: #1E1E22;
+  --line: rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.28);
+  --text: #F4F1E8;
+  --text-soft: #D7D3C4;
+  --text-muted: #8E8B7E;
+  --text-faint: #5C5A52;
+  --bg-code: var(--ink-800);
+  --bg-body: var(--ink-900);
+  --bg-elevated: var(--ink-800);
 }
 
-html,
-body {
-  font-family: var(--hextra-font-family);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+html, body {
+  background: var(--bg-body);
+  color: var(--text);
+  font-family: var(--sans);
+  font-feature-settings: "ss01", "ss02";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-code,
-kbd,
-pre,
-samp {
-  font-family: var(--hextra-font-family-mono);
+code, kbd, pre, samp { font-family: var(--mono); }
+
+/* ============ HEXTRA OVERRIDES ============ */
+
+.hextra-toc { display: none !important; }
+.hextra-footer { background: transparent !important; border-top: 1px solid var(--line); }
+:is(html.dark) .hextra-footer { background: transparent !important; }
+.nav-container-wrap { display: none !important; }
+
+/* ============ NAVBAR — flat com border amarelo ============ */
+
+.vz-nav-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg-body);
+  border-bottom: 3px solid var(--amber);
 }
-
-/* =========================================
-   HOME / ARCHIVE (layouts/blog/list.html)
-   ========================================= */
-
-.vazdeng-page {
-  max-width: 720px;
+.vz-nav {
+  max-width: var(--max);
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
-  color: var(--vaz-text);
+  padding: 0 32px;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
 }
-
-@media (min-width: 768px) {
-  .vazdeng-page {
-    padding: 5rem 1.5rem 6rem;
-  }
+.vz-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.vz-brand-mark {
+  width: 36px; height: 36px;
+  background: var(--amber);
+  display: grid; place-items: center;
+  font-family: var(--serif); font-style: italic; font-weight: 700;
+  color: var(--ink-950); font-size: 22px;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  letter-spacing: -0.04em;
 }
-
-/* Homepage header — "Vaz — Blog" + subtitle + PT · EN */
-.vazdeng-site-header {
-  margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--vaz-border);
+.vz-brand-name {
+  font-family: var(--serif); font-weight: 600; font-size: 22px;
+  letter-spacing: -0.025em; color: var(--text);
+  font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0;
 }
-
-.vazdeng-site-title {
-  font-size: 2.5rem;
+.vz-brand-name em {
+  font-style: italic; color: var(--amber); font-weight: 600;
+  font-variation-settings: "opsz" 36, "SOFT" 100, "WONK" 1;
+}
+.vz-nav-links { display: flex; gap: 28px; align-items: center; }
+.vz-nav-link {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--text-soft); text-decoration: none;
+  transition: color 150ms ease;
+}
+.vz-nav-link:hover { color: var(--amber); }
+.vz-nav-cta {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  padding: 10px 18px;
+  background: var(--amber);
+  color: var(--ink-950);
+  text-decoration: none;
+  border: 0;
+  transition: all 120ms ease;
   font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  margin: 0 0 0.5rem;
-  color: var(--vaz-text);
+}
+.vz-nav-cta:hover {
+  background: var(--ink-950);
+  color: var(--amber);
+  outline: 2px solid var(--amber);
+  outline-offset: -2px;
+}
+:is(html:not(.dark)) .vz-nav-cta:hover {
+  background: var(--text);
+  color: var(--amber);
+  outline-color: var(--amber);
+}
+.vz-lang {
+  font-family: var(--mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--text-faint); display: flex; gap: 8px;
+}
+.vz-lang .cur { color: var(--amber); }
+.vz-lang a { color: var(--text-faint); text-decoration: none; transition: color 150ms ease; }
+.vz-lang a:hover { color: var(--text); }
+.vz-lang .sep { color: var(--line-strong); }
+
+@media (max-width: 720px) {
+  .vz-nav { padding: 0 20px; gap: 12px; height: 64px; }
+  .vz-nav-links { gap: 16px; }
+  .vz-nav-link[data-mobile-hide] { display: none; }
 }
 
-@media (min-width: 768px) {
-  .vazdeng-site-title {
-    font-size: 3rem;
-  }
+/* ============ HOME — HERO BAUHAUS ============ */
+
+.vz-hero {
+  position: relative;
+  padding: 80px 32px 64px;
+  max-width: var(--max);
+  margin: 0 auto;
 }
 
-.vazdeng-site-subtitle {
-  font-size: 1.0625rem;
-  line-height: 1.5;
-  color: var(--vaz-text-soft);
-  margin: 0 0 1.25rem;
+.vz-hero-rule {
+  width: 96px; height: 8px;
+  background: var(--amber);
+  margin: 0 0 32px;
+}
+
+.vz-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(120px, auto) 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.vz-hero-number {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-weight: 700;
+  font-size: clamp(72px, 12vw, 168px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  position: relative;
+}
+.vz-hero-number sup {
+  font-family: var(--mono);
+  font-size: 14px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--text-faint);
+  vertical-align: super;
+  display: block; margin-bottom: 12px;
+}
+
+.vz-hero-body { min-width: 0; }
+.vz-hero-eyebrow {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--amber); margin: 8px 0 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+.vz-hero-eyebrow::after {
+  content: ""; flex: 1; height: 1px; background: var(--line-strong);
+  max-width: 200px;
+}
+.vz-hero-title {
+  font-family: var(--serif); font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-size: clamp(44px, 7.4vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin: 0 0 28px;
+  color: var(--text);
+}
+.vz-hero-title em {
+  font-style: italic; color: var(--amber); font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.vz-hero-lead {
+  font-family: var(--sans); font-size: 19px; line-height: 1.55;
+  color: var(--text-soft); max-width: 660px;
+  margin: 0 0 36px; font-weight: 400;
+}
+
+.vz-hero-meta {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  padding: 18px 0;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+.vz-hero-meta > span {
+  padding: 0 24px;
+  border-right: 1px solid var(--line);
+  display: flex; align-items: center;
+}
+.vz-hero-meta > span:first-child { padding-left: 0; }
+.vz-hero-meta > span:last-child { border-right: 0; }
+.vz-hero-meta strong { color: var(--text); font-weight: 700; margin-left: 8px; }
+.vz-hero-meta .dot {
+  width: 8px; height: 8px; background: var(--amber);
+  display: inline-block; margin-right: 10px;
+}
+
+@media (max-width: 720px) {
+  .vz-hero-grid { grid-template-columns: 1fr; gap: 16px; }
+  .vz-hero-number { font-size: 88px; }
+  .vz-hero-meta { gap: 8px; }
+  .vz-hero-meta > span { padding: 4px 12px 4px 0; border-right: 0; }
+}
+
+/* ============ SECTION / ARCHIVE ============ */
+
+.vz-section { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+.vz-section-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  padding-bottom: 16px; margin-bottom: 0;
+  border-bottom: 3px solid var(--amber);
+}
+.vz-section-title {
+  font-family: var(--serif); font-size: 36px; font-weight: 700;
+  font-variation-settings: "opsz" 60, "SOFT" 0, "WONK" 0;
+  letter-spacing: -0.025em; margin: 0; color: var(--text);
+}
+.vz-section-meta {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.vz-archive { padding-bottom: 96px; }
+.vz-year { margin: 40px 0 0; }
+.vz-year-label {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--text-faint); margin: 0 0 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.vz-post-list { list-style: none; padding: 0; margin: 0; }
+.vz-post-item { border-bottom: 1px solid var(--line); position: relative; counter-increment: vz-post; }
+.vz-post-list { counter-reset: vz-post; }
+.vz-post-link {
+  display: grid;
+  grid-template-columns: 56px 96px 1fr 160px;
+  gap: 24px;
+  align-items: baseline;
+  padding: 28px 0;
+  text-decoration: none;
+  color: var(--text);
+  transition: padding 200ms cubic-bezier(0.2, 0.8, 0.2, 1), background 200ms ease;
+  position: relative;
+}
+.vz-post-link::before {
+  content: counter(vz-post, decimal-leading-zero);
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+}
+.vz-post-link:hover {
+  padding-left: 16px;
+  background: var(--amber-soft);
+}
+.vz-post-link:hover::before { color: var(--amber); }
+.vz-post-link:hover .vz-post-title { color: var(--amber); }
+.vz-post-date {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--text-muted); white-space: nowrap;
+}
+.vz-post-title {
+  font-family: var(--serif); font-size: 24px; font-weight: 600;
+  font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0;
+  line-height: 1.18; letter-spacing: -0.018em;
+  color: var(--text); transition: color 200ms ease;
+}
+.vz-post-desc {
+  display: block; margin-top: 10px;
+  font-family: var(--sans); font-size: 15px; font-weight: 400;
+  color: var(--text-muted); line-height: 1.5;
+}
+.vz-post-track {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--text-faint); text-align: right; white-space: nowrap;
+}
+.vz-post-track .pill {
+  display: inline-block; padding: 4px 10px;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--text-soft);
+}
+
+@media (max-width: 720px) {
+  .vz-post-link { grid-template-columns: 36px 1fr; gap: 14px; padding: 22px 0; }
+  .vz-post-link:hover { padding-left: 0; }
+  .vz-post-date, .vz-post-track { grid-column: 2 / 3; text-align: left; }
+}
+
+/* ============ POST PAGE ============ */
+
+.vz-post-page {
+  padding: 48px 32px 56px;
+  border-top: 3px solid var(--amber);
+}
+.vz-post-header { max-width: 900px; margin: 0 auto 48px; }
+.vz-post-eyebrow {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--amber); margin-bottom: 28px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.vz-post-eyebrow::before {
+  content: ""; width: 32px; height: 4px; background: var(--amber);
+}
+.vz-post-h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-size: clamp(36px, 5.6vw, 64px); line-height: 1.02;
+  letter-spacing: -0.028em; margin: 0 0 28px; color: var(--text);
+}
+.vz-post-h1 em {
+  font-style: italic; color: var(--amber); font-weight: 600;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.vz-post-lead {
+  font-family: var(--serif); font-size: 22px; line-height: 1.4;
+  font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0;
+  color: var(--text-soft); max-width: 720px; margin: 0 0 36px; font-weight: 400;
+}
+.vz-post-byline {
+  display: flex; flex-wrap: wrap; gap: 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  padding: 16px 0;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+.vz-post-byline > span {
+  padding: 0 20px;
+  border-right: 1px solid var(--line);
+}
+.vz-post-byline > span:first-child { padding-left: 0; }
+.vz-post-byline > span:last-child { border-right: 0; }
+.vz-post-byline strong { color: var(--text); font-weight: 700; }
+.vz-post-byline a { color: var(--text-muted); text-decoration: none; transition: color 150ms ease; }
+.vz-post-byline a:hover { color: var(--amber); }
+
+/* ============ ARTICLE BODY ============ */
+
+article.vz-article, .vz-article {
+  max-width: var(--reading);
+  margin: 0 auto;
+  font-family: var(--sans);
+}
+.vz-article > * { max-width: 100%; }
+.vz-article p, .vz-article ul, .vz-article ol {
+  font-size: 17px; line-height: 1.75; color: var(--text-soft); margin: 0 0 1.5em;
+}
+.vz-article p strong, .vz-article li strong { color: var(--text); font-weight: 700; }
+.vz-article h1 { display: none; }
+.vz-article h2 {
+  font-family: var(--serif); font-size: 32px; font-weight: 700;
+  font-variation-settings: "opsz" 60, "SOFT" 0, "WONK" 0;
+  letter-spacing: -0.022em; line-height: 1.15; color: var(--text);
+  margin: 3em 0 1em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+}
+.vz-article h3 {
+  font-family: var(--serif); font-size: 22px; font-weight: 600;
+  font-variation-settings: "opsz" 36, "SOFT" 0, "WONK" 0;
+  color: var(--text); margin: 2.5em 0 0.75em;
+}
+.vz-article h4 {
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+  color: var(--amber); margin: 2em 0 0.5em;
+  text-transform: uppercase; letter-spacing: 0.18em;
+}
+.vz-article a {
+  color: var(--text); border-bottom: 2px solid var(--amber);
+  text-decoration: none; transition: all 120ms ease;
+  background: linear-gradient(to top, var(--amber-soft) 0%, var(--amber-soft) 100%) no-repeat left bottom / 0% 100%;
+}
+.vz-article a:hover {
+  background-size: 100% 100%;
+  color: var(--text);
+}
+.vz-article hr {
+  border: 0; border-top: 3px solid var(--amber); margin: 3em auto;
+  width: 96px;
+}
+.vz-article blockquote {
+  margin: 2.5em 0; padding: 0 32px;
+  border-left: 4px solid var(--amber);
+  font-family: var(--serif); font-style: italic; font-size: 24px;
+  font-variation-settings: "opsz" 60, "SOFT" 100, "WONK" 1;
+  line-height: 1.35; color: var(--text); position: relative;
   font-weight: 400;
 }
+.vz-article blockquote p { margin: 0 0 0.5em; font-size: inherit; color: inherit; line-height: inherit; }
+.vz-article blockquote cite {
+  display: block; margin-top: 16px;
+  font-style: normal; font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);
+}
 
-.vazdeng-lang-switch {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  font-family: var(--hextra-font-family-mono);
-  font-size: 0.75rem;
+.vz-article pre {
+  background: var(--ink-950); border: 0;
+  border-left: 4px solid var(--amber);
+  padding: 24px 28px;
+  font-family: var(--mono); font-size: 14px; line-height: 1.7;
+  color: var(--text-soft); overflow-x: auto; margin: 2em 0;
+}
+:is(html:not(.dark)) .vz-article pre { background: #1A1A1C; color: #E5E0D0; }
+
+.vz-article :not(pre) > code {
+  background: var(--bg-code); border: 0;
+  padding: 2px 6px;
+  font-family: var(--mono); font-size: 0.86em; color: var(--text);
+  border-bottom: 2px solid var(--amber);
+}
+
+.vz-article table {
+  width: 100%; border-collapse: collapse; margin: 2em 0;
+  font-size: 14px;
+  border-top: 3px solid var(--amber);
+  border-bottom: 3px solid var(--amber);
+}
+.vz-article th {
+  background: transparent; color: var(--text);
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  text-align: left; padding: 14px 16px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.vz-article td {
+  padding: 14px 16px; border-bottom: 1px solid var(--line);
+  color: var(--text-soft); vertical-align: top; font-family: var(--sans);
+}
+.vz-article tr:hover td { background: var(--amber-soft); }
+
+.vz-article img {
+  display: block; max-width: 100%; height: auto;
+  margin: 2.5em auto;
+  border: 1px solid var(--line-strong);
+}
+.vz-article figcaption {
+  margin-top: 14px; font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--text-muted); text-align: center; letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--vaz-text-muted);
 }
 
-.vazdeng-lang-current {
-  font-weight: 600;
-  color: var(--vaz-text);
+/* ============ SUBSCRIBE BLOCK — flat editorial ============ */
+
+.vz-subscribe {
+  max-width: var(--reading);
+  margin: 80px auto 0;
+  padding: 48px 8px;
+  border-top: 3px solid var(--amber);
+  border-bottom: 3px solid var(--amber);
+  text-align: left;
+  position: relative;
 }
-
-.vazdeng-lang-link {
-  color: var(--vaz-text-muted);
-  text-decoration: none;
-  transition: color 150ms ease;
+.vz-subscribe-eyebrow {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--amber); margin-bottom: 18px;
 }
-
-.vazdeng-lang-link:hover {
-  color: var(--vaz-link);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.vz-subscribe-h {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 60, "SOFT" 0, "WONK" 0;
+  font-size: clamp(28px, 4vw, 40px); font-weight: 600;
+  letter-spacing: -0.022em; line-height: 1.1;
+  margin: 0 0 16px; color: var(--text);
 }
-
-.vazdeng-lang-sep {
-  color: var(--vaz-border);
-  user-select: none;
+.vz-subscribe-h em {
+  font-style: italic; color: var(--amber);
+  font-variation-settings: "opsz" 60, "SOFT" 100, "WONK" 1;
 }
-
-.vazdeng-heading {
-  font-size: 1.75rem;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  margin: 0 0 1.5rem;
-  color: var(--vaz-text);
+.vz-subscribe-sub {
+  font-family: var(--sans); font-size: 16px; line-height: 1.6;
+  color: var(--text-muted); margin: 0 0 24px; max-width: 540px;
 }
-
-.vazdeng-intro {
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--vaz-text-soft);
-  margin-bottom: 3rem;
-}
-
-.vazdeng-intro p {
-  margin: 0 0 0.75rem;
-}
-
-.vazdeng-intro p:last-child {
-  margin-bottom: 0;
-}
-
-.vazdeng-intro a {
-  color: var(--vaz-link);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  transition: color 150ms ease;
-}
-
-.vazdeng-intro a:hover {
-  color: var(--vaz-link-hover);
-}
-
-.vazdeng-archive {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.vazdeng-year {
-  font-family: var(--hextra-font-family-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--vaz-text-muted);
-  margin: 0 0 1rem;
-}
-
-.vazdeng-post-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.vazdeng-post-item {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.vazdeng-date {
-  font-family: var(--hextra-font-family-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--vaz-text-muted);
-  flex: 0 0 4.25rem;
-  white-space: nowrap;
-}
-
-.vazdeng-title {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--vaz-link);
-  text-decoration: underline;
-  text-decoration-color: var(--vaz-link-soft);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 200ms ease, color 150ms ease;
-}
-
-.vazdeng-title:hover {
-  color: var(--vaz-link-hover);
-  text-decoration-color: currentColor;
-}
-
-.vazdeng-empty {
-  color: var(--vaz-text-muted);
-}
-
-@media (max-width: 640px) {
-  .vazdeng-post-list {
-    gap: 1.5rem;
-  }
-
-  .vazdeng-post-item {
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: flex-start;
-  }
-
-  .vazdeng-date {
-    flex: 0 0 auto;
-  }
-}
-
-/* =========================================
-   FOOTER (override Hextra default cinza)
-   ========================================= */
-
-.hextra-footer {
-  background: transparent !important;
-  border-top: 1px solid var(--vaz-border);
-}
-
-:is(html.dark) .hextra-footer {
-  background: transparent !important;
-}
-
-/* =========================================
-   TOC sidebar do Hextra: editorial não usa.
-   Esconder pra recuperar espaço de leitura.
-   ========================================= */
-
-.hextra-toc {
-  display: none !important;
-}
-
-/* =========================================
-   POST PAGE (artigo individual)
-   ========================================= */
-
-article.content,
-main article {
-  font-size: 1.0625rem;
-  line-height: 1.75;
-  color: var(--vaz-text);
-}
-
-article h1,
-article h2,
-article h3 {
-  letter-spacing: -0.01em;
-  color: var(--vaz-text);
-}
-
-article h1 {
-  font-size: 2.25rem;
-  line-height: 1.15;
-  margin-top: 0;
-}
-
-article h2 {
-  margin-top: 2.5em;
-  font-size: 1.5rem;
-}
-
-article p {
-  margin: 1.25em 0;
-}
-
-/* Links no corpo do post */
-article a {
-  color: var(--vaz-link);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  transition: color 150ms ease;
-}
-
-article a:hover {
-  color: var(--vaz-link-hover);
-  text-decoration-thickness: 2px;
-}
-
-article hr {
-  border: 0;
-  border-top: 1px solid var(--vaz-border);
-  margin: 3em 0;
-}
-
-article blockquote {
-  font-style: italic;
-  border-left: 3px solid var(--vaz-link);
-  padding-left: 1.25em;
-  color: var(--vaz-text-soft);
-}
-
-article table {
-  font-size: 0.9375rem;
-}
-
-article :not(pre) > code {
-  background: var(--vaz-bg-code);
-  padding: 0.15em 0.4em;
-  border-radius: 3px;
-  font-size: 0.9em;
-}
-
-/* Imagens dentro de posts: respiram, escalam responsivo, cantos suaves */
-article img,
-.content img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 2.25em auto;
-  border-radius: 6px;
-}
-
-/* =========================================
-   SUBSCRIBE WIDGET (fim de cada post)
-   ========================================= */
-
-.vazdeng-subscribe {
-  margin: 4rem 0 2rem;
-  padding: 2rem 1.5rem;
-  border: 1px solid var(--vaz-border);
-  border-radius: 8px;
-  text-align: center;
-  background: rgb(248 250 252);
-}
-
-:is(html.dark) .vazdeng-subscribe {
-  background: rgb(15 23 42 / 0.4);
-}
-
-.vazdeng-subscribe-headline {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0 0 0.5rem;
-  color: var(--vaz-text);
-  letter-spacing: -0.01em;
-}
-
-.vazdeng-subscribe-sub {
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--vaz-text-soft);
-  margin: 0 auto 1.5rem;
-  max-width: 460px;
-}
-
-.vazdeng-subscribe-cta {
+.vz-subscribe-cta {
   display: inline-block;
-  padding: 0.625rem 1.5rem;
-  background: var(--vaz-link);
-  color: white !important;
-  text-decoration: none !important;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  transition: background 150ms ease, transform 150ms ease;
+  font-family: var(--mono); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--text);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 4px solid var(--amber);
+  transition: all 150ms ease;
+}
+.vz-subscribe-cta::after {
+  content: " →";
+  display: inline-block; margin-left: 4px;
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.vz-subscribe-cta:hover {
+  color: var(--amber);
+}
+.vz-subscribe-cta:hover::after { transform: translateX(6px); }
+
+/* ============ FOOTER ============ */
+
+.vz-footer {
+  max-width: var(--max);
+  margin: 96px auto 0;
+  padding: 36px 32px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 24px;
+}
+.vz-footer-brand {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+.vz-footer-brand em { color: var(--amber); font-style: normal; font-weight: 700; }
+.vz-footer-links {
+  display: flex; gap: 24px;
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--text-faint);
+}
+.vz-footer-links a { color: var(--text-faint); text-decoration: none; transition: color 150ms ease; }
+.vz-footer-links a:hover { color: var(--amber); }
+
+/* ============ ABOUT / página genérica ============ */
+
+.vz-page-narrow {
+  max-width: var(--reading);
+  margin: 0 auto;
+  padding: 64px 32px;
+  color: var(--text);
+}
+.vz-page-narrow h1 {
+  font-family: var(--serif); font-size: 48px; font-weight: 700;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  letter-spacing: -0.028em; line-height: 1.05;
+  margin: 0 0 28px; color: var(--text);
+}
+.vz-page-narrow h1 em {
+  font-style: italic; color: var(--amber);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+}
+.vz-page-narrow p {
+  font-family: var(--sans); font-size: 17px; line-height: 1.75; color: var(--text-soft);
+  margin: 0 0 1.4em;
 }
 
-.vazdeng-subscribe-cta:hover {
-  background: var(--vaz-link-hover);
-  transform: translateY(-1px);
-}
+/* Legacy */
+.vazdeng-page { max-width: var(--max); margin: 0 auto; padding: 0; }

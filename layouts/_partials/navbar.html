@@ -1,0 +1,37 @@
+{{/* Override do navbar Hextra — visual VazDEng v2.
+     Hextra renderiza este partial no topo do <body>. */}}
+{{ $home := .Site.Home }}
+{{ $lang := .Language.Lang }}
+<header class="vz-nav-wrap">
+  <nav class="vz-nav" aria-label="Principal">
+    <a class="vz-brand" href="{{ $home.RelPermalink }}" aria-label="VazDEng — Home">
+      <span class="vz-brand-mark">V</span>
+      <span class="vz-brand-name">Vaz<em>D</em>Eng</span>
+    </a>
+
+    <div class="vz-nav-links">
+      {{ range .Site.Menus.main }}
+        {{ if .URL }}
+          <a class="vz-nav-link" href="{{ .URL }}" {{ if hasPrefix .URL "http" }}target="_blank" rel="noopener"{{ end }} data-mobile-hide>{{ .Name }}</a>
+        {{ else if .PageRef }}
+          <a class="vz-nav-link" href="{{ .PageRef | relLangURL }}" data-mobile-hide>{{ .Name }}</a>
+        {{ end }}
+      {{ end }}
+
+      {{ if hugo.IsMultilingual }}
+        <span class="vz-lang" aria-label="Idioma">
+          {{ range $i, $t := $home.AllTranslations }}
+            {{ if $i }}<span class="sep">·</span>{{ end }}
+            {{ if eq $t.Language.Lang $lang }}
+              <span class="cur">{{ upper $t.Language.Lang }}</span>
+            {{ else }}
+              <a href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
+            {{ end }}
+          {{ end }}
+        </span>
+      {{ end }}
+
+      <a class="vz-nav-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">Assinar</a>
+    </div>
+  </nav>
+</header>

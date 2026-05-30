@@ -1,9 +1,31 @@
 copyright: "© 2026 Thais Vaz · VazDEng"
-poweredBy: "Powered by Hextra"
+poweredBy: ""
 siteSubtitle: "Where I write about what I build in data, AI and crypto."
 
-# Subscribe widget at the end of each post
-subscribeHeadline: "Liked this post?"
-subscribeSub: "Get the next ones in your inbox. No spam, no magic-formula promises. Just long-form production data engineering."
-subscribeCta: "Subscribe to the newsletter"
+# Hero homepage
+heroEyebrow: "Data engineering in production"
+heroTitleA: "Robust pipelines start before the tool."
+heroTitleB: "Here is how."
+heroLead: "Production anti-patterns, honest tool verdicts and the saga of a quant agent that lost money until it learned to say 'I don't know'. Written by a senior engineer."
+heroMetaCadence: "4 posts a week"
+heroMetaSlot: "Next: saturday 10h BRT"
+heroMetaTrack: "Active track: Zero to Expert"
+
+# Archive
+archiveTitle: "Archive"
+archivePostsCount: "posts"
+archiveEmpty: "No posts yet."
+
+# Post byline
+bylineBy: "By"
+bylineReadMin: "min read"
+
+# Subscribe
+subscribeEyebrow: "Newsletter"
+subscribeHeadline: "Next episode drops saturday, 10h BRT"
+subscribeSub: "Data engineering with a technical decision at the center. 4 posts a week, no fluff."
+subscribeCta: "Subscribe on Substack"
 subscribeAria: "Subscribe to the VazDEng newsletter"
+
+# Footer
+footerBuiltBy: "built by Thais Vaz"

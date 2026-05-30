@@ -1,56 +1,68 @@
 {{ define "main" }}
-  <main class="vazdeng-page">
-    {{/* Editorial header (igual em / e em /blog/) */}}
-    {{ $isArchive := or .IsHome (and .IsSection (eq .Section "blog")) }}
-    {{ if $isArchive }}
-      {{ $home := .Site.Home }}
-      <header class="vazdeng-site-header">
-        <h1 class="vazdeng-site-title">{{ $home.Title }}</h1>
-        <p class="vazdeng-site-subtitle">{{ T "siteSubtitle" }}</p>
+{{ $isArchive := or .IsHome (and .IsSection (eq .Section "blog")) }}
+{{ $posts := where .Site.RegularPages "Section" "blog" }}
+{{ $posts = $posts.ByDate.Reverse }}
 
-        {{ if hugo.IsMultilingual }}
-          <nav class="vazdeng-lang-switch" aria-label="Idioma">
-            {{ range $i, $t := $home.AllTranslations }}
-              {{ if $i }}<span class="vazdeng-lang-sep">·</span>{{ end }}
-              {{ if eq $t.Language.Lang $.Language.Lang }}
-                <span class="vazdeng-lang-current">{{ upper $t.Language.Lang }}</span>
-              {{ else }}
-                <a class="vazdeng-lang-link" href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
-              {{ end }}
-            {{ end }}
-          </nav>
-        {{ end }}
-      </header>
-    {{ else }}
-      <h1 class="vazdeng-heading">{{ .Title }}</h1>
-      {{ with .Content }}
-        <div class="vazdeng-intro">{{ . }}</div>
-      {{ end }}
-    {{ end }}
+{{ if $isArchive }}
+  {{/* ============ HERO BAUHAUS ============ */}}
+  <section class="vz-hero">
+    <div class="vz-hero-rule"></div>
+    <div class="vz-hero-grid">
+      <div class="vz-hero-number">
+        <sup>№</sup>{{ printf "%02d" (len $posts) }}
+      </div>
+      <div class="vz-hero-body">
+        <div class="vz-hero-eyebrow">{{ T "heroEyebrow" }}</div>
+        <h1 class="vz-hero-title">{{ T "heroTitleA" | safeHTML }} <em>{{ T "heroTitleB" }}</em></h1>
+        <p class="vz-hero-lead">{{ T "heroLead" }}</p>
+        <div class="vz-hero-meta">
+          <span><span class="dot"></span>{{ T "heroMetaCadence" }}</span>
+          <span>{{ T "heroMetaSlot" }}</span>
+          <span>{{ T "heroMetaTrack" }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    {{ $posts := where .Site.RegularPages "Section" "blog" }}
-    {{ $posts = $posts.ByDate.Reverse }}
+  {{/* ============ ARCHIVE ============ */}}
+  <section class="vz-section vz-archive">
+    <div class="vz-section-head">
+      <h2 class="vz-section-title">{{ T "archiveTitle" }}</h2>
+      <span class="vz-section-meta">{{ len $posts }} {{ T "archivePostsCount" }}</span>
+    </div>
 
     {{ if $posts }}
-      <div class="vazdeng-archive">
-        {{ range ($posts.GroupByDate "2006") }}
-          <section class="vazdeng-year-section">
-            <h2 class="vazdeng-year">{{ .Key }}</h2>
-            <ul class="vazdeng-post-list">
-              {{ range .Pages }}
-                <li class="vazdeng-post-item">
-                  <time class="vazdeng-date" datetime="{{ .Date.Format "2006-01-02" }}">
+      {{ range ($posts.GroupByDate "2006") }}
+        <div class="vz-year">
+          <p class="vz-year-label">{{ .Key }}</p>
+          <ul class="vz-post-list">
+            {{ range .Pages }}
+              {{ $tag := "" }}
+              {{ with .Params.tags }}{{ $tag = index . 0 }}{{ end }}
+              <li class="vz-post-item">
+                <a class="vz-post-link" href="{{ .RelPermalink }}">
+                  <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">
                     {{ .Date.Format "02 Jan" }}
                   </time>
-                  <a class="vazdeng-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-                </li>
-              {{ end }}
-            </ul>
-          </section>
-        {{ end }}
-      </div>
+                  <div class="vz-post-title">
+                    {{ .Title }}
+                    {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}
+                  </div>
+                  <div class="vz-post-track">{{ with $tag }}<span class="pill">{{ . }}</span>{{ end }}</div>
+                </a>
+              </li>
+            {{ end }}
+          </ul>
+        </div>
+      {{ end }}
     {{ else }}
-      <p class="vazdeng-empty">Nenhum post ainda.</p>
+      <p style="color: var(--text-muted); padding: 32px 0;">{{ T "archiveEmpty" }}</p>
     {{ end }}
+  </section>
+{{ else }}
+  <main class="vz-page-narrow">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div>{{ . }}</div>{{ end }}
   </main>
+{{ end }}
 {{ end }}
