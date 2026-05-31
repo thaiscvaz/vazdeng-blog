@@ -1,5 +1,6 @@
 ---
 title: "Airflow for 2 years: what I would do differently"
+date: 2026-05-24
 description: "Two years of Airflow in production: finance, factory processes, marketing, analytics. List of what I would change if starting over, not doc theory."
 tags: ["airflow", "orchestration", "data-engineering", "tool-verdict"]
 images:

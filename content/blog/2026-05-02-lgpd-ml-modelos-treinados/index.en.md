@@ -1,5 +1,6 @@
 ---
 title: "LGPD and ML models: what to do with data that has already become model weights"
+date: 2026-05-02
 description: "A data subject requests deletion. You delete the row from the database. The model in production still carries the contribution from that CPF. What LGPD requires and what's actually possible."
 tags: ["lgpd", "machine-learning", "privacy", "compliance", "data-engineering"]
 images:

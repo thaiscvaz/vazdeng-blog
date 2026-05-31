@@ -1,5 +1,6 @@
 ---
 title: "Instrumenting lineage from scratch with Unity Catalog"
+date: 2026-05-13
 description: "Unity Catalog captures lineage automatically, but the limits matter: UPDATE/DELETE/MERGE, RDDs, JDBC, multi-hop. What it covers and where most people get it wrong."
 tags: ["databricks", "unity-catalog", "lineage", "data-engineering"]
 images:

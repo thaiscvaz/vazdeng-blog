@@ -5,7 +5,7 @@ slug: engenharia-dados-em-portugues
 date: 2026-04-18
 publishDate: 2026-04-18
 draft: false
-description: "Por que uma engenheira de dados sênior com passagens por Apple, Itaú, EBANX e Bradesco decidiu começar a escrever, e o que você vai encontrar aqui."
+description: "Por que uma engenheira de dados sênior com passagens por grandes bancos brasileiros, fintech em escala global e projeto de big tech em Silicon Valley decidiu começar a escrever, e o que você vai encontrar aqui."
 tags: ["manifesto", "data engineering", "databricks", "cripto", "mestrado"]
 images:
   - bookshelf.png
@@ -25,11 +25,11 @@ O que ainda é difícil de achar é alguém te contando como decidiu usar Delta 
 
 Não vou listar certificados. Vou te contar o que construí.
 
-Comecei no Itaú, onde ganhei o Prêmio Mérito por trabalho em qualidade de dados. Passei pela EBANX quando ela ainda era uma fintech em crescimento e construí pipelines ETL que processavam mais de 100 milhões de transações por dia. Liderei uma equipe internacional na HCL Technologies em projetos para a Apple em Silicon Valley, gerenciando mais de 500 milhões de eventos diários. Hoje sou engenheira de dados sênior no Bradesco.
+Sou engenheira de dados sênior há mais de 8 anos. Comecei em qualidade de dados num grande banco brasileiro, passei por uma fintech brasileira em escala global construindo pipelines ETL, atuei em consultoria internacional num projeto de big tech em Silicon Valley, e hoje atuo em outro grande banco brasileiro. (Currículo completo na [página /sobre/](/sobre/).)
 
 Minha stack principal é Databricks. Não porque eu li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei nos últimos anos.
 
-Em 2024 entrei no mestrado em Métodos Numéricos em Engenharia na UFPR. Minha pesquisa é sobre monitoramento preditivo baseado em IA usando LLMs pra sistemas operacionais. Tudo que aprendo lá eu pretendo trazer pra cá traduzido pra realidade de quem trabalha com dados todo dia.
+Em 2025 entrei como aluna ouvinte no programa de Métodos Numéricos em Engenharia na UFPR e em 2026 ingressei oficialmente como mestranda. Minha pesquisa é sobre monitoramento preditivo baseado em IA usando LLMs pra sistemas operacionais. Tudo que aprendo lá eu pretendo trazer pra cá traduzido pra realidade de quem trabalha com dados todo dia.
 
 ## Por que cripto entrou nessa história
 

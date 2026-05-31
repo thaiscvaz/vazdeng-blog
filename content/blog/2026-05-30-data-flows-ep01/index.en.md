@@ -1,5 +1,6 @@
 ---
 title: "Data Flows Ep01: the concept that comes before any tool"
+date: 2026-05-30
 description: "Knight Capital lost $440 million in 45 minutes because one server ran old code. Before any tool, there is a concept that separates a robust pipeline from a fragile one: data flow."
 tags: ["zero-to-expert", "data-flows", "fundamentals", "data-engineering"]
 images:

@@ -1,5 +1,6 @@
 ---
 title: "When Medallion Architecture gets in the way more than it helps"
+date: 2026-05-12
 description: "Medallion became the default answer for any pipeline. Where it works, where it gets in the way, and the anti-pattern nobody talks about."
 tags: ["medallion", "lakehouse", "databricks", "data-architecture"]
 images:

@@ -1,5 +1,6 @@
 ---
 title: "When the model should say 'I don't know'"
+date: 2026-05-17
 description: "In 1998 LTCM lost $4.6 billion because its models trusted territory they had never seen. Twenty-seven years later my HMM was doing the same, at smaller scale. Here's what I learned to put between it and the trade."
 tags: ["crypto", "hmm", "quant", "risk-management", "agente-quant", "ood-detection"]
 images:

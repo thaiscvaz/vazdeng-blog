@@ -1,5 +1,6 @@
 ---
 title: "Delta Lake or Parquet? You're asking the wrong question"
+date: 2026-04-30
 description: "Delta Lake doesn't compete with Parquet. It's built on top of it. The real decision is different, and getting it wrong silently corrupts data."
 tags: ["delta-lake", "parquet", "lakehouse", "architecture", "data-engineering"]
 images:

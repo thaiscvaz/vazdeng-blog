@@ -1,5 +1,6 @@
 ---
 title: "Twenty AI concepts you need to understand in 2026"
+date: 2026-05-23
 description: "The complete visual guide to how AI works, from the basics to the frontier. Six sections, twenty concepts, no spare jargon."
 tags: ["ai", "llm", "fundamentals", "rag", "agents", "embeddings"]
 images:

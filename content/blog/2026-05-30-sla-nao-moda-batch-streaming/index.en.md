@@ -1,5 +1,6 @@
 ---
 title: "SLA, not trend: when batch, when streaming, when both"
+date: 2026-05-30
 description: "The choice between batch and streaming is not cultural. It is technical: consumer SLA, cost, complexity. And almost nobody measures it before deciding."
 tags: ["batch", "streaming", "data-architecture", "data-engineering", "kafka", "spark"]
 images:
