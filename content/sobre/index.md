@@ -9,7 +9,7 @@ type: default
 
 Meu nome é Thais Vaz. Sou engenheira de dados há mais de 8 anos.
 
-Comecei no **Itaú**, onde ganhei o Prêmio Mérito por trabalho em qualidade de dados. Passei pela **EBANX** quando ela ainda era uma fintech em crescimento acelerado, e construí pipelines ETL que processavam mais de 100 milhões de transações por dia. Liderei uma equipe internacional na **HCL Technologies** em projetos para a **Apple** em Silicon Valley, com mais de 500 milhões de eventos diários. Hoje sou engenheira de dados sênior no **Bradesco**.
+Comecei num grande banco brasileiro, onde ganhei prêmio interno por trabalho em qualidade de dados. Depois passei por uma fintech brasileira em escala global, construindo pipelines ETL que processavam mais de 100 milhões de transações por dia. Liderei uma equipe internacional em consultoria de tecnologia, em projetos para uma big tech em Silicon Valley com mais de 500 milhões de eventos diários. Hoje sou engenheira de dados sênior em outro banco brasileiro de grande porte.
 
 Minha stack principal é **Databricks**. Não porque li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei.
 

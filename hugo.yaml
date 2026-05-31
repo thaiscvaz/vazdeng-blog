@@ -117,10 +117,10 @@ params:
     - date: "QUI 04/06 12h"
       slug: "TV-002"
       title: "Dagster, sério?"
-    - date: "SAB 07/06 10h"
+    - date: "SAB 06/06 10h"
       slug: "ZTE-002"
       title: "Ingestão na prática"
-    - date: "SAB 07/06 14h"
+    - date: "SAB 06/06 14h"
       slug: "IA-002"
       title: "Embeddings sem hype"
 
