@@ -20,6 +20,8 @@ tracksSeeAll: "See all →"
 # Archive
 archiveTitle: "Archive"
 archiveTitleAccent: "complete"
+archiveTitleHTML: '<em>Complete</em> archive'
+footerBuiltBy: "built by"
 archivePostsCount: "posts"
 archiveEmpty: "No posts yet."
 filterAll: "All"

@@ -82,7 +82,7 @@
     </svg>
 
     <div class="vz-archive-head">
-      <h2 class="vz-archive-title">{{ T "archiveTitle" }} <em>{{ T "archiveTitleAccent" }}</em></h2>
+      <h2 class="vz-archive-title">{{ T "archiveTitleHTML" | safeHTML }}</h2>
       <span class="vz-archive-count" id="vz-archive-count">{{ len $posts }} {{ T "archivePostsCount" }}</span>
     </div>
 
