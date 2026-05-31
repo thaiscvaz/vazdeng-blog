@@ -1,5 +1,6 @@
 ---
 title: "Quando a Medallion Architecture atrapalha mais do que ajuda"
+cover_title: "Medallion atrapalha"
 slug: medallion-architecture-quando-nao
 date: 2026-05-12
 publishDate: 2026-05-12
@@ -62,6 +63,8 @@ Cada transição Bronze para Silver, Silver para Gold, é um job separado. Em pi
 
 Análises com dados reais de praticantes mostram overhead de 53% ou mais em casos simples: 23 minutos com Medallion contra 15 minutos com transformação direta, para o mesmo resultado.
 
+![Comparativo de latência: transformação direta 15min vs Medallion 23min](images/medallion_latency_infographic.png)
+
 Quando o negócio precisa do dado em 30 minutos para tomar decisão, uma arquitetura com 80 minutos de latência não é um problema de código. É um problema de arquitetura.
 
 Para dados que precisam chegar em tempo real ou próximo disso, o Databricks é explícito: recomenda micro-batch (latência de segundos a poucos minutos) para Medallion, e orienta explicitamente que quando a ingestão vem de um message broker como Kafka, a leitura direta sem etapa intermediária reduz complexidade e latência. Para sub-segundo, a própria documentação aponta limitações no modo real-time que afetam negativamente o throughput.
@@ -102,7 +105,7 @@ Três perguntas definem se Medallion é a arquitetura certa:
 
 Três "sim": Medallion é uma escolha sólida. Dois ou menos: vale questionar quantas camadas você realmente precisa.
 
-![Diagrama de decisão: quando usar Medallion Architecture](images/decision-tree.svg)
+![Diagrama de decisão: quando usar Medallion Architecture](images/decision-tree.png)
 
 ## O que empresas grandes usam na prática
 

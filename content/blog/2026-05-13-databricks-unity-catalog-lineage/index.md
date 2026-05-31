@@ -1,5 +1,6 @@
 ---
 title: "Instrumentando lineage do zero com Unity Catalog"
+cover_title: "Unity Catalog lineage"
 slug: databricks-unity-catalog-lineage
 date: 2026-05-13
 publishDate: 2026-05-13
@@ -27,6 +28,8 @@ O Unity Catalog intercepta os planos de execução do Spark em runtime e registr
 **Lineage de colunas** vai além: mapeia quais colunas de origem alimentam quais colunas de destino. Requer Databricks Runtime 11.3 LTS ou superior para jobs comuns. Para Delta Live Tables, requer 13.3 LTS ou superior.
 
 Essas informações ficam acessíveis de duas formas: pelo Catalog Explorer com interface visual, e pelos system tables `system.access.table_lineage` e `system.access.column_lineage` para quem precisa programaticamente.
+
+![Cobertura do Unity Catalog: o que ele captura automaticamente vs onde a maioria erra](images/unity-catalog-cobertura.png)
 
 ## O que não é capturado e onde a maioria erra
 

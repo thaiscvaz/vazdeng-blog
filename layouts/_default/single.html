@@ -1,0 +1,25 @@
+{{ define "main" }}
+<nav class="vz-crumb">
+  <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
+  <span class="sep">/</span>
+  <span class="cur">{{ .Title }}</span>
+</nav>
+
+<header class="vz-post-header">
+  <div class="vz-post-eyebrow amber">{{ .Title | upper }}</div>
+  <h1 class="vz-post-h1">{{ .Title }}</h1>
+</header>
+
+<article class="vz-article">
+  {{ .Content }}
+</article>
+
+<aside class="vz-subscribe">
+  <div class="vz-subscribe-inner">
+    <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
+    <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
+    <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
+    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+  </div>
+</aside>
+{{ end }}

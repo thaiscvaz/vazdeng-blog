@@ -1,5 +1,6 @@
 ---
 title: "Sharpe -1.14 é sucesso de engenharia, não fracasso"
+cover_title: "Sharpe é sucesso"
 slug: sharpe-negativo-sucesso-engenharia
 date: 2026-04-23
 publishDate: 2026-04-28

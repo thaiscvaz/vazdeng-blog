@@ -1,5 +1,6 @@
 ---
 title: Construí um agente quant. Sharpe ficou -1.14. Não é fracasso.
+cover_title: "Sharpe -1.14"
 slug: agente-quant-sharpe-negativo
 date: 2026-04-22
 publishDate: 2026-04-23

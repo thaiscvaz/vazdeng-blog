@@ -1,5 +1,6 @@
 ---
 title: "Quando o modelo deveria dizer 'não sei'"
+cover_title: "Modelo diz 'não sei'"
 slug: hmm-aprende-a-abster
 date: 2026-05-17
 publishDate: 2026-05-17

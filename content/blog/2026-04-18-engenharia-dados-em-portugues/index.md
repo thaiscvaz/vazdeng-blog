@@ -1,5 +1,6 @@
 ---
 title: "Engenharia de dados em português de verdade é rara. Vou ajudar a mudar isso."
+cover_title: "Engenharia de dados em PT"
 slug: engenharia-dados-em-portugues
 date: 2026-04-18
 publishDate: 2026-04-18

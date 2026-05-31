@@ -1,5 +1,6 @@
 ---
 title: "SLA, não moda: quando batch, quando streaming, quando ambos"
+cover_title: "Batch ou streaming?"
 slug: sla-nao-moda-batch-streaming
 date: 2026-05-30
 publishDate: 2026-05-30

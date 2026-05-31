@@ -1,5 +1,6 @@
 ---
 title: "Vinte conceitos de IA que você precisa entender em 2026"
+cover_title: "20 conceitos de IA em 2026"
 slug: 20-conceitos-ia-2026
 date: 2026-05-23
 publishDate: 2026-05-23

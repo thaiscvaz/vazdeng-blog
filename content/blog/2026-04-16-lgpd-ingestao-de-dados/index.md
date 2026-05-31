@@ -1,5 +1,6 @@
 ---
 title: "LGPD na ingestão de dados: 4 princípios que mudam sua arquitetura"
+cover_title: "LGPD na ingestão"
 slug: lgpd-ingestao-de-dados
 date: 2026-04-16
 publishDate: 2026-04-16

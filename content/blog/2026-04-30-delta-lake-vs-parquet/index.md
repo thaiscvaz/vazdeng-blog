@@ -1,5 +1,6 @@
 ---
 title: "Delta Lake ou Parquet? Você está fazendo a pergunta errada"
+cover_title: "Delta Lake ou Parquet?"
 slug: delta-lake-vs-parquet
 date: 2026-04-30
 publishDate: 2026-04-30

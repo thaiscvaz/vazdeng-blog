@@ -109,20 +109,20 @@ params:
   images:
     - images/og-default.png
 
-  # Cronograma de proximos posts (mostrado na home)
+  # Cronograma de proximos posts (mostrado na home, ordem cronologica)
   upcoming:
-    - date: "SAB 10h"
-      slug: "ZTE-002"
-      title: "Ingestão na prática"
-    - date: "SAB 14h"
-      slug: "IA-002"
-      title: "Embeddings sem hype"
-    - date: "TER 12h"
+    - date: "TER 02/06 12h"
       slug: "DE-008"
       title: "Schema drift na fronteira"
-    - date: "QUI 12h"
+    - date: "QUI 04/06 12h"
       slug: "TV-002"
       title: "Dagster, sério?"
+    - date: "SAB 07/06 10h"
+      slug: "ZTE-002"
+      title: "Ingestão na prática"
+    - date: "SAB 07/06 14h"
+      slug: "IA-002"
+      title: "Embeddings sem hype"
 
   # Trilhas ativas (cards coloridos na home)
   tracks:

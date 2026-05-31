@@ -1,5 +1,6 @@
 ---
 title: "LGPD e modelos de ML: o que fazer com dados que já viraram pesos de modelo"
+cover_title: "LGPD e modelos de ML"
 slug: lgpd-ml-modelos-treinados
 date: 2026-05-02
 publishDate: 2026-05-02

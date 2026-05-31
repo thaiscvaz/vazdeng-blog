@@ -1,5 +1,6 @@
 ---
 title: "Airflow por 2 anos: o que eu faria diferente"
+cover_title: "Airflow por 2 anos"
 slug: airflow-2-anos-o-que-faria-diferente
 date: 2026-05-24
 publishDate: 2026-05-24

@@ -1,5 +1,6 @@
 ---
 title: "Data Flows Ep01: o conceito que vem antes de qualquer ferramenta"
+cover_title: "Data Flows Ep 01"
 slug: data-flows-ep01
 date: 2026-05-30
 publishDate: 2026-05-30
