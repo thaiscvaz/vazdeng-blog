@@ -9,7 +9,7 @@ type: default
 
 Meu nome é Thais Vaz. Sou engenheira de dados há mais de 8 anos.
 
-Comecei no **Itaú**, onde ganhei o Prêmio Mérito por trabalho em qualidade de dados. Passei pela **EBANX** construindo pipelines ETL em escala. Liderei uma equipe internacional na **HCL Technologies** atendendo clientes em Silicon Valley. Hoje sou engenheira de dados sênior no **Bradesco**.
+Comecei no **Itaú**, onde ganhei o Prêmio Mérito por trabalho em qualidade de dados. Passei pela **EBANX** construindo pipelines ETL em escala. Atuei no projeto da **Apple** em Silicon Valley pela **HCL Technologies**. Hoje sou engenheira de dados sênior no **Bradesco**.
 
 Minha stack principal é **Databricks**. Não porque li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei.
 
