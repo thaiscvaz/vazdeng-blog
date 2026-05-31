@@ -22,9 +22,75 @@ languages:
   pt:
     languageName: Português
     weight: 1
+    params:
+      upcoming:
+        - date: "TER 02/06 12h"
+          slug: "DE-008"
+          title: "Schema drift na fronteira"
+        - date: "QUI 04/06 12h"
+          slug: "TV-002"
+          title: "Dagster, sério?"
+        - date: "SAB 06/06 10h"
+          slug: "ZTE-002"
+          title: "Ingestão na prática"
+        - date: "SAB 06/06 14h"
+          slug: "IA-002"
+          title: "Embeddings sem hype"
+      tracks:
+        - color: amber
+          label: "DE Produção"
+          title: "Anti-padrões reais em batch e streaming."
+          sub: "Decisão técnica com SLA no centro. Toda terça, 12h BRT."
+          cta: "Ver últimos"
+          sigil: "DE"
+        - color: rose
+          label: "Cripto Chronicles"
+          title: "A saga de um agente quant que perde dinheiro."
+          sub: "Capítulos numerados sobre o cripto_invest. Sharpe, abstenção, drawdown."
+          cta: "Ler do começo"
+          sigil: "CA"
+        - color: lavender
+          label: "Zero to Expert"
+          title: "Fundamentos antes da ferramenta."
+          sub: "Série didática progressiva de DE. Toda sábado, 10h BRT."
+          cta: "Episódio 01"
+          sigil: "ZTE"
   en:
     languageName: English
     weight: 2
+    params:
+      upcoming:
+        - date: "TUE Jun 02 · 12h"
+          slug: "DE-008"
+          title: "Schema drift at the boundary"
+        - date: "THU Jun 04 · 12h"
+          slug: "TV-002"
+          title: "Dagster, really?"
+        - date: "SAT Jun 06 · 10h"
+          slug: "ZTE-002"
+          title: "Ingestion in practice"
+        - date: "SAT Jun 06 · 14h"
+          slug: "IA-002"
+          title: "Embeddings without the hype"
+      tracks:
+        - color: amber
+          label: "DE Production"
+          title: "Real anti-patterns in batch and streaming."
+          sub: "Technical decision with SLA at the center. Every Tuesday, 12h BRT."
+          cta: "Latest posts"
+          sigil: "DE"
+        - color: rose
+          label: "Crypto Chronicles"
+          title: "The saga of a quant agent losing money."
+          sub: "Numbered chapters on cripto_invest. Sharpe, abstention, drawdown."
+          cta: "Start from chapter 1"
+          sigil: "CA"
+        - color: lavender
+          label: "Zero to Expert"
+          title: "Fundamentals before the tool."
+          sub: "Progressive didactic series on DE. Every Saturday, 10h BRT."
+          cta: "Episode 01"
+          sigil: "ZTE"
 
 markup:
   goldmark:
@@ -109,41 +175,7 @@ params:
   images:
     - images/og-default.png
 
-  # Cronograma de proximos posts (mostrado na home, ordem cronologica)
-  upcoming:
-    - date: "TER 02/06 12h"
-      slug: "DE-008"
-      title: "Schema drift na fronteira"
-    - date: "QUI 04/06 12h"
-      slug: "TV-002"
-      title: "Dagster, sério?"
-    - date: "SAB 06/06 10h"
-      slug: "ZTE-002"
-      title: "Ingestão na prática"
-    - date: "SAB 06/06 14h"
-      slug: "IA-002"
-      title: "Embeddings sem hype"
-
-  # Trilhas ativas (cards coloridos na home)
-  tracks:
-    - color: amber
-      label: "DE Produção"
-      title: "Anti-padrões reais em batch e streaming."
-      sub: "Decisão técnica com SLA no centro. Toda terça, 12h BRT."
-      cta: "Ver últimos"
-      sigil: "DE"
-    - color: rose
-      label: "Cripto Chronicles"
-      title: "A saga de um agente quant que perde dinheiro."
-      sub: "Capítulos numerados sobre o cripto_invest. Sharpe, abstenção, drawdown."
-      cta: "Ler do começo"
-      sigil: "CA"
-    - color: lavender
-      label: "Zero to Expert"
-      title: "Fundamentos antes da ferramenta."
-      sub: "Série didática progressiva de DE. Toda sábado, 10h BRT."
-      cta: "Episódio 01"
-      sigil: "ZTE"
+  # upcoming + tracks movidos pra languages.<lang>.params (i18n)
 
   # Mapping tag -> cor (pills coloridas no archive e cards relacionados)
   track_colors:
