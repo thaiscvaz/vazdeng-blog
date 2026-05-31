@@ -53,7 +53,7 @@
     </div>
     <div class="vz-tracks-grid">
       {{ range . }}
-        <a class="vz-track-card {{ .color }}" href="#">
+        <a class="vz-track-card {{ .color }}" href="#vz-archive" data-filter="{{ .color }}" onclick="return vzFilter('{{ .color }}', event, true)">
           <span class="vz-track-pill">{{ .label }}</span>
           <h3 class="vz-track-h">{{ .title }}</h3>
           <p class="vz-track-sub">{{ .sub }}</p>
@@ -66,7 +66,7 @@
   {{ end }}
 
   {{/* ============ ARCHIVE COM FILTROS ============ */}}
-  <section class="vz-archive">
+  <section class="vz-archive" id="vz-archive">
     <svg class="vz-doodle vz-doodle-r" viewBox="0 0 48 48" aria-hidden="true">
       <path d="M 10 8 L 28 8 L 36 16 L 36 40 L 10 40 Z"/>
       <path d="M 28 8 L 28 16 L 36 16"/>
@@ -83,14 +83,14 @@
 
     <div class="vz-archive-head">
       <h2 class="vz-archive-title">{{ T "archiveTitle" }} <em>{{ T "archiveTitleAccent" }}</em></h2>
-      <span class="vz-archive-count">{{ len $posts }} {{ T "archivePostsCount" }}</span>
+      <span class="vz-archive-count" id="vz-archive-count">{{ len $posts }} {{ T "archivePostsCount" }}</span>
     </div>
 
     {{ with site.Params.tracks }}
     <div class="vz-filters">
-      <button class="vz-filter active">{{ T "filterAll" }}</button>
+      <button class="vz-filter active" data-filter="all" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
       {{ range . }}
-        <button class="vz-filter">{{ .label }}</button>
+        <button class="vz-filter" data-filter="{{ .color }}" onclick="vzFilter('{{ .color }}', event)">{{ .label }}</button>
       {{ end }}
     </div>
     {{ end }}
@@ -103,7 +103,7 @@
             {{ $tag = index . 0 }}
             {{ with index $colorMap (lower $tag) }}{{ $color = . }}{{ end }}
           {{ end }}
-          <li class="vz-post-item">
+          <li class="vz-post-item" data-filter="{{ $color }}">
             <a class="vz-post-link" href="{{ .RelPermalink }}">
               <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan" }}</time>
               <div class="vz-post-title">
@@ -115,10 +115,67 @@
           </li>
         {{ end }}
       </ul>
+      <p class="vz-empty-msg" id="vz-empty-msg" style="display:none; color: var(--text-muted); padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;">Nenhum post nessa trilha ainda.</p>
     {{ else }}
       <p style="color: var(--text-muted); padding: 32px 0;">{{ T "archiveEmpty" }}</p>
     {{ end }}
   </section>
+
+  {{/* ============ FILTER JS ============ */}}
+  <script>
+  (function() {
+    var totalPosts = {{ len $posts }};
+    var countEl = document.getElementById('vz-archive-count');
+    var emptyEl = document.getElementById('vz-empty-msg');
+    var countSuffix = {{ T "archivePostsCount" | safeHTML | jsonify }};
+
+    window.vzFilter = function(filter, event, scroll) {
+      if (event) event.preventDefault();
+
+      // Atualiza estado dos filter buttons
+      document.querySelectorAll('.vz-filter').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+
+      // Filtra posts
+      var visible = 0;
+      document.querySelectorAll('.vz-post-item').forEach(function(item) {
+        var show = filter === 'all' || item.dataset.filter === filter;
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      // Atualiza count + empty state
+      if (countEl) countEl.textContent = visible + ' ' + countSuffix;
+      if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
+
+      // Scroll suave pro archive
+      if (scroll) {
+        var target = document.getElementById('vz-archive');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Atualiza URL (sem reload)
+      try {
+        var url = new URL(window.location);
+        if (filter === 'all') url.searchParams.delete('trilha');
+        else url.searchParams.set('trilha', filter);
+        history.replaceState(null, '', url);
+      } catch (e) {}
+
+      return false;
+    };
+
+    // Aplica filtro vindo de URL ?trilha=amber ao carregar
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var initial = params.get('trilha');
+        if (initial) vzFilter(initial);
+      } catch (e) {}
+    });
+  })();
+  </script>
 
 {{ else }}
   {{/* Fallback pra outras paginas */}}
