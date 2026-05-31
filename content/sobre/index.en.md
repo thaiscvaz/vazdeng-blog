@@ -9,7 +9,7 @@ type: default
 
 My name is Thais Vaz. I've been a data engineer for 8+ years.
 
-I started at a large Brazilian bank, where I received an internal award for data quality work. Then moved to a global-scale Brazilian fintech, building ETL pipelines processing 100M+ daily transactions. After that, I led an international team at a tech consultancy on big-tech projects in Silicon Valley, managing 500M+ daily events. Today I'm a senior data engineer at another large Brazilian bank.
+I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, I led an international team at **HCL Technologies** serving clients in Silicon Valley. Today I'm a senior data engineer at **Bradesco**.
 
 My core stack is **Databricks**. Not because I read the docs. Because it's what runs in production where I've worked.
 
