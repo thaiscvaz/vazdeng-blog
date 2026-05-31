@@ -15,7 +15,7 @@ My core stack is **Databricks**. Not because I read the docs. Because it's what 
 
 ## Why this blog exists
 
-In 2024 I started a Master's in **Numerical Methods in Engineering** at UFPR (Federal University of Paraná). My research is on AI-driven predictive monitoring using LLMs for operational systems.
+In 2025 I joined the **Numerical Methods in Engineering** program at UFPR (Federal University of Paraná) as an auditing student, and in 2026 I was admitted as a full Master's student. My research is on AI-driven predictive monitoring using LLMs for operational systems.
 
 Along the way I noticed something that was bothering me. Almost nobody was writing about production data engineering in Portuguese. Not the way I wanted to read it: with depth, from someone who actually shipped it, at a real bank, with real LGPD compliance constraints, SLA requirements, and regulatory oversight.
 

@@ -15,7 +15,7 @@ Minha stack principal é **Databricks**. Não porque li um tutorial. Porque é o
 
 ## Por que esse blog existe
 
-Em 2024 entrei no mestrado em **Métodos Numéricos em Engenharia** na UFPR. Minha pesquisa é sobre monitoramento preditivo baseado em IA usando LLMs pra sistemas operacionais.
+Em 2025 entrei como aluna ouvinte no programa de **Métodos Numéricos em Engenharia** na UFPR e em 2026 ingressei oficialmente como mestranda. Minha pesquisa é sobre monitoramento preditivo baseado em IA usando LLMs pra sistemas operacionais.
 
 No meio desse caminho eu percebi uma coisa que me incomodava. Quase ninguém estava escrevendo sobre engenharia de dados de produção em português. Não do jeito que eu queria ler: com profundidade, vindo de quem construiu de verdade, num banco real, com restrições reais de LGPD, SLA e conformidade regulatória.
 
