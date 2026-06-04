@@ -27,7 +27,7 @@ I'm a senior data engineer with 8+ years of experience. I started in data qualit
 
 My core stack is Databricks. Not because I read the docs. Because it's what runs in production where I've worked.
 
-In 2025 I joined the Numerical Methods in Engineering program at UFPR as an auditing student, and in 2026 I was admitted as a full Master's student. My research is on AI-driven predictive monitoring using LLMs for operational systems. Everything I learn there I plan to bring here, translated into something useful for engineers working with real data.
+In 2026 I started a master's in applied computational methods. My research is on AI-driven predictive monitoring for critical operational systems. Everything I learn there I plan to bring here, translated into something useful for engineers working with real data.
 
 ## Why crypto entered the story
 

@@ -311,9 +311,8 @@ But it solves a real problem:
 
 Next steps for you:
 
-1. **Explore the code:** [github.com/tvazdataengineer/cripto_invest](https://github.com/tvazdataengineer/cripto_invest)
-2. **Run it locally:** `pytest` (all 202 tests pass)
-3. **Adapt it:** For stocks, commodities, crypto (framework is agnostic)
+1. **The code:** project closed for now. The architecture described above (HMM + LightGBM + Kelly + HRP, train/production separation, event-based vs polling) is what matters to replicate the approach.
+2. **Adapt it:** For stocks, commodities, crypto (framework is agnostic)
 4. **Realize:** How hard quant is. Respect those who do it well.
 
 ---

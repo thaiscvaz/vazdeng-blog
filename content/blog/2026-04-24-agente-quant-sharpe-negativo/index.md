@@ -312,9 +312,8 @@ Mas ele resolve um problema real:
 
 Próximos passos para você:
 
-1. **Explore o código:** [github.com/tvazdataengineer/cripto_invest](https://github.com/tvazdataengineer/cripto_invest)
-2. **Roda localmente:** `pytest` (todos 202 testes passam)
-3. **Adapte:** Para stocks, commodities, cripto (framework é agnóstico)
+1. **O código:** projeto fechado por enquanto. A arquitetura descrita acima (HMM + LightGBM + Kelly + HRP, separação treino/produção, evento-baseado vs polling) é o que importa pra replicar a abordagem.
+2. **Adapte:** Para stocks, commodities, cripto (framework é agnóstico)
 4. **Realize:** Quão difícil é quant. Respeite quem faz bem.
 
 ---

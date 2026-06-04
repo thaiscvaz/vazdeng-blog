@@ -29,7 +29,7 @@ Sou engenheira de dados sênior há mais de 8 anos. Comecei em qualidade de dado
 
 Minha stack principal é Databricks. Não porque eu li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei nos últimos anos.
 
-Em 2025 entrei como aluna ouvinte no programa de Métodos Numéricos em Engenharia na UFPR e em 2026 ingressei oficialmente como mestranda. Minha pesquisa é sobre monitoramento preditivo baseado em IA usando LLMs pra sistemas operacionais. Tudo que aprendo lá eu pretendo trazer pra cá traduzido pra realidade de quem trabalha com dados todo dia.
+Em 2026 entrei num mestrado em métodos computacionais aplicados. Pesquiso uso de IA pra monitoramento preditivo em sistemas operacionais críticos. Tudo que aprendo lá eu pretendo trazer pra cá traduzido pra realidade de quem trabalha com dados todo dia.
 
 ## Por que cripto entrou nessa história
 
