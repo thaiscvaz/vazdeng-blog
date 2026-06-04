@@ -8,6 +8,7 @@ draft: false
 description: Como construir um sistema robusto de quant trading em Python, testado e auditável. O que aprender quando a métrica inicial falha.
 tags: ["quant-trading", "cripto", "python", "risk-management", "data-engineering"]
 images: ["cover.png"]
+canonicalURL: "https://vazdeng.pages.dev/blog/2026-04-28-agente-quant-sharpe/"
 ---
 
 Por 6 meses, construí um agente quant para trading de BTC/USDT.

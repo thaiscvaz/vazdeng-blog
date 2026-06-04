@@ -7,6 +7,7 @@ draft: false
 description: How to build a robust, tested, auditable quant trading system in Python. What to learn when your primary metric fails.
 tags: ["quant-trading", "crypto", "python", "risk-management", "systems-engineering"]
 images: ["cover.png"]
+canonicalURL: "https://vazdeng.pages.dev/en/blog/2026-04-28-agente-quant-sharpe/"
 ---
 
 For 6 months, I built a quant agent to trade BTC/USDT.
