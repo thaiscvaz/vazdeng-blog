@@ -14,6 +14,8 @@ Tem dev hoje fazendo onboarding em time sênior que nunca escreveu um `GROUP BY`
 
 Esse dev é o que o Akita chama de codificador. E a IA está acelerando a extinção dele.
 
+![O loop do codificador: query trava, copia o erro, cola a resposta, trava de novo](coder-loop.png)
+
 ## O codificador terceirizou o entendimento
 
 Antes a gente aprendia SQL primeiro porque era o jeito de falar com o banco. Hoje é o contrário. Framework antes de SQL. ORM antes de SQL. pandas antes de SQL. Camadas e mais camadas de abstração que escondem a query que de fato vai rodar.
@@ -25,6 +27,8 @@ O problema da abstração não é a abstração. É que ela esconde o custo. Voc
 Pipeline de DE moderno processa bilhões de linhas por dia. Toda decisão de query custa minutos vezes cluster vezes DBU vezes dia vezes mês. A diferença entre uma query bem escrita e uma gerada por ORM despreparado é fator 10 a 100x no custo final.
 
 Caso concreto que apareceu numa consultoria: pipeline de fechamento contábil em fintech brasileira. ORM gerando 47 subqueries pra coisa que SQL nativo resolve em 1 CTE com WINDOW. Custo Databricks/Snowflake: R$ 8 mil/mês. Depois que alguém finalmente escreveu a query em SQL puro, R$ 800/mês. Mesmo resultado de negócio, fator 10x de diferença.
+
+![Caso real de fechamento contábil: ORM despreparado a R$ 8 mil/mês vs SQL puro a R$ 800/mês, 10x mais barato](abstraction-cost.png)
 
 Não foi um caso isolado. É o padrão. Onde tem pipeline grande gerado por abstração, tem fator 10x de gordura esperando alguém ler o plan de execução.
 
@@ -39,6 +43,8 @@ Padrões observados em SQL gerado por LLM sem revisão:
 - `WHERE UPPER(coluna) = 'X'` em coluna indexada, derrubando o índice.
 - Sem hint de partition em Spark/Snowflake, lendo tabela inteira quando só precisa de 1 dia.
 - Window function sem `PARTITION BY` correto, computando coisa errada sem dar erro.
+
+![Antipadrões de SQL gerado por LLM sem revisão: SELECT * em CTE, IN no lugar de JOIN, função em coluna indexada, sem hint de partition, WINDOW sem PARTITION BY](llm-antipatterns.png)
 
 Quem não lê plan de execução não vê. Vai pra produção, paga os juros no fim do mês. Dívida técnica com IA não é a mesma dívida de 5 anos atrás. Você contrai 10x mais rápido, achando que está levando vantagem.
 
