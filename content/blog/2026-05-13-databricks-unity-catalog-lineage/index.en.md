@@ -25,6 +25,8 @@ Unity Catalog intercepts Spark execution plans at runtime and registers every re
 
 This information is accessible two ways: via Catalog Explorer with a visual interface, and via the system tables `system.access.table_lineage` and `system.access.column_lineage` for those who need it programmatically.
 
+![Unity Catalog coverage: what it captures automatically vs where most people get it wrong](images/unity-catalog-cobertura.png)
+
 ## What isn't captured and where most people get it wrong
 
 The official docs are clear but discreet about the limitations. I've seen these limitations bite in production more than once.

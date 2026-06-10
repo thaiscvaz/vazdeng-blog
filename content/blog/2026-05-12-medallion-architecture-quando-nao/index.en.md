@@ -59,6 +59,8 @@ Each transition Bronze to Silver, Silver to Gold, is a separate job. In Spark pi
 
 Analyses with real practitioner data show overhead of 53% or more in simple cases: 23 minutes with Medallion versus 15 minutes with direct transformation, for the same result.
 
+![Latency comparison: direct transformation 15min vs Medallion 23min](images/medallion_latency_infographic.png)
+
 When the business needs data in 30 minutes to make a decision, an architecture with 80 minutes of latency isn't a code problem. It's an architecture problem.
 
 For data that needs to arrive in real time or near it, Databricks is explicit: it recommends micro-batch (latency in seconds to a few minutes) for Medallion, and explicitly advises that when ingestion comes from a message broker like Kafka, reading directly without an intermediate stage reduces complexity and latency. For sub-second, the documentation itself flags limitations in real-time mode that negatively affect throughput.
@@ -99,7 +101,7 @@ Three questions define whether Medallion is the right architecture:
 
 Three "yes": Medallion is a solid choice. Two or fewer: worth questioning how many layers you actually need.
 
-![Decision diagram: when to use Medallion Architecture](images/decision-tree.svg)
+![Decision diagram: when to use Medallion Architecture](images/decision-tree.png)
 
 ## What large companies actually use
 
