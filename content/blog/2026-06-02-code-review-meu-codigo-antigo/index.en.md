@@ -16,6 +16,8 @@ I found five anti-patterns. In my own code, written by me. But the kind of probl
 
 I decided to write about it because it's more honest to critique my own code than to point fingers at someone else's repo. And because if you have a public repo from two years ago that you still cite in your portfolio, you probably also have at least three of these five.
 
+![The 5 anti-patterns from the review: credential inside the function, serial tasks for no reason, data baked into the Docker image, daily DAG over static data, fillna(0) erasing signal](images/01-cinco-antipadroes.png)
+
 ## The database credentials were inside the function
 
 ```python
@@ -53,6 +55,8 @@ The correct version:
 ```
 
 Whoever reads the pipeline now understands validation runs in parallel and then joins. Whoever read the original would assume there's some hidden dependency that doesn't exist.
+
+![How I wrote it vs how it should be: t1 >> t2 >> t3 >> t4 in series against [t1, t2] >> t3 >> t4 with validations in parallel](images/02-serie-vs-paralelo.png)
 
 ## Input data was baked into the Docker image
 
@@ -100,6 +104,8 @@ df_merged['missed_data_source'] = df_merged['missed_days'].notna().map(
 ```
 
 Small change, completely changes what the dashboard shows.
+
+![Zero is not null: 0 means the student attended every day, NULL means the data never arrived, fillna(0) mixes the two](images/03-zero-nao-e-nulo.png)
 
 ## The discomfort of reviewing your own code
 

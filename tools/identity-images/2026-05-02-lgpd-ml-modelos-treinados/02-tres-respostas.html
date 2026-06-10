@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { padding: 18px 26px; margin-bottom: 18px; }
+  .card .card-title .mono { font-size: 22px; color: var(--orange-deep); }
+  .trade { display: flex; gap: 34px; margin-top: 10px; }
+  .trade .side { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+  .trade .mark { font-size: 21px; font-weight: bold; margin-top: 1px; }
+  .trade .mark.plus { color: var(--green); }
+  .trade .mark.minus { color: var(--red); }
+  .trade .t { font-size: 20px; color: var(--gray); line-height: 1.4; }
+  .trade .t b { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">TRÊS RESPOSTAS <span class="sep">·</span> NENHUMA GRATUITA</div>
+  </div>
+
+  <div class="lede">Quando o pedido de exclusão alcança um modelo em produção, <strong>existem três caminhos</strong>.</div>
+
+  <div class="content">
+    <div class="card">
+      <div class="card-title">1. Retraining completo sem o dado</div>
+      <div class="trade">
+        <div class="side"><div class="mark plus">✓</div><div class="t"><b>mais limpo juridicamente</b>, defensável em auditoria</div></div>
+        <div class="side"><div class="mark minus">✕</div><div class="t"><b>semanas de computação</b> — impraticável como rotina</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">2. Machine unlearning seletivo <span class="mono">SISA · gradient-based</span></div>
+      <div class="trade">
+        <div class="side"><div class="mark plus">✓</div><div class="t"><b>corta o custo</b> do retreino completo</div></div>
+        <div class="side"><div class="mark minus">✕</div><div class="t"><b>sem certificação formal</b> de que o apagamento foi efetivo</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">3. Documentar a impraticabilidade + mitigar</div>
+      <div class="trade">
+        <div class="side"><div class="mark plus">✓</div><div class="t"><b>defensável</b> com base legal residual da época do treino</div></div>
+        <div class="side"><div class="mark minus">✕</div><div class="t">exige <b>opinião jurídica</b>, não só técnica</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

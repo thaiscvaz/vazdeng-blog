@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .flow { display: flex; align-items: stretch; gap: 0; margin-bottom: 36px; }
+  .step {
+    flex: 1; background: var(--card); border: 1px solid var(--hairline);
+    border-top: 7px solid var(--orange); border-radius: 10px;
+    padding: 20px 18px 22px 18px; text-align: center;
+  }
+  .step.fail { border-top-color: var(--red); }
+  .step .num {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff;
+    font-size: 20px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px auto;
+  }
+  .step .t { font-size: 22px; font-weight: bold; color: var(--navy); margin-bottom: 8px; }
+  .step .t code { color: var(--orange-deep); }
+  .step .d { font-size: 18px; color: var(--gray); line-height: 1.35; }
+  .arrow {
+    flex: 0 0 44px; display: flex; align-items: center; justify-content: center;
+    font-size: 30px; color: var(--orange); font-weight: bold;
+  }
+  .rule-card {
+    background: var(--navy); border-color: var(--navy); border-left-color: var(--green);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .rule-card .mono { color: #f3c98a; font-size: 22px; font-weight: bold; }
+  .rule-card .rest { color: #e8e4da; font-size: 22px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">FALLBACK QUE AGUENTA BATCH REAL</div>
+  </div>
+
+  <div class="lede">No 429, a pipeline desce pro áudio e transcreve local. <strong>Quem chama nem percebe.</strong></div>
+
+  <div class="content">
+    <div class="flow">
+      <div class="step fail">
+        <div class="num">1</div>
+        <div class="t">Legenda via <code>timedtext</code></div>
+        <div class="d">caminho feliz — até o rate limit derrubar o batch</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="t">Áudio via <code>googlevideo</code></div>
+        <div class="d">só o áudio, m4a 49 kbps — endpoint sem quota por request</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="t">Transcrição local</div>
+        <div class="d"><code>faster-whisper</code> int8 em CPU — 4x mais rápido, mesmos pesos</div>
+      </div>
+    </div>
+
+    <div class="card rule-card">
+      <span class="mono">whisper_fallback=True</span>
+      <span class="rest">→ mesmo formato de saída, venha da legenda ou do Whisper</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

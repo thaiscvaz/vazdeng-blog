@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .step { display: flex; align-items: center; gap: 18px; margin-bottom: 18px; }
+  .step .num {
+    width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%;
+    background: var(--navy); color: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: bold;
+  }
+  .step .who {
+    flex: 0 0 124px; text-align: center; font-size: 17px; font-weight: bold;
+    letter-spacing: 1px; padding: 7px 0; border-radius: 7px; color: #fff;
+  }
+  .step .who.h { background: var(--orange); }
+  .step .who.m { background: var(--navy); }
+  .step .txt { font-size: 21px; color: var(--ink); line-height: 1.35; }
+  .step .txt code { font-size: 19px; color: var(--navy); font-weight: bold; }
+  .loop-card {
+    margin-top: 8px; background: var(--navy); border-radius: 10px; padding: 18px 26px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .loop-card .arrow { color: var(--orange); font-size: 30px; font-weight: bold; }
+  .loop-card .txt { color: #e8e4da; font-size: 22px; }
+  .loop-card .txt b { color: #f3c98a; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">O LOOP AGÊNTICO <span class="sep">·</span> "CRIE UM SITE"</div>
+  </div>
+
+  <div class="lede">A LLM nunca tocou no seu disco. <strong>Só o harness toca.</strong></div>
+
+  <div class="content">
+    <div class="step"><div class="num">1</div><div class="who h">HARNESS</div><div class="txt">manda seu pedido pra LLM via API, junto com o system prompt</div></div>
+    <div class="step"><div class="num">2</div><div class="who m">LLM</div><div class="txt">responde texto estruturado: <code>create_file("index.html", "&lt;html&gt;…")</code></div></div>
+    <div class="step"><div class="num">3</div><div class="who h">HARNESS</div><div class="txt">executa a função e cria o arquivo na sua máquina</div></div>
+    <div class="step"><div class="num">4</div><div class="who h">HARNESS</div><div class="txt">devolve pra LLM: "arquivo criado, próximo passo?"</div></div>
+    <div class="step"><div class="num">5</div><div class="who m">LLM</div><div class="txt">"agora crie <code>style.css</code>…"</div></div>
+    <div class="loop-card"><div class="arrow">⟳</div><div class="txt">o loop repete até a LLM dizer <b>"terminei"</b> — quem age, do início ao fim, é o harness</div></div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

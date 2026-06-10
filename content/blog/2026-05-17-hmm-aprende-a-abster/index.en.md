@@ -86,6 +86,8 @@ if self.is_ood(last_features):
 
 The downstream decision (`decide_position` in layer 4) already had a lookup in `REGIME_MULTIPLIER`. I added `"OOD": 0.0` as defense in depth, plus an explicit "ABSTAIN" log to make it visible whenever the system chose not to operate.
 
+![The abstention gate: a new candle goes through the max |z| above 5 sigmas check, inside it classifies and operates, outside it returns OOD and zeros the sizing](images/01-gate-ood.png)
+
 70 tests passed, plus 2 new ones covering the OOD path. Full suite in 6 seconds.
 
 | Scenario | Before | After |
@@ -118,6 +120,8 @@ Nick Leeson, Jérôme Kerviel, LTCM, Knight Capital. The history of operational 
 3. **Abstaining on isolated tick and going back to operating on the next.** Turbulence is persistent. Good design abstains by window, not by candle.
 4. **Adding OOD without touching the decider.** A detector that doesn't change downstream behavior is decoration. `REGIME_MULTIPLIER` is where the effect happens.
 5. **Hiding the abstention from the log.** If the system preferred not to operate, that's a decision. It must appear in the audit trail with reason, not silently.
+
+![The 5 abstention anti-patterns: high posterior as evidence, threshold by intuition, abstaining on isolated ticks, OOD without touching the decider, abstention hidden from the log](images/02-anti-padroes.png)
 
 ## The next chapter
 

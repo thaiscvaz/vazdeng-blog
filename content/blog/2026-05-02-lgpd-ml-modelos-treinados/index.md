@@ -17,6 +17,8 @@ Os pesos de um modelo de ML treinado com dados pessoais guardam, de forma não e
 
 Vi a maioria dos times sem processo para esse cenário. Não por falta de intenção: ninguém estabeleceu o fluxo antes de treinar o primeiro modelo.
 
+![Deletar a linha não apaga o modelo: o CPF entra no treino, a influência continua nos pesos em produção, e o Art. 18 alcança o modelo](images/01-deletar-nao-apaga.png)
+
 ## O que o Art. 18 efetivamente exige
 
 O Art. 18, IV da LGPD garante ao titular o direito de solicitar anonimização, bloqueio ou eliminação de dados "desnecessários, excessivos ou tratados em desconformidade".
@@ -47,6 +49,8 @@ Machine unlearning seletivo: técnicas que tentam remover a influência de regis
 
 Documentar a impraticabilidade e mitigar o risco: a LGPD permite, em alguns casos, a continuidade do tratamento quando o apagamento é impossível e existe base legal residual. Documentar que o modelo foi treinado com dados que à época tinham base legal, que o retraining é tecnicamente inviável, e que medidas de mitigação foram implementadas pode ser a resposta juridicamente defensável. Isso precisa de opinião jurídica, não só técnica.
 
+![Três respostas, nenhuma gratuita: retraining completo, machine unlearning seletivo, documentar a impraticabilidade, prós e contras de cada uma](images/02-tres-respostas.png)
+
 ## Como arquitetar antes de treinar
 
 O momento certo para resolver isso é antes do primeiro modelo ir para produção, não depois da primeira requisição de exclusão.
@@ -56,6 +60,8 @@ Versionamento de datasets por titulares: manter um índice de quais registros fo
 Separação de dados de treino por consentimento: se parte do dataset veio de consentimento explícito e parte de legítimo interesse, trate como datasets separados desde o início. Quando o consentimento for revogado, você sabe exatamente qual subconjunto está comprometido.
 
 Checkpoints rotulados por composição de dataset: se você usa treinamento modular, mantenha os checkpoints com metadados sobre quais shards foram usados. Isso reduz o custo de retraining seletivo de semanas para horas.
+
+![Arquitete antes do primeiro treino: versionamento de dataset por titular, datasets separados por base legal, checkpoints rotulados por composição, retraining cai de semanas pra horas](images/03-antes-de-treinar.png)
 
 ## A decisão que todo time vai precisar tomar
 

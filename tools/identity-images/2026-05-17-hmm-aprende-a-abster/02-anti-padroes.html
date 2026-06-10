@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { padding: 16px 22px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 16px; border-left-color: var(--red); }
+  .card .txt { font-size: 21px; color: var(--ink); line-height: 1.4; }
+  .card .txt b { color: var(--navy); }
+  .card .txt .mono { color: var(--orange-deep); }
+  .icon { margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">5 ANTI-PADRÕES DE ABSTENÇÃO</div>
+  </div>
+
+  <div class="lede">Detector de OOD que não muda comportamento downstream é <strong>decoração</strong>.</div>
+
+  <div class="content">
+    <div class="card"><div class="icon no">✕</div><div class="txt"><b>Posterior alta como evidência de boa decisão</b><br>a posterior sempre soma 1 — confiança é métrica intra-modelo</div></div>
+    <div class="card"><div class="icon no">✕</div><div class="txt"><b>Threshold de OOD por intuição</b><br>3σ funciona em gaussiana pura; cripto tem fat tails — mede a cauda real primeiro</div></div>
+    <div class="card"><div class="icon no">✕</div><div class="txt"><b>Abster por tick isolado</b><br>turbulência é persistente — bom design abstém por janela, não por candle</div></div>
+    <div class="card"><div class="icon no">✕</div><div class="txt"><b>Detectar OOD sem mexer no decisor</b><br>o efeito acontece no <span class="mono">REGIME_MULTIPLIER</span>, não no alerta</div></div>
+    <div class="card"><div class="icon no">✕</div><div class="txt"><b>Esconder a abstenção do log</b><br>não operar é decisão — entra no audit trail com o motivo</div></div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

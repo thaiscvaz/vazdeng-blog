@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .q-card { display: flex; align-items: center; gap: 22px; padding: 20px 26px; }
+  .num {
+    width: 46px; height: 46px; flex: 0 0 46px; border-radius: 50%;
+    background: var(--navy); color: #fff; font-size: 24px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .q-card .q { flex: 1; font-size: 23px; color: var(--ink); line-height: 1.4; }
+  .verdict {
+    white-space: nowrap; font-size: 21px; font-weight: bold; color: #fff;
+    padding: 10px 20px; border-radius: 8px;
+  }
+  .verdict.delta { background: var(--navy); }
+  .verdict.pq { background: var(--green); }
+  .hint { font-size: 21px; color: var(--gray); margin-top: 28px; text-align: center; }
+  .hint b { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">A DECISÃO EM 3 PERGUNTAS</div>
+  </div>
+
+  <div class="lede">Antes de escolher o formato, responda na ordem.</div>
+
+  <div class="content">
+    <div class="card q-card"><div class="num">1</div><div class="q">Mais de um processo escreve nessa tabela ao mesmo tempo — ou vai escrever no futuro?</div><div class="verdict delta">sim → Delta Lake</div></div>
+    <div class="card q-card"><div class="num">2</div><div class="q">Os dados sofrem update, delete ou têm requisito de auditoria?</div><div class="verdict delta">sim → Delta Lake</div></div>
+    <div class="card q-card"><div class="num">3</div><div class="q">A tabela é só leitura e nunca muda depois de escrita?</div><div class="verdict pq">sim → Parquet basta</div></div>
+
+    <div class="hint">Tabela operacional de lakehouse → responde sim na <b>1 ou 2</b>. Tabela de lookup → responde sim na <b>3</b>.</div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

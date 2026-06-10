@@ -26,6 +26,8 @@ The discovery that took me too long lives in the two distinct layers YouTube exp
 
 In practice I saw this: 60 requests in 5 minutes against `timedtext` results in guaranteed 429. The same 60 downloads on `googlevideo` with a natural interval go through with no warning. That detail isn't documented in any obvious place. I figured it out when my cron broke and I opened Wireshark.
 
+![Two endpoints, only one blocks: timedtext is an API with per-IP quota and guaranteed 429; googlevideo is a CDN billed by bandwidth, zero 429](images/01-dois-endpoints.png)
+
 ## A pipeline that handles real batch loads
 
 I packaged the logic in an open source Python CLI called [yt-nota](https://github.com/thaiscvaz/yt-nota). Combines 3 tools.
@@ -48,6 +50,8 @@ result = extract_transcript(
 
 On 429, it drops to `googlevideo`, downloads only the audio, transcribes, and returns the same format. The caller doesn't know if the transcript came from `timedtext` or Whisper.
 
+![3-step fallback: caption via timedtext, audio via googlevideo on 429, local transcription with faster-whisper, same output format](images/02-fallback-audio.png)
+
 ## CPU benchmark (Intel i7 12th gen, 16 GB, int8)
 
 I ran the pipeline on real videos of varying length to measure wall-clock time. No GPU.
@@ -59,6 +63,8 @@ I ran the pipeline on real videos of varying length to measure wall-clock time. 
 | 45 min | 6 min | 14 min | 45 min |
 
 On accuracy for technical Portuguese, I did comparative reading over ~14 hours of lecture audio. The `base` model confuses 1 in every 6 technical terms (95% readable but needs human review). The `small` confuses 1 in every 20 (default for a reason: the downstream LLM corrects rare errors from context). The `medium` gets close to zero errors but doubles the time. For my flow (transcript → synthesis via Claude Code), `small` is the sweet spot.
+
+![Which Whisper on CPU: base misses 1 in 6 technical terms, small misses 1 in 20 and is the sweet spot, medium near zero but runs at real-time speed](images/03-sweet-spot-small.png)
 
 ## What about SaaS with Whisper fallback?
 

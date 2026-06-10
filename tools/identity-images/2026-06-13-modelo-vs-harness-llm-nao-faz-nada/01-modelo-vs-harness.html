@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .col-head.model { background: var(--navy); color: #fff; }
+  .col-head.harness { background: var(--orange); color: #fff; }
+  .card { padding: 16px 22px; margin-bottom: 16px; }
+  .card.m { border-left-color: var(--navy); }
+  .card.h { border-left-color: var(--orange); }
+  .card .card-title { font-size: 23px; margin-bottom: 4px; }
+  .card .card-sub { font-size: 19px; line-height: 1.4; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">A LLM NÃO FAZ NADA <span class="sep">·</span> O HARNESS FAZ</div>
+  </div>
+
+  <div class="lede">Toda ferramenta agêntica são <strong>duas peças distintas</strong>. Confundir as duas custa dinheiro e segurança.</div>
+
+  <div class="content">
+    <div class="cols">
+      <div class="col">
+        <div class="col-head model">O MODELO (LLM)</div>
+        <div class="card m">
+          <div class="card-title">Só gera texto</div>
+          <div class="card-sub">arquivo de pesos de vários GB carregado na GPU</div>
+        </div>
+        <div class="card m">
+          <div class="card-title">Nunca toca no seu disco</div>
+          <div class="card-sub">não cria arquivo, não roda comando, não acessa rede</div>
+        </div>
+        <div class="card m">
+          <div class="card-title">Motor desligado na mesa</div>
+          <div class="card-sub">sozinho, faz barulho — não anda</div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-head harness">O HARNESS</div>
+        <div class="card h">
+          <div class="card-title">Executa o que a LLM pede</div>
+          <div class="card-sub">cria arquivo, roda teste, instala pacote, faz push</div>
+        </div>
+        <div class="card h">
+          <div class="card-title">Tem as permissões</div>
+          <div class="card-sub">disco, pacotes, git, conexões de rede</div>
+        </div>
+        <div class="card h">
+          <div class="card-title">É a rédea no cavalo</div>
+          <div class="card-sub">sem rédea, o cavalo vai pra onde quiser</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

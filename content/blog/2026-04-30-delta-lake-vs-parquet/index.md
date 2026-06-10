@@ -17,6 +17,8 @@ Delta Lake não é um formato de arquivo concorrente ao Parquet. É uma camada d
 
 Essa distinção muda o critério de decisão completamente. E confundir os dois em produção custa caro.
 
+![Delta Lake não é um formato: é o _delta_log transacional por cima dos seus arquivos Parquet, as duas camadas juntas](images/01-camada-nao-formato.png)
+
 ## O que o Parquet não faz
 
 Parquet resolve um problema específico muito bem: armazenar dados de forma colunar, comprimida, eficiente para leitura analítica. É o formato certo para isso.
@@ -26,6 +28,8 @@ O que Parquet não faz: controle de concorrência. Se dois jobs escrevem na mesm
 Numa fintech onde trabalhei, com pipelines de ingestão distribuídos, isso não era teórico. Era o cenário padrão toda vez que um job de streaming e um job de backfill rodavam juntos na mesma tabela.
 
 Em pipelines com job de streaming e backfill simultâneos esse cenário aparece sem aviso. O sintoma é sutil: contagem de linhas correta, valores que divergem do dia anterior sem nenhum erro no log. O último writer sobrescreveu o anterior. Silencioso e sem rollback.
+
+![Corrupção silenciosa em Parquet puro: streaming e backfill na mesma partição, resultado não-determinístico, zero erros no log](images/02-corrupcao-silenciosa.png)
 
 ## O que o Delta Lake adiciona
 
@@ -64,6 +68,8 @@ Antes de escolher o formato, responda:
 3. A tabela é consumida apenas por leitura e nunca muda depois de escrita? Parquet é suficiente.
 
 A maioria das tabelas operacionais em um lakehouse produtivo responde "sim" para a primeira ou segunda pergunta. A maioria das tabelas de lookup responde "sim" para a terceira.
+
+![A decisão em 3 perguntas: escrita concorrente ou update/auditoria levam a Delta Lake; tabela só de leitura fica em Parquet](images/03-decisao-3-perguntas.png)
 
 No contexto de compliance com o BACEN 521, que entra em vigor em outubro de 2026, tabelas de auditoria de transações financeiras precisam de time travel e schema enforcement. Usar Parquet puro nessas tabelas não é só ineficiente. É um risco regulatório.
 

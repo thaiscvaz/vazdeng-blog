@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { padding: 16px 20px; margin-bottom: 16px; display: flex; align-items: flex-start; gap: 14px; }
+  .card.good-card { border-left-color: var(--green); }
+  .card.bad-card { border-left-color: var(--red); }
+  .card .txt { font-size: 21px; color: var(--ink); line-height: 1.4; }
+  .card .txt b { color: var(--navy); }
+  .icon { margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">ONDE O CACHE BRILHA <span class="sep">·</span> ONDE NÃO</div>
+  </div>
+
+  <div class="lede">TTL padrão de 5 minutos. O ganho depende do padrão de chamada.</div>
+
+  <div class="content">
+    <div class="cols">
+      <div class="col">
+        <div class="col-head good">BRILHA</div>
+        <div class="card good-card"><div class="icon ok">✓</div><div class="txt"><b>System prompt fixo e grande</b><br>regras, format spec, exemplos</div></div>
+        <div class="card good-card"><div class="icon ok">✓</div><div class="txt"><b>Fan-out de sub-agents</b><br>mesmo prefixo na mesma sessão</div></div>
+        <div class="card good-card"><div class="icon ok">✓</div><div class="txt"><b>Agente em loop</b><br>iterando sobre o mesmo contexto</div></div>
+        <div class="card good-card"><div class="icon ok">✓</div><div class="txt"><b>Documento grande no chat</b><br>várias perguntas seguidas</div></div>
+      </div>
+      <div class="col">
+        <div class="col-head bad">NÃO BRILHA</div>
+        <div class="card bad-card"><div class="icon no">✕</div><div class="txt"><b>One-shot</b><br>sem padrão repetido, não tem o que reler</div></div>
+        <div class="card bad-card"><div class="icon no">✕</div><div class="txt"><b>Prompt que muda toda chamada</b><br>prefixo instável invalida o cache</div></div>
+        <div class="card bad-card"><div class="icon no">✕</div><div class="txt"><b>Cadência maior que 5 min</b><br>cache expira — pra esses, TTL de 1h</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

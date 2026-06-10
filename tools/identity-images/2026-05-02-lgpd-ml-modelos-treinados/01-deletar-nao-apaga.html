@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .pipeline { display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 36px; }
+  .node {
+    background: var(--card); border: 1px solid var(--hairline); border-radius: 10px;
+    padding: 16px 24px; text-align: center;
+  }
+  .node .t { font-size: 22px; font-weight: bold; color: var(--navy); }
+  .node .s { font-size: 18px; color: var(--gray); margin-top: 4px; }
+  .node.weights { background: var(--navy); border-color: var(--navy); }
+  .node.weights .t { color: #f3c98a; }
+  .node.weights .s { color: #e8e4da; }
+  .pipe-arrow { font-size: 26px; color: var(--gray); }
+  .verdict { display: flex; flex-direction: column; gap: 16px; }
+  .vrow {
+    display: flex; align-items: center; gap: 18px;
+    background: var(--card); border: 1px solid var(--hairline); border-radius: 10px;
+    padding: 18px 24px;
+  }
+  .vrow.ok-row { border-left: 7px solid var(--green); }
+  .vrow.no-row { border-left: 7px solid var(--red); }
+  .vrow .txt { font-size: 22px; color: var(--ink); line-height: 1.4; }
+  .vrow .txt b { color: var(--navy); }
+  .vrow .txt .mono { color: var(--orange-deep); font-size: 21px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">DELETAR A LINHA NÃO APAGA O MODELO</div>
+  </div>
+
+  <div class="lede">Pesos treinados guardam a contribuição de cada registro. <strong>Membership inference torna isso dado pessoal.</strong></div>
+
+  <div class="content">
+    <div class="pipeline">
+      <div class="node"><div class="t">CPF no dataset</div><div class="s">dado pessoal</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="node"><div class="t">treino</div><div class="s">contribuição por registro</div></div>
+      <div class="pipe-arrow">→</div>
+      <div class="node weights"><div class="t">pesos do modelo</div><div class="s">em produção</div></div>
+    </div>
+    <div class="verdict">
+      <div class="vrow ok-row"><div class="icon ok">✓</div><div class="txt"><span class="mono">DELETE FROM dataset WHERE cpf = ...</span> — a linha some do banco</div></div>
+      <div class="vrow no-row"><div class="icon no">✕</div><div class="txt">A influência do titular <b>continua nos pesos</b> — e o Art. 18, IV alcança o modelo, não só o dataset</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

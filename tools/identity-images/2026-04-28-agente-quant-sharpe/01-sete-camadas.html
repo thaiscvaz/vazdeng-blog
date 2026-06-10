@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .layer { display: flex; align-items: center; gap: 20px; padding: 13px 22px; margin-bottom: 13px; }
+  .lnum {
+    font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 21px; font-weight: bold;
+    background: var(--navy); color: #f3c98a; border-radius: 8px;
+    width: 56px; height: 42px; flex: 0 0 56px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lname { font-size: 23px; font-weight: bold; color: var(--navy); width: 215px; flex: 0 0 215px; }
+  .ldesc { font-size: 21px; color: var(--gray); }
+  .ldesc b { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">AGENTE QUANT <span class="sep">·</span> 7 CAMADAS</div>
+  </div>
+
+  <div class="lede">Quant não é "compre aqui, venda ali". Cada camada é independente e tem fallback.</div>
+
+  <div class="content">
+    <div class="card layer"><div class="lnum">L1</div><div class="lname">Ingestion</div><div class="ldesc">3 fontes — Binance + macro + on-chain. Uma cai, as outras seguram.</div></div>
+    <div class="card layer"><div class="lnum">L2</div><div class="lname">Processing</div><div class="ldesc">32+ indicadores normalizados, alinhados no tempo — sem forward-looking.</div></div>
+    <div class="card layer"><div class="lnum">L3</div><div class="lname">Intelligence</div><div class="ldesc">HMM com 3 estados + LightGBM walk-forward. <b>Consistency &gt; accuracy.</b></div></div>
+    <div class="card layer"><div class="lnum">L4</div><div class="lname">Decision</div><div class="ldesc">Quarter Kelly, 2% max por trade, circuit breaker, kill switch.</div></div>
+    <div class="card layer"><div class="lnum">L5</div><div class="lname">Execution</div><div class="ldesc">Almgren-Chriss — 5-10 ordens pequenas, TWAP/VWAP, checa liquidez.</div></div>
+    <div class="card layer"><div class="lnum">L6</div><div class="lname">Evaluation</div><div class="ldesc">Backtesting walk-forward: treina 60d, testa 5d, rola e repete.</div></div>
+    <div class="card layer"><div class="lnum">L7</div><div class="lname">Compliance</div><div class="ldesc">Auditoria append-only em JSONL, 202 testes, CI/CD, alertas.</div></div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

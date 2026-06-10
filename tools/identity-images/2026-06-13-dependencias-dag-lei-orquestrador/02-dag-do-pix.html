@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .layout { display: flex; gap: 48px; }
+  .chain { flex: 0 0 520px; }
+  .step { display: flex; align-items: center; gap: 16px; }
+  .step .num {
+    width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%;
+    background: var(--navy); color: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; font-weight: bold;
+  }
+  .step .name { font-size: 22px; color: var(--ink); }
+  .step .name b { color: var(--navy); }
+  .link { width: 38px; text-align: center; color: var(--orange); font-size: 20px; font-weight: bold; line-height: 1; padding: 4px 0; }
+  .side { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+  .sla {
+    background: var(--navy); border-radius: 12px; padding: 24px 28px; text-align: center;
+  }
+  .sla .big { color: var(--orange); font-size: 52px; font-weight: bold; margin-bottom: 6px; }
+  .sla .cap { color: #e8e4da; font-size: 21px; line-height: 1.4; }
+  .par {
+    background: var(--card); border: 1px solid var(--hairline);
+    border-left: 7px solid var(--green); border-radius: 10px; padding: 20px 24px;
+  }
+  .par .head { font-size: 21px; font-weight: bold; color: var(--green); margin-bottom: 12px; letter-spacing: 0.5px; }
+  .par .item { display: flex; align-items: center; gap: 12px; font-size: 21px; color: var(--ink); padding: 5px 0; }
+  .par .item .icon { width: 28px; height: 28px; flex: 0 0 28px; font-size: 16px; }
+  .warn {
+    background: var(--card); border: 1px solid var(--hairline);
+    border-left: 7px solid var(--red); border-radius: 10px; padding: 18px 24px;
+    font-size: 20px; color: var(--gray); line-height: 1.45;
+  }
+  .warn b { color: var(--red); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">O DAG DO PIX <span class="sep">·</span> SLA DO BACEN</div>
+  </div>
+
+  <div class="lede">Pix não é uma chamada de API única. <strong>É um DAG com dezenas de nós.</strong></div>
+
+  <div class="content">
+    <div class="layout">
+      <div class="chain">
+        <div class="step"><div class="num">1</div><div class="name"><b>Parse</b> e validação da mensagem</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">2</div><div class="name"><b>Anti-fraude</b> · regra + modelo + listas</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">3</div><div class="name"><b>Saldo</b> verificado no banco de origem</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">4</div><div class="name"><b>Bloqueio</b> do valor na conta</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">5</div><div class="name"><b>Settlement</b> no SPI do BACEN</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">6</div><div class="name"><b>Confirmação</b> de settlement</div></div>
+        <div class="link">↓</div>
+        <div class="step"><div class="num">7</div><div class="name"><b>Crédito</b> na conta de destino</div></div>
+      </div>
+      <div class="side">
+        <div class="sla">
+          <div class="big">&lt; 10 s</div>
+          <div class="cap">a cadeia inteira, do parse ao crédito, pra cumprir o SLA</div>
+        </div>
+        <div class="par">
+          <div class="head">DEPOIS DO CRÉDITO, EM PARALELO</div>
+          <div class="item"><div class="icon ok">✓</div>push pro recebedor</div>
+          <div class="item"><div class="icon ok">✓</div>push pro pagador</div>
+          <div class="item"><div class="icon ok">✓</div>extratos nos dois bancos</div>
+        </div>
+        <div class="warn">Sem DAG, isso vira <b>if/else aninhado</b>: spaghetti em 3 dias, impossível de manter em uma semana.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

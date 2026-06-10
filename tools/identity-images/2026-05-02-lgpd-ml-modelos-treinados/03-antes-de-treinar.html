@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { padding: 18px 24px; margin-bottom: 18px; display: flex; align-items: flex-start; gap: 16px; border-left-color: var(--green); }
+  .card .txt { font-size: 22px; color: var(--ink); line-height: 1.45; }
+  .card .txt b { color: var(--navy); }
+  .icon { margin-top: 3px; }
+  .payoff {
+    background: var(--navy); border-radius: 10px; padding: 18px 26px; margin-top: 6px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .payoff .label { color: #f3c98a; font-size: 22px; font-weight: bold; }
+  .payoff .rest { color: #e8e4da; font-size: 22px; }
+  .payoff .rest b { color: #fff; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">ARQUITETE ANTES DO PRIMEIRO TREINO</div>
+  </div>
+
+  <div class="lede">O custo de responder a uma exclusão se decide <strong>antes do modelo ir pra produção</strong>.</div>
+
+  <div class="content">
+    <div class="card"><div class="icon ok">✓</div><div class="txt"><b>Versionamento de dataset por titular</b><br>índice de qual registro entrou em qual versão de treino — sem ele, você nem sabe quais modelos acionar</div></div>
+    <div class="card"><div class="icon ok">✓</div><div class="txt"><b>Datasets separados por base legal</b><br>consentimento revogado → você sabe exatamente qual subconjunto está comprometido</div></div>
+    <div class="card"><div class="icon ok">✓</div><div class="txt"><b>Checkpoints rotulados por composição</b><br>metadados de quais shards entraram em cada checkpoint</div></div>
+    <div class="payoff"><span class="label">resultado</span><span class="rest">retraining seletivo cai de <b>semanas</b> para <b>horas</b></span></div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

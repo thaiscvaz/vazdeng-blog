@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .models { display: flex; gap: 24px; }
+  .model {
+    flex: 1; background: var(--card); border: 1px solid var(--hairline);
+    border-radius: 12px; padding: 24px 22px; text-align: center; position: relative;
+  }
+  .model.hot { border: 3px solid var(--orange); background: #fdf6ea; }
+  .model .tag {
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--orange); color: #fff; font-size: 17px; font-weight: bold;
+    letter-spacing: 1px; padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+  }
+  .model .name { font-family: Consolas, monospace; font-size: 27px; font-weight: bold; color: var(--navy); }
+  .model .size { font-size: 18px; color: var(--gray); margin: 4px 0 18px 0; }
+  .model .err { font-size: 23px; font-weight: bold; margin-bottom: 4px; }
+  .model .err.bad { color: var(--red); }
+  .model .err.mid { color: var(--orange-deep); }
+  .model .err.good { color: var(--green); }
+  .model .err-sub { font-size: 18px; color: var(--gray); margin-bottom: 18px; }
+  .model .time { font-size: 19px; color: var(--ink); border-top: 1px solid var(--hairline); padding-top: 14px; }
+  .model .time b { color: var(--navy); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">QUAL WHISPER <span class="sep">·</span> CPU, SEM GPU</div>
+  </div>
+
+  <div class="lede">~14 h de áudio em português técnico. <strong>O LLM downstream corrige o erro raro.</strong></div>
+
+  <div class="content">
+    <div class="models">
+      <div class="model">
+        <div class="name">base</div>
+        <div class="size">74 MB</div>
+        <div class="err bad">erra 1 em 6</div>
+        <div class="err-sub">termos técnicos — pede revisão humana</div>
+        <div class="time">vídeo de 13 min → <b>1 min 50 s</b></div>
+      </div>
+      <div class="model hot">
+        <div class="tag">SWEET SPOT</div>
+        <div class="name">small</div>
+        <div class="size">244 MB</div>
+        <div class="err mid">erra 1 em 20</div>
+        <div class="err-sub">o LLM corrige pelo contexto</div>
+        <div class="time">vídeo de 13 min → <b>4 min</b></div>
+      </div>
+      <div class="model">
+        <div class="name">medium</div>
+        <div class="size">769 MB</div>
+        <div class="err good">quase zero</div>
+        <div class="err-sub">mas processa em tempo real</div>
+        <div class="time">vídeo de 13 min → <b>13 min</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

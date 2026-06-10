@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .bench { display: flex; align-items: flex-end; gap: 100px; padding: 0 40px; margin-bottom: 8px; }
+  .group { display: flex; flex-direction: column; align-items: center; width: 300px; }
+  .value { font-size: 44px; font-weight: bold; margin-bottom: 4px; }
+  .value.bad { color: var(--red); }
+  .value.good { color: var(--green); }
+  .unit { font-size: 21px; color: var(--gray); margin-bottom: 14px; }
+  .column { width: 190px; border-radius: 8px 8px 0 0; }
+  .column.bad { height: 300px; background: var(--red); }
+  .column.good { height: 75px; background: var(--green); }
+  .baseline { border-top: 3px solid var(--hairline); display: flex; gap: 100px; padding: 16px 40px 0 40px; }
+  .label { width: 300px; text-align: center; }
+  .label .name { font-size: 25px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+  .label .detail { font-size: 20px; color: var(--gray); font-family: Consolas, monospace; }
+  .takeaway {
+    position: absolute; right: 80px; top: 320px; width: 240px; text-align: center;
+  }
+  .takeaway .pill {
+    background: var(--orange); color: #fff; font-size: 46px; font-weight: bold;
+    padding: 14px 28px; border-radius: 14px; display: inline-block; margin-bottom: 12px;
+  }
+  .takeaway .note { font-size: 21px; color: var(--gray); }
+  .takeaway .note b { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">BENCH REAL <span class="sep">·</span> PIPELINE COM 6 SUB-AGENTS</div>
+  </div>
+
+  <div class="lede">Mesmo modelo, mesmo prompt, mesmo output. Só liguei o cache.</div>
+
+  <div class="content" style="position: relative;">
+    <div class="bench">
+      <div class="group">
+        <div class="value bad">18 mil</div>
+        <div class="unit">tokens / execução</div>
+        <div class="column bad"></div>
+      </div>
+      <div class="group">
+        <div class="value good">4,5 mil</div>
+        <div class="unit">tokens / execução</div>
+        <div class="column good"></div>
+      </div>
+    </div>
+    <div class="baseline">
+      <div class="label"><div class="name">sem cache</div><div class="detail">6 × 3k de prefixo pago</div></div>
+      <div class="label"><div class="name">com cache</div><div class="detail">1 write + 5 reads</div></div>
+    </div>
+    <div class="takeaway">
+      <div class="pill">−75%</div>
+      <div class="note">em pipeline agressivo, o corte chega a <b>90%</b></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

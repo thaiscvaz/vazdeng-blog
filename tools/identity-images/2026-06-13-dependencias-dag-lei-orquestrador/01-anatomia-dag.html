@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { display: flex; align-items: center; gap: 24px; padding: 22px 28px; }
+  .letter {
+    width: 64px; height: 64px; flex: 0 0 64px; border-radius: 14px;
+    background: var(--navy); color: var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 34px; font-weight: bold; font-family: Consolas, monospace;
+  }
+  .card .card-title { margin-bottom: 4px; }
+  .card .card-sub { line-height: 1.4; }
+  .card .card-sub code { color: var(--navy); font-weight: bold; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">DAG <span class="sep">·</span> A LEI QUE TODO ORQUESTRADOR SEGUE</div>
+  </div>
+
+  <div class="lede">Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. <strong>Por baixo do nome, todas implementam o mesmo grafo.</strong></div>
+
+  <div class="content">
+    <div class="card">
+      <div class="letter">G</div>
+      <div>
+        <div class="card-title">Grafo</div>
+        <div class="card-sub">Nós ligados por arestas. Cada nó é uma tarefa, cada aresta é uma dependência: B só roda depois que A terminou.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="letter">D</div>
+      <div>
+        <div class="card-title">Dirigido</div>
+        <div class="card-sub">A aresta tem sentido. <code>A → B</code> significa que B depende de A — nunca o contrário. Pipeline tem ordem.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="letter">A</div>
+      <div>
+        <div class="card-title">Acíclico</div>
+        <div class="card-sub">Nenhum caminho volta pra origem. <code>A → B → C → A</code> não existe — se existisse, quem rodaria primeiro?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

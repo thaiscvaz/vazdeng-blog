@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .pair { display: flex; gap: 24px; margin-bottom: 24px; }
+  .half {
+    flex: 1; background: var(--card); border: 1px solid var(--hairline);
+    border-radius: 12px; padding: 22px 24px; text-align: center;
+  }
+  .half .val { font-family: Consolas, monospace; font-size: 42px; font-weight: bold; margin-bottom: 10px; }
+  .half.zero .val { color: var(--green); }
+  .half.null .val { color: var(--red); }
+  .half .mean { font-size: 22px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+  .half .sub { font-size: 19px; color: var(--gray); }
+  .trap {
+    background: var(--card); border: 1px solid var(--hairline); border-left: 7px solid var(--red);
+    border-radius: 10px; padding: 18px 24px; font-size: 21px; color: var(--ink);
+    line-height: 1.45; margin-bottom: 18px;
+  }
+  .trap code { color: var(--red); font-weight: bold; }
+  .fix {
+    background: var(--navy); border-radius: 10px; padding: 16px 24px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .fix .mono { color: #f3c98a; font-size: 21px; font-weight: bold; white-space: nowrap; }
+  .fix .rest { color: #e8e4da; font-size: 21px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">ZERO NÃO É NULO</div>
+  </div>
+
+  <div class="lede"><strong>fillna(0)</strong> parecia inofensivo. Misturou dois significados de negócio.</div>
+
+  <div class="content">
+    <div class="pair">
+      <div class="half zero">
+        <div class="val">0</div>
+        <div class="mean">zero faltas</div>
+        <div class="sub">o aluno foi todos os dias</div>
+      </div>
+      <div class="half null">
+        <div class="val">NULL</div>
+        <div class="mean">dado que não chegou</div>
+        <div class="sub">a escola não reportou esse aluno</div>
+      </div>
+    </div>
+    <div class="trap"><code>fillna(0)</code> mistura os dois → o dashboard de "zero faltas" conta como exemplar justamente o aluno cujo dado nunca chegou.</div>
+    <div class="fix">
+      <span class="mono">missed_data_source = reported | not_reported</span>
+      <span class="rest">→ deixa o nulo visível</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

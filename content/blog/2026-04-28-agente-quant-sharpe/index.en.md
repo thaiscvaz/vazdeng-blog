@@ -35,6 +35,8 @@ L7: Compliance       (audit)
 
 Each layer is independent. Each has fallbacks.
 
+![The quant agent's 7 layers: ingestion, processing, intelligence, decision, execution, evaluation and compliance, each independent with fallbacks](images/01-sete-camadas.png)
+
 ### L1: Ingestion
 
 ```
@@ -148,6 +150,8 @@ After fixing: Sharpe dropped to **-1.14**.
 
 That moment was crucial: **real >> spurious**.
 
+![Data leakage: a spurious +0.66 Sharpe with the model seeing the future becomes a real -1.14 after fixing one line of the fit](images/02-leakage-sharpe.png)
+
 I could have:
 1. Ignored the bug and shipped (risk: fraud)
 2. Abandoned the project (risk: missed learning)
@@ -169,6 +173,8 @@ Let's look at the numbers (out-of-sample, walk-forward):
 Read that again.
 
 The agent has no alpha. But it reduces drawdown by **~90x**.
+
+![Out-of-sample max drawdown: buy & hold at 26.24% against the quant agent's 0.29%, 90x less drawdown, capital preservation over alpha](images/03-drawdown-90x.png)
 
 Ask yourself: which scenario would you prefer?
 

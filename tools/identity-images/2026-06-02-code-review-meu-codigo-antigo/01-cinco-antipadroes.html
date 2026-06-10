@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { padding: 16px 22px; margin-bottom: 14px; display: flex; align-items: center; gap: 18px; }
+  .num {
+    width: 40px; height: 40px; flex: 0 0 40px; border-radius: 50%;
+    background: var(--navy); color: #fff; font-size: 21px; font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .card .card-title { font-size: 23px; margin-bottom: 3px; }
+  .card .card-sub { font-size: 19px; }
+  .card .card-sub code { color: var(--orange-deep); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">CODE REVIEW DO MEU PRÓPRIO REPO</div>
+  </div>
+
+  <div class="lede">Repo público de 2 anos atrás, citado em entrevista. Cinco anti-padrões — <strong>todos meus.</strong></div>
+
+  <div class="content">
+    <div class="card"><div class="num">1</div><div><div class="card-title">Credencial dentro da função</div><div class="card-sub">rotacionar senha exige tocar código — <code>SnowflakeHook</code> resolve</div></div></div>
+    <div class="card"><div class="num">2</div><div><div class="card-title">Tasks independentes em série</div><div class="card-sub"><code>t1 &gt;&gt; t2</code> sem dependência real — paralelismo perdido de graça</div></div></div>
+    <div class="card"><div class="num">3</div><div><div class="card-title">Dado de entrada dentro da imagem Docker</div><div class="card-sub">imagem é imutável, dado é mutável — entra via volume, S3 ou parâmetro</div></div></div>
+    <div class="card"><div class="num">4</div><div><div class="card-title">DAG diário sobre dado estático</div><div class="card-sub">mesma carga reprocessada e duplicada a cada execução</div></div></div>
+    <div class="card"><div class="num">5</div><div><div class="card-title"><code>fillna(0)</code> apagando sinal</div><div class="card-sub">zero faltas ≠ dado que a escola nunca reportou</div></div></div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

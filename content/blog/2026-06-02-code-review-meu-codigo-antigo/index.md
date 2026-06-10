@@ -16,6 +16,8 @@ Achei cinco anti-padrões. No meu próprio código, escrito por mim. Mas o tipo 
 
 Resolvi escrever sobre porque é mais honesto criticar o próprio código do que apontar dedo pra repo dos outros. E porque se você tem um repo público de dois anos atrás citado no seu portfólio, você provavelmente também tem pelo menos três desses cinco.
 
+![Os 5 anti-padrões do review: credencial na função, tasks em série sem motivo, dado dentro da imagem Docker, DAG diário sobre dado estático, fillna(0) apagando sinal](images/01-cinco-antipadroes.png)
+
 ## A credencial do banco estava dentro da função
 
 ```python
@@ -53,6 +55,8 @@ A versão correta seria:
 ```
 
 Quem lê o pipeline hoje entende que validação roda em paralelo e depois faz o join. Quem lia o original ia assumir que existia alguma dependência escondida que não existia.
+
+![Como eu escrevi vs como deveria ser: t1 >> t2 >> t3 >> t4 em série contra [t1, t2] >> t3 >> t4 com validações em paralelo](images/02-serie-vs-paralelo.png)
 
 ## Os dados estavam dentro da imagem Docker
 
@@ -100,6 +104,8 @@ df_merged['missed_data_source'] = df_merged['missed_days'].notna().map(
 ```
 
 Pequena mudança, completamente diferente o que o dashboard mostra.
+
+![Zero não é nulo: 0 significa aluno presente todos os dias, NULL significa dado que não chegou, fillna(0) mistura os dois](images/03-zero-nao-e-nulo.png)
 
 ## O incômodo de revisar código próprio
 

@@ -90,6 +90,8 @@ if self.is_ood(last_features):
 
 Downstream da decisão (`decide_position` na camada 4) já tinha lookup em `REGIME_MULTIPLIER`. Adicionei `"OOD": 0.0` por defesa em camadas, e log explícito de "ABSTAIN" pra deixar visível quando o sistema preferiu não operar.
 
+![O gate de abstenção: candle novo passa pelo check de max |z| acima de 5 sigmas, dentro classifica e opera, fora retorna OOD e zera o sizing](images/01-gate-ood.png)
+
 70 testes passaram, mais 2 novos cobrindo o caminho OOD. Suite completa em 6 segundos.
 
 | Cenário | Antes | Depois |
@@ -122,6 +124,8 @@ Nick Leeson, Jérôme Kerviel, LTCM, Knight Capital. A história de perdas opera
 3. **Abster por tick isolado e voltar a operar no próximo.** Turbulência é persistente. Bom design abstém por janela, não por candle.
 4. **Adicionar OOD sem mexer no decisor.** Detector que não muda comportamento downstream é decoração. O `REGIME_MULTIPLIER` é onde o efeito acontece.
 5. **Esconder a abstenção do log.** Se o sistema preferiu não operar, isso é decisão. Tem que aparecer no audit trail com o motivo, não silenciosamente.
+
+![Os 5 anti-padrões de abstenção: posterior alta como evidência, threshold por intuição, abster por tick isolado, OOD sem mexer no decisor, abstenção fora do log](images/02-anti-padroes.png)
 
 ## O próximo capítulo
 

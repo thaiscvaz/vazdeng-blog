@@ -36,6 +36,8 @@ L7: Compliance       (auditoria)
 
 Cada camada é independente. Cada uma tem fallbacks.
 
+![As 7 camadas do agente quant: ingestion, processing, intelligence, decision, execution, evaluation e compliance, cada uma independente e com fallback](images/01-sete-camadas.png)
+
 ### L1: Ingestion
 
 ```
@@ -149,6 +151,8 @@ Ao corrigir: Sharpe caiu para **-1.14**.
 
 Esse momento foi crucial: **real >> espúrio**.
 
+![Data leakage: Sharpe espúrio de +0.66 com o modelo vendo o futuro vira -1.14 real depois de corrigir uma linha do fit](images/02-leakage-sharpe.png)
+
 Eu poderia ter:
 1. Ignorado o bug e lançado o sistema (risco: fraude)
 2. Abandonado o projeto (risco: oportunidade de aprendizado perdida)
@@ -170,6 +174,8 @@ Vamos aos números (out-of-sample, walk-forward):
 Leia isso novamente.
 
 Agente não tem alpha. Mas reduz drawdown em **~90x**.
+
+![Max drawdown out-of-sample: buy & hold 26,24% contra 0,29% do agente quant, 90x menos drawdown, preservação de capital acima de alpha](images/03-drawdown-90x.png)
 
 Pergunte-se: em qual cenário você preferiria estar?
 

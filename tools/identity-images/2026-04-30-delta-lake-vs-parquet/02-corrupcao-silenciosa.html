@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .flow { display: flex; align-items: center; gap: 26px; margin-bottom: 34px; }
+  .writers { display: flex; flex-direction: column; gap: 16px; }
+  .writer {
+    background: var(--card); border: 1px solid var(--hairline); border-left: 7px solid var(--orange);
+    border-radius: 10px; padding: 16px 22px;
+  }
+  .writer .name { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 22px; font-weight: bold; color: var(--navy); }
+  .writer .when { font-size: 19px; color: var(--gray); margin-top: 4px; }
+  .arrow { font-size: 40px; color: var(--gray); }
+  .target {
+    background: var(--navy); color: #fff; border-radius: 12px; padding: 26px 28px; text-align: center;
+  }
+  .target .t1 { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 22px; font-weight: bold; color: #f3c98a; }
+  .target .t2 { font-size: 19px; opacity: 0.85; margin-top: 6px; }
+  .crash {
+    background: var(--red); color: #fff; border-radius: 12px; padding: 22px 26px; flex: 1;
+  }
+  .crash .c1 { font-size: 24px; font-weight: bold; margin-bottom: 6px; }
+  .crash .c2 { font-size: 20px; opacity: 0.92; line-height: 1.4; }
+  .symptom { display: flex; align-items: center; gap: 18px; margin-bottom: 0; }
+  .symptom .label { font-size: 22px; font-weight: bold; color: var(--red); white-space: nowrap; }
+  .symptom .txt { font-size: 22px; color: var(--ink); line-height: 1.45; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">PARQUET PURO <span class="sep">·</span> ESCRITA CONCORRENTE</div>
+  </div>
+
+  <div class="lede">Sem transação, sem rollback, sem detecção de conflito. O último writer vence.</div>
+
+  <div class="content">
+    <div class="flow">
+      <div class="writers">
+        <div class="writer"><div class="name">job de streaming</div><div class="when">ingestão contínua</div></div>
+        <div class="writer"><div class="name">job de backfill</div><div class="when">reprocessamento</div></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="target"><div class="t1">mesma partição</div><div class="t2">mesmo horário</div></div>
+      <div class="arrow">→</div>
+      <div class="crash">
+        <div class="c1">resultado não-determinístico</div>
+        <div class="c2">o arquivo que chegou por último sobrescreve. O outro desaparece.</div>
+      </div>
+    </div>
+
+    <div class="card symptom">
+      <div class="label">Sintoma:</div>
+      <div class="txt">contagem de linhas correta · valores divergem do dia anterior · <b>zero erros no log</b></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

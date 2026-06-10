@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .stack { display: grid; grid-template-columns: 1fr 230px; column-gap: 24px; row-gap: 18px; margin-bottom: 36px; }
+  .layer { grid-column: 1; border-radius: 12px; padding: 22px 30px; display: flex; align-items: center; gap: 24px; }
+  .layer.log { background: var(--navy); color: #fff; }
+  .layer.pq { background: var(--orange); color: #fff; }
+  .layer .tag { font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 24px; font-weight: bold; white-space: nowrap; }
+  .layer.log .tag { color: #f3c98a; }
+  .layer .what { font-size: 21px; opacity: 0.95; line-height: 1.4; }
+  .bracket {
+    grid-column: 2; grid-row: 1 / 3; align-self: stretch;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .bracket .arc { width: 16px; align-self: stretch; border: 3px solid var(--gray); border-left: none; border-radius: 0 12px 12px 0; }
+  .bracket .who { font-size: 23px; color: var(--ink); font-weight: bold; line-height: 1.35; }
+  .bracket .who span { display: block; font-weight: normal; color: var(--gray); font-size: 20px; margin-top: 4px; }
+  .rule-card { border-left-color: var(--green); display: flex; align-items: center; gap: 18px; background: var(--navy); border-color: var(--navy); margin-bottom: 0; }
+  .rule-card .q { color: #f3c98a; font-size: 23px; font-weight: bold; }
+  .rule-card .rest { color: #e8e4da; font-size: 23px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">DELTA LAKE NÃO É UM FORMATO</div>
+  </div>
+
+  <div class="lede">É uma camada transacional <strong>por cima</strong> dos seus arquivos Parquet. Você não escolhe entre dois formatos.</div>
+
+  <div class="content">
+    <div class="stack">
+      <div class="layer log"><div class="tag">_delta_log/</div><div class="what">camada transacional · commits ACID · time travel · schema enforcement</div></div>
+      <div class="bracket"><div class="arc"></div><div class="who">Delta Lake<span>as duas camadas juntas</span></div></div>
+      <div class="layer pq"><div class="tag">*.parquet</div><div class="what">armazenamento colunar · comprimido · leitura analítica</div></div>
+    </div>
+
+    <div class="card rule-card">
+      <span class="q">A decisão real:</span>
+      <span class="rest">esse dado precisa de controle transacional?</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

@@ -26,6 +26,8 @@ A descoberta que demorei pra fazer está nas duas camadas distintas que o YouTub
 
 Na prática que eu vi: 60 requests em 5 minutos no `timedtext` resulta em 429 garantido. Os mesmos 60 downloads no `googlevideo` com intervalo natural passam sem aviso. Esse detalhe não está documentado em lugar óbvio. Eu descobri quando o cron quebrou e abri o Wireshark.
 
+![Dois endpoints, só um bloqueia: timedtext é API com quota por IP e 429 garantido; googlevideo é CDN cobrada por banda, zero 429](images/01-dois-endpoints.png)
+
 ## A pipeline que aguenta batch real
 
 Empacotei a lógica num CLI Python open source chamado [yt-nota](https://github.com/thaiscvaz/yt-nota). Junta 3 ferramentas.
@@ -48,6 +50,8 @@ result = extract_transcript(
 
 No 429, ele desce pro `googlevideo`, baixa só o áudio, transcreve e devolve o mesmo formato. Quem chama nem sabe se veio do `timedtext` ou do Whisper.
 
+![Fallback em 3 etapas: legenda via timedtext, áudio via googlevideo no 429, transcrição local com faster-whisper, mesmo formato de saída](images/02-fallback-audio.png)
+
 ## Benchmark em CPU (Intel i7 12ª gen, 16 GB, int8)
 
 Eu rodei o pipeline em vídeos reais de duração variada pra medir tempo de processo. Sem GPU.
@@ -59,6 +63,8 @@ Eu rodei o pipeline em vídeos reais de duração variada pra medir tempo de pro
 | 45 min | 6 min | 14 min | 45 min |
 
 Sobre acurácia em português técnico, fiz leitura comparativa em ~14 horas de áudio de aulas. O modelo `base` confunde 1 em cada 6 termos técnicos (95% legível mas pede revisão humana). O `small` confunde 1 em cada 20 (default por uma razão: o LLM downstream corrige os erros raros pelo contexto). O `medium` chega quase em erro zero, mas dobra o tempo. Pro meu fluxo (transcript → síntese via Claude Code), `small` é o sweet spot.
+
+![Qual Whisper em CPU: base erra 1 em 6 termos, small erra 1 em 20 e é o sweet spot, medium quase zero mas processa em tempo real](images/03-sweet-spot-small.png)
 
 ## E os SaaS já existem com Whisper fallback?
 

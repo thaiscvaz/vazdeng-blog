@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .col-head { font-family: Consolas, 'DejaVu Sans Mono', monospace; letter-spacing: 0; }
+  .card { padding: 16px 20px; margin-bottom: 14px; }
+  .card .card-title { font-size: 22px; margin-bottom: 4px; }
+  .card .card-sub { font-size: 19px; }
+  .card.bad-side { border-left-color: var(--red); }
+  .card.good-side { border-left-color: var(--green); }
+  .verdict { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+  .verdict .pill {
+    font-size: 24px; font-weight: bold; color: #fff;
+    padding: 10px 20px; border-radius: 10px;
+  }
+  .verdict.bad .pill { background: var(--red); }
+  .verdict.good .pill { background: var(--green); }
+  .verdict .why { font-size: 19px; color: var(--gray); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">DOIS ENDPOINTS <span class="sep">·</span> SÓ UM BLOQUEIA</div>
+  </div>
+
+  <div class="lede">Mesmo IP, mesmo dia, mesmos 60 pedidos em 5 minutos. <strong>Resultado oposto.</strong></div>
+
+  <div class="content">
+    <div class="cols">
+      <div class="col">
+        <div class="col-head bad">timedtext</div>
+        <div class="card bad-side"><div class="card-title">Camada de API</div><div class="card-sub">XML/VTT pequenos — cada request conta</div></div>
+        <div class="card bad-side"><div class="card-title">Quota global por IP e por dia</div><div class="card-sub">bot detection endurecida em 2025</div></div>
+        <div class="verdict bad"><div class="pill">429 garantido</div><div class="why">60 req em 5 min</div></div>
+      </div>
+      <div class="col">
+        <div class="col-head good">googlevideo</div>
+        <div class="card good-side"><div class="card-title">CDN de áudio e vídeo</div><div class="card-sub">segments DASH, edge do Google Global Cache</div></div>
+        <div class="card good-side"><div class="card-title">Cobrança por banda agregada</div><div class="card-sub">por ISP servido, não por request</div></div>
+        <div class="verdict good"><div class="pill">zero 429</div><div class="why">mesmos 60 downloads</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

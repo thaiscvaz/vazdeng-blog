@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .stack { margin-bottom: 36px; }
+  .bar { display: flex; height: 110px; border-radius: 12px; overflow: hidden; border: 1px solid var(--hairline); }
+  .seg { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #fff; }
+  .seg .name { font-weight: bold; font-size: 22px; }
+  .seg .pct { font-size: 19px; opacity: 0.9; }
+  .seg.sys { width: 38%; background: var(--orange-deep); }
+  .seg.shots { width: 22%; background: var(--orange); }
+  .seg.ctx { width: 25%; background: #eda05c; }
+  .seg.ask { width: 15%; background: var(--navy); }
+  .brackets { display: flex; margin-top: 14px; }
+  .bracket { text-align: center; }
+  .bracket.stable { width: 85%; }
+  .bracket.volatile { width: 15%; }
+  .bracket .line { height: 12px; border: 2px solid var(--gray); border-top: none; border-radius: 0 0 8px 8px; margin: 0 6px; }
+  .bracket .label { margin-top: 10px; font-size: 21px; color: var(--gray); }
+  .bracket .label b { color: var(--ink); }
+  .rule-card { border-left-color: var(--green); display: flex; align-items: center; gap: 18px; background: var(--navy); border-color: var(--navy); }
+  .rule-card .mono { color: #f3c98a; font-size: 23px; font-weight: bold; }
+  .rule-card .rest { color: #e8e4da; font-size: 23px; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">O CUSTO DE LLM EM PRODUÇÃO É PREFIXO</div>
+  </div>
+
+  <div class="lede">Toda chamada manda 4 coisas. Só uma muda. Você paga as outras 3 de novo, toda vez.</div>
+
+  <div class="content">
+    <div class="stack">
+      <div class="bar">
+        <div class="seg sys"><div class="name">system prompt</div><div class="pct">fixo</div></div>
+        <div class="seg shots"><div class="name">few-shots</div><div class="pct">fixo</div></div>
+        <div class="seg ctx"><div class="name">contexto</div><div class="pct">estável</div></div>
+        <div class="seg ask"><div class="name">pergunta</div><div class="pct">muda</div></div>
+      </div>
+      <div class="brackets">
+        <div class="bracket stable"><div class="line"></div><div class="label"><b>80–95% dos tokens</b> · repete a cada chamada · cacheável</div></div>
+        <div class="bracket volatile"><div class="line"></div><div class="label">volátil</div></div>
+      </div>
+    </div>
+
+    <div class="card rule-card">
+      <span class="mono">cache_control: ephemeral</span>
+      <span class="rest">→ pague o prefixo 1x, releia a 10% do preço</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

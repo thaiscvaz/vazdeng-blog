@@ -13,6 +13,8 @@ Delta Lake isn't a competing file format to Parquet. It's a transactional manage
 
 That distinction changes the decision criteria completely. And confusing the two in production costs real money.
 
+![Delta Lake is not a format: it's the transactional _delta_log on top of your Parquet files, the two layers together](images/01-camada-nao-formato.png)
+
 ## What Parquet doesn't do
 
 Parquet solves one specific problem very well: storing data in a columnar, compressed format that's efficient for analytical reads. It's the right format for that.
@@ -22,6 +24,8 @@ What Parquet doesn't do: concurrency control. If two jobs write to the same part
 At a fintech where I worked, with distributed ingestion pipelines, this wasn't theoretical. It was the default scenario every time a streaming job and a backfill job ran together on the same table.
 
 In pipelines with simultaneous streaming and backfill, the scenario shows up without warning. The symptom is subtle: row counts look right, but values diverge from the previous day with no error in the log. The last writer overwrote the previous one. Silent, no rollback.
+
+![Silent corruption in pure Parquet: streaming and backfill on the same partition, non-deterministic result, zero errors in the log](images/02-corrupcao-silenciosa.png)
 
 ## What Delta Lake adds
 
@@ -60,6 +64,8 @@ Before choosing the format, answer:
 3. Is the table read-only and never modified after writing? Parquet is enough.
 
 Most operational tables in a productive lakehouse answer "yes" to question one or two. Most lookup tables answer "yes" to question three.
+
+![The decision in 3 questions: concurrent writes or update/audit requirements lead to Delta Lake; read-only tables stay on Parquet](images/03-decisao-3-perguntas.png)
 
 In the context of BACEN 521 compliance, which takes effect in October 2026, audit tables for financial transactions need time travel and schema enforcement. Using pure Parquet on those tables isn't just inefficient. It's a regulatory risk.
 

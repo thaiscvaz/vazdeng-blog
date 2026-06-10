@@ -13,6 +13,8 @@ The weights of an ML model trained on personal data hold, in a non-explicit form
 
 I've seen most teams without a process for this scenario. Not for lack of intent: nobody set up the flow before training the first model.
 
+![Deleting the row doesn't erase the model: the CPF enters training, the influence stays in the production weights, and Article 18 reaches the model](images/01-deletar-nao-apaga.png)
+
 ## What Article 18 actually requires
 
 Article 18, IV of LGPD grants the data subject the right to request anonymization, blocking, or erasure of data that is "unnecessary, excessive, or processed outside compliance."
@@ -43,6 +45,8 @@ Selective machine unlearning: techniques that try to remove the influence of spe
 
 Documenting impracticability and mitigating risk: LGPD allows, in some cases, continued processing when erasure is impossible and there's a residual legal basis. Documenting that the model was trained with data that had a legal basis at the time, that retraining is technically unfeasible, and that mitigation measures were implemented can be the legally defensible answer. This needs legal opinion, not just technical analysis.
 
+![Three answers, none free: full retraining, selective machine unlearning, documenting impracticability, pros and cons of each](images/02-tres-respostas.png)
+
 ## How to architect before training
 
 The right moment to solve this is before the first model goes to production, not after the first deletion request.
@@ -52,6 +56,8 @@ Dataset versioning by data subject: maintain an index of which records were used
 Separation of training data by consent: if part of the dataset came from explicit consent and part from legitimate interest, treat them as separate datasets from the start. When consent is revoked, you know exactly which subset is affected.
 
 Checkpoints labeled by dataset composition: if you use modular training, keep checkpoints with metadata on which shards were used. That reduces selective retraining cost from weeks to hours.
+
+![Architect before the first training run: dataset versioning by data subject, datasets split by legal basis, checkpoints labeled by composition, retraining drops from weeks to hours](images/03-antes-de-treinar.png)
 
 ## The decision every team will have to make
 

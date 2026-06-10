@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .compare { display: flex; align-items: center; justify-content: center; gap: 44px; margin-bottom: 36px; }
+  .side { text-align: center; width: 330px; border-radius: 14px; padding: 26px 20px; border: 1px solid var(--hairline); background: var(--card); }
+  .side.fake { border-top: 8px solid var(--red); }
+  .side.real { border-top: 8px solid var(--green); }
+  .side .num { font-size: 60px; font-weight: bold; margin-bottom: 8px; }
+  .side.fake .num { color: var(--red); }
+  .side.real .num { color: var(--green); }
+  .side .tag { font-size: 22px; font-weight: bold; color: var(--navy); margin-bottom: 4px; }
+  .side .why { font-size: 20px; color: var(--gray); }
+  .mid { text-align: center; }
+  .mid .arrow { font-size: 44px; color: var(--gray); }
+  .mid .fix { font-size: 20px; color: var(--ink); font-weight: bold; margin-top: 6px; }
+  .code-card { background: var(--navy); border-color: var(--navy); border-left-color: var(--navy); margin-bottom: 0; padding: 22px 28px; }
+  .code-line { display: flex; align-items: center; gap: 16px; font-family: Consolas, 'DejaVu Sans Mono', monospace; font-size: 22px; }
+  .code-line + .code-line { margin-top: 14px; }
+  .code-line .cm { color: #8b95b3; }
+  .code-line.wrong .code { color: #e8a196; }
+  .code-line.right .code { color: #a9d3b6; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">DATA LEAKAGE <span class="sep">·</span> O BUG QUE REVELOU TUDO</div>
+  </div>
+
+  <div class="lede">O HMM via o futuro durante o treino. Corrigir uma linha derrubou o Sharpe — e isso é <strong>bom</strong>.</div>
+
+  <div class="content">
+    <div class="compare">
+      <div class="side fake">
+        <div class="num">+0.66</div>
+        <div class="tag">Sharpe espúrio</div>
+        <div class="why">modelo treinado vendo o futuro</div>
+      </div>
+      <div class="mid">
+        <div class="arrow">→</div>
+        <div class="fix">corrige o leakage</div>
+      </div>
+      <div class="side real">
+        <div class="num">−1.14</div>
+        <div class="tag">Sharpe real</div>
+        <div class="why">walk-forward honesto · real &gt;&gt; espúrio</div>
+      </div>
+    </div>
+
+    <div class="card code-card">
+      <div class="code-line wrong"><div class="icon no">✕</div><span class="code">hmm.fit(all_indicators)</span><span class="cm"># o futuro vaza pro treino</span></div>
+      <div class="code-line right"><div class="icon ok">✓</div><span class="code">hmm.fit(indicators_until_date_T)</span><span class="cm"># só o passado até T</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

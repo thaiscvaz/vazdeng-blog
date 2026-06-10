@@ -24,6 +24,8 @@ DAG stands for Directed Acyclic Graph. Break the acronym into 3 parts:
 
 Visually: picture a network of tasks where every arrow points forward, and no path takes you back to the beginning. That's a DAG.
 
+![Anatomy of the DAG acronym: a graph of nodes and edges, directed with ordering, acyclic with no path back](images/01-anatomia-dag.png)
+
 ## Why every tool uses a DAG
 
 Airflow, Dagster, Prefect, Mage, Argo Workflows, Temporal, Luigi, Kestra. All of them model pipelines as DAGs. It's not coincidence. It's the natural structure for representing task dependency.
@@ -55,6 +57,8 @@ Each node depends on the previous ones in a specific order. Anti-fraud depends o
 
 That whole chain is modeled as a DAG. If you ripped that out and tried to do it with nested if/else, it would turn into spaghetti in 3 days and become unmaintainable in a week.
 
+![The Pix DAG: 7 nodes in sequence from parse to credit in under 10 seconds, with notifications in parallel afterwards](images/02-dag-do-pix.png)
+
 ## When the DAG breaks: the circular anti-pattern
 
 Circular dependency is the most common mistake while learning. Task A needs B's output, B needs A's output. You can't execute either. The pipeline dies at initialization.
@@ -68,6 +72,8 @@ The good news is that every tool detects this before running:
 The bad news is that whoever doesn't understand the concept sees the error and doesn't know what to do. They rewrite the DAG by trial and error, convinced it's a tool bug. It isn't. It's the algorithm telling you that what you defined is impossible to execute.
 
 The fix is almost always rethinking task granularity. If A and B need each other, they're actually one task, or you're modeling input and output wrong.
+
+![Circular dependency: A needs B and B needs A, the pipeline dies at initialization, and the error each tool raises](images/03-ciclo-impossivel.png)
 
 ## Learning the DAG unlocks every orchestrator
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../identity.css">
+<style>
+  .bench { display: flex; align-items: flex-end; gap: 100px; padding: 0 40px; margin-bottom: 8px; }
+  .group { display: flex; flex-direction: column; align-items: center; width: 300px; }
+  .value { font-size: 44px; font-weight: bold; margin-bottom: 4px; }
+  .value.bad { color: var(--red); }
+  .value.good { color: var(--green); }
+  .unit { font-size: 21px; color: var(--gray); margin-bottom: 14px; }
+  .column { width: 190px; border-radius: 8px 8px 0 0; }
+  .column.bad { height: 280px; background: var(--red); }
+  .column.good { height: 8px; background: var(--green); }
+  .baseline { border-top: 3px solid var(--hairline); display: flex; gap: 100px; padding: 16px 40px 0 40px; }
+  .label { width: 300px; text-align: center; }
+  .label .name { font-size: 25px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+  .label .detail { font-size: 20px; color: var(--gray); font-family: Consolas, monospace; }
+  .takeaway { position: absolute; right: 60px; top: 250px; width: 270px; text-align: center; }
+  .takeaway .pill {
+    background: var(--orange); color: #fff; font-size: 46px; font-weight: bold;
+    padding: 14px 28px; border-radius: 14px; display: inline-block; margin-bottom: 12px;
+  }
+  .takeaway .note { font-size: 21px; color: var(--gray); line-height: 1.45; }
+  .takeaway .note b { color: var(--ink); }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge"><div class="pin"><div class="dot-o"></div><div class="stem"></div><div class="dot-w"></div></div><div class="vaz">VAZ</div></div>
+    <div class="chip">SEM ALPHA <span class="sep">·</span> COM PRESERVAÇÃO DE CAPITAL</div>
+  </div>
+
+  <div class="lede">Max drawdown out-of-sample, walk-forward. O agente perde no Sharpe e esmaga no risco.</div>
+
+  <div class="content" style="position: relative;">
+    <div class="bench">
+      <div class="group">
+        <div class="value bad">26,24%</div>
+        <div class="unit">max drawdown</div>
+        <div class="column bad"></div>
+      </div>
+      <div class="group">
+        <div class="value good">0,29%</div>
+        <div class="unit">max drawdown</div>
+        <div class="column good"></div>
+      </div>
+    </div>
+    <div class="baseline">
+      <div class="label"><div class="name">buy &amp; hold</div><div class="detail">Sharpe -0.04</div></div>
+      <div class="label"><div class="name">agente quant</div><div class="detail">Sharpe -1.14</div></div>
+    </div>
+    <div class="takeaway">
+      <div class="pill">~90x</div>
+      <div class="note">menos drawdown.<br><b>Preservação de capital &gt; busca por alpha.</b></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="left"><b>VazDEng</b><span class="dot">·</span>padrão sênior, sem hype</div>
+    <div class="right">vazdeng.substack.com</div>
+  </div>
+</body>
+</html>

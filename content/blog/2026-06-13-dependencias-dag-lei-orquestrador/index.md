@@ -24,6 +24,8 @@ DAG é sigla pra Directed Acyclic Graph, ou grafo dirigido acíclico. Quebra a s
 
 Visualmente: imagine uma rede de tarefas onde toda seta aponta pra frente, e nenhum caminho te leva de volta pro começo. Isso é DAG.
 
+![Anatomia da sigla DAG: grafo de nós e arestas, dirigido com sentido, acíclico sem caminho de volta](images/01-anatomia-dag.png)
+
 ## Por que toda ferramenta usa DAG
 
 Airflow, Dagster, Prefect, Mage, Argo Workflows, Temporal, Luigi, Kestra. Todas modelam pipeline como DAG. Não é coincidência. É a estrutura natural pra representar dependência de tarefa.
@@ -55,6 +57,8 @@ Cada nó depende dos anteriores em ordem específica. Anti-fraude depende do par
 
 Toda essa cadeia é modelada como DAG. Se você tirasse isso e tentasse fazer com if/else aninhado, viraria spaghetti em 3 dias e impossível de manter em uma semana.
 
+![O DAG do Pix: 7 nós em sequência do parse ao crédito em menos de 10 segundos, com notificações em paralelo depois](images/02-dag-do-pix.png)
+
 ## Quando o DAG quebra: o anti-pattern circular
 
 Dependência circular é o erro mais comum de quem está aprendendo. A tarefa A precisa do output de B, B precisa do output de A. Você não consegue executar nem A nem B. Pipeline trava na inicialização.
@@ -68,6 +72,8 @@ A boa notícia é que toda ferramenta detecta isso antes de rodar:
 A má notícia é que quem não entende o conceito vê o erro e não sabe o que fazer. Reescreve a DAG na tentativa e erro, achando que é bug da ferramenta. Não é. É o algoritmo te avisando que o que você definiu é impossível de executar.
 
 A correção quase sempre é repensar a granularidade da tarefa. Se A e B precisam um do outro, na verdade é uma só tarefa, ou você está modelando errado o que é input e o que é output.
+
+![Dependência circular: A precisa de B e B precisa de A, trava na inicialização, e o erro que cada ferramenta levanta](images/03-ciclo-impossivel.png)
 
 ## Aprender DAG é destravar qualquer orquestrador
 
