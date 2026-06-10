@@ -153,6 +153,6 @@ Tooling em `vazdeng/scripts/`: `cover_gen.js` (cover), `gen_diagram.js` (diagram
 
 Acontece com expressões legítimas que coincidem com padrão AI. Casos conhecidos:
 - "Isso significa que" usado como conector natural de prosa (regra `ai_transition_soft`, WARNING não ERROR)
-- "A maioria" usado com contexto específico ("a maioria dos pipelines de bronze que vi no Bradesco...")
+- "A maioria" usado com contexto específico ("a maioria dos pipelines de bronze que vi em produção...")
 
 Decisão: aceitar o warning ou reescrever a frase. **Não silenciar a regra no script** sem discutir antes.

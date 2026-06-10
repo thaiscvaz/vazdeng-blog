@@ -24,18 +24,15 @@ languages:
     weight: 1
     params:
       upcoming:
-        - date: "TER 02/06 12h"
-          slug: "DE-008"
-          title: "Schema drift na fronteira"
-        - date: "QUI 04/06 12h"
-          slug: "TV-002"
-          title: "Dagster, sério?"
-        - date: "SAB 06/06 10h"
+        - date: "QUA 11/06 12h"
+          slug: "TV-001"
+          title: "Prompt caching: 90% menos custo de LLM"
+        - date: "SAB 13/06 10h"
           slug: "ZTE-002"
-          title: "Ingestão na prática"
-        - date: "SAB 06/06 14h"
+          title: "Dependências em DAG"
+        - date: "SAB 13/06 14h"
           slug: "IA-002"
-          title: "Embeddings sem hype"
+          title: "A LLM não faz nada. O harness faz."
       tracks:
         - color: amber
           label: "DE Produção"
@@ -46,7 +43,7 @@ languages:
         - color: rose
           label: "Cripto Chronicles"
           title: "A saga de um agente quant que perde dinheiro."
-          sub: "Capítulos numerados sobre o cripto_invest. Sharpe, abstenção, drawdown."
+          sub: "Capítulos numerados sobre o agente quant de cripto. Sharpe, abstenção, drawdown."
           cta: "Ler do começo"
           sigil: "CA"
         - color: lavender
@@ -60,18 +57,15 @@ languages:
     weight: 2
     params:
       upcoming:
-        - date: "TUE Jun 02 · 12h"
-          slug: "DE-008"
-          title: "Schema drift at the boundary"
-        - date: "THU Jun 04 · 12h"
-          slug: "TV-002"
-          title: "Dagster, really?"
-        - date: "SAT Jun 06 · 10h"
+        - date: "WED Jun 11 · 12h"
+          slug: "TV-001"
+          title: "Prompt caching: 90% lower LLM cost"
+        - date: "SAT Jun 13 · 10h"
           slug: "ZTE-002"
-          title: "Ingestion in practice"
-        - date: "SAT Jun 06 · 14h"
+          title: "DAG dependencies"
+        - date: "SAT Jun 13 · 14h"
           slug: "IA-002"
-          title: "Embeddings without the hype"
+          title: "The LLM does nothing. The harness does."
       tracks:
         - color: amber
           label: "DE Production"
@@ -82,7 +76,7 @@ languages:
         - color: rose
           label: "Crypto Chronicles"
           title: "The saga of a quant agent losing money."
-          sub: "Numbered chapters on cripto_invest. Sharpe, abstention, drawdown."
+          sub: "Numbered chapters on the crypto quant agent. Sharpe, abstention, drawdown."
           cta: "Start from chapter 1"
           sigil: "CA"
         - color: lavender

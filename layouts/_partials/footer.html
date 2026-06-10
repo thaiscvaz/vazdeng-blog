@@ -7,7 +7,7 @@
     Vaz<em>D</em>Eng · {{ T "footerBuiltBy" }} <em>Thais Vaz</em>
   </div>
   <div class="vz-footer-links">
-    <a href="/index.xml">RSS</a>
+    {{ with .Site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a>{{ end }}
     <a href="https://github.com/thaiscvaz" target="_blank" rel="noopener">GitHub</a>
     <a href="https://linkedin.com/in/thacvaz" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://vazdeng.substack.com" target="_blank" rel="noopener">Substack</a>

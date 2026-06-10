@@ -44,3 +44,8 @@ relatedHead: "Continue lendo"
 
 # Nav CTA
 navCta: "Assinar"
+
+# 404
+notFoundTitle: "Essa página não existe."
+notFoundLead: "O link pode ter mudado ou nunca existiu. O arquivo completo tem tudo que já foi publicado."
+notFoundCta: "Voltar pro início"

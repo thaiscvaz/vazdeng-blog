@@ -4,3 +4,7 @@
 # /blog/ duplica conteúdo de / desde a reorganização do menu. Manda pra raiz.
 /blog/        /        301
 /en/blog/     /en/     301
+
+# Sharpe v1 (2026-04-22) era duplicata do v2 — removido em 2026-06-10.
+/2026/04/22/agente-quant-sharpe-negativo/           /2026/04/23/sharpe-negativo-sucesso-engenharia/          301
+/en/2026/04/22/quant-agent-sharpe-negative-what-i-learned/  /en/2026/04/23/quant-agent-negative-sharpe-engineering/  301

@@ -7,15 +7,18 @@ on:
       - 'scripts/validate_post.py'
   push:
     branches: [main]
-    paths:
-      - 'content/blog/**'
-      - 'scripts/validate_post.py'
   workflow_dispatch:
     inputs:
       mode:
         description: 'all | diff'
         required: true
         default: 'diff'
+
+permissions:
+  contents: read
+
+env:
+  HUGO_VERSION: '0.160.1'
 
 jobs:
   validate:
@@ -38,24 +41,50 @@ jobs:
             BASE="${{ github.event.pull_request.base.sha }}"
             HEAD="${{ github.sha }}"
             if [ -z "$BASE" ]; then BASE="HEAD^"; fi
-            FILES=$(git diff --name-only "$BASE" "$HEAD" -- 'content/blog/**/index*.md' | tr '\n' ' ')
-            echo "files=$FILES" >> "$GITHUB_OUTPUT"
-            echo "mode=diff" >> "$GITHUB_OUTPUT"
+            # Lista NUL-delimited gravada em arquivo: nomes de arquivo vindos
+            # do diff de PR sao input nao-confiavel — nunca interpolar em shell.
+            git diff --name-only -z "$BASE" "$HEAD" -- 'content/blog/**/index*.md' > /tmp/changed_files.zlist || true
+            if [ -s /tmp/changed_files.zlist ]; then
+              echo "mode=diff" >> "$GITHUB_OUTPUT"
+              echo "has_files=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "mode=diff" >> "$GITHUB_OUTPUT"
+              echo "has_files=false" >> "$GITHUB_OUTPUT"
+            fi
           else
             echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Validar (diff)
-        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.files != ''
+        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.has_files == 'true'
+        shell: bash
         run: |
-          for f in ${{ steps.target.outputs.files }}; do
-            python scripts/validate_post.py "$f"
-          done
+          xargs -0 -r -n1 python scripts/validate_post.py < /tmp/changed_files.zlist
 
       - name: Validar (all)
         if: steps.target.outputs.mode == 'all'
         run: python scripts/validate_post.py content/blog
 
       - name: Sem posts alterados
-        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.files == ''
+        if: steps.target.outputs.mode == 'diff' && steps.target.outputs.has_files == 'false'
         run: echo "Nenhum post alterado no diff. Skip."
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar Hugo ${{ env.HUGO_VERSION }} (extended)
+        run: |
+          curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz" -o /tmp/hugo.tar.gz
+          tar -xzf /tmp/hugo.tar.gz -C /tmp hugo
+          sudo mv /tmp/hugo /usr/local/bin/hugo
+          hugo version
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Smoke build (template/frontmatter quebrado falha aqui, nao no deploy)
+        run: hugo --minify --baseURL "https://vazdeng.pages.dev/"

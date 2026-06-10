@@ -1,8 +1,9 @@
 {{/* VazDEng v5 — Fraunces (display variable) + Inter (corpo) + Space Mono (UI/code).
-     Identidade Bauhaus boutique anti-AI-startup, com toggle light/dark interativo. */}}
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+     Identidade Bauhaus boutique anti-AI-startup, com toggle light/dark interativo.
+     Todas as fontes self-hosted em /static/fonts (@font-face em custom.css) —
+     compativel com o CSP font-src 'self' do _headers. */}}
+<link rel="preload" href="/fonts/Fraunces-Variable.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
 {{/* SEO verifications */}}
 {{ with site.Params.googleSiteVerification }}

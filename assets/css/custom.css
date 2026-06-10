@@ -13,6 +13,42 @@
        url("/fonts/InterVariable.woff2") format("woff2");
 }
 
+/* Fraunces e Space Mono self-hosted (latin subset, Google Fonts v38/v17).
+   Mantem o CSP com font-src 'self' e elimina request third-party. */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/Fraunces-Variable.woff2") format("woff2-variations"),
+       url("/fonts/Fraunces-Variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/Fraunces-Variable-Italic.woff2") format("woff2-variations"),
+       url("/fonts/Fraunces-Variable-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/SpaceMono-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/SpaceMono-Bold.woff2") format("woff2");
+}
+
 :root {
   /* Hextra hooks */
   --hextra-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;

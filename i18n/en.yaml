@@ -44,3 +44,8 @@ relatedHead: "Keep reading"
 
 # Nav CTA
 navCta: "Subscribe"
+
+# 404
+notFoundTitle: "This page doesn't exist."
+notFoundLead: "The link may have moved or never existed. The full archive has everything ever published."
+notFoundCta: "Back to home"

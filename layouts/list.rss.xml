@@ -35,7 +35,7 @@
       {{ with .Site.Params.Author.email }}<author>{{.}}{{ with $.Site.Params.Author.name }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
       <description>
-        {{ $img := (.Resources.ByType "image").GetMatch "*featured*" }}
+        {{ $img := (.Resources.ByType "image").GetMatch "{*featured*,cover*}" }}
         {{ with $img }}
         {{ $img := .Resize "640x" }}
         {{ printf "<![CDATA[<img src=\"%s\" width=\"%d\" height=\"%d\"/>]]>" $img.Permalink $img.Width $img.Height | safeHTML }}

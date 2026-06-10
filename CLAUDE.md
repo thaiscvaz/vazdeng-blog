@@ -108,11 +108,11 @@ Validação roda em paralelo no `.github/workflows/validate.yml` e gateia o merg
 
 ## Relação com vazdeng (ShowRunner)
 
-| Repositório | GitHub | Função |
+| Repositório | Visibilidade | Função |
 |---|---|---|
-| vazdeng | thaiscvaz/vazdeng | Workspace de produção (rascunho, agentes, automação Substack/LinkedIn) |
-| vazdeng-blog (este) | thaiscvaz/vazdeng-blog | Site Hugo publicado (`vazdeng.pages.dev`) |
-| vazdeng-site | thaiscvaz/vazdeng-site | Landing do guia (`vazdeng-site.pages.dev`) |
+| workspace de produção | privado (local) | Rascunhos, automação de publicação |
+| vazdeng-blog (este) | público — thaiscvaz/vazdeng-blog | Site Hugo publicado (`vazdeng.pages.dev`) |
+| landing do guia | privado (local) | Landing page (`vazdeng-site.pages.dev`) |
 
 **Fluxo:** rascunho nasce em `vazdeng/posts/{slug}/index.md`, migra pra `vazdeng-blog/content/blog/YYYY-MM-DD-slug/`. Este repo é o destino publicado, não o workspace de escrita.
 
