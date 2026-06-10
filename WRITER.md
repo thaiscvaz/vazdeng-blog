@@ -54,6 +54,14 @@ EN herda `slug`, `date`, `publishDate` do PT via Hugo. Só `title` e `descriptio
 
 - Proibido travessão `—` no texto corrido. Use ponto ou vírgula.
 - Tom humano, pessoal, direto. Sem academiquês.
+- **Voz é bloqueante (desde 2026-06-10):** mínimo 2 marcadores de primeira
+  pessoa ou o validador REPROVA; ideal 3+. A voz vem da âncora real da pauta
+  (projeto pessoal, vault, este próprio blog) — nunca de experiência
+  inventada. Opinião real também é voz ("eu discordo", "eu não usaria").
+- **Título com posição, não com tema** (trilhas DE Produção e Manifesto):
+  dado de jun/2026 — os 2 posts com título de opinião/identidade fizeram 4x
+  o alcance dos títulos técnico-genéricos. "X atrapalha mais do que ajuda"
+  vence "Entendendo X".
 - Abertura com cena ou tensão real, não com definição.
 - Termos em inglês: explicar brevemente na primeira ocorrência se não forem universais (pipeline, batch, lakehouse, etc).
 - Nenhum número sem fonte verificável.
@@ -96,7 +104,8 @@ O `scripts/validate_post.py` detecta os padrões abaixo. **Conteúdo em PT-BR** 
 | Frontmatter PT | `title`, `slug`, `date`, `publishDate`, `description`, `tags` obrigatórios |
 | Frontmatter EN | `title`, `description` obrigatórios (resto herda do PT) |
 | Word count | 600 a 1200 palavras (ideal 600-800). Abaixo de 500 = ERROR. |
-| Primeira pessoa | Mínimo 3 marcadores (eu, minha, fiz, vi, aprendi...) |
+| Primeira pessoa | **< 2 marcadores = ERROR (reprova)**; 2 = warning; ideal 3+ (eu, minha, fiz, vi, aprendi...) |
+| Description | 50-160 chars (acima disso o Google trunca o snippet) |
 | Bullets no corpo | Máximo 8. Prefere prosa fluida. |
 | Paridade bilíngue | Cada `index.md` exige `index.en.md` irmão. |
 | Headline-corpus match | >=60% das palavras-chave do título devem aparecer no corpo. |

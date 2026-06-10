@@ -206,9 +206,15 @@ def check_first_person(content: str, lang: str) -> list:
         pattern = (r"\b(I|my|mine|me|built|learned|saw|"
                    r"worked|spent|discovered|use|have)\b")
     matches = len(re.findall(pattern, body, re.I))
+    # Voz e o diferencial anti-IA do blog. Dado real (jun/2026): posts
+    # impessoais nao performam; os 2 posts com mais alcance sao os com
+    # opiniao/identidade. Abaixo de 2 marcadores o post NAO passa.
+    if matches < 2:
+        return [("ERROR", f"Post sem voz: {matches} marcadores de primeira pessoa. "
+                          "Minimo 2 (ideal 3+: eu, vi, fiz, aprendi, uso...).")]
     if matches < 3:
         return [("WARNING", f"Poucos marcadores de primeira pessoa ({matches}). "
-                             "Post soa impessoal.")]
+                             "Ideal 3+. Post soa impessoal.")]
     return []
 
 
@@ -223,6 +229,16 @@ def check_frontmatter(content: str, lang: str) -> list:
     for field in required:
         if field not in head:
             issues.append(("ERROR", f"Frontmatter faltando ({lang}): {field}"))
+
+    # description 50-160 chars: acima disso o Google trunca o snippet
+    m = re.search(r'^description:\s*["\']?(.+?)["\']?\s*$', head, re.MULTILINE)
+    if m:
+        desc = m.group(1).strip()
+        if len(desc) > 160:
+            issues.append(("WARNING", f"description com {len(desc)} chars (max 160 — "
+                                      "Google trunca no SERP)."))
+        elif len(desc) < 50:
+            issues.append(("WARNING", f"description com {len(desc)} chars (min 50)."))
     return issues
 
 
