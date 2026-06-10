@@ -22,6 +22,8 @@ Sem cache, você paga pelo prefixo inteiro toda vez. Em pipeline que roda dezena
 
 Com cache, você paga o prefixo uma vez (cache write), e depois só o delta da nova chamada (cache read). Cache read custa cerca de 10% do preço de input normal.
 
+![Anatomia de uma chamada: system prompt, few-shots e contexto são 80-95% dos tokens e repetem; só a pergunta muda](images/01-custo-prefixo.png)
+
 ## Como funciona o cache na Anthropic
 
 Você marca um bloco do prompt com `cache_control: ephemeral`. Exemplo simplificado:
@@ -61,6 +63,8 @@ Com cache:
 
 Em pipeline de produção mais agressivo (que roda dezenas de vezes por hora, com prefixos maiores), o corte chega a 90%.
 
+![Bench real: 18 mil tokens por execução sem cache vs 4,5 mil com cache, corte de 75%](images/02-bench-real.png)
+
 ## Onde brilha, onde não brilha
 
 **Brilha:**
@@ -75,6 +79,8 @@ Em pipeline de produção mais agressivo (que roda dezenas de vezes por hora, co
 - Chamada one-shot sem padrão repetido.
 - Prompt que muda significativamente a cada chamada.
 - Workflow com cadência maior que 5 minutos entre calls (cache expirou).
+
+![Onde o cache brilha: prefixo fixo, fan-out, loop, documento grande. Onde não: one-shot, prompt instável, cadência acima do TTL](images/03-brilha-nao-brilha.png)
 
 **Cuidados que matam o ganho se você não conhece:**
 

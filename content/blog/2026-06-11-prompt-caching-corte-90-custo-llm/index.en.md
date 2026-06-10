@@ -22,6 +22,8 @@ Without cache, you pay for the entire prefix every time. In a pipeline running d
 
 With cache, you pay for the prefix once (cache write), then only the delta of each new call (cache read). A cache read costs about 10% of the normal input price.
 
+![Anatomy of a call: system prompt, few-shots and context are 80-95% of the tokens and repeat; only the question changes](images/01-custo-prefixo.png)
+
 ## How Anthropic's cache works
 
 You mark a block of the prompt with `cache_control: ephemeral`. Simplified example:
@@ -61,6 +63,8 @@ With cache:
 
 In a more aggressive production pipeline (running dozens of times an hour with larger prefixes), the cut reaches 90%.
 
+![Real benchmark: 18 thousand tokens per run without cache vs 4,500 with cache, a 75% cut](images/02-bench-real.png)
+
 ## Where it shines, where it doesn't
 
 **Shines:**
@@ -75,6 +79,8 @@ In a more aggressive production pipeline (running dozens of times an hour with l
 - One-shot calls with no repeated pattern.
 - Prompts that change significantly on every call.
 - Workflows with more than 5 minutes between calls (the cache expired).
+
+![Where the cache shines: fixed prefix, fan-out, loops, large documents. Where it doesn't: one-shot, unstable prompt, cadence beyond the TTL](images/03-brilha-nao-brilha.png)
 
 **Caveats that kill the gain if you don't know them:**
 
