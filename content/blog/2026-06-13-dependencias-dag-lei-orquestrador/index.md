@@ -10,7 +10,7 @@ images:
   - cover.png
 ---
 
-Você quer aprender orquestração de pipeline e tem 8 ferramentas pra escolher. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Cada tutorial assume que você já entende o que vem antes da ferramenta. Eu vou cobrir o que ninguém ensina: o conceito que todas elas implementam por baixo do nome.
+Você quer aprender orquestração de pipeline e tem 8 ferramentas pra escolher. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Cada tutorial assume que você já entende o que vem antes da ferramenta. Eu trabalhei 2 anos com uma delas em produção, e o que me destravou não foi dominar a sintaxe. Foi entender o conceito que todas implementam por baixo do nome. É isso que eu vou cobrir hoje.
 
 Esse é o ZTE Ep 02. Zero to Expert é a trilha que vai fazer você parar de seguir tutorial e começar a entender. Episódio 01 cobriu data flow. Hoje a vez é do DAG.
 
@@ -34,7 +34,7 @@ O algoritmo de execução é o mesmo nas 8 ferramentas: ordenação topológica 
 
 A complexidade de calcular essa ordem e detectar ciclo é O(V+E) com busca em profundidade, onde V é o número de nós e E o número de arestas. Em DAG real de pipeline, isso são milissegundos. O custo computacional não está nessa parte. Está em rodar as tarefas em si.
 
-Por isso aprender DAG antes destrava qualquer ferramenta futura. A sintaxe muda. O Python da DAG no Airflow não é o Python da DAG no Dagster. Mas o conceito é o mesmo. Você troca de ferramenta sem trauma.
+Por isso aprender DAG antes destrava qualquer ferramenta futura. A sintaxe muda. O Python da DAG no Airflow não é o Python da DAG no Dagster. Mas o conceito é o mesmo. Depois de 2 anos mantendo DAGs de Airflow, eu leio pipeline de qualquer orquestrador sem ter rodado a ferramenta uma vez. O grafo embaixo é sempre o mesmo.
 
 ## O exemplo BR: o DAG do Pix
 
@@ -81,7 +81,7 @@ Entender DAG é destravar qualquer ferramenta de orquestração presente e futur
 
 O contrário também é verdade. Quem só sabe a sintaxe da ferramenta fica refém. Quando a ferramenta muda (e elas mudam todo ano), tem que aprender tudo de novo. Quem entendeu o conceito só ajusta a sintaxe.
 
-Zero to Expert não é sobre saber muita ferramenta. É sobre saber os conceitos que ferramenta nenhuma ensina.
+É o critério que eu uso pra estudar qualquer coisa nova nessa área: conceito primeiro, ferramenta depois. Zero to Expert não é sobre saber muita ferramenta. É sobre saber os conceitos que ferramenta nenhuma ensina.
 
 ---
 

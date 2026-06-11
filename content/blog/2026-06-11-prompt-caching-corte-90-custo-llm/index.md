@@ -12,7 +12,7 @@ images:
 
 18 mil tokens. Era o custo de cada execução do meu pipeline de notícias com 6 sub-agents paralelos. Depois de uma linha de código, virou 4 mil e quinhentos. Sem mudar o modelo. Sem mudar o prompt. Sem mudar o output. Só liguei o cache.
 
-A feature existe na API Anthropic há mais de um ano. A maioria dos times que usa LLM em produção ainda não ligou. É o ajuste com melhor retorno por minuto de trabalho que tem hoje.
+A feature existe na API Anthropic há mais de um ano. A maioria dos times que usa LLM em produção ainda não ligou. Eu mesma rodei meses pagando preço cheio antes de olhar a fatura com atenção. É o ajuste com melhor retorno por minuto de trabalho que conheço hoje.
 
 ## Por que o custo de LLM em produção é prefixo
 
@@ -49,9 +49,9 @@ Sem mexer no modelo, sem reescrever prompt. Só sinalizar o que é cacheável.
 
 ## Bench real do pipeline noticias-diarias
 
-Skill própria que roda diário 8h BRT. Dispara 6 sub-agents paralelos via tool Agent: data-eng, IA, invest, cripto, política BR, política internacional. Cada um carrega um system prompt fixo de aproximadamente 3 mil tokens com regras de tom, formato Telegram, fontes priorizadas e estilo de síntese.
+O número da abertura vem de um pipeline que eu construí e mantenho: minha skill de notícias diárias, que roda todo dia às 8h BRT. Dispara 6 sub-agents paralelos via tool Agent: data-eng, IA, invest, cripto, política BR, política internacional. Cada um carrega um system prompt fixo de aproximadamente 3 mil tokens com regras de tom, formato Telegram, fontes priorizadas e estilo de síntese.
 
-Sem cache, a conta é direta:
+Sem cache, a conta que eu pagava era direta:
 
 - 6 sub-agents × 3 mil tokens de prefixo = 18 mil tokens pagos por execução.
 - Multiplicado por 1 execução por dia = 540 mil tokens por mês só de prefixo.
@@ -87,13 +87,13 @@ Em pipeline de produção mais agressivo (que roda dezenas de vezes por hora, co
 1. Cache write é mais lento que call normal. Você paga uma vez em latência, ganha em todas as seguintes. Em pipeline noturno isso não importa. Em chat interativo, importa.
 2. Não cachear PII ou dado sensível sem auditar. Cache é per-account na Anthropic, mas o princípio vale.
 3. TTL 5 min é janela curta. Se sua skill roda o pipeline a cada 10 minutos, o cache nunca pega. Pra esses casos, use o TTL de 1 hora.
-4. Você só vê o ganho se monitora as 2 métricas. Sem dashboard, você acha que ligou e não ligou.
+4. Você só vê o ganho se monitora as 2 métricas. Um timestamp no começo do system prompt basta pra o prefixo nunca cachear, e sem olhar `cache_read` você acha que ligou e não ligou.
 
 ## Não é micro-otimização. É arquitetura.
 
 Quem está pagando 100% do preço de cada chamada porque "não teve tempo de configurar" está acumulando dívida com a Anthropic todo mês. Em pipeline de produção com volume sério, isso vira milhares de reais por ano. Por uma linha de código.
 
-A regra é simples: estruture o prompt em camadas. Estável primeiro (cacheável), volátil depois. Marque o estável com `cache_control: ephemeral`. Monitore `cache_creation` e `cache_read`. Pague uma vez, leia muitas.
+A regra que eu sigo em tudo que construo agora: estruture o prompt em camadas. Estável primeiro (cacheável), volátil depois. Marque o estável com `cache_control: ephemeral`. Monitore `cache_creation` e `cache_read`. Pague uma vez, leia muitas.
 
 É o ABC. E ainda tem time chamando isso de "otimização avançada".
 

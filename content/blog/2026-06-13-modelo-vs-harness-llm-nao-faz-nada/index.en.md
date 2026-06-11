@@ -12,7 +12,7 @@ images:
 
 When you asked Claude to create a file on your computer, it didn't create it. You think it did. But it wasn't the model. It was something else. And not knowing this is what makes teams pay 5x more than they should for AI in production, and open security holes where 1 malicious prompt leads to remote code execution.
 
-This is the most common confusion of 2026, and the concept that separates people reasoning about AI from people repeating LinkedIn noise.
+This is the most common confusion of 2026, and I see it everywhere, including from senior people. It's the concept that separates people reasoning about AI from people repeating LinkedIn noise.
 
 ## The two things nobody separates
 
@@ -54,7 +54,7 @@ OpenAI could match it tomorrow without training a new model. It's just software 
 
 The practical implication: whoever compares only models is looking at half the equation. "Claude is better than GPT" usually means "Claude Code is better than Codex". When an open source harness plugs in a Claude model, it works, but loses quality, because the model was trained for Anthropic's tool calling format and the open harness may speak another. The rule of thumb becomes: Claude models with Claude Code, GPT models with Codex, Gemini models with Antigravity. Model and harness come as a pair.
 
-Direct cost: a bad harness sends the full context on every call. A good harness uses prompt caching, lazy loading of skills, sub-agents to isolate context. The difference in a production pipeline: a 3 to 10x factor on the monthly inference bill. Not an exaggeration. It's accounting.
+Direct cost: a bad harness sends the full context on every call. A good harness uses prompt caching, lazy loading of skills, sub-agents to isolate context. I measured this on my own news pipeline: turning on prompt caching cut 75% of the prefix cost (I told that story in Thursday's post). The difference in a production pipeline: a 3 to 10x factor on the monthly inference bill. Not an exaggeration. It's accounting.
 
 ## Why this matters for your security
 
@@ -74,7 +74,7 @@ The AI industry talks a lot about skills, agents, sub-agents, MCP, tool calling,
 - **An agent** is a skill plus permissions plus an isolated context window. It's a more sophisticated harness.
 - **MCP (Model Context Protocol)** is the standard for harnesses to connect to external tools uniformly. It's the harness standardizing integration.
 
-Everything that looks like magic is the harness getting smarter. The LLM stays immutable between one call and the next.
+I use this architecture every day: the post you are reading went through a harness. This blog's pipeline runs on skills and sub-agents I maintain, and the LLM behind it never touched the repository. Everything that looks like magic is the harness getting smarter. The LLM stays immutable between one call and the next.
 
 ## Confuse them, lose money and security
 

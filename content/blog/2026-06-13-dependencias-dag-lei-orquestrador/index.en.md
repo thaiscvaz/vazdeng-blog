@@ -10,7 +10,7 @@ images:
   - cover.png
 ---
 
-You want to learn pipeline orchestration and there are 8 tools to choose from. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Every tutorial assumes you already understand what comes before the tool. I'll cover what nobody teaches: the concept all of them implement under the name.
+You want to learn pipeline orchestration and there are 8 tools to choose from. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Every tutorial assumes you already understand what comes before the tool. I worked with one of them in production for 2 years, and what unlocked me wasn't mastering the syntax. It was understanding the concept all of them implement under the name. That's what I'll cover today.
 
 This is ZTE Ep 02. Zero to Expert is the track that makes you stop following tutorials and start understanding. Episode 01 covered data flow. Today it's the DAG's turn.
 
@@ -34,7 +34,7 @@ The execution algorithm is the same in all 8 tools: topological ordering of the 
 
 The complexity of computing that order and detecting cycles is O(V+E) with depth-first search, where V is the number of nodes and E the number of edges. In a real pipeline DAG, that's milliseconds. The computational cost isn't in this part. It's in running the tasks themselves.
 
-That's why learning the DAG first unlocks every future tool. The syntax changes. The Python of an Airflow DAG is not the Python of a Dagster DAG. But the concept is the same. You switch tools without trauma.
+That's why learning the DAG first unlocks every future tool. The syntax changes. The Python of an Airflow DAG is not the Python of a Dagster DAG. But the concept is the same. After 2 years maintaining Airflow DAGs, I can read pipelines from any orchestrator I've never run. The graph underneath is always the same.
 
 ## A real-world example: Brazil's instant payment system
 
@@ -81,4 +81,4 @@ Understanding DAGs unlocks every orchestration tool, present and future. You swa
 
 The opposite is also true. Whoever only knows the tool's syntax is hostage to it. When the tool changes (and they change every year), they relearn everything. Whoever understood the concept just adjusts the syntax.
 
-Zero to Expert is not about knowing many tools. It's about knowing the concepts no tool teaches.
+It's the criterion I use to learn anything new in this field: concept first, tool second. Zero to Expert is not about knowing many tools. It's about knowing the concepts no tool teaches.

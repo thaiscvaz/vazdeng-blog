@@ -12,7 +12,7 @@ images:
 
 18 thousand tokens. That was the cost of every run of my news pipeline with 6 parallel sub-agents. After one line of code, it became 4,500. Same model. Same prompt. Same output. I just turned on the cache.
 
-The feature has been in the Anthropic API for over a year. Most teams running LLMs in production still haven't turned it on. It's the highest return per minute of work available today.
+The feature has been in the Anthropic API for over a year. Most teams running LLMs in production still haven't turned it on. I myself ran for months paying full price before actually reading my invoice. It's the highest return per minute of work I know of today.
 
 ## Why LLM cost in production is prefix
 
@@ -49,9 +49,9 @@ No model change, no prompt rewrite. Just flag what's cacheable.
 
 ## A real benchmark from my daily news pipeline
 
-It's a skill of mine that runs daily at 8am. It fires 6 parallel sub-agents: data engineering, AI, investing, crypto, local politics, international politics. Each one carries a fixed system prompt of roughly 3 thousand tokens with tone rules, output format, prioritized sources, and synthesis style.
+The number in the opening comes from a pipeline I built and maintain: my daily news skill, running every day at 8am. It fires 6 parallel sub-agents: data engineering, AI, investing, crypto, local politics, international politics. Each one carries a fixed system prompt of roughly 3 thousand tokens with tone rules, output format, prioritized sources, and synthesis style.
 
-Without cache, the math is direct:
+Without cache, the bill I was paying is direct math:
 
 - 6 sub-agents × 3 thousand prefix tokens = 18 thousand tokens paid per run.
 - Times 1 run per day = 540 thousand tokens a month on prefix alone.
@@ -87,12 +87,12 @@ In a more aggressive production pipeline (running dozens of times an hour with l
 1. A cache write is slower than a normal call. You pay once in latency, you win on every call after. In a nightly pipeline that's irrelevant. In an interactive chat, it matters.
 2. Don't cache PII or sensitive data without auditing first. Anthropic's cache is per-account, but the principle stands.
 3. The 5-minute TTL is a short window. If your job re-runs the pipeline every 10 minutes, the cache never hits. For those cases, use the 1-hour TTL.
-4. You only see the gain if you monitor the 2 metrics. Without a dashboard, you think you turned it on and you didn't.
+4. You only see the gain if you monitor the 2 metrics. A timestamp at the top of the system prompt is enough for the prefix to never cache, and without watching `cache_read` you think you turned it on and you didn't.
 
 ## It's not micro-optimization. It's architecture.
 
 Whoever is paying 100% of the price of every call because "there was no time to configure it" is accumulating debt with Anthropic every month. In a production pipeline with serious volume, that becomes thousands of dollars a year. For one line of code.
 
-The rule is simple: structure the prompt in layers. Stable first (cacheable), volatile last. Mark the stable part with `cache_control: ephemeral`. Monitor `cache_creation` and `cache_read`. Pay once, read many.
+The rule I now follow in everything I build: structure the prompt in layers. Stable first (cacheable), volatile last. Mark the stable part with `cache_control: ephemeral`. Monitor `cache_creation` and `cache_read`. Pay once, read many.
 
 It's the ABC. And there are still teams calling this "advanced optimization".
