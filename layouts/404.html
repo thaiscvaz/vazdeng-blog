@@ -3,15 +3,12 @@
   <div class="vz-hero-pill" style="margin: 0 auto 24px;">
     <span class="dot"></span>HTTP 404
   </div>
-  <h1 class="vz-hero-title" style="font-family: var(--serif); font-style: italic;">
+  <h1 class="vz-hero-title" style="font-style: italic;">
     {{ T "notFoundTitle" }}
   </h1>
   <p class="vz-hero-lead" style="margin: 16px auto 40px; max-width: 480px;">
     {{ T "notFoundLead" }}
   </p>
-  <a href="{{ "/" | relLangURL }}"
-     style="font-family: var(--mono); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; border: 2px solid currentColor; padding: 12px 24px; border-radius: 999px;">
-    {{ T "notFoundCta" }}
-  </a>
+  <a href="{{ "/" | relLangURL }}" class="vz-404-cta">{{ T "notFoundCta" }}</a>
 </section>
 {{ end }}

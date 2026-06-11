@@ -18,7 +18,7 @@ Esse dev é o que o Akita chama de codificador. E a IA está acelerando a extin�
 
 ## O codificador terceirizou o entendimento
 
-Antes a gente aprendia SQL primeiro porque era o jeito de falar com o banco. Hoje é o contrário. Framework antes de SQL. ORM antes de SQL. pandas antes de SQL. Camadas e mais camadas de abstração que escondem a query que de fato vai rodar.
+Eu aprendi SQL antes de qualquer framework, porque era o único jeito de falar com o banco. Hoje é o contrário. Framework antes de SQL. ORM antes de SQL. pandas antes de SQL. Camadas e mais camadas de abstração que escondem a query que de fato vai rodar.
 
 O problema da abstração não é a abstração. É que ela esconde o custo. Você acha que `User.objects.filter().select_related().prefetch_related()` é cheap. Não é. É um JOIN que pode estourar memória se você não souber por que está rodando JOIN, em quantas tabelas, com qual cardinalidade. O ORM escreve a query certa em 70% dos casos. Os 30% restantes destroem teu cluster.
 
@@ -46,11 +46,11 @@ Padrões observados em SQL gerado por LLM sem revisão:
 
 ![Antipadrões de SQL gerado por LLM sem revisão: SELECT * em CTE, IN no lugar de JOIN, função em coluna indexada, sem hint de partition, WINDOW sem PARTITION BY](llm-antipatterns.png)
 
-Quem não lê plan de execução não vê. Vai pra produção, paga os juros no fim do mês. Dívida técnica com IA não é a mesma dívida de 5 anos atrás. Você contrai 10x mais rápido, achando que está levando vantagem.
+Desses cinco padrões, não tem um que eu não tenha visto em query gerada. Quem não lê plan de execução não vê. Vai pra produção, paga os juros no fim do mês. Dívida técnica com IA não é a mesma dívida de 5 anos atrás. Você contrai 10x mais rápido, achando que está levando vantagem.
 
 ## O plan de execução é onde mora a diferença
 
-`EXPLAIN ANALYZE` no Postgres. `EXPLAIN COST` no Snowflake. Plano físico no Spark UI. Todos te dizem a mesma coisa: quantos rows o engine vai escanear, quais joins escolheu, onde tem shuffle, onde tem broadcast, onde tem fila de espera.
+`EXPLAIN ANALYZE` no Postgres. `EXPLAIN COST` no Snowflake. Plano físico no Spark UI. É a primeira coisa que eu olho antes de deixar query nova rodar em escala. Todos te dizem a mesma coisa: quantos rows o engine vai escanear, quais joins escolheu, onde tem shuffle, onde tem broadcast, onde tem fila de espera.
 
 Codificador olha pro plan e não entende. Engenheiro lê e sabe se vale rodar em produção ou se precisa reescrever. Não é decoreba. É leitura de causa pra custo.
 

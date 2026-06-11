@@ -9,10 +9,12 @@
 {{ $cover := "" }}
 {{ with .Resources.GetMatch "cover.*" }}{{ $cover = .RelPermalink }}{{ end }}
 
-{{/* Related posts (3 mais proximos por data, excluindo o atual) */}}
+{{/* Related: prioriza mesma trilha (tags em comum), completa com recentes */}}
 {{ $current := . }}
 {{ $allPosts := where .Site.RegularPages "Section" "blog" }}
-{{ $related := first 3 (where $allPosts.ByDate.Reverse "Permalink" "!=" $current.Permalink) }}
+{{ $pool := where $allPosts.ByDate.Reverse "Permalink" "!=" $current.Permalink }}
+{{ $same := where $pool "Params.tags" "intersect" ($current.Params.tags | default slice) }}
+{{ $related := first 3 ($same | union $pool) }}
 
 <nav class="vz-crumb">
   <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
@@ -54,7 +56,7 @@
 
 {{ with $cover }}
 <div class="vz-post-cover">
-  <img src="{{ . }}" alt="Cover do post" />
+  <img src="{{ . }}" alt="{{ $current.Title }}" loading="eager" />
 </div>
 {{ end }}
 

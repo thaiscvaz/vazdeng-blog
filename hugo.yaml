@@ -49,7 +49,7 @@ languages:
         - color: lavender
           label: "Zero to Expert"
           title: "Fundamentos antes da ferramenta."
-          sub: "Série didática progressiva de DE. Toda sábado, 10h BRT."
+          sub: "Série didática progressiva de DE. Todo sábado, 10h BRT."
           cta: "Episódio 01"
           sigil: "ZTE"
   en:
@@ -103,10 +103,6 @@ menu:
     - name: Sobre
       pageRef: /sobre
       weight: 1
-    - name: Busca
-      weight: 2
-      params:
-        type: search
     - name: GitHub
       weight: 3
       url: https://github.com/thaiscvaz
@@ -139,7 +135,7 @@ params:
     width: normal
 
   theme:
-    default: light
+    default: dark
     displayToggle: true
 
   page:
@@ -155,12 +151,10 @@ params:
     displayCopyright: true
     displayPoweredBy: false
 
+  # Busca desligada: o navbar custom nunca renderizou o componente e o
+  # índice flexsearch era custo de build morto. Religar quando houver UI.
   search:
-    enable: true
-    type: flexsearch
-    flexsearch:
-      index: content
-      tokenize: forward
+    enable: false
 
   # Custom assets
   customCSS:

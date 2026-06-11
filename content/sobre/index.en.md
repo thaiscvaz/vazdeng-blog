@@ -4,7 +4,7 @@ type: default
 ---
 
 <div style="text-align: center; margin-bottom: 2rem;">
-  <img src="avatar.png" alt="Thais Vaz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
+  <img src="/sobre/avatar.png" alt="Thais Vaz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
 </div>
 
 My name is Thais Vaz. I've been a data engineer for 8+ years.

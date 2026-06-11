@@ -18,7 +18,7 @@ That dev is what Akita calls a coder, as opposed to an engineer. And AI is accel
 
 ## The coder outsourced the understanding
 
-We used to learn SQL first because it was the only way to talk to the database. Today it's the opposite. Framework before SQL. ORM before SQL. pandas before SQL. Layer upon layer of abstraction hiding the query that will actually run.
+I learned SQL before any framework, because it was the only way to talk to the database. Today it's the opposite. Framework before SQL. ORM before SQL. pandas before SQL. Layer upon layer of abstraction hiding the query that will actually run.
 
 The problem with abstraction is not the abstraction. It's that it hides the cost. You assume `User.objects.filter().select_related().prefetch_related()` is cheap. It isn't. It's a JOIN that can blow up memory if you don't know why it's a JOIN, across how many tables, with what cardinality. The ORM writes the right query in 70% of cases. The other 30% destroy your cluster.
 
@@ -46,11 +46,11 @@ Patterns I keep seeing in LLM-generated SQL that nobody reviewed:
 
 ![Antipatterns in unreviewed LLM-generated SQL: SELECT * in stacked CTEs, IN instead of JOIN, function on indexed column, no partition hint, WINDOW without proper PARTITION BY](llm-antipatterns.png)
 
-If you don't read execution plans, you don't see any of this. It ships to production and you pay the interest at the end of the month. Technical debt with AI is not the same debt as 5 years ago. You take it on 10x faster, convinced you're getting ahead.
+Of these five patterns, there isn't one I haven't seen in generated queries. If you don't read execution plans, you don't see any of this. It ships to production and you pay the interest at the end of the month. Technical debt with AI is not the same debt as 5 years ago. You take it on 10x faster, convinced you're getting ahead.
 
 ## The execution plan is where the difference lives
 
-`EXPLAIN ANALYZE` in Postgres. `EXPLAIN COST` in Snowflake. The physical plan in the Spark UI. They all tell you the same thing: how many rows the engine will scan, which joins it picked, where the shuffle is, where the broadcast is, where the queue is.
+`EXPLAIN ANALYZE` in Postgres. `EXPLAIN COST` in Snowflake. The physical plan in the Spark UI. It's the first thing I look at before letting a new query run at scale. They all tell you the same thing: how many rows the engine will scan, which joins it picked, where the shuffle is, where the broadcast is, where the queue is.
 
 A coder looks at the plan and doesn't understand it. An engineer reads it and knows whether it's fit for production or needs a rewrite. It's not memorization. It's reading from cause to cost.
 

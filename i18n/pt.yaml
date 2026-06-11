@@ -4,7 +4,7 @@ siteSubtitle: "Onde escrevo sobre o que construo em dados, IA e cripto."
 
 # Hero homepage
 heroPillCount: "posts ·"
-heroPillNext: "próximo sábado 10h BRT"
+heroPillNext: "próximo:"
 heroTitleA: "Pipeline robusto começa"
 heroTitleB: "antes"
 heroTitleC: "da ferramenta."
@@ -49,3 +49,8 @@ navCta: "Assinar"
 notFoundTitle: "Essa página não existe."
 notFoundLead: "O link pode ter mudado ou nunca existiu. O arquivo completo tem tudo que já foi publicado."
 notFoundCta: "Voltar pro início"
+
+# A11y
+navAria: "Principal"
+langAria: "Idioma"
+themeAria: "Trocar tema claro/escuro"

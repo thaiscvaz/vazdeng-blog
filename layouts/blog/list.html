@@ -23,7 +23,8 @@
     </svg>
 
     <div class="vz-hero-pill">
-      <span class="dot"></span>{{ len $posts }} {{ T "heroPillCount" }} {{ T "heroPillNext" }}
+      <span class="dot"></span>{{ len $posts }} {{ T "heroPillCount" }}
+      {{- with index (site.Params.upcoming | default slice) 0 }} {{ T "heroPillNext" }} {{ .date }}{{ end }}
     </div>
     <h1 class="vz-hero-title">{{ T "heroTitleA" }} <em>{{ T "heroTitleB" }}</em> {{ T "heroTitleC" }}</h1>
     <p class="vz-hero-lead">{{ T "heroLead" }}</p>
@@ -88,9 +89,9 @@
 
     {{ with site.Params.tracks }}
     <div class="vz-filters">
-      <button class="vz-filter active" data-filter="all" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
+      <button class="vz-filter active" data-filter="all" aria-pressed="true" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
       {{ range . }}
-        <button class="vz-filter" data-filter="{{ .color }}" onclick="vzFilter('{{ .color }}', event)">{{ .label }}</button>
+        <button class="vz-filter" data-filter="{{ .color }}" aria-pressed="false" onclick="vzFilter('{{ .color }}', event)">{{ .label }}</button>
       {{ end }}
     </div>
     {{ end }}
@@ -115,11 +116,24 @@
           </li>
         {{ end }}
       </ul>
-      <p class="vz-empty-msg" id="vz-empty-msg" style="display:none; color: var(--text-muted); padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;">{{ T "archiveEmpty" }}</p>
+      <p class="vz-empty-msg" id="vz-empty-msg" style="display:none; color: var(--text-muted); padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;">
+        {{ T "archiveEmpty" }}
+        <button class="vz-filter" style="margin-left: 12px;" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
+      </p>
     {{ else }}
       <p style="color: var(--text-muted); padding: 32px 0;">{{ T "archiveEmpty" }}</p>
     {{ end }}
   </section>
+
+  {{/* ============ SUBSCRIBE (mesma peça do single — ação primária na página de maior tráfego) ============ */}}
+  <aside class="vz-subscribe" style="margin-bottom: 80px;">
+    <div class="vz-subscribe-inner">
+      <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
+      <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
+      <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
+      <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+    </div>
+  </aside>
 
   {{/* ============ FILTER JS ============ */}}
   <script>
@@ -134,7 +148,10 @@
 
       // Atualiza estado dos filter buttons
       document.querySelectorAll('.vz-filter').forEach(function(btn) {
-        btn.classList.toggle('active', btn.dataset.filter === filter);
+        if (!btn.dataset.filter) return;
+        var on = btn.dataset.filter === filter;
+        btn.classList.toggle('active', on);
+        btn.setAttribute('aria-pressed', on);
       });
 
       // Filtra posts
