@@ -49,7 +49,7 @@ Isso resolve três problemas de uma vez. Você consegue fazer join entre tabelas
 
 ## Princípio 3: lineage é requisito, não feature
 
-Quando chega uma requisição de titular (Art. 18, direito de acesso, correção, exclusão), você tem 15 dias pra responder. Sem lineage completo, esse prazo vira pesadelo.
+Quando chega uma requisição de confirmação ou acesso (Art. 19 da LGPD), o controlador tem até 15 dias pra responder. Os direitos do titular (acesso, correção, exclusão) estão no Art. 18. Sem lineage completo, esse prazo vira pesadelo.
 
 Lineage de verdade responde três perguntas pra qualquer dado pessoal. De onde veio? Sistema fonte, campo original, timestamp de ingestão. Que transformações sofreu? Passos do pipeline, regras aplicadas, derivações. Onde está agora? Tabelas, modelos treinados, dashboards que o consomem.
 

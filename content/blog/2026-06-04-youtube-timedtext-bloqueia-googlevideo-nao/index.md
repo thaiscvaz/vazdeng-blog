@@ -18,7 +18,7 @@ Mudei pro endpoint de áudio. Zero 429.
 
 ## O problema que pipelines de transcrição ignoram
 
-O rate limit do `timedtext` virou comum o suficiente em 2026 pra ter 3 issues abertas no yt-dlp (#7123, #13770, #13831), sem fix definitivo. O conselho oficial é caching e usar a YouTube Data API com OAuth. Os dois funcionam mas mudam o problema, não resolvem. Quem rodou 50 URLs num cron e viu metade vazia conhece o sintoma.
+O rate limit do `timedtext` virou comum o suficiente desde 2025 pra ter 3 issues abertas no yt-dlp (#7123, #13770, #13831), sem fix definitivo. O conselho oficial é caching e usar a YouTube Data API com OAuth. Os dois funcionam mas mudam o problema, não resolvem. Quem rodou 50 URLs num cron e viu metade vazia conhece o sintoma.
 
 ## Por que `googlevideo` não cai junto
 
@@ -72,8 +72,8 @@ Existem. Dois principais em 2026.
 
 | Solução | Preço | Quando faz sentido |
 |---|---|---|
-| **Supadata** | A partir de $0,001/min, free tier 1000 req/mês | Empresa com SLA, não quer manter infra |
-| **Apify YouTube Transcript Scraper** | $0,40 por 1000 actor runs + compute | Pipeline já no Apify |
+| **Supadata** | Planos a partir de $17/mês (3.000 créditos), free tier 100 créditos/mês | Empresa com SLA, não quer manter infra |
+| **Apify YouTube Transcript Scraper** | A partir de ~$0,50 por 1.000 runs (varia por actor) + compute | Pipeline já no Apify |
 | **yt-nota self-host** | 250 MB deps + 244 MB modelo | Privacidade, batch acadêmico, controle |
 
 A decisão pra mim é trivial: nota de aprendizado e vault Obsidian não atravessam API de terceiro. Se fosse pipeline corporativo com SLA e auditoria, Supadata ganha por operacional. Self-host só faz sentido quando você é o cliente do dado.
@@ -88,7 +88,7 @@ Quando NÃO vale: volume de 10.000 horas por mês com SLA apertado (a Whisper AP
 
 ## Anti-padrões que vi pelo caminho
 
-Confiar no `--sleep-subtitles 60` como bala de prata. Eu testei: ele não dispara antes do request, ele dispara depois do primeiro 429. Já era. Pular pra API paga sem ter tentado o pipeline local também é armadilha. $36k/ano em transcrição (cálculo público do faster-whisper) é dinheiro que devia comprar uma GPU intermediária. E apagar o áudio bruto depois de transcrever é erro de quem nunca quis rerodar com modelo melhor 6 meses depois. Eu guardo.
+Confiar no `--sleep-subtitles 60` como bala de prata. Eu testei: ele não dispara antes do request, ele dispara depois do primeiro 429. Já era. Pular pra API paga sem ter tentado o pipeline local também é armadilha. $36k/ano em transcrição (estimativa minha) é dinheiro que devia comprar uma GPU intermediária. E apagar o áudio bruto depois de transcrever é erro de quem nunca quis rerodar com modelo melhor 6 meses depois. Eu guardo.
 
 ## O que isso muda pra você
 

@@ -25,7 +25,7 @@ O Unity Catalog intercepta os planos de execução do Spark em runtime e registr
 
 **Lineage de tabelas** funciona para qualquer operação SELECT, CREATE TABLE AS SELECT, INSERT INTO SELECT em qualquer linguagem: Python, SQL, Scala, R. Para cada operação, o sistema registra qual tabela foi lida, qual foi escrita, em qual job, em qual notebook, com qual usuário, em qual horário.
 
-**Lineage de colunas** vai além: mapeia quais colunas de origem alimentam quais colunas de destino. Requer Databricks Runtime 11.3 LTS ou superior para jobs comuns. Para Delta Live Tables, requer 13.3 LTS ou superior.
+**Lineage de colunas** vai além: mapeia quais colunas de origem alimentam quais colunas de destino. Lineage de streaming entre tabelas Delta requer DBR 11.3 LTS ou superior; column lineage em Delta Live Tables (pipelines declarativas) requer 13.3 LTS ou superior.
 
 Essas informações ficam acessíveis de duas formas: pelo Catalog Explorer com interface visual, e pelos system tables `system.access.table_lineage` e `system.access.column_lineage` para quem precisa programaticamente.
 
@@ -97,7 +97,7 @@ Se você está instrumentando lineage pela primeira vez num ambiente Databricks:
 
 Primeiro, confirme que os clusters e jobs estão em workspaces com Unity Catalog habilitado. Sem isso, nenhuma captura automática funciona.
 
-Segundo, valide o Databricks Runtime: 11.3 LTS ou superior para column lineage em jobs comuns. Projetos mais antigos rodando em runtimes abaixo disso não vão ter column lineage mesmo com Unity Catalog ativo.
+Segundo, valide o Databricks Runtime: lineage de streaming entre tabelas Delta requer DBR 11.3 LTS ou superior; column lineage em Delta Live Tables (pipelines declarativas) requer 13.3 LTS ou superior. Projetos mais antigos rodando em runtimes abaixo disso não vão ter column lineage mesmo com Unity Catalog ativo.
 
 Terceiro, mapeie quais pipelines usam UPDATE/DELETE/MERGE extensivamente. Para esses, defina desde o início qual será a estratégia de auditoria complementar, seja via `system.query.history` ou via logging explícito no código.
 

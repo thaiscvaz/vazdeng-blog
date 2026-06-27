@@ -13,7 +13,7 @@ images:
 
 Em setembro de 1998, a Long-Term Capital Management perdeu 4.6 bilhões de dólares em algumas semanas. Os modelos de spread foram treinados em correlações de tempo normal. O default russo e a fuga subsequente para qualidade fizeram correlações que historicamente eram 0.3 convergirem para 1 em dias. Em *When Genius Failed*, o Lowenstein cita o cálculo interno do fundo sobre a probabilidade do que aconteceu:
 
-> *"An event so freakish as to be unlikely to occur even once over the entire life of the universe."*
+> *"An event so freakish as to be unlikely to occur even once over the entire life of the universe [...]"*
 
 Os modelos estavam tecnicamente corretos. Estavam só extrapolando confiança numa região do espaço que nunca tinham visto. Não tinham botão de "não sei".
 

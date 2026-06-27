@@ -15,7 +15,7 @@ Em 1 de agosto de 2012, a Knight Capital perdeu 440 milhões de dólares em 45 m
 
 Não foi bug de algoritmo. Não foi crise de mercado. Foi um único servidor entre oito que recebeu o deploy do novo código, enquanto outro manteve uma flag antiga reativada (Power Peg, código de 2003). Os dois rodaram em paralelo. O resultado foi uma cascata de ordens automáticas que ninguém conseguiu parar.
 
-O SEC documentou o caso (Release No. 70694, outubro 2013): a causa raiz não era um erro de lógica de trading. Era inconsistência de estado entre servidores que deveriam estar sincronizados. Em linguagem de engenharia de dados, era um data flow quebrado.
+A Knight Capital perdeu cerca de US$ 440 milhões (a SEC, na Release 70694, contabiliza mais de US$ 460 milhões em posições indesejadas), e a causa raiz não era um erro de lógica de trading. Era inconsistência de estado entre servidores que deveriam estar sincronizados. Em linguagem de engenharia de dados, era um data flow quebrado.
 
 ![Timeline 1 de agosto de 2012: Knight Capital perde 440 milhões em 45 minutos por estado divergente entre servidores](images/01-knight-timeline.png)
 
@@ -80,7 +80,7 @@ Knight Capital não foi um acidente isolado. O padrão se repete em outras escal
 
 **GitHub, outubro de 2018**: outage de 24 horas. Causa raiz documentada pelo Jason Warner (post-mortem oficial): 43 segundos de partição de rede entre data centers no US East causaram divergência no failover do MySQL Orchestrator, replication storm e inconsistência cross-DC. Foi falha pura de data flow na camada de replicação.
 
-**Airbnb, antes da Minerva**: equipes diferentes calculavam "active user" com queries divergentes no mesmo Spark cluster. Métricas batiam de cabeça em reuniões executivas. A solução não foi outro dashboard, foi uma camada única de definição de métricas com lineage explícito da fonte ao destino. O Minerva indexa hoje mais de 200 mil data assets.
+**Airbnb, antes da Minerva**: equipes diferentes calculavam "active user" com queries divergentes no mesmo Spark cluster. Métricas batiam de cabeça em reuniões executivas. A solução foi o Minerva, camada única de definição de métricas (mais de 12 mil métricas e 4 mil dimensões) com lineage explícito da fonte ao destino.
 
 Esses casos cabem em padrões nomeados na literatura. Vale conhecer cada um:
 
@@ -100,7 +100,7 @@ Empresas que operam dado em produção real publicam a arquitetura. Vale ler.
 | **Uber** | *Uber's Big Data Platform* (Eng Blog, out 2018) | Hudi reduziu latência de ingestão de 24h para menos de 1h em 100+ PB |
 | **Airbnb** | *Democratizing Data at Airbnb* (mai 2017) | Dataportal indexa 200K+ data assets com lineage explícito |
 | **Stripe** | *Online migrations at scale* (Eng Blog, fev 2017) | Dual-write + backfill + reconciliation para migrar dados financeiros sem perda |
-| **Slack** | *How We Built Slack's Data Warehouse* (set 2023) | Migração de Presto+Hive para Trino+Iceberg, 60K queries por dia |
+| **Slack** | *How We Built Slack's Data Warehouse* (set 2023) | Migração de Presto+Hive para Trino+Iceberg, alto volume de queries diárias |
 
 Padrão comum: cada uma documentou o flow antes de construir a próxima ferramenta. Ferramenta nasceu a partir do diagrama, não o contrário.
 

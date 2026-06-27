@@ -21,7 +21,7 @@ Esse post não é para convencer ninguém a abandonar o Airflow. É sobre o que 
 
 O Airflow foi criado por Maxime Beauchemin no Airbnb em outubro de 2014 para orquestrar pipelines de dados com dependências complexas. Virou open source em junho de 2015 e projeto top-level da Apache Foundation em janeiro de 2019.
 
-Hoje é o orquestrador de dados mais usado no mundo: 320 milhões de downloads só em 2024, dez vezes mais que o segundo colocado. Uber roda 200.000 pipelines com 750.000 task runs por dia. Shopify tem 10.000 DAGs ativos. Stripe processa 150.000 tasks diárias.
+Hoje é o orquestrador de dados mais usado no mundo: 320 milhões de downloads só em 2024, de longe o mais baixado entre os orquestradores. Uber roda 200.000 pipelines com 750.000 task runs por dia. Shopify tem 10.000 DAGs ativos. Stripe orquestra 250 pipelines que somam 150.000 tasks.
 
 É adoção real, não hype.
 
@@ -45,7 +45,7 @@ Mas o mesmo relatório que aponta esses números também revela que 46% dos usu�
 
 O scheduler precisa executar o código Python de cada arquivo DAG repetidamente para entender o que existe e quais são as dependências. Com 200 DAGs, esse ciclo de parse pode levar minutos.
 
-O que torna isso crítico: 98% dos casos de lentidão no scheduler são causados por imports pesados no nível do módulo. Um arquivo que faz `import pandas as pd` no topo, fora de qualquer função, faz o scheduler executar esse import a cada ciclo. Em 200 DAGs com imports pesados, isso vira minutos de parse antes de qualquer task executar.
+O que torna isso crítico: imports pesados no nível do módulo são de longe a causa mais comum de lentidão no scheduler. Um arquivo que faz `import pandas as pd` no topo, fora de qualquer função, faz o scheduler executar esse import a cada ciclo. Em 200 DAGs com imports pesados, isso vira minutos de parse antes de qualquer task executar.
 
 ```python
 # Errado: pandas é importado a cada ciclo do scheduler
@@ -68,7 +68,7 @@ def processar():
 
 XCom é o mecanismo do Airflow para tasks se comunicarem. O problema: foi projetado para mensagens pequenas, não para dados.
 
-No PostgreSQL, o limite default de linha é 8KB. Um DataFrame de 1.000 linhas vai explodir o XCom. Em produção, o erro aparece como timeout ou crash silencioso do metadata database, não como uma mensagem clara de "dado grande demais".
+XCom é armazenado no metadata database e, embora o Postgres aceite valores grandes (até ~1GB via TOAST), o teto prático recomendado é de dezenas de KB. Passar um DataFrame inteiro degrada o banco. A solução em produção: passar só o path no S3, nunca o dado.
 
 A solução usada em produção: passar apenas o path no S3 via XCom, nunca o dado em si.
 

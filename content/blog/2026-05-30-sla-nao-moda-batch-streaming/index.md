@@ -61,7 +61,7 @@ Uber é o caso mais interessante. Adotou streaming sem virar 100% streaming. Adi
 
 Jay Kreps publicou em 2014 o ensaio que matou a Lambda Architecture. Lambda mantém duas pipelines paralelas pra produzir o mesmo resultado: uma batch confiável, uma streaming rápida. A frase que ficou:
 
-> *The problem with the Lambda Architecture is that maintaining code that needs to produce the same result in two complex distributed systems is exactly as painful as it seems.*
+> *The problem with the Lambda Architecture is that maintaining code that needs to produce the same result in two complex distributed systems is exactly as painful as it seems like it would be.*
 
 ![Quote Kreps sobre Lambda Architecture](images/02-quote-kreps-lambda.png)
 

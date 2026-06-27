@@ -71,7 +71,7 @@ A maioria das tabelas operacionais em um lakehouse produtivo responde "sim" para
 
 ![A decisão em 3 perguntas: escrita concorrente ou update/auditoria levam a Delta Lake; tabela só de leitura fica em Parquet](images/03-decisao-3-perguntas.png)
 
-No contexto de compliance com o BACEN 521, que entra em vigor em outubro de 2026, tabelas de auditoria de transações financeiras precisam de time travel e schema enforcement. Usar Parquet puro nessas tabelas não é só ineficiente. É um risco regulatório.
+Em tabelas de auditoria de transações financeiras, onde você precisa reconstruir o estado em qualquer ponto do tempo e garantir consistência de schema, time travel e schema enforcement deixam de ser conveniência e viram requisito de engenharia. Parquet puro aqui não é só ineficiente, é frágil.
 
 ## A decisão arquitetural real
 
