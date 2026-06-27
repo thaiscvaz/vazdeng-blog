@@ -11,7 +11,7 @@ On August 1st, 2012, Knight Capital lost $440 million in 45 minutes.
 
 Not an algorithm bug. Not a market crash. One server out of eight received the new deploy, while another kept an old flag reactivated (Power Peg, 2003 code). The two ran in parallel. The result was a cascade of automated orders nobody could stop.
 
-The SEC documented the case (Release No. 70694, October 2013): the root cause was not a trading logic error. It was state inconsistency between servers that should have been in sync. In data engineering language, a broken data flow.
+The SEC documented the case (Release No. 70694, October 2013, which counts over US$460 million in unwanted positions; the US$440 million is Knight's own figure): the root cause was not a trading logic error. It was state inconsistency between servers that should have been in sync. In data engineering language, a broken data flow.
 
 ![Timeline August 1st, 2012: Knight Capital loses 440 million dollars in 45 minutes from divergent state between servers](images/01-knight-timeline.png)
 
@@ -76,7 +76,7 @@ Knight Capital was not an isolated accident. The pattern repeats at other scales
 
 **GitHub, October 2018**: 24-hour outage. Root cause documented by Jason Warner (official post-mortem): 43 seconds of network partition between US East data centers caused divergence in MySQL Orchestrator failover, replication storm and cross-DC inconsistency. Pure data flow failure at the replication layer.
 
-**Airbnb, before Minerva**: different teams calculated "active user" with divergent queries on the same Spark cluster. Metrics collided in executive meetings. The fix was not another dashboard, it was a single metric definition layer with explicit lineage from source to destination. Minerva indexes over 200K data assets today.
+**Airbnb, before Minerva**: different teams calculated "active user" with divergent queries on the same Spark cluster. Metrics collided in executive meetings. The fix was not another dashboard. The solution was Minerva, a single metrics-definition layer (over 12,000 metrics and 4,000 dimensions) with explicit lineage from source to destination.
 
 These cases fit named patterns in the literature. Worth knowing each:
 
@@ -96,7 +96,7 @@ Companies running real data in production publish the architecture. Worth readin
 | **Uber** | *Uber's Big Data Platform* (Eng Blog, Oct 2018) | Hudi cut ingestion latency from 24h to under 1h on 100+ PB |
 | **Airbnb** | *Democratizing Data at Airbnb* (May 2017) | Dataportal indexes 200K+ data assets with explicit lineage |
 | **Stripe** | *Online migrations at scale* (Eng Blog, Feb 2017) | Dual-write + backfill + reconciliation to migrate financial data without loss |
-| **Slack** | *How We Built Slack's Data Warehouse* (Sep 2023) | Presto+Hive to Trino+Iceberg migration, 60K queries per day |
+| **Slack** | *How We Built Slack's Data Warehouse* (Sep 2023) | Presto+Hive to Trino+Iceberg migration, high volume of daily queries |
 
 Common pattern: each one documented the flow before building the next tool. The tool was born from the diagram, not the other way around.
 

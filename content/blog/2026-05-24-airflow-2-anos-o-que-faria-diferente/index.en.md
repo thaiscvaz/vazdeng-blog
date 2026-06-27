@@ -17,7 +17,7 @@ This post is not to convince anyone to drop Airflow. It is about what is worth c
 
 Airflow was created by Maxime Beauchemin at Airbnb in October 2014 to orchestrate data pipelines with complex dependencies. It went open source in June 2015 and became an Apache Foundation top-level project in January 2019.
 
-It is today the most used data orchestrator in the world: 320 million downloads in 2024 alone, ten times more than the second place. Uber runs 200,000 pipelines with 750,000 task runs per day. Shopify has 10,000 active DAGs. Stripe processes 150,000 daily tasks.
+It is today the most used data orchestrator in the world: 320 million downloads in 2024 alone, by far the most downloaded orchestrator. Uber runs 200,000 pipelines with 750,000 task runs per day. Shopify has 10,000 active DAGs. Stripe orchestrates 250 pipelines totaling 150,000 tasks.
 
 Real adoption, not hype.
 
@@ -41,7 +41,7 @@ But the same report that shows those numbers also reveals that 46% of users say 
 
 The scheduler needs to run the Python code of each DAG file repeatedly to understand what exists and what the dependencies are. With 200 DAGs, that parse cycle can take minutes.
 
-What makes it critical: 98% of scheduler slowness cases come from heavy imports at the module level. A file that does `import pandas as pd` at the top, outside any function, makes the scheduler run that import every cycle. With 200 DAGs and heavy imports, that becomes minutes of parsing before any task runs.
+What makes it critical: heavy module-level imports are by far the most common cause of scheduler slowness. A file that does `import pandas as pd` at the top, outside any function, makes the scheduler run that import every cycle. With 200 DAGs and heavy imports, that becomes minutes of parsing before any task runs.
 
 ```python
 # Wrong: pandas is imported every scheduler cycle
@@ -64,9 +64,9 @@ def process():
 
 XCom is Airflow's mechanism for tasks to communicate. The problem: it was designed for small messages, not data.
 
-In PostgreSQL, the default row limit is 8KB. A 1,000-row DataFrame will blow up XCom. In production, the error shows up as a timeout or silent crash of the metadata database, not as a clear "data too big" message.
+XCom is stored in the metadata database and, although Postgres accepts large values (up to ~1GB via TOAST), the recommended practical ceiling is tens of KB. Passing a whole DataFrame degrades the database. In production, the symptom shows up as a slow or stressed metadata database, not as a clear "data too big" message.
 
-The pattern used in production: pass only the S3 path via XCom, never the data itself.
+The production solution: pass only the S3 path via XCom, never the data itself.
 
 ### catchup=True has already triggered unwanted backfills in many teams
 

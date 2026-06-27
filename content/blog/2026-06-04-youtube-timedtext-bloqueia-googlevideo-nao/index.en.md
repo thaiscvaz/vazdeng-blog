@@ -18,7 +18,7 @@ Switched to the audio endpoint. Zero 429.
 
 ## The problem transcription pipelines ignore
 
-The `timedtext` rate limit became common enough in 2026 that yt-dlp has 3 open issues (#7123, #13770, #13831) with no definitive fix. The official advice is caching and using the YouTube Data API with OAuth. Both work but shift the problem rather than solving it. Anyone who scheduled 50 URLs and saw half come back empty knows the symptom.
+The `timedtext` rate limit became common enough since 2025 that yt-dlp has 3 open issues (#7123, #13770, #13831) with no definitive fix. The official advice is caching and using the YouTube Data API with OAuth. Both work but shift the problem rather than solving it. Anyone who scheduled 50 URLs and saw half come back empty knows the symptom.
 
 ## Why `googlevideo` doesn't fall with it
 
@@ -72,8 +72,8 @@ They exist. Two main ones in 2026.
 
 | Solution | Price | When it makes sense |
 |---|---|---|
-| **Supadata** | From $0.001/min, free tier 1000 req/month | Company with SLA, doesn't want to maintain infra |
-| **Apify YouTube Transcript Scraper** | $0.40 per 1000 actor runs + compute | Pipeline already on Apify |
+| **Supadata** | plans from $17/month (3,000 credits), free tier 100 credits/month | Company with SLA, doesn't want to maintain infra |
+| **Apify YouTube Transcript Scraper** | from ~$0.50 per 1,000 runs (varies by actor) + compute | Pipeline already on Apify |
 | **yt-nota self-host** | 250 MB deps + 244 MB model | Privacy, academic batch, full control |
 
 The call is trivial for me: learning notes and Obsidian vault don't go through third-party APIs. If it were a corporate pipeline with SLA and audit, Supadata wins on operational simplicity. Self-host only makes sense when you are the customer of the data.
@@ -88,7 +88,7 @@ When NOT to use it: volume of 10,000 hours per month with tight SLA (OpenAI's Wh
 
 ## Anti-patterns I saw along the way
 
-Trusting `--sleep-subtitles 60` as a silver bullet. I tested it: it doesn't trigger before the request, it triggers after the first 429. Game over. Reaching for a paid API before trying the local pipeline is also a trap. $36k/year on transcription (the public faster-whisper benchmark) is money that should buy you a mid-range GPU. And deleting the raw audio after transcribing is the mistake of someone who never wanted to re-run with a better model 6 months later. I keep mine.
+Trusting `--sleep-subtitles 60` as a silver bullet. I tested it: it doesn't trigger before the request, it triggers after the first 429. Game over. Reaching for a paid API before trying the local pipeline is also a trap. $36k/year on transcription (my estimate) is money that should buy you a mid-range GPU. And deleting the raw audio after transcribing is the mistake of someone who never wanted to re-run with a better model 6 months later. I keep mine.
 
 ## What this changes for you
 

@@ -47,7 +47,7 @@ This solves three problems at once. You can join tables in the lake without expo
 
 ## Principle 3: lineage is a requirement, not a feature
 
-When a data subject request shows up (Art. 18, right of access, correction, deletion), you have 15 days to respond. Without complete lineage, that deadline becomes a nightmare.
+When a data subject requests confirmation or access (LGPD Art. 19), the controller has up to 15 days to respond. The data subject's rights themselves (access, correction, deletion) are listed in Art. 18. Without complete lineage, that deadline becomes a nightmare.
 
 Real lineage answers three questions for any personal data. Where did it come from? Source system, original field, ingestion timestamp. What transformations did it go through? Pipeline steps, applied rules, derivations. Where is it now? Tables, trained models, dashboards that consume it.
 

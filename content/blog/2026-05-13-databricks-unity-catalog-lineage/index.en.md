@@ -21,7 +21,7 @@ Unity Catalog intercepts Spark execution plans at runtime and registers every re
 
 **Table lineage** works for any SELECT, CREATE TABLE AS SELECT, INSERT INTO SELECT operation in any language: Python, SQL, Scala, R. For each operation, the system records which table was read, which was written, in which job, in which notebook, by which user, at what time.
 
-**Column lineage** goes further: it maps which source columns feed which destination columns. Requires Databricks Runtime 11.3 LTS or higher for regular jobs. For Delta Live Tables, requires 13.3 LTS or higher.
+**Column lineage** goes further: it maps which source columns feed which destination columns. Lineage of streaming between Delta tables requires DBR 11.3 LTS or above; column lineage in Delta Live Tables (declarative pipelines) requires 13.3 LTS or above.
 
 This information is accessible two ways: via Catalog Explorer with a visual interface, and via the system tables `system.access.table_lineage` and `system.access.column_lineage` for those who need it programmatically.
 
@@ -93,7 +93,7 @@ If you're instrumenting lineage for the first time in a Databricks environment:
 
 First, confirm that clusters and jobs are in workspaces with Unity Catalog enabled. Without it, no automatic capture works.
 
-Second, validate Databricks Runtime: 11.3 LTS or higher for column lineage in regular jobs. Older projects running on runtimes below that won't have column lineage even with Unity Catalog active.
+Second, validate Databricks Runtime: lineage of streaming between Delta tables requires DBR 11.3 LTS or above; column lineage in Delta Live Tables (declarative pipelines) requires 13.3 LTS or above. Older projects running on runtimes below that won't have column lineage even with Unity Catalog active.
 
 Third, map which pipelines extensively use UPDATE/DELETE/MERGE. For those, define from the start what the complementary auditing strategy will be, whether via `system.query.history` or via explicit logging in code.
 

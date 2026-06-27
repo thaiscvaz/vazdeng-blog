@@ -67,7 +67,7 @@ Most operational tables in a productive lakehouse answer "yes" to question one o
 
 ![The decision in 3 questions: concurrent writes or update/audit requirements lead to Delta Lake; read-only tables stay on Parquet](images/03-decisao-3-perguntas.png)
 
-In the context of BACEN 521 compliance, which takes effect in October 2026, audit tables for financial transactions need time travel and schema enforcement. Using pure Parquet on those tables isn't just inefficient. It's a regulatory risk.
+In audit tables for financial transactions, where you need to reconstruct the state at any point in time and guarantee schema consistency, time travel and schema enforcement stop being a convenience and become an engineering requirement. Using pure Parquet on those tables isn't just inefficient. It's fragile.
 
 ## The real architectural decision
 
