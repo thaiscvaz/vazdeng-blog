@@ -27,6 +27,8 @@ Iceberg tem uma virtude que também é armadilha: ele funciona antes de você ap
 
 Eu já vi esse padrão em pipeline de finanças em produção. E vi de novo em contextos completamente diferentes, com times técnicos sólidos. Os anti-padrões são sempre os mesmos três. Nenhum deles é bug. Todos são decisões de arquitetura que pareciam razoáveis no dia 1.
 
+![Os três anti-padrões de Iceberg em produção, cada um com sintoma e correção: particionar por hour(ts) gera 8.760 partições de poucos MB por ano e se corrige com baixa cardinalidade mais SORT ou Z-order; manifest bloat aparece quando se grava a cada 40s sem expirar snapshots e se corrige com expire_snapshots e rewrite_manifests agendados; compaction adiada acumula milhões de small files em streaming e se corrige com rewrite_data_files e remove_orphan_files noturno. Nenhum é bug, todos são manutenção adiada.](images/01-tres-antipadroes.png)
+
 ## O primeiro: particionar por campo que não tem estatística de acesso
 
 O erro clássico é particionar por `hour(event_timestamp)`. Faz sentido no papel: dados temporais, granularidade fina, queries por período. Só que se sua tabela recebe 50MB por hora, no fim do ano você tem 8.760 partições cada uma com alguns megabytes. Segundo o [LakeOps](https://lakeops.dev/blog/iceberg-partitioning-best-practices), esse é o cenário de fragmentação garantida.
@@ -40,6 +42,8 @@ O caminho certo é particionar por baixa cardinalidade (data, região, talvez um
 Toda escrita em Iceberg gera um snapshot novo, e o snapshot referencia um manifesto que lista quais data files pertencem a ele. Se você grava a cada 40 segundos porque a stream é contínua, o manifesto cresce rápido. Ninguém rodou `expire_snapshots` porque ninguém sentiu dor ainda. Em algumas semanas o metadata sozinho consome gigabytes, e o planejamento de query lê tudo isso para descobrir o que precisa ler de verdade.
 
 Segundo a [Starburst](https://www.starburst.io/blog/apache-iceberg-files/), 100 mil arquivos pequenos com metadata inflado transformam 200ms de planejamento em 45 segundos. E o custo em object storage vira 100 mil GET requests independentes. É o mesmo volume de dado. É o mesmo query. É 500 vezes mais caro. Não porque o Iceberg é ruim, mas porque você deixou a operação de manutenção pra depois.
+
+![Comparação de custo da mesma query em dois estados da tabela. Fragmentada, sem manutenção: 100.000 arquivos pequenos com metadata inflado levam o planejamento da query a 45 segundos e geram 100.000 GET requests de object storage. Compactada com job noturno de rewrite_data_files e expire_snapshots, em arquivos de 128 a 512 MB: o mesmo planejamento cai para 200 milissegundos e poucos GET requests. Mesmo dado, mesma query, 500x mais caro.](images/02-mesma-query-500x.png)
 
 Quando o time acorda e roda `expire_snapshots` de uma vez em 50 mil snapshots acumulados, o job de manutenção sozinho leva horas e reprocessa metadata de meses. Aí quebra a mesma noite em que era pra dormir tranquilo.
 
