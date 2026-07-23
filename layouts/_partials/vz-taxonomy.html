@@ -1,0 +1,25 @@
+{{/* Indice de termos da taxonomia (partial, contexto: a Page): /series/ ou /tags/ */}}
+{{ $isSeries := eq .Data.Plural "series" }}
+{{ $title := cond $isSeries (T "seriesAllTitle") .Title }}
+
+<nav class="vz-crumb">
+  <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
+  <span class="sep">/</span>
+  <span class="cur">{{ $title }}</span>
+</nav>
+
+<header class="vz-post-header">
+  <h1 class="vz-post-h1">{{ $title }}</h1>
+</header>
+
+<div class="vz-related-grid vz-series-index">
+  {{ range .Data.Terms.Alphabetical }}
+    {{ $slug := .Name }}
+    {{ $meta := dict "label" .Page.Title "color" "amber" }}
+    {{ if $isSeries }}{{ $meta = index site.Params.series_meta $slug | default $meta }}{{ end }}
+    <a class="vz-related-card" href="{{ .Page.RelPermalink }}">
+      <span class="vz-related-card-eyebrow {{ $meta.color }}">{{ $meta.label }}</span>
+      <h4 class="vz-related-card-h">{{ .Count }} {{ if $isSeries }}{{ T "seriesCount" }}{{ else }}{{ T "archivePostsCount" }}{{ end }}</h4>
+    </a>
+  {{ end }}
+</div>

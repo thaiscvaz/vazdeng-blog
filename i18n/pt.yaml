@@ -42,6 +42,15 @@ subscribeAria: "Assinar a newsletter VazDEng"
 # Related
 relatedHead: "Continue lendo"
 
+# Series
+seriesLabel: "Série"
+seriesEpisode: "Episódio"
+seriesOf: "de"
+seriesPrev: "← Episódio anterior"
+seriesNext: "Próximo episódio →"
+seriesAllTitle: "Séries"
+seriesCount: "episódios"
+
 # Nav CTA
 navCta: "Assinar"
 

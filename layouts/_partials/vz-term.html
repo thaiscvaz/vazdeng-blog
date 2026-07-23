@@ -1,0 +1,49 @@
+{{/* Pagina de termo de taxonomia (partial, contexto: a Page). Para /series/<slug>/
+     renderiza episodios ordenados; para /tags/<tag>/ lista cronologica simples. */}}
+{{ $slug := .Data.Term }}
+{{ $isSeries := eq .Data.Plural "series" }}
+{{ $meta := dict "label" .Title "color" "amber" }}
+{{ if $isSeries }}
+  {{ $meta = index site.Params.series_meta $slug | default $meta }}
+{{ end }}
+{{ $eps := .Pages.ByDate }}
+{{ if $isSeries }}{{ $eps = sort .Pages "Params.episode" }}{{ end }}
+{{ $sub := $meta.sub }}
+{{ if eq .Language.Lang "en" }}{{ $sub = $meta.sub_en | default $meta.sub }}{{ end }}
+
+<nav class="vz-crumb">
+  <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
+  <span class="sep">/</span>
+  <span class="cur">{{ $meta.label }}</span>
+</nav>
+
+<header class="vz-post-header">
+  {{ if $isSeries }}<div class="vz-post-eyebrow {{ $meta.color }}">{{ T "seriesLabel" }}</div>{{ end }}
+  <h1 class="vz-post-h1">{{ $meta.label }}</h1>
+  {{ with $sub }}<p class="vz-post-lead">{{ . }}</p>{{ end }}
+  <div class="vz-post-byline">
+    <span>{{ len $eps }} {{ if $isSeries }}{{ T "seriesCount" }}{{ else }}{{ T "archivePostsCount" }}{{ end }}</span>
+  </div>
+</header>
+
+<div class="vz-series-toc">
+  {{ range $eps }}
+  <a class="vz-series-toc-item" href="{{ .RelPermalink }}">
+    {{ if $isSeries }}<span class="vz-series-toc-num {{ $meta.color }}">{{ printf "%02d" (int (.Params.episode | default 0)) }}</span>{{ end }}
+    <span class="vz-series-toc-body">
+      <span class="vz-series-toc-title">{{ .Title }}</span>
+      {{ with .Params.description }}<span class="vz-series-toc-desc">{{ . | truncate 140 }}</span>{{ end }}
+    </span>
+    <span class="vz-series-toc-date">{{ .Date.Format "02 Jan 2006" }}</span>
+  </a>
+  {{ end }}
+</div>
+
+<aside class="vz-subscribe">
+  <div class="vz-subscribe-inner">
+    <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
+    <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
+    <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
+    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+  </div>
+</aside>

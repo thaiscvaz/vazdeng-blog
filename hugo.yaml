@@ -17,6 +17,11 @@ module:
 permalinks:
   blog: /:year/:month/:day/:slug/
 
+# Taxonomias: tags (pills) + series (paginas /series/<slug>/ com episodios ordenados)
+taxonomies:
+  tag: tags
+  series: series
+
 # Idiomas (sufixo de arquivo .en.md para inglês)
 languages:
   pt:
@@ -103,6 +108,9 @@ menu:
     - name: Sobre
       pageRef: /sobre
       weight: 1
+    - name: Séries
+      pageRef: /series
+      weight: 2
     - name: GitHub
       weight: 3
       url: https://github.com/thaiscvaz
@@ -128,6 +136,33 @@ params:
   # SEO e verificações (descomentar e preencher quando disponível)
   # googleSiteVerification: ""   # Google Search Console: search.google.com/search-console
   # indieAuth: ""                # rel=me link (ex: https://github.com/thaiscvaz)
+
+  # Cloudflare Web Analytics (gratis, sem cookie). Pegar o token em:
+  # dash.cloudflare.com > Analytics & Logs > Web Analytics > Add site > copiar "token" do snippet.
+  # cloudflareAnalyticsToken: ""
+
+  # Metadados das series (label + cor + descricao curta usada na pagina da serie)
+  series_meta:
+    ia-foundations:
+      label: "IA Foundations"
+      color: sage
+      sub: "Os fundamentos de engenharia de IA, um mecanismo por episódio."
+      sub_en: "AI engineering fundamentals, one mechanism per episode."
+    zero-to-expert:
+      label: "Zero to Expert"
+      color: lavender
+      sub: "Fundamentos de engenharia de dados antes da ferramenta."
+      sub_en: "Data engineering fundamentals before the tool."
+    cripto-chronicles:
+      label: "Cripto Chronicles"
+      color: rose
+      sub: "A saga do agente quant de cripto, capítulo a capítulo."
+      sub_en: "The crypto quant agent saga, chapter by chapter."
+    segundo-cerebro:
+      label: "Segundo Cérebro"
+      color: coral
+      sub: "Seis anos de Zettelkasten operado por agentes de IA."
+      sub_en: "Six years of Zettelkasten operated by AI agents."
 
   navbar:
     displayTitle: true

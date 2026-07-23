@@ -16,6 +16,19 @@
 {{ $same := where $pool "Params.tags" "intersect" ($current.Params.tags | default slice) }}
 {{ $related := first 3 ($same | union $pool) }}
 
+{{/* Serie: episodio N de M + navegacao anterior/proximo + link pra pagina da serie */}}
+{{ $seriesSlug := "" }}{{ with .Params.series }}{{ $seriesSlug = index . 0 }}{{ end }}
+{{ $seriesMeta := dict }}{{ $seriesEps := slice }}{{ $seriesPrev := "" }}{{ $seriesNext := "" }}{{ $seriesPage := "" }}
+{{ if $seriesSlug }}
+  {{ $seriesMeta = index site.Params.series_meta $seriesSlug | default (dict "label" $seriesSlug "color" "amber") }}
+  {{ $seriesEps = sort (where $allPosts "Params.series" "intersect" (slice $seriesSlug)) "Params.episode" }}
+  {{ $before := where $seriesEps "Params.episode" "lt" (.Params.episode | default 0) }}
+  {{ $after := where $seriesEps "Params.episode" "gt" (.Params.episode | default 0) }}
+  {{ with last 1 $before }}{{ $seriesPrev = index . 0 }}{{ end }}
+  {{ with first 1 $after }}{{ $seriesNext = index . 0 }}{{ end }}
+  {{ with site.GetPage (printf "/series/%s" $seriesSlug) }}{{ $seriesPage = . }}{{ end }}
+{{ end }}
+
 <nav class="vz-crumb">
   <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
   <span class="sep">/</span>
@@ -53,6 +66,20 @@
     {{ end }}
   </div>
 </header>
+
+{{ if $seriesSlug }}
+<div class="vz-series {{ $seriesMeta.color }}">
+  <div class="vz-series-info">
+    {{ if $seriesPage }}<a class="vz-series-name" href="{{ $seriesPage.RelPermalink }}">{{ T "seriesLabel" }} · {{ $seriesMeta.label }}</a>
+    {{ else }}<span class="vz-series-name">{{ T "seriesLabel" }} · {{ $seriesMeta.label }}</span>{{ end }}
+    <span class="vz-series-count">{{ T "seriesEpisode" }} {{ .Params.episode }} {{ T "seriesOf" }} {{ len $seriesEps }}</span>
+  </div>
+  <div class="vz-series-nav">
+    {{ with $seriesPrev }}<a class="vz-series-link" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ T "seriesPrev" }}</a>{{ end }}
+    {{ with $seriesNext }}<a class="vz-series-link" href="{{ .RelPermalink }}" title="{{ .Title }}">{{ T "seriesNext" }}</a>{{ end }}
+  </div>
+</div>
+{{ end }}
 
 {{ with $cover }}
 <div class="vz-post-cover">

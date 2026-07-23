@@ -4,7 +4,11 @@
 {{ $posts = $posts.ByDate.Reverse }}
 {{ $colorMap := site.Params.track_colors }}
 
-{{ if $isArchive }}
+{{ if eq .Kind "term" }}
+  {{ partial "vz-term.html" . }}
+{{ else if eq .Kind "taxonomy" }}
+  {{ partial "vz-taxonomy.html" . }}
+{{ else if $isArchive }}
 
   {{/* ============ HERO ============ */}}
   <section class="vz-hero">

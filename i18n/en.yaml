@@ -42,6 +42,15 @@ subscribeAria: "Subscribe to the VazDEng newsletter"
 # Related
 relatedHead: "Keep reading"
 
+# Series
+seriesLabel: "Series"
+seriesEpisode: "Episode"
+seriesOf: "of"
+seriesPrev: "← Previous episode"
+seriesNext: "Next episode →"
+seriesAllTitle: "Series"
+seriesCount: "episodes"
+
 # Nav CTA
 navCta: "Subscribe"
 
