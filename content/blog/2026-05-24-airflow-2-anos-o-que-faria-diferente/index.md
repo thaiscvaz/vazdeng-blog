@@ -25,7 +25,7 @@ Hoje é o orquestrador de dados mais usado no mundo: 320 milhões de downloads s
 
 É adoção real, não hype.
 
-Mas o mesmo relatório que aponta esses números também revela que 46% dos usuários dizem que quando o Airflow tem problema, a operação inteira para. Essa é a tensão que ninguém conta no primeiro tutorial.
+Mas o mesmo relatório que aponta esses números, o [State of Airflow da Astronomer](https://www.astronomer.io/state-of-airflow/), também revela que 46% dos usuários dizem que quando o Airflow tem problema, a operação inteira para. Essa é a tensão que ninguém conta no primeiro tutorial.
 
 ## O que o Airflow resolve bem
 
@@ -76,11 +76,11 @@ A solução usada em produção: passar apenas o path no S3 via XCom, nunca o da
 
 Por padrão em versões antigas, se você reimplantar um DAG com `start_date` no passado e `catchup=True`, o Airflow vai criar e tentar executar todas as runs históricas desde `start_date`. Com um DAG mensal e `start_date` dois anos atrás, isso são 24 runs disparadas de uma vez.
 
-A DoubleVerify documentou que depois de migrar para um setup com `catchup=False` como padrão do cluster e outras mudanças, os incidentes caíram 80%.
+A DoubleVerify [documentou no blog de engenharia deles](https://medium.com/doubleverify-engineering/lessons-learned-productionizing-airflow-achieving-reliability-without-wasting-time-aed8d35f055b) que depois de migrar para um setup com `catchup=False` como padrão do cluster e outras mudanças, os incidentes caíram 80%.
 
 ### Renomear um DAG perde todo o histórico
 
-Não existe operação de rename no Airflow. Renomear um DAG cria uma entrada nova no metadata database e perde todo o histórico de execuções. Em produção, isso significa que você não consegue comparar o comportamento atual com o passado, e qualquer alert que dependa do histórico quebra.
+Não existe operação de rename no Airflow. Renomear um DAG cria uma entrada nova no metadata database e perde todo o histórico de execuções. Em produção, você perde a comparação do comportamento atual com o passado, e qualquer alert que dependa do histórico quebra.
 
 ### Lógica de negócio dentro do operador vira problema depois
 

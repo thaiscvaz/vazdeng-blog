@@ -55,7 +55,7 @@ Esses casos não admitem batch. Streaming é a única resposta.
 
 Pra eles, Flink entrega latência abaixo de 100 milissegundos. Spark Structured Streaming fica em 100 milissegundos a 1 segundo (micro-batch). Kafka Streams roda embutido na aplicação, sem cluster próprio, e processa cerca de 1 milhão de eventos por segundo. A escolha entre os três é outro post.
 
-Uber é o caso mais interessante. Adotou streaming sem virar 100% streaming. Adicionou o Hudi pra incremental processing e baixou latência de ingestão de 24 horas pra menos de 1 hora em mais de 100 PB. O Flink IngestionNext deles consome 25% menos compute que o batch antigo. Streaming bem feito também economiza, desde que resolva o problema certo.
+Uber é o caso mais interessante. Adotou streaming sem virar 100% streaming. Adicionou o Hudi pra incremental processing e baixou latência de ingestão de 24 horas pra menos de 1 hora em mais de 100 PB. O Flink IngestionNext deles consome 25% menos compute que o batch antigo, [segundo o blog de engenharia da Uber](https://www.uber.com/en-US/blog/from-batch-to-streaming-accelerating-data-freshness-in-ubers-data-lake/). Streaming bem feito também economiza, desde que resolva o problema certo.
 
 ## Quando "ambos" é a resposta certa
 

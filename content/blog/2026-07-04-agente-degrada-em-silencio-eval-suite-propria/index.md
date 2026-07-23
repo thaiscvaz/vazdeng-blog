@@ -4,16 +4,18 @@ slug: agente-degrada-em-silencio-eval-suite-propria
 date: 2026-07-04
 publishDate: 2026-07-04
 draft: false
-description: "Medir só o output final esconde regressão. Sem eval por passo e por papel, o agente piora sem ninguém ver. Mostro a suíte de 9 golden cases que uso pra travar isso."
+description: "Medir só o output final esconde regressão. Sem eval por passo e por papel, o agente piora sem ninguém ver. A suíte de 9 golden cases que trava isso."
 tags: ["ia", "agentes"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 5
 ---
 Você sobe um agente, ele funciona, você ajusta o prompt do system pra melhorar uma coisa. A resposta final continua boa. Você dá o deploy. Três semanas depois o revisor de segurança para de pegar uma chave hardcoded num diff que ele pegaria de olhos fechados no mês passado. Ninguém viu acontecer. O output final nunca pareceu errado.
 
 Esse é o modo de falha mais caro de sistema agentic e o menos discutido. O agente não quebra de um jeito barulhento. Ele degrada em silêncio, e a única evidência aparece quando o erro já chegou no cliente.
 
-Eu montei uma suíte de evals própria pra parar de descobrir isso tarde. Nove golden cases, três agentes, gradeamento determinístico. Calibrei contra respostas reais e ela passa 9 de 9 hoje. Vou mostrar como ela é por dentro, porque o valor não está no número, está no que cada caso protege.
+Eu montei uma suíte de evals própria pra parar de descobrir isso tarde. Nove golden cases, três agentes, gradeamento determinístico. Calibrei contra respostas reais e ela passa 9 de 9 hoje. O valor não está no número, está no que cada caso protege.
 
 ## Por que o output final mente
 
@@ -41,7 +43,7 @@ A literatura de eval de agente separa três métricas que parecem iguais e não 
 
 O τ-bench usa Pass@k e Pass^k justamente pra expor inconsistência entre seeds. Pass@1 alto com variância alta esconde fragilidade, e o cliente do agente vai cair na execução ruim, não na boa. Quando você só olha "passou uma vez", está medindo o melhor caso de um sistema que vai rodar no pior.
 
-## A suíte: 9 casos, 3 agentes, gabarito determinístico
+## A suíte por dentro: casos, agentes e gabarito determinístico
 
 Minha suíte cobre os três agentes que carregam mais risco no meu squad de engenharia de dados. Cada um leva três casos, e a escolha dos três não é "três variações do mesmo teste". É detecção mais guarda de falso-positivo, sempre.
 

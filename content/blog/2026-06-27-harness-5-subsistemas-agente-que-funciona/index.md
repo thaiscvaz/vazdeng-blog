@@ -8,6 +8,8 @@ description: "Semana passada eu escrevi que a LLM não faz nada, o harness faz. 
 tags: ["ia", "agentes"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 4
 ---
 Semana passada eu escrevi que a LLM não faz nada, o harness faz. Recebi várias mensagens concordando, e uma que me incomodou: "ok, entendi que o harness importa. Mas o que é o harness, na prática?". Justo. Aquele post provou QUE o harness é o que move o agente. Este aqui abre o capô e mostra O QUE tem dentro. São cinco subsistemas. Falta um, e você tem o agente que eu chamo de "só parece funcionar": demo linda na sexta, quebrado na segunda em produção.
 
@@ -39,7 +41,7 @@ O agente sem Feedback é o mais perigoso porque ele é convincente. Ele escreve 
 
 A lição que levei pros meus próprios pipelines de engenharia de dados: nunca confiar em "retornou sem erro". Eu instrumento verificação de output esperado, não só de código de saída.
 
-E os números que vi essa semana reforçam: pesquisa recente atribui 65% das falhas de IA em empresa a defeitos de harness (context drift, desalinhamento de schema, degradação de state), não ao modelo. Um estudo de ablação levou um GPT-5.2 fixo de 52,8% para 66,5% num benchmark só mexendo na infraestrutura ao redor, sem tocar no modelo. A peça que falta é sempre um desses cinco subsistemas.
+E os números que vi essa semana reforçam: a [análise da Atlan sobre falhas de harness](https://atlan.com/know/agent-harness-failures-anti-patterns/) atribui 65% das falhas de IA em empresa a defeitos de harness (context drift, desalinhamento de schema, degradação de state), não ao modelo. E o [estudo de ablação da LangChain](https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering) levou um GPT-5.2-codex fixo de 52,8% para 66,5% no Terminal Bench 2.0 só mexendo na infraestrutura ao redor, sem tocar no modelo. A peça que falta é sempre um desses cinco subsistemas.
 
 ## Quando você NÃO precisa dos cinco
 

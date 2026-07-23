@@ -8,6 +8,8 @@ description: "No Ep 01 a gente falou de *data flow* (o conceito antes de qualque
 tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 3
 ---
 No Ep 01 a gente falou de *data flow* (o conceito antes de qualquer ferramenta), no Ep 02 de dependências em DAG (a ordem em que as coisas precisam rodar). Hoje fecho o tripé com a propriedade que separa um pipeline confiável de uma bomba-relógio: **idempotência**.
 

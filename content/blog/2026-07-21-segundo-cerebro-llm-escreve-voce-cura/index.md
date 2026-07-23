@@ -4,26 +4,13 @@ slug: segundo-cerebro-llm-escreve-voce-cura
 date: 2026-07-21
 publishDate: 2026-07-21
 draft: false
-description: "---"
-tags: ["engenharia-de-dados"]
+description: "Eu escrevi as notas. A IA achou as ligações entre memórias que eu tinha esquecido."
+tags: ["segundo-cerebro", "ia"]
+series: ["segundo-cerebro"]
+episode: 1
 images:
   - cover.png
 ---
----
-title: "6 anos de Zettelkasten: o dia que a IA me mostrou o que eu já sabia"
-subtitle: "Eu escrevi as notas. A IA achou as ligações entre memórias que eu tinha esquecido."
-publish_date: 2026-07-21
-track: SC
-num: "001"
-slug: segundo-cerebro-llm-escreve-voce-cura
-tags:
-  - segundo-cerebro
-  - zettelkasten
-  - obsidian
-  - claude-code
-  - knowledge-management
----
-
 Faz seis anos que eu construo meu segundo cérebro no Obsidian, seguindo Zettelkasten.
 
 Nota por nota, no meu ritmo. Eu li, eu resumi, eu conectei. Não é um arquivo, é onde ficam as minhas memórias de conhecimento: seis anos do que eu li, estudei e pensei, cada ideia numa nota atômica ligada às outras.

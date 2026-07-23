@@ -5,6 +5,8 @@ description: "In 1998 LTCM lost $4.6 billion because its models trusted territor
 tags: ["crypto", "hmm", "quant", "risk-management", "agente-quant", "ood-detection"]
 images:
   - cover.png
+series: ["cripto-chronicles"]
+episode: 2
 ---
 
 In September 1998, Long-Term Capital Management lost $4.6 billion in a few weeks. The spread models had been trained on normal-times correlations. The Russian default and the subsequent flight-to-quality made correlations historically around 0.3 converge to 1 within days. In *When Genius Failed*, Lowenstein cites the fund's internal calculation of the probability of what happened:

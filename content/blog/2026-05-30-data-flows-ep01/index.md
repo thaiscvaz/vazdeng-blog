@@ -9,6 +9,8 @@ description: "A Knight Capital perdeu 440 milhões de dólares em 45 minutos por
 tags: ["zero-to-expert", "data-flows", "fundamentos", "data-engineering"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 1
 ---
 
 Em 1 de agosto de 2012, a Knight Capital perdeu 440 milhões de dólares em 45 minutos.

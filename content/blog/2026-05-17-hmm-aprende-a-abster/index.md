@@ -9,6 +9,8 @@ description: "Em 1998 a LTCM perdeu 4.6 bilhões porque seus modelos confiavam e
 tags: ["cripto", "hmm", "quant", "risk-management", "agente-quant", "ood-detection"]
 images:
   - cover.png
+series: ["cripto-chronicles"]
+episode: 2
 ---
 
 Em setembro de 1998, a Long-Term Capital Management perdeu 4.6 bilhões de dólares em algumas semanas. Os modelos de spread foram treinados em correlações de tempo normal. O default russo e a fuga subsequente para qualidade fizeram correlações que historicamente eram 0.3 convergirem para 1 em dias. Em *When Genius Failed*, o Lowenstein cita o cálculo interno do fundo sobre a probabilidade do que aconteceu:

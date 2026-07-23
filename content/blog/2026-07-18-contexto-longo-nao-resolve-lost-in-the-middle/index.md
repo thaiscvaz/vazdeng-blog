@@ -8,6 +8,8 @@ description: "---"
 tags: ["ia", "agentes"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 7
 ---
 ---
 title: "IA Foundations 07: janela de 1M tokens não resolve nada se a informação cai no meio"

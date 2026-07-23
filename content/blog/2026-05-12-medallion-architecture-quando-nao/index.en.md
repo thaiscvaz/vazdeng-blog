@@ -51,13 +51,13 @@ Applying Medallion here means creating Bronze, Silver, and Gold to serve exactly
 
 The practical signal: if Gold is identical to Silver plus one grouping, you don't need three layers. A single direct transformation from source to consumed table does the same work with half the infrastructure.
 
-A case documented by a data architect: a customer had 4.2 billion rows in Bronze accumulated over six years of data, but Silver only consumed the last 90 days. 97% of stored data was never used. The storage cost was real, the benefit wasn't.
+The pattern this scenario produces in practice: Bronze accumulating years of full history while Silver only consumes the last 90 days. Almost all the storage you pay for is never read by anyone. The cost is real, the benefit isn't.
 
 ### When latency matters more than quality
 
 Each transition Bronze to Silver, Silver to Gold, is a separate job. In Spark pipelines, that's usually 20 to 40 minutes per layer. Three layers in sequence and total latency tops one hour before data reaches anywhere.
 
-Analyses with real practitioner data show overhead of 53% or more in simple cases: 23 minutes with Medallion versus 15 minutes with direct transformation, for the same result.
+Do the math on a simple case: 5 minutes from source to Bronze, 10 from Bronze to Silver, 8 from Silver to Gold. That's 23 minutes with Medallion versus 15 with a direct transformation, 53% overhead for the same result.
 
 ![Latency comparison: direct transformation 15min vs Medallion 23min](images/medallion_latency_infographic.png)
 

@@ -21,7 +21,7 @@ It is today the most used data orchestrator in the world: 320 million downloads 
 
 Real adoption, not hype.
 
-But the same report that shows those numbers also reveals that 46% of users say that when Airflow has a problem, the entire operation stops. That is the tension nobody tells you about in the first tutorial.
+But the same report that shows those numbers, [Astronomer's State of Airflow](https://www.astronomer.io/state-of-airflow/), also reveals that 46% of users say that when Airflow has a problem, the entire operation stops. That is the tension nobody tells you about in the first tutorial.
 
 ## What Airflow solves well
 
@@ -72,7 +72,7 @@ The production solution: pass only the S3 path via XCom, never the data itself.
 
 By default in old versions, if you redeploy a DAG with `start_date` in the past and `catchup=True`, Airflow will create and try to execute every historical run since `start_date`. With a monthly DAG and `start_date` two years ago, that is 24 runs fired at once.
 
-DoubleVerify documented that after migrating to a setup with `catchup=False` as the cluster default and other changes, incidents dropped 80%.
+DoubleVerify [documented on their engineering blog](https://medium.com/doubleverify-engineering/lessons-learned-productionizing-airflow-achieving-reliability-without-wasting-time-aed8d35f055b) that after migrating to a setup with `catchup=False` as the cluster default and other changes, incidents dropped 80%.
 
 ### Renaming a DAG loses the whole history
 

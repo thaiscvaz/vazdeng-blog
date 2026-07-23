@@ -5,6 +5,8 @@ description: "Knight Capital lost $440 million in 45 minutes because one server 
 tags: ["zero-to-expert", "data-flows", "fundamentals", "data-engineering"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 1
 ---
 
 On August 1st, 2012, Knight Capital lost $440 million in 45 minutes.

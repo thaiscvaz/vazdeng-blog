@@ -8,6 +8,8 @@ draft: false
 description: "Data leakage destruiu um Sharpe +0.66 em -1.14. O que aprendi: 7 camadas, 202 testes, 90x melhor capital preservation que buy-hold."
 tags: ["cripto", "python", "quant", "backtesting", "capital-preservation"]
 images: ["cover.png"]
+series: ["cripto-chronicles"]
+episode: 1
 ---
 
 Por 6 meses, construí um agente quant para trading de BTC/USDT.

@@ -4,10 +4,12 @@ slug: particionar-errado-custa-mais-que-nao-particionar-zte-ep04
 date: 2026-07-04
 publishDate: 2026-07-04
 draft: false
-description: "Quase todo mundo aprende \"particiona pra ficar rápido\". O que ninguém conta é que granularidade errada deixa o pipeline mais lento, mais caro e mais frágil do que se você não tivesse particionado nada."
+description: "Quase todo mundo aprende \"particiona pra ficar rápido\". Granularidade errada deixa o pipeline mais lento, mais caro e mais frágil que sem partição nenhuma."
 tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 4
 ---
 A primeira vez que eu vi uma tabela "particionada por CPF" eu achei que era genial. Filtro por cliente é o padrão de query mais comum do mundo bancário, então particionar por aquilo que mais aparece no `WHERE` parecia óbvio. Estava errado, e o erro custou caro.
 

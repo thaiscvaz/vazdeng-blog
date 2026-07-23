@@ -55,13 +55,13 @@ Aplicar Medallion aqui significa criar Bronze, Silver e Gold para servir exatame
 
 O sinal prático: se a camada Gold é idêntica à Silver com um agrupamento a mais, você não precisa de três layers. Uma única transformação direta da fonte para a tabela consumida faz o mesmo trabalho com metade da infraestrutura.
 
-Um caso documentado por um arquiteto de dados: um cliente tinha 4,2 bilhões de linhas no Bronze acumuladas em seis anos de dados, mas o Silver só consumia os últimos 90 dias. 97% dos dados armazenados nunca eram usados. O custo de storage era real, o benefício não era.
+O padrão que esse cenário produz na prática: Bronze acumulando anos de histórico completo enquanto o Silver consome só os últimos 90 dias. Quase todo o storage pago nunca é lido por ninguém. O custo é real, o benefício não é.
 
 ### Quando a latência importa mais do que a qualidade
 
 Cada transição Bronze para Silver, Silver para Gold, é um job separado. Em pipelines com Spark, isso costuma ser 20 a 40 minutos por camada. Três camadas em sequência e a latência total passa de uma hora antes de o dado chegar em qualquer lugar.
 
-Análises com dados reais de praticantes mostram overhead de 53% ou mais em casos simples: 23 minutos com Medallion contra 15 minutos com transformação direta, para o mesmo resultado.
+Faz a conta num caso simples: 5 minutos da fonte pro Bronze, 10 do Bronze pro Silver, 8 do Silver pro Gold. São 23 minutos com Medallion contra 15 numa transformação direta, 53% de overhead para o mesmo resultado.
 
 ![Comparativo de latência: transformação direta 15min vs Medallion 23min](images/medallion_latency_infographic.png)
 

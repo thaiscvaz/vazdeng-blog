@@ -8,6 +8,8 @@ description: "IA Foundations 03: pedir pro mesmo modelo se autocorrigir pode deg
 tags: ["ia", "agentes"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 3
 ---
 Existe um padrão tentador em pipelines com IA: pede pro modelo gerar, depois pede pro mesmo modelo revisar o que gerou.
 

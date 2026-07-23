@@ -5,6 +5,8 @@ description: "The complete visual guide to how AI works, from the basics to the 
 tags: ["ai", "llm", "fundamentals", "rag", "agents", "embeddings"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 1
 ---
 
 ![Twenty AI concepts you need to understand in 2026](images/infografo.png)

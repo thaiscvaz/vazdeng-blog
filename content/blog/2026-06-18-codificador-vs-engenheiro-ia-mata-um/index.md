@@ -23,9 +23,9 @@ Estou vendo o mesmo movimento acontecer agora, em velocidade maior.
 
 Boris Cherny, criador do Claude Code, disse em janeiro de 2026 que o título "engenheiro de software" vai começar a desaparecer. Não porque não vai ter mais gente construindo software. Porque quem constrói vai se chamar de outra coisa.
 
-O mercado aponta na mesma direção: tem puxado pra perfis com arquitetura e visão sistêmica, enquanto vagas de implementação pura perdem espaço.
+O que eu vejo no mercado aponta na mesma direção: as vagas têm puxado pra perfis com arquitetura e visão sistêmica, enquanto implementação pura perde espaço.
 
-O GitHub Copilot já gera cerca de 46% do código escrito por usuários ativos da ferramenta. Claude Code e concorrentes estão completando blocos inteiros de código com uma descrição. A produtividade subiu. O número de pessoas necessárias para produzir a mesma quantidade de código diminuiu.
+O GitHub Copilot já gera cerca de 46% do código escrito por usuários ativos da ferramenta, [segundo a própria GitHub](https://github.blog/news-insights/product-news/github-copilot-for-business-is-now-available/). Claude Code e concorrentes estão completando blocos inteiros de código com uma descrição. A produtividade subiu. O número de pessoas necessárias para produzir a mesma quantidade de código diminuiu.
 
 O codificador, que passa 80% do tempo escrevendo código que segue padrão, está sendo substituído. Não por uma IA isolada. Por um engenheiro usando IA.
 

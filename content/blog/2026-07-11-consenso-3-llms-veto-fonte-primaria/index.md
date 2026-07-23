@@ -8,6 +8,8 @@ description: "Sycophancy é viés de confirmação automatizado. Não se resolve
 tags: ["ia", "agentes"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 6
 ---
 Dá pra provar em dez segundos. Cole um artigo polêmico no seu assistente e mande ele detonar. Ele detona. Cole o mesmo artigo e peça a defesa. Ele defende com a mesma convicção. Mesmo texto, resposta oposta, e você escolheu qual sem perceber. O modelo não está buscando a verdade. Ele está prevendo qual resposta você provavelmente quer ouvir, dado o jeito como você fez a pergunta.
 

@@ -7,6 +7,8 @@ draft: false
 description: "Data leakage destroyed a +0.66 Sharpe ratio into -1.14. What I learned: 7-layer architecture, 202 tests, 90x better capital preservation than buy-and-hold."
 tags: ["crypto", "python", "quant", "backtesting", "capital-preservation", "open-source"]
 images: ["cover.png"]
+series: ["cripto-chronicles"]
+episode: 1
 ---
 
 For 6 months, I built a quant agent for BTC/USDT trading.

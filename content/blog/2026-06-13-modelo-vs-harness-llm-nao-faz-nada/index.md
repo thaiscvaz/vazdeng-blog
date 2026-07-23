@@ -8,6 +8,8 @@ description: "O erro mais comum de 2026 é não separar o modelo da rédea. Cust
 tags: ["llm", "agentes", "harness", "ia-foundations"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 2
 ---
 
 Quando você pediu pro Claude criar um arquivo no seu computador, ele não criou. Você acha que criou. Mas não foi ele. Foi outra coisa. E não saber disso é o que faz times pagarem 5x mais do que deveriam por IA em produção e abrirem buraco de segurança que dá execução remota de código com 1 prompt malicioso.

@@ -8,6 +8,8 @@ description: "Before picking Airflow, Dagster, Prefect or anything else, underst
 tags: ["dag", "airflow", "orquestracao", "zero-to-expert"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 2
 ---
 
 You want to learn pipeline orchestration and there are 8 tools to choose from. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Every tutorial assumes you already understand what comes before the tool. I worked with one of them in production for 2 years, and what unlocked me wasn't mastering the syntax. It was understanding the concept all of them implement under the name. That's what I'll cover today.

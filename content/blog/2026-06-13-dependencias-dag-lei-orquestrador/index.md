@@ -8,6 +8,8 @@ description: "Antes de escolher Airflow, Dagster, Prefect ou qualquer outro, ent
 tags: ["dag", "airflow", "orquestracao", "zero-to-expert"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 2
 ---
 
 Você quer aprender orquestração de pipeline e tem 8 ferramentas pra escolher. Airflow, Dagster, Prefect, Mage, Argo, Temporal, Luigi, Kestra. Cada tutorial assume que você já entende o que vem antes da ferramenta. Eu trabalhei 2 anos com uma delas em produção, e o que me destravou não foi dominar a sintaxe. Foi entender o conceito que todas implementam por baixo do nome. É isso que eu vou cobrir hoje.

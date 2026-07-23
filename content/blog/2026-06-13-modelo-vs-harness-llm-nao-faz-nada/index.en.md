@@ -8,6 +8,8 @@ description: "The most common mistake of 2026 is not separating the model from t
 tags: ["llm", "agentes", "harness", "ia-foundations"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 2
 ---
 
 When you asked Claude to create a file on your computer, it didn't create it. You think it did. But it wasn't the model. It was something else. And not knowing this is what makes teams pay 5x more than they should for AI in production, and open security holes where 1 malicious prompt leads to remote code execution.

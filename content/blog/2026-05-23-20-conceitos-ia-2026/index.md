@@ -9,6 +9,8 @@ description: "O guia visual completo de como a IA funciona, da base à fronteira
 tags: ["ia", "llm", "fundamentos", "rag", "agentes", "embeddings"]
 images:
   - cover.png
+series: ["ia-foundations"]
+episode: 1
 ---
 
 ![Vinte conceitos de IA que você precisa entender em 2026](images/infografo.png)
