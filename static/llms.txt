@@ -1,0 +1,27 @@
+# VazDEng
+
+> Technical blog by Thais Vaz, a Brazilian data engineer, on data engineering and AI engineering in production. Written in Brazilian Portuguese (most posts also have an English version). Focus: real production decisions, anti-patterns, declared scale and named trade-offs — not tool tutorials.
+
+Posts are opinionated, anchored in the author's own projects (a crypto quant agent, an agent-operated Obsidian knowledge base, data pipelines) and in Brazilian context (LGPD, BR cloud costs, fintech ecosystem). Every external claim is verified against primary sources before publishing.
+
+## Main pages
+
+- [Blog index](https://vazdeng.pages.dev/blog/): all posts, newest first
+- [Series](https://vazdeng.pages.dev/series/): numbered series with episode navigation
+- [Sitemap](https://vazdeng.pages.dev/sitemap.xml)
+
+## Series
+
+- IA Foundations: applied AI engineering — LLMs, agents, harness, evals, RAG
+- Zero to Expert: progressive data engineering fundamentals
+- Cripto Chronicles: the ongoing saga of a crypto quant agent (Sharpe, abstention, drawdown)
+- Segundo Cérebro: an Obsidian second brain operated by AI agents
+
+## Tracks
+
+- DE Produção: real anti-patterns in batch and streaming, SLA-centered decisions
+- Engenharia de IA: applied LLMs, agentic engineering, evaluation, RAG
+
+## Distribution
+
+- [Substack](https://vazdeng.substack.com): same posts, newsletter distribution
