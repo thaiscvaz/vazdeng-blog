@@ -5,6 +5,7 @@ on:
     paths:
       - 'content/blog/**'
       - 'scripts/validate_post.py'
+      - 'scripts/check_i18n_parity.py'
   push:
     branches: [main]
   workflow_dispatch:
@@ -72,6 +73,19 @@ jobs:
       - name: Sem posts alterados
         if: steps.target.outputs.mode == 'diff' && steps.target.outputs.has_files == 'false'
         run: echo "Nenhum post alterado no diff. Skip."
+
+  i18n-parity:
+    # Guarda contra o incidente de 2026-06/07: 12 posts PT ficaram semanas sem
+    # EN porque nada cobrava o par. Roda no acervo INTEIRO (barato, ~1s) — par
+    # quebrado e drift estrutural falham o CI mesmo se o post nao esta no diff.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Paridade PT<->EN (index.md x index.en.md)
+        run: python scripts/check_i18n_parity.py
 
   build:
     runs-on: ubuntu-latest
