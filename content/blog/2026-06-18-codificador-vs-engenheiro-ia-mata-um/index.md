@@ -35,7 +35,7 @@ A resposta errada é contratar "prompt engineer jr" pra substituir desenvolvedor
 
 Vi isso em duas empresas BR em 2025. A lógica era: se a IA escreve o código, precisamos de alguém que saiba escrever prompt. Resultado: qualidade de código despencou, bugs de integração explodiram, e o time levou 3x mais tempo pra debugar porque ninguém entendia o que o código estava fazendo.
 
-Trocar codificador por codificador 2.0 não muda nada estrutural. A IA produz código. Mas ela não entende contexto de negócio, não prevê como aquele serviço vai interagir com o sistema de billing do Itaú, não sabe que aquele endpoint vai ser chamado dez mil vezes por segundo num pix de véspera de pagamento.
+Trocar codificador por codificador 2.0 não muda nada estrutural. A IA produz código. Mas ela não entende contexto de negócio, não prevê como aquele serviço vai interagir com o sistema de billing do banco, não sabe que aquele endpoint vai ser chamado dez mil vezes por segundo num pix de véspera de pagamento.
 
 Isso é trabalho de engenheiro. E nunca foi trabalho de codificador.
 

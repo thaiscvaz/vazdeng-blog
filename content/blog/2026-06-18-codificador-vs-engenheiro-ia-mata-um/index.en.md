@@ -35,7 +35,7 @@ The wrong answer is hiring a "jr prompt engineer" to replace a jr developer.
 
 I saw this at two Brazilian companies in 2025. The logic was: if the AI writes the code, we need someone who knows how to write prompts. The result: code quality plummeted, integration bugs exploded, and the team took 3x longer to debug because nobody understood what the code was doing.
 
-Swapping a coder for a coder 2.0 changes nothing structural. AI produces code. But it does not understand business context, it does not anticipate how that service will interact with Itaú's billing system, it does not know that endpoint will get called ten thousand times per second on a Pix rush the night before payday.
+Swapping a coder for a coder 2.0 changes nothing structural. AI produces code. But it does not understand business context, it does not anticipate how that service will interact with the bank's billing system, it does not know that endpoint will get called ten thousand times per second on a Pix rush the night before payday.
 
 That is engineering work. And it was never a coder's job.
 
