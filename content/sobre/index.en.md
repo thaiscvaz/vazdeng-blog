@@ -9,7 +9,7 @@ type: default
 
 My name is Thais Vaz. I've been a data engineer for 8+ years.
 
-I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, led an international team through **HCL Technologies**, on a project for a US big tech company in Silicon Valley. Today I'm a senior data engineer at **Bradesco**.
+I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, worked on a project for a US big tech company in Silicon Valley through **HCL Technologies**. Today I'm a senior data engineer at **Bradesco**.
 
 My core stack is **Databricks**. Not because I read the docs. Because it's what runs in production where I've worked.
 
