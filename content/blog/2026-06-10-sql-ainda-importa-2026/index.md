@@ -26,7 +26,7 @@ O problema da abstração não é a abstração. É que ela esconde o custo. Voc
 
 Pipeline de DE moderno processa bilhões de linhas por dia. Toda decisão de query custa minutos vezes cluster vezes DBU vezes dia vezes mês. A diferença entre uma query bem escrita e uma gerada por ORM despreparado é fator 10 a 100x no custo final.
 
-Caso concreto que apareceu numa consultoria: pipeline de fechamento contábil em fintech brasileira. ORM gerando 47 subqueries pra coisa que SQL nativo resolve em 1 CTE com WINDOW. Custo Databricks/Snowflake: R$ 8 mil/mês. Depois que alguém finalmente escreveu a query em SQL puro, R$ 800/mês. Mesmo resultado de negócio, fator 10x de diferença.
+Caso concreto que apareceu numa consultoria: pipeline de fechamento contábil numa fintech de pagamentos. ORM gerando 47 subqueries pra coisa que SQL nativo resolve em 1 CTE com WINDOW. Custo Databricks/Snowflake: R$ 8 mil/mês. Depois que alguém finalmente escreveu a query em SQL puro, R$ 800/mês. Mesmo resultado de negócio, fator 10x de diferença.
 
 ![Caso real de fechamento contábil: ORM despreparado a R$ 8 mil/mês vs SQL puro a R$ 800/mês, 10x mais barato](abstraction-cost.png)
 

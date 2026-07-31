@@ -3,7 +3,7 @@ title: "Real data engineering content in Portuguese is rare. I'm going to help c
 slug: real-data-engineering-portuguese
 date: 2026-04-18
 draft: false
-description: "Why a senior data engineer with experience across major Brazilian banks, a global-scale fintech and a big-tech project in Silicon Valley decided to start writing, and what you'll find here."
+description: "Why a senior data engineer with experience across retail banking, payments fintech and a big-tech project in Silicon Valley decided to start writing, and what you'll find here."
 tags: ["manifesto", "data engineering", "databricks", "crypto", "master's"]
 images:
   - bookshelf.png
@@ -23,7 +23,7 @@ That's the gap I want to help fill.
 
 I won't list certificates. I'll tell you what I've shipped.
 
-I'm a senior data engineer with 8+ years of experience. I started in data quality at a major Brazilian bank, then moved to a global-scale Brazilian fintech building ETL pipelines, worked on a big-tech project in Silicon Valley through an international tech consultancy, and today I'm back in the Brazilian banking sector. (Full résumé on the [/sobre/](/sobre/) page.)
+I'm a senior data engineer with 8+ years of experience. I started in data quality at a retail bank, then moved to a payments fintech building ETL pipelines, worked on a big-tech project in Silicon Valley through a global consultancy, and today I'm a senior data engineer in banking. (Full résumé on the [/sobre/](/sobre/) page.)
 
 My core stack is Databricks. Not because I read the docs. Because it's what runs in production where I've worked.
 

@@ -25,7 +25,7 @@ O que ainda é difícil de achar é alguém te contando como decidiu usar Delta 
 
 Não vou listar certificados. Vou te contar o que construí.
 
-Sou engenheira de dados sênior há mais de 8 anos. Comecei em qualidade de dados num grande banco brasileiro, passei por uma fintech brasileira em escala global construindo pipelines ETL, atuei em consultoria internacional num projeto de big tech em Silicon Valley, e hoje atuo em outro grande banco brasileiro. (Currículo completo na [página /sobre/](/sobre/).)
+Sou engenheira de dados sênior há mais de 8 anos. Comecei em qualidade de dados num banco de varejo, passei por uma fintech de pagamentos construindo pipelines ETL, atuei numa consultoria global em projeto de uma big tech no Vale do Silício, e hoje sou engenheira de dados sênior em banco. (Currículo completo na [página /sobre/](/sobre/).)
 
 Minha stack principal é Databricks. Não porque eu li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei nos últimos anos.
 
