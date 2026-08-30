@@ -22,7 +22,10 @@ WORD_TOLERANCE = 0.40
 
 def stats(path: Path) -> tuple[int, int]:
     text = path.read_text(encoding="utf-8")
-    body = re.sub(r"^---\n.*?\n---\n", "", text, count=1, flags=re.DOTALL)
+    # Mesmo padrao tolerante que validate_post.strip_frontmatter: aceita espaco/
+    # linha em branco apos o fecho e CRLF. O regex antigo (^---\n...---\n) nao
+    # casava com trailing space e deixava a YAML no corpo, inflando a contagem.
+    body = re.sub(r"^---.*?---\s*", "", text, count=1, flags=re.DOTALL)
     h2 = len(re.findall(r"^## ", body, flags=re.MULTILINE))
     words = len(body.split())
     return h2, words

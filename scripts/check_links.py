@@ -33,6 +33,18 @@ class RefExtractor(HTMLParser):
             self.links.add(a["href"])
         if tag == "img" and a.get("src"):
             self.images.add(a["src"])
+        # CSS, JS e favicon quebrados tambem sao 404s visiveis no browser.
+        if tag == "link" and a.get("href"):
+            self.links.add(a["href"])
+        if tag == "script" and a.get("src"):
+            self.links.add(a["src"])
+        # srcset: "url1 1x, url2 2x" — pega so a URL de cada candidato.
+        for el in ("img", "source"):
+            if tag == el and a.get("srcset"):
+                for part in a["srcset"].split(","):
+                    tokens = part.strip().split()
+                    if tokens:
+                        self.images.add(tokens[0])
 
 
 def sitemap_urls(base: str) -> list[str]:
@@ -40,12 +52,14 @@ def sitemap_urls(base: str) -> list[str]:
     idx = requests.get(f"{base}/sitemap.xml", headers=UA, timeout=30)
     idx.raise_for_status()
     root = ET.fromstring(idx.content)
-    children = [e.text for e in root.findall(".//sm:loc", SM_NS)]
+    # <loc/> vazio => e.text is None; filtra antes de chamar .endswith().
+    children = [e.text for e in root.findall(".//sm:loc", SM_NS) if e.text]
     for child in children:
         if child.endswith("sitemap.xml"):
             sub = requests.get(child, headers=UA, timeout=30)
+            sub.raise_for_status()  # sub-sitemap 5xx vira pagina de erro; nao parsear como XML
             subroot = ET.fromstring(sub.content)
-            urls += [e.text for e in subroot.findall(".//sm:loc", SM_NS)]
+            urls += [e.text for e in subroot.findall(".//sm:loc", SM_NS) if e.text]
         else:
             urls.append(child)
     return sorted(set(urls))
@@ -63,6 +77,7 @@ def main():
 
     failures, warns = [], []
     checked: dict[str, int] = {}
+    redirected: dict[str, bool] = {}
 
     def status(url: str, method: str = "head") -> int:
         if url in checked:
@@ -73,7 +88,10 @@ def main():
             code = r.status_code
             # alguns hosts respondem 405/403 a HEAD; tenta GET antes de acusar
             if method == "head" and code in (403, 405, 501):
-                code = requests.get(url, headers=UA, timeout=30).status_code
+                r = requests.get(url, headers=UA, timeout=30, allow_redirects=True)
+                code = r.status_code
+            # allow_redirects segue a cadeia; r.history != [] => a URL foi movida.
+            redirected[url] = bool(r.history)
         except requests.RequestException:
             code = -1
         checked[url] = code
@@ -81,13 +99,20 @@ def main():
 
     refs_to_check: set[str] = set()
     for page in pages:
-        code = status(page, method="get")
-        if code != 200:
-            failures.append(f"PAGE {code}: {page}")
+        # Um unico GET por pagina: reusa o body para extrair refs e ja
+        # popula o cache de status (evita o segundo request identico).
+        try:
+            r = requests.get(page, headers=UA, timeout=30, allow_redirects=True)
+        except requests.RequestException:
+            checked[page] = -1
+            failures.append(f"PAGE -1: {page}")
             continue
-        html = requests.get(page, headers=UA, timeout=30).text
+        checked[page] = r.status_code
+        if r.status_code != 200:
+            failures.append(f"PAGE {r.status_code}: {page}")
+            continue
         ex = RefExtractor()
-        ex.feed(html)
+        ex.feed(r.text)
         for ref in ex.links | ex.images:
             if ref.startswith(("mailto:", "#", "javascript:", "data:")):
                 continue
@@ -99,10 +124,10 @@ def main():
 
     for url in internal:
         code = status(url)
-        if code in (301, 302):  # allow_redirects segue; só chega aqui se loop
-            warns.append(f"REDIR {code}: {url}")
-        elif code != 200:
+        if code != 200:
             failures.append(f"INTERNAL {code}: {url}")
+        elif redirected.get(url):  # resolve 200 mas via 301/302: link aponta pro slug antigo
+            warns.append(f"REDIR: {url}")
 
     for url in external:
         code = status(url)

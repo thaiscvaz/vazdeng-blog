@@ -28,16 +28,10 @@ languages:
     languageName: Português
     weight: 1
     params:
-      upcoming:
-        - date: "QUA 11/06 12h"
-          slug: "TV-001"
-          title: "Prompt caching: 90% menos custo de LLM"
-        - date: "SAB 13/06 10h"
-          slug: "ZTE-002"
-          title: "Dependências em DAG"
-        - date: "SAB 13/06 14h"
-          slug: "IA-002"
-          title: "A LLM não faz nada. O harness faz."
+      # Cronograma da home. Preencher SO com posts realmente agendados — a home
+      # esconde o bloco quando a lista esta vazia. As entradas de jun/2026 foram
+      # removidas por estarem 3+ meses defasadas (mostravam datas passadas na home).
+      upcoming: []
       tracks:
         - color: amber
           label: "DE Produção"
@@ -61,16 +55,9 @@ languages:
     languageName: English
     weight: 2
     params:
-      upcoming:
-        - date: "WED Jun 11 · 12h"
-          slug: "TV-001"
-          title: "Prompt caching: 90% lower LLM cost"
-        - date: "SAT Jun 13 · 10h"
-          slug: "ZTE-002"
-          title: "DAG dependencies"
-        - date: "SAT Jun 13 · 14h"
-          slug: "IA-002"
-          title: "The LLM does nothing. The harness does."
+      # Home schedule. Fill ONLY with truly scheduled posts — the home hides the
+      # block when empty. Jun/2026 entries removed (3+ months stale, showing past dates).
+      upcoming: []
       tracks:
         - color: amber
           label: "DE Production"

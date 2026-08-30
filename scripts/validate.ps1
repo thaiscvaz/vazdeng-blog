@@ -13,9 +13,11 @@ param(
 $repoRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $repoRoot
 
+# $args e variavel automatica do PowerShell — reatribuir quebra o splat e falha
+# sob Set-StrictMode. Usar um nome proprio.
 $target = if ($File) { $File } else { "content/blog" }
-$args = @($target, "--min-score", $MinScore)
-if ($Strict) { $args += "--strict" }
+$pyArgs = @($target, "--min-score", $MinScore)
+if ($Strict) { $pyArgs += "--strict" }
 
-python scripts/validate_post.py @args
+python scripts/validate_post.py @pyArgs
 exit $LASTEXITCODE

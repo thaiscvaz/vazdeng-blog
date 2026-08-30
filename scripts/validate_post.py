@@ -188,10 +188,10 @@ def check_word_count(content: str) -> list:
     body = re.sub(r"\[.*?\]\(.*?\)", "", body)
 
     words = len(body.split())
-    if words < 500:
+    # O gate enforce o mesmo minimo que a mensagem promete (600). Antes o ERROR
+    # so disparava < 500, deixando 500-599 passar como WARNING contra o proprio texto.
+    if words < 600:
         issues.append(("ERROR", f"Post curto: {words} palavras. Minimo 600."))
-    elif words < 600:
-        issues.append(("WARNING", f"Post no limite: {words} palavras. Ideal 600-800."))
     elif words > 1200:
         issues.append(("WARNING", f"Post longo: {words} palavras. Maximo 800-1000."))
     return issues
@@ -330,7 +330,7 @@ def validate_file(path: Path) -> tuple:
 
 
 def check_bilingual_parity(root: Path) -> list:
-    """Cada index.md deve ter index.en.md irmao."""
+    """Cada index.md deve ter index.en.md irmao, e vice-versa (par nos dois sentidos)."""
     issues = []
     for pt_file in root.rglob("index.md"):
         # Pula _index.md (Hugo section index)
@@ -339,6 +339,11 @@ def check_bilingual_parity(root: Path) -> list:
         en_file = pt_file.with_name("index.en.md")
         if not en_file.exists():
             issues.append(("ERROR", f"Bilingual parity: {pt_file.parent.name} nao tem index.en.md"))
+    # Sentido reverso: index.en.md orfao (PT apagado por engano) tambem quebra o par.
+    for en_file in root.rglob("index.en.md"):
+        pt_file = en_file.with_name("index.md")
+        if not pt_file.exists():
+            issues.append(("ERROR", f"Bilingual parity: {en_file.parent.name} tem index.en.md orfao (falta index.md)"))
     return issues
 
 
