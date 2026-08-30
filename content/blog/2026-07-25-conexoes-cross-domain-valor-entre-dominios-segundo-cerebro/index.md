@@ -37,7 +37,7 @@ A gente pensa em segundo cérebro como um monte de notas. Como se o valor fosse 
 
 Não é. O acervo é matéria-prima. O valor aparece quando uma ideia de finanças resolve um problema de IA, quando um conceito de método explica um travamento de carreira. Isso é polinização cruzada, e ela é a coisa mais difícil de forçar. Você não planeja ter uma ideia dessas. Ela acontece quando dois mundos encostam.
 
-Um segundo cérebro que só empilha nota dentro de cada domínio nunca produz isso. Fica com cinco bibliotecas paralelas que nunca conversam. As 130 pontes são exatamente as conversas que estavam faltando, e que estavam latentes ali dentro esperando alguém com paciência infinita pra cruzar tudo com tudo.
+Um segundo cérebro que só empilha nota dentro de cada domínio nunca produz isso. Fica com cinco bibliotecas paralelas que nunca conversam. As 130 pontes são exatamente as conversas que estavam faltando, latentes entre as áreas, esperando um trabalho de cruzamento que nenhuma pessoa faria à mão em cinco domínios ao mesmo tempo.
 
 ![As 130 pontes entre os cinco domínios. O valor está nas arestas, não nos nós.](images/00-pontes-cross-domain.png)
 

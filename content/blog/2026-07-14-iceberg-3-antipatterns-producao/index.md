@@ -1,26 +1,13 @@
 ---
-title: "Iceberg em producao: 3 anti-padroes que matam seu data lake em 3 meses"
+title: "Iceberg em produção: 3 anti-padrões que matam seu data lake em 3 meses"
 slug: iceberg-3-antipatterns-producao
 date: 2026-07-14
 publishDate: 2026-07-14
 draft: false
-description: "---"
-tags: ["engenharia-de-dados"]
+description: "Particionamento ingênuo, manifesto que engorda e compaction esquecida. E como isso vira 100 mil GET requests numa query que devia custar centavos."
+tags: ["engenharia-de-dados", "iceberg", "data-lake", "performance"]
 images:
   - cover.png
----
----
-title: "Iceberg em produção: 3 anti-padrões que matam seu data lake em 3 meses"
-subtitle: "Particionamento ingênuo, manifesto que engorda e compaction esquecida. E como isso vira 100 mil GET requests numa query que devia custar centavos."
-publish_date: 2026-07-14
-track: DE
-num: "015"
-slug: iceberg-3-antipatterns-producao
-tags:
-  - iceberg
-  - data-lake
-  - performance
-  - anti-patterns
 ---
 
 Iceberg tem uma virtude que também é armadilha: ele funciona antes de você aprender a usar. Você cria a tabela, o job de ingestão sobe, o query rodou. Aparentemente está tudo bem. Três meses depois, sem que nada tenha "quebrado", uma query que devia levar 200 milissegundos passa a levar 45 segundos, e a fatura de object storage explodiu porque o mesmo dado agora custa 500 vezes mais para ler.
