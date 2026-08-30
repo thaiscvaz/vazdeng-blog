@@ -9,7 +9,7 @@ tags: ["ferramentas"]
 images:
   - cover.png
 ---
-Vou começar com a confissão que provavelmente vai irritar metade do LinkedIn de IA: eu rodo dois sistemas de recuperação em produção, todo dia, há meses, e nenhum dos dois tem vector DB. Sem chunking. Sem embedding. Sem Pinecone. O retrieval é `grep` mais leitura de arquivo estruturado mais um modelo com janela longa fazendo a filtragem fina. E funciona melhor do que o RAG clássico funcionaria para esses casos.
+Eu rodo 2 sistemas de recuperação em produção, todo dia, há meses. Nenhum dos dois tem vector DB. Sem chunking. Sem embedding. Sem Pinecone. O retrieval é `grep` mais leitura de arquivo estruturado mais um modelo com janela longa fazendo a filtragem fina. E funciona melhor do que o RAG clássico funcionaria para esses casos.
 
 A tese que virou dogma por volta de 2023 era simples: o leitor (a LLM) é pequeno e caro, então o retriever precisa ser esperto. Embedding tudo, indexar, buscar por similaridade, mandar só o top-K. Era a arquitetura certa para aquele momento. O problema é que muita gente continua pagando o preço dessa arquitetura sem perceber que o gargalo já inverteu.
 

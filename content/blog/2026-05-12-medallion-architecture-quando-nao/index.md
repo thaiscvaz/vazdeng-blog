@@ -11,7 +11,7 @@ images:
   - cover.png
 ---
 
-Existe um padrão de arquitetura que vi crescer desde 2020, criado pelo Databricks, adotado pela Microsoft como padrão oficial da plataforma Fabric em 2023, e que hoje está em quase toda conversa sobre engenharia de dados: o Medallion Architecture.
+O Medallion Architecture virou resposta automática. Vi ele nascer no Databricks em 2020, virar padrão oficial do Microsoft Fabric em 2023 e chegar a quase toda conversa de engenharia de dados.
 
 Bronze, Silver, Gold. Dado bruto, dado limpo, dado agregado.
 

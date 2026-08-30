@@ -9,7 +9,9 @@ tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
 ---
-Vi esse cenário se concretizar num fechamento mensal: o número estava fechado. Dois dias depois, chegou uma transação com data do mês passado, e o número ficou errado.
+Fechei o mês. Dois dias depois, o número mudou sozinho.
+
+Ninguém lançou nada novo. Uma transação com data do mês passado chegou atrasada, e o total que eu já tinha fechado ficou errado.
 
 Isso não é bug de sistema. É consequência de uma decisão de modelagem que a maioria dos pipelines não toma explicitamente: qual é o tempo que define onde um evento pertence?
 

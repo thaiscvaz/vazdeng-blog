@@ -11,7 +11,7 @@ images:
   - lifecycle.png
 ---
 
-Vi a maioria dos times tratar LGPD como algo pra resolver "depois".
+LGPD virou o passivo que ninguém vê até o titular pedir exclusão. Já vi um time descobrir isso do pior jeito.
 
 Primeiro o pipeline é montado, os dados entram no lake, os dashboards começam a sair. Aí, um dia, chega uma requisição de titular pedindo exclusão de dados pessoais. E o time descobre que não sabe onde aquele CPF está, quantas cópias existem no Bronze, quantos modelos de ML já foram treinados com ele.
 

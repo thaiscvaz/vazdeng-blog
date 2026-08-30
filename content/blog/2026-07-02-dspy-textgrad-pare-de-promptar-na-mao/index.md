@@ -9,7 +9,7 @@ tags: ["ferramentas"]
 images:
   - cover.png
 ---
-Toda vez que vejo alguém ajustando uma frase no prompt, rodando, conferindo o resultado e voltando a ajustar a frase, eu vejo a mesma cena de quinze anos atrás: o cara editando configuração de servidor direto no SSH de produção, salvando, recarregando, torcendo. A gente parou de fazer isso com infraestrutura. Inventamos Terraform, declaramos o estado desejado, deixamos a ferramenta aplicar. Com prompt, a maioria dos times ainda está no SSH de produção, girando knob no olho.
+Ajustar prompt na mão é editar config de servidor no SSH de produção: salva, recarrega, torce. É a cena que eu vejo toda vez que alguém gira knob no prompt, escreve a frase, roda, confere, ajusta de novo. A gente parou de fazer isso com infraestrutura há quinze anos, quando inventou o Terraform e passou a declarar o estado desejado. Com prompt, a maioria dos times ainda está no SSH de produção, no olho.
 
 A tese deste post é incômoda de propósito: melhorar um prompt não deveria ser trabalho de redação manual. Deveria ser compilação contra uma métrica. Você descreve o comportamento que quer, define o que conta como sucesso, e deixa um otimizador descobrir o texto que maximiza isso. DSPy e TextGrad, os dois saídos do ecossistema de Stanford, são as duas implementações sérias dessa ideia que eu olharia hoje.
 

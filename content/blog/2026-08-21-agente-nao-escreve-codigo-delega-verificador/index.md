@@ -9,7 +9,7 @@ tags: ["ia", "agentes"]
 images:
   - cover.png
 ---
-Vi esse cenário se repetir: o agente gera o código, os testes passam, o PR fecha. Dois dias depois, com dados de produção que o teste não cobria, o comportamento era diferente.
+O agente gerou o código. Os testes passaram. O PR fechou. Dois dias depois, com dados de produção que o teste não cobria, o comportamento era outro. Já passei por isso.
 
 Não foi bug de código. Foi bug de arquitetura do agente. O LLM escreveu o artefato final e o verificador que existia era comparação de output: o resultado bate com o exemplo? Aprovado. O exemplo não era representativo.
 

@@ -62,7 +62,14 @@ EN herda `slug`, `date`, `publishDate` do PT via Hugo. Só `title` e `descriptio
   dado de jun/2026 — os 2 posts com título de opinião/identidade fizeram 4x
   o alcance dos títulos técnico-genéricos. "X atrapalha mais do que ajuda"
   vence "Entendendo X".
-- Abertura com cena ou tensão real, não com definição.
+- **Abertura com a mesma disciplina do gancho de LinkedIn.** A primeira frase
+  do post fisga num dos 6 ângulos (número, contrarian, transformação,
+  autoridade, admissão, futuro), com cena ou tensão concreta, dígito quando
+  natural. Curta e afiada, nunca definição nem aquecimento. O post ganha a
+  leitura na 1ª linha, não na 3ª. Fraco: "Vi esse cenário se concretizar num
+  fechamento mensal: o número estava fechado." Forte: "Fechei o mês. Dois dias
+  depois, o número mudou sozinho." Sem "Neste post", sem parágrafo de cenário
+  antes da tensão.
 - Termos em inglês: explicar brevemente na primeira ocorrência se não forem universais (pipeline, batch, lakehouse, etc).
 - Nenhum número sem fonte verificável.
 - Frases curtas misturadas com longas.

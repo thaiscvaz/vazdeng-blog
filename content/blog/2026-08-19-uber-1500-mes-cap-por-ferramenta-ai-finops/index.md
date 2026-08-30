@@ -9,7 +9,7 @@ tags: ["ferramentas"]
 images:
   - cover.png
 ---
-Vi esse padrão acontecer mais de uma vez: orçamento de IA planejado para o ano inteiro, esgotado em quatro meses.
+O orçamento de IA planejado pro ano inteiro esgotou em 4 meses.
 
 Isso não foi incompetência de planejamento. Foi um problema de timing: o plano foi feito em 2025, antes de qualquer empresa ter medido o quanto coding agents consomem de token quando alguém os usa de verdade, o dia inteiro, em tarefas reais. Quando o consumo real chegou, o número era outro.
 
