@@ -7,7 +7,7 @@ type: default
   <img src="/sobre/avatar.png" alt="Thais Vaz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
 </div>
 
-My name is Thais Vaz. I've been a data engineer for 8+ years.
+My name is Thais Vaz. I've been a data engineer for 10 years, now building with AI in production.
 
 I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, worked on a project for a US big tech company in Silicon Valley through **HCL Technologies**. Today I'm a senior data engineer at **Bradesco**.
 
@@ -23,17 +23,21 @@ So I started writing.
 
 ## What you'll find here
 
-The first track is **production data engineering**. Databricks, Delta Lake, Spark, dbt, Airflow. Real architecture decisions, mistakes I made and what I learned. Brazilian context where it's relevant.
+I write for engineers who already know the basics and want to see how things really work in production. Every post delivers a decision, a sourced number and the case where the idea fails.
 
-The second is the **crypto AI agent**, built in public. Architecture, code, backtesting, on-chain analysis. Every step documented. If something breaks, you'll know why.
+The main track is **production data engineering**: Databricks, Delta Lake, Spark, dbt, Airflow. Real architecture decisions, mistakes I made and what I learned, with Brazilian context (LGPD, cloud cost in reais) where it matters.
 
-The third is the **master's research translated to practice**. What academic research has to say about the problems you face every day, no filter.
+The second is **applied AI for data**: agents and LLMs that survive production, with evaluation, cost and security at the center.
 
-Published in Portuguese and English, every week.
+The third is **behind the scenes**: what my master's research and side projects teach about everyday problems.
+
+One new post a week, written in Portuguese first. The newsletter goes out on Saturdays.
+
+New here? The [Start here](/en/comece/) page has the right posts to begin with.
 
 ## Where to find me
 
-- **Newsletter on Substack:** [vazdeng.substack.com](https://vazdeng.substack.com), a summary of what's published here straight to your inbox
+- **Newsletter on Substack:** [vazdeng.substack.com](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=sobre&utm_campaign=fase1), a summary of what's published here straight to your inbox
 - **GitHub:** [@thaiscvaz](https://github.com/thaiscvaz)
 - **LinkedIn:** [thacvaz](https://linkedin.com/in/thacvaz)
 - **Contact:** reply to any post or ping me on LinkedIn

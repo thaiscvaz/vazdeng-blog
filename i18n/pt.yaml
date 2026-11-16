@@ -1,6 +1,6 @@
 copyright: "© 2026 · vazdeng.pages.dev"
 poweredBy: ""
-siteSubtitle: "Onde escrevo sobre o que construo em dados, IA e cripto."
+siteSubtitle: "Engenharia de dados e IA em produção, com casos reais e contexto brasileiro."
 
 # Hero homepage
 heroPillCount: "posts ·"
@@ -8,7 +8,7 @@ heroPillNext: "próximo:"
 heroTitleA: "Pipeline robusto começa"
 heroTitleB: "antes"
 heroTitleC: "da ferramenta."
-heroLead: "Engenharia de dados em produção, agente quant em cripto, fundamentos didáticos. Em português que não é tradução automática."
+heroLead: "Engenharia de dados e IA em produção, com casos reais, número com fonte e contexto brasileiro. Para quem já sabe o básico e quer ver como funciona de verdade."
 
 # Cronograma
 scheduleLabel: "Próximos<br/>posts"
@@ -33,10 +33,10 @@ postBy: "Por"
 
 # Subscribe (no fim do post + na CTA)
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Próximo episódio sai"
-subscribeHeadlineAccent: "sábado, 10h BRT"
-subscribeSub: "Engenharia de dados em português, com decisão técnica no centro. 4 posts por semana, sem fluff."
-subscribeCta: "Assinar no Substack"
+subscribeHeadline: "Receba o checklist de"
+subscribeHeadlineAccent: "qualidade de dados"
+subscribeSub: "Uma edição por semana, no sábado: o caso, o número e o que deu errado. Ao assinar, você recebe o checklist que eu uso antes de subir pipeline."
+subscribeCta: "Assinar e receber o checklist"
 subscribeAria: "Assinar a newsletter VazDEng"
 
 # Related
