@@ -346,4 +346,4 @@ Se o objetivo era aprender a construir um sistema robusto, testado, auditável, 
 
 O próximo objetivo é seu.
 
-Responde no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter no Substack](https://vazdeng.substack.com) pra receber os próximos posts.
+Responde no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter no Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=agente-quant-sharpe) pra receber os próximos posts.

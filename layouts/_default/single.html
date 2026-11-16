@@ -1,25 +1,56 @@
 {{ define "main" }}
-<nav class="vz-crumb">
+<nav class="vz-crumb vz-page-crumb">
   <a href="{{ .Site.Home.RelPermalink }}">{{ T "crumbHome" }}</a>
   <span class="sep">/</span>
   <span class="cur">{{ .Title }}</span>
 </nav>
 
-<header class="vz-post-header">
-  <div class="vz-post-eyebrow amber">{{ .Title | upper }}</div>
+<header class="vz-post-header vz-page-header">
+  {{ with .Params.kicker }}<div class="vz-post-eyebrow amber">{{ . }}</div>{{ end }}
   <h1 class="vz-post-h1">{{ .Title }}</h1>
 </header>
 
 <article class="vz-article">
   {{ .Content }}
 </article>
+{{ if strings.Contains (string .Content) "checkbox" }}
+<script>
+/* Checklist marcável: o Markdown gera inputs desabilitados; aqui eles viram caixas
+   de verdade, com o estado guardado só neste navegador. */
+(function () {
+  var boxes = document.querySelectorAll('.vz-article li > input[type="checkbox"]');
+  var key = 'vz-checklist:' + location.pathname;
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) {}
+  function save() {
+    var state = {};
+    boxes.forEach(function (b, i) { if (b.checked) state[i] = 1; });
+    try { localStorage.setItem(key, JSON.stringify(state)); } catch (e) {}
+  }
+  boxes.forEach(function (b, i) {
+    b.disabled = false;
+    b.checked = !!saved[i];
+    b.setAttribute('aria-label', b.parentElement.textContent.trim().slice(0, 120));
+    b.addEventListener('change', save);
+    var li = b.parentElement;
+    li.classList.add('vz-task');
+    li.addEventListener('click', function (ev) {
+      if (ev.target === b || ev.target.closest('a')) return;
+      b.checked = !b.checked; save();
+    });
+  });
+})();
+</script>
+{{ end }}
 
+{{ if not .Params.hideSubscribe }}
 <aside class="vz-subscribe">
   <div class="vz-subscribe-inner">
     <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
     <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
     <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
-    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=pagina&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
   </div>
 </aside>
+{{ end }}
 {{ end }}

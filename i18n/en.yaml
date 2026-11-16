@@ -1,20 +1,26 @@
 copyright: "© 2026 · vazdeng.pages.dev"
 poweredBy: ""
-siteSubtitle: "Where I write about what I build in data, AI and crypto."
+siteSubtitle: "Data engineering and AI in production, with real cases and Brazilian context."
+siteSubtitleShort: "Data engineering and AI in production"
 
 # Hero homepage
-heroPillCount: "posts ·"
+heroPillCount: "posts"
 heroPillNext: "next:"
-heroTitleA: "Robust pipelines start"
-heroTitleB: "before"
-heroTitleC: "the tool."
-heroLead: "Data engineering in production, quant agent in crypto, didactic fundamentals. Written by a senior engineer."
+heroTitleA: "A green pipeline"
+heroTitleB: "is not"
+heroTitleC: "a correct number."
+heroCtaStart: "Start here"
+heroCtaSubscribe: "Subscribe"
+heroByline: "By Thais Vaz · senior data engineer · 10 years in production · master's student at UFPR"
+trackTools: "Tools"
+trackArchived: "Crypto archive"
+heroLead: "For mid-level and senior data engineers who already run pipelines and want to see how decisions pay off in production. Real cases, sourced numbers and Brazilian context."
 
 # Schedule
 scheduleLabel: "Coming<br/>up"
 
 # Active tracks
-tracksEyebrow: "3 active tracks"
+tracksEyebrow: "3 tracks"
 tracksSeeAll: "See all →"
 
 # Archive
@@ -22,6 +28,8 @@ archiveTitle: "Archive"
 archiveTitleAccent: "complete"
 archiveTitleHTML: '<em>Complete</em> archive'
 footerBuiltBy: "built by"
+latestTitleHTML: 'Latest <em>posts</em>'
+archiveSeeAll: "See the full archive"
 archivePostsCount: "posts"
 archiveEmpty: "No posts yet."
 filterAll: "All"
@@ -33,10 +41,10 @@ postBy: "By"
 
 # Subscribe
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Next episode drops"
-subscribeHeadlineAccent: "saturday, 10h BRT"
-subscribeSub: "Data engineering with a technical decision at the center. 4 posts a week, no fluff."
-subscribeCta: "Subscribe on Substack"
+subscribeHeadline: "The case, the number,"
+subscribeHeadlineAccent: "what went wrong"
+subscribeSub: "Every new post lands in your inbox. Subscribers also hear when the data quality checklist changes (in Portuguese)."
+subscribeCta: "Subscribe"
 subscribeAria: "Subscribe to the VazDEng newsletter"
 
 # Related
@@ -63,3 +71,9 @@ notFoundCta: "Back to home"
 navAria: "Main"
 langAria: "Language"
 themeAria: "Toggle light/dark theme"
+
+# Home checklist
+checklistKicker: "Checklist · PDF"
+checklistTitle: "Checklist: 28 questions before you ship a pipeline"
+checklistSub: "Eight blocks, each with the real case. Online and as a printable PDF (in Portuguese)."
+checklistCta: "Open the checklist"

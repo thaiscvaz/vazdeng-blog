@@ -90,4 +90,4 @@ Próxima vez que você ler "a IA criou", traduza: o harness executou o que a LLM
 
 **Newsletter VazDEng.** Toda terça, quinta e sábado sai post novo de engenharia de dados em português, padrão sênior, sem hype.
 
-**Assina aqui:** [vazdeng.substack.com](https://vazdeng.substack.com).
+**Assina aqui:** [vazdeng.substack.com](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=modelo-vs-harness-llm-nao-faz-nada).

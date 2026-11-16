@@ -89,4 +89,4 @@ O contrário também é verdade. Quem só sabe a sintaxe da ferramenta fica ref�
 
 **Próximo post hoje às 14h:** IA Foundations 02 sobre modelo vs harness. Por que confundir os dois custa dinheiro e segurança.
 
-**Assina o VazDEng** se ainda não assina: [vazdeng.substack.com](https://vazdeng.substack.com).
+**Assina o VazDEng** se ainda não assina: [vazdeng.substack.com](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=dependencias-dag-lei-orquestrador).

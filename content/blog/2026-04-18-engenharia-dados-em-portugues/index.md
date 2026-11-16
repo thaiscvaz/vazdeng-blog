@@ -25,7 +25,7 @@ O que ainda é difícil de achar é alguém te contando como decidiu usar Delta 
 
 Não vou listar certificados. Vou te contar o que construí.
 
-Sou engenheira de dados sênior há mais de 8 anos. Comecei em qualidade de dados num banco de varejo, passei por uma fintech de pagamentos construindo pipelines ETL, atuei numa consultoria global em projeto de uma big tech no Vale do Silício, e hoje sou engenheira de dados sênior em banco. (Currículo completo na [página /sobre/](/sobre/).)
+Trabalho com engenharia de dados há 10 anos. Comecei em qualidade de dados num banco de varejo, passei por uma fintech de pagamentos construindo pipelines ETL, atuei numa consultoria global em projeto de uma big tech no Vale do Silício, e hoje sou engenheira de dados sênior em banco. (Currículo completo na [página /sobre/](/sobre/).)
 
 Minha stack principal é Databricks. Não porque eu li um tutorial. Porque é o que roda em produção nos lugares onde trabalhei nos últimos anos.
 
@@ -55,4 +55,4 @@ Responde esse post com uma pergunta: qual é o maior desafio de dados que você 
 
 Thais Vaz
 
-[Newsletter no Substack →](https://vazdeng.substack.com)
+[Newsletter no Substack →](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=engenharia-dados-em-portugues)

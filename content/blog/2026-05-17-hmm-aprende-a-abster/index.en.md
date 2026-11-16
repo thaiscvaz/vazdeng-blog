@@ -131,4 +131,4 @@ The current version uses a single criterion (absolute z-score per feature). Two 
 
 For now, what's in production is the simple version. And it has already changed what I look at when I wake up.
 
-Have you ever had a model return high confidence on a decision that shouldn't have been made? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com) to receive the next posts.
+Have you ever had a model return high confidence on a decision that shouldn't have been made? Tell me on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=hmm-aprende-a-abster) to receive the next posts.

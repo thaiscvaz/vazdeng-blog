@@ -135,4 +135,4 @@ A versão atual usa um único critério (z-score absoluto por feature). Duas ext
 
 Por enquanto, o que está em produção é a versão simples. E ela já mudou o que eu olho quando acordo.
 
-Você já teve um modelo que devolveu confiança alta numa decisão que não deveria ter sido tomada? Me conta no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com) para receber os próximos posts.
+Você já teve um modelo que devolveu confiança alta numa decisão que não deveria ter sido tomada? Me conta no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=hmm-aprende-a-abster) para receber os próximos posts.

@@ -126,4 +126,4 @@ The problems I ran into were almost all avoidable with the right configuration f
 
 If you are starting: imports inside functions, `catchup=False` on the cluster, XCom only for coordination, business logic in separate testable modules. Four decisions that avoid most of the problems I ran into.
 
-What was the most annoying problem you have seen with Airflow? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com).
+What was the most annoying problem you have seen with Airflow? Tell me on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=airflow-2-anos-o-que-faria-diferente).

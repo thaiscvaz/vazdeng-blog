@@ -123,4 +123,4 @@ Architecture choices should start from the problem, not from the pattern. What d
 
 If the answers point to Medallion, great. If they don't, a simpler architecture will work better.
 
-Have you ever implemented Medallion somewhere it didn't belong? What happened next? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com) for the next posts.
+Have you ever implemented Medallion somewhere it didn't belong? What happened next? Tell me on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=medallion-architecture-quando-nao) for the next posts.

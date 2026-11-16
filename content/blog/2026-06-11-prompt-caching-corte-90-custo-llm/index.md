@@ -101,4 +101,4 @@ A regra que eu sigo em tudo que construo agora: estruture o prompt em camadas. E
 
 **Próximo post sábado 10h:** Zero to Expert Ep 02 sobre dependências em DAG, a lei que todo orquestrador segue por baixo do nome. Sem Airflow no centro.
 
-**Assina o VazDEng** se ainda não assina: [vazdeng.substack.com](https://vazdeng.substack.com).
+**Assina o VazDEng** se ainda não assina: [vazdeng.substack.com](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=prompt-caching-corte-90-custo-llm).

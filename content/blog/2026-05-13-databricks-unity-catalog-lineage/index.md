@@ -105,4 +105,4 @@ Quarto, crie uma query de validação que roda semanalmente contra os system tab
 
 Lineage não é uma feature que se ativa e esquece. Eu uso como prática contínua: a cada pipeline novo, valido o que o Unity Catalog capturou e o que ficou de fora.
 
-Com qual parte do lineage você tem mais dificuldade hoje? Me conta no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com).
+Com qual parte do lineage você tem mais dificuldade hoje? Me conta no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=databricks-unity-catalog-lineage).

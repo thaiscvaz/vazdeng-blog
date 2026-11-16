@@ -3,6 +3,8 @@
 {{ $posts := where .Site.RegularPages "Section" "blog" }}
 {{ $posts = $posts.ByDate.Reverse }}
 {{ $colorMap := site.Params.track_colors }}
+{{/* Home: vitrine com os mais recentes (sem o arquivo cripto). /blog/: arquivo completo com filtro. */}}
+{{ $latestN := 10 }}
 
 {{ if eq .Kind "term" }}
   {{ partial "vz-term.html" . }}
@@ -10,28 +12,20 @@
   {{ partial "vz-taxonomy.html" . }}
 {{ else if $isArchive }}
 
+  {{ if .IsHome }}
   {{/* ============ HERO ============ */}}
   <section class="vz-hero">
-    <svg class="vz-doodle vz-doodle-tl" viewBox="0 0 48 48" aria-hidden="true">
-      <polyline points="6,38 14,28 22,32 30,18 38,24 42,14"/>
-      <line x1="6" y1="42" x2="42" y2="42"/>
-      <line x1="6" y1="14" x2="6" y2="42"/>
-    </svg>
-    <svg class="vz-doodle vz-doodle-tr" viewBox="0 0 48 48" aria-hidden="true">
-      <circle cx="12" cy="14" r="5"/>
-      <circle cx="36" cy="14" r="5"/>
-      <circle cx="24" cy="36" r="5"/>
-      <line x1="17" y1="14" x2="31" y2="14"/>
-      <line x1="15" y1="18" x2="21" y2="32"/>
-      <line x1="33" y1="18" x2="27" y2="32"/>
-    </svg>
-
     <div class="vz-hero-pill">
-      <span class="dot"></span>{{ len $posts }} {{ T "heroPillCount" }}
-      {{- with index (site.Params.upcoming | default slice) 0 }} {{ T "heroPillNext" }} {{ .date }}{{ end }}
+      <span class="dot"></span>{{ T "siteSubtitleShort" }}
+      {{- with index (site.Params.upcoming | default slice) 0 }} · {{ T "heroPillNext" }} {{ .date }}{{ end }}
     </div>
     <h1 class="vz-hero-title">{{ T "heroTitleA" }} <em>{{ T "heroTitleB" }}</em> {{ T "heroTitleC" }}</h1>
     <p class="vz-hero-lead">{{ T "heroLead" }}</p>
+    <div class="vz-hero-ctas">
+      <a class="vz-hero-cta primary" href="{{ "comece/" | relLangURL }}">{{ T "heroCtaStart" }}</a>
+      <a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=hero&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "heroCtaSubscribe" }}</a>
+    </div>
+    <a class="vz-hero-byline" href="{{ "sobre/" | relLangURL }}"><img src="{{ "sobre/avatar.png" | relURL }}" alt="" width="28" height="28" loading="eager" fetchpriority="high"> {{ T "heroByline" }}</a>
   </section>
 
   {{/* ============ CRONOGRAMA ============ */}}
@@ -58,51 +52,68 @@
     </div>
     <div class="vz-tracks-grid">
       {{ range . }}
-        <a class="vz-track-card {{ .color }}" href="#vz-archive" data-filter="{{ .color }}" onclick="return vzFilter('{{ .color }}', event, true)">
+        {{/* Card com href vai para a página (ex.: série); sem href, filtra o arquivo abaixo */}}
+        {{ if .href }}
+        <a class="vz-track-card {{ .color }}" href="{{ .href | relLangURL }}">
+        {{ else }}
+        <a class="vz-track-card {{ .color }}" href="{{ "blog/" | relLangURL }}?trilha={{ .color }}">
+        {{ end }}
           <span class="vz-track-pill">{{ .label }}</span>
           <h3 class="vz-track-h">{{ .title }}</h3>
           <p class="vz-track-sub">{{ .sub }}</p>
           <span class="vz-track-cta">{{ .cta }} →</span>
-          <span class="vz-track-decoration">{{ .sigil }}</span>
+          <span class="vz-track-decoration" aria-hidden="true">{{ .sigil }}</span>
         </a>
       {{ end }}
     </div>
   </section>
   {{ end }}
 
-  {{/* ============ ARCHIVE COM FILTROS ============ */}}
+  {{/* ============ CHECKLIST (entre trilhas e últimos posts) ============ */}}
+  <section class="vz-checklist-wrap">
+    <a class="vz-checklist-card" href="/checklist-qualidade-dados/">
+      <span class="vz-checklist-kicker">{{ T "checklistKicker" }}</span>
+      <span class="vz-checklist-title">{{ T "checklistTitle" }}</span>
+      <span class="vz-checklist-sub">{{ T "checklistSub" }}</span>
+      <span class="vz-checklist-cta">{{ T "checklistCta" }} →</span>
+    </a>
+  </section>
+  {{ end }}{{/* /IsHome */}}
+
+  {{ $list := $posts }}
+  {{ if .IsHome }}
+    {{ $shown := slice }}
+    {{ range $posts }}
+      {{ $c := "amber" }}{{ with .Params.tags }}{{ with index $colorMap (lower (index . 0)) }}{{ $c = . }}{{ end }}{{ end }}
+      {{ if and (ne $c "rose") (lt (len $shown) $latestN) }}{{ $shown = $shown | append . }}{{ end }}
+    {{ end }}
+    {{ $list = $shown }}
+  {{ end }}
+
+  {{/* ============ ARCHIVE (home: mais recentes; /blog/: completo com filtros) ============ */}}
   <section class="vz-archive" id="vz-archive">
-    <svg class="vz-doodle vz-doodle-r" viewBox="0 0 48 48" aria-hidden="true">
-      <path d="M 10 8 L 28 8 L 36 16 L 36 40 L 10 40 Z"/>
-      <path d="M 28 8 L 28 16 L 36 16"/>
-      <line x1="15" y1="24" x2="31" y2="24"/>
-      <line x1="15" y1="30" x2="31" y2="30"/>
-      <line x1="15" y1="36" x2="26" y2="36"/>
-    </svg>
-    <svg class="vz-doodle vz-doodle-l" viewBox="0 0 48 48" aria-hidden="true">
-      <rect x="8" y="12" width="32" height="24" rx="1"/>
-      <line x1="13" y1="22" x2="22" y2="22"/>
-      <line x1="13" y1="28" x2="35" y2="28"/>
-      <path d="M 25 22 L 28 22"/>
-    </svg>
 
     <div class="vz-archive-head">
-      <h2 class="vz-archive-title">{{ T "archiveTitleHTML" | safeHTML }}</h2>
+      {{ if .IsHome }}
+      <h2 class="vz-archive-title">{{ T "latestTitleHTML" | safeHTML }}</h2>
+      {{ else }}
+      <h1 class="vz-archive-title">{{ T "archiveTitleHTML" | safeHTML }}</h1>
       <span class="vz-archive-count" id="vz-archive-count">{{ len $posts }} {{ T "archivePostsCount" }}</span>
+      {{ end }}
     </div>
 
-    {{ with site.Params.tracks }}
+    {{ if not .IsHome }}{{ with site.Params.tracks }}
     <div class="vz-filters">
       <button class="vz-filter active" data-filter="all" aria-pressed="true" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
       {{ range . }}
         <button class="vz-filter" data-filter="{{ .color }}" aria-pressed="false" onclick="vzFilter('{{ .color }}', event)">{{ .label }}</button>
       {{ end }}
     </div>
-    {{ end }}
+    {{ end }}{{ end }}
 
-    {{ if $posts }}
+    {{ if $list }}
       <ul class="vz-post-list">
-        {{ range $posts }}
+        {{ range $list }}
           {{ $tag := "" }}{{ $color := "amber" }}
           {{ with .Params.tags }}
             {{ $tag = index . 0 }}
@@ -110,20 +121,27 @@
           {{ end }}
           <li class="vz-post-item" data-filter="{{ $color }}">
             <a class="vz-post-link" href="{{ .RelPermalink }}">
-              <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan" }}</time>
+              <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan 2006" }}</time>
               <div class="vz-post-title">
                 {{ .Title }}
                 {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}
               </div>
-              <div class="vz-post-track">{{ with $tag }}<span class="pill {{ $color }}">{{ . }}</span>{{ end }}</div>
+              {{ $label := $tag }}{{ range site.Params.tracks }}{{ if eq .color $color }}{{ $label = .label }}{{ end }}{{ end }}
+              {{ if eq $color "rose" }}{{ $label = T "trackArchived" }}{{ else if eq $color "coral" }}{{ $label = T "trackTools" }}{{ end }}
+              <div class="vz-post-track">{{ with $tag }}<span class="pill {{ $color }}">{{ $label }}</span>{{ end }}</div>
             </a>
           </li>
         {{ end }}
       </ul>
+      {{ if .IsHome }}
+      <p class="vz-archive-more"><a class="vz-hero-cta" href="{{ "blog/" | relLangURL }}">{{ T "archiveSeeAll" }} →</a></p>
+      {{ end }}
+      {{ if not .IsHome }}
       <p class="vz-empty-msg" id="vz-empty-msg" style="display:none; color: var(--text-muted); padding: 32px 0; text-align: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;">
         {{ T "archiveEmpty" }}
         <button class="vz-filter" style="margin-left: 12px;" onclick="vzFilter('all', event)">{{ T "filterAll" }}</button>
       </p>
+      {{ end }}
     {{ else }}
       <p style="color: var(--text-muted); padding: 32px 0;">{{ T "archiveEmpty" }}</p>
     {{ end }}
@@ -135,11 +153,12 @@
       <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
       <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
       <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
-      <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+      <a class="vz-subscribe-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=home&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
     </div>
   </aside>
 
-  {{/* ============ FILTER JS ============ */}}
+  {{/* ============ FILTER JS (só no arquivo completo) ============ */}}
+  {{ if not .IsHome }}
   <script>
   (function() {
     var totalPosts = {{ len $posts }};
@@ -170,10 +189,11 @@
       if (countEl) countEl.textContent = visible + ' ' + countSuffix;
       if (emptyEl) emptyEl.style.display = visible === 0 ? 'block' : 'none';
 
-      // Scroll suave pro archive
+      // Rolagem até o arquivo, suave só sem prefers-reduced-motion
       if (scroll) {
         var target = document.getElementById('vz-archive');
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (target) target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
       }
 
       // Atualiza URL (sem reload)
@@ -197,6 +217,7 @@
     });
   })();
   </script>
+  {{ end }}
 
 {{ else }}
   {{/* Fallback pra outras paginas */}}

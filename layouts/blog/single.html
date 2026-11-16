@@ -6,8 +6,12 @@
   {{ with index $colorMap (lower $tag) }}{{ $color = . }}{{ end }}
 {{ end }}
 {{ $minutes := math.Ceil (div .WordCount 200.0) }}
-{{ $cover := "" }}
-{{ with .Resources.GetMatch "cover.*" }}{{ $cover = .RelPermalink }}{{ end }}
+{{ $cover := "" }}{{ $coverAlt := $.Title }}
+{{/* Title-less page band wins; cover.* stays the og/feed image */}}
+{{ with or (.Resources.GetMatch "images/capa-pagina.*") (.Resources.GetMatch "cover.*") }}
+  {{ $cover = .RelPermalink }}
+  {{ if strings.Contains .Name "capa-pagina" }}{{ $coverAlt = "" }}{{ end }}
+{{ end }}
 
 {{/* Related: prioriza mesma trilha (tags em comum), completa com recentes */}}
 {{ $current := . }}
@@ -50,7 +54,7 @@
   {{ with .Params.description }}<p class="vz-post-lead">{{ . }}</p>{{ end }}
   <div class="vz-post-byline">
     <span>{{ T "postBy" }} <strong>{{ with site.Params.author }}{{ .name }}{{ end }}</strong></span>
-    <span>{{ .Date.Format "02 Jan · 2006" }}</span>
+    <span>{{ .Date | time.Format "02 Jan 2006" }}</span>
     <span>{{ $minutes }} {{ T "postReadMin" }}</span>
     {{ if hugo.IsMultilingual }}
       <span>
@@ -83,7 +87,7 @@
 
 {{ with $cover }}
 <div class="vz-post-cover">
-  <img src="{{ . }}" alt="{{ $current.Title }}" loading="eager" />
+  <img src="{{ . }}" alt="{{ $coverAlt }}" loading="eager" />
 </div>
 {{ end }}
 
@@ -96,7 +100,7 @@
     <div class="vz-subscribe-eyebrow">{{ T "subscribeEyebrow" }}</div>
     <h3 class="vz-subscribe-h">{{ T "subscribeHeadline" }} <em>{{ T "subscribeHeadlineAccent" }}</em></h3>
     <p class="vz-subscribe-sub">{{ T "subscribeSub" }}</p>
-    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
+    <a class="vz-subscribe-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "subscribeCta" }}</a>
   </div>
 </aside>
 
@@ -113,7 +117,7 @@
       <a class="vz-related-card" href="{{ .RelPermalink }}">
         {{ with $rtag }}<span class="vz-related-card-eyebrow {{ $rcolor }}">{{ . }}</span>{{ end }}
         <h4 class="vz-related-card-h">{{ .Title }}</h4>
-        <span class="vz-related-card-date">{{ .Date.Format "02 Jan 2006" }}</span>
+        <span class="vz-related-card-date">{{ .Date | time.Format "02 Jan 2006" }}</span>
       </a>
     {{ end }}
   </div>

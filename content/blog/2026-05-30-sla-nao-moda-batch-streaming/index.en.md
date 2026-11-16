@@ -85,4 +85,4 @@ The mistake is not picking streaming. The mistake is picking streaming without a
 
 ---
 
-Which pipeline did you pick wrong and had to redo later? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or reply to this email. I want to see how many cases match.
+Which pipeline did you pick wrong and had to redo later? Tell me on [LinkedIn](https://linkedin.com/in/thacvaz) or reply to this email. I want to see how many cases match.

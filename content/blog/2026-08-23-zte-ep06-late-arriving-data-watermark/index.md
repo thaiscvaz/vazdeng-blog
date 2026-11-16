@@ -8,6 +8,8 @@ description: "Toda pipeline lida com dado atrasado. Quem não modela event_time 
 tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 6
 ---
 Fechei o mês. Dois dias depois, o número mudou sozinho.
 

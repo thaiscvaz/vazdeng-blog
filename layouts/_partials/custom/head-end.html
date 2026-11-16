@@ -20,7 +20,9 @@
 {{ end }}
 
 {{/* Dark-first default + sincroniza com Hextra (que usa class .dark no <html>).
-     Persistencia via localStorage.theme = "dark" | "light". */}}
+     Persistencia via localStorage.theme = "dark" | "light". O theme.js do Hextra le a
+     chave "color-theme" (default dark no hugo.yaml) e reaplica .dark depois deste script;
+     sem espelhar as duas chaves, o modo claro sumia na navegacao seguinte. */}}
 <script>
 (function() {
   try {
@@ -29,6 +31,7 @@
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document.documentElement.setAttribute('data-theme', theme);
     if (!stored) localStorage.setItem('theme', 'dark');
+    localStorage.setItem('color-theme', theme);
   } catch (e) {}
 })();
 function vzToggleTheme() {
@@ -37,6 +40,6 @@ function vzToggleTheme() {
   var next = current === 'dark' ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   html.classList.toggle('dark', next === 'dark');
-  try { localStorage.setItem('theme', next); } catch (e) {}
+  try { localStorage.setItem('theme', next); localStorage.setItem('color-theme', next); } catch (e) {}
 }
 </script>

@@ -68,4 +68,4 @@ A escolha é antes da próxima feature. Vai aprender o que está rodando ou vai 
 
 **Próximo post na quinta:** prompt caching cortando 90% do custo de LLM em produção. Bench real, configuração em uma linha, onde brilha e onde não brilha.
 
-**Assina o VazDEng** se ainda não assina. Engenharia de dados em português, padrão sênior, sem hype: [vazdeng.substack.com](https://vazdeng.substack.com).
+**Assina o VazDEng** se ainda não assina. Engenharia de dados em português, padrão sênior, sem hype: [vazdeng.substack.com](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=sql-ainda-importa-2026).

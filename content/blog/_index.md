@@ -1,5 +1,6 @@
 ---
-title: Vaz · Engenharia de informação
+title: "Arquivo"
+description: "Todos os posts do VazDEng, do mais recente ao mais antigo, com filtro por trilha."
 cascade:
   type: blog
   breadcrumbs: false

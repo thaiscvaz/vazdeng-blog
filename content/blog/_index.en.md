@@ -1,5 +1,6 @@
 ---
-title: Vaz · Information engineering
+title: "Archive"
+description: "Every VazDEng post, newest first, with a track filter."
 cascade:
   type: blog
   breadcrumbs: false

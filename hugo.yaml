@@ -36,20 +36,21 @@ languages:
         - color: amber
           label: "DE Produção"
           title: "Anti-padrões reais em batch e streaming."
-          sub: "Decisão técnica com SLA no centro. Toda terça, 12h BRT."
+          sub: "Decisão técnica com SLA, custo e o caso em que falha."
           cta: "Ver últimos"
           sigil: "DE"
-        - color: rose
-          label: "Cripto Chronicles"
-          title: "A saga de um agente quant que perde dinheiro."
-          sub: "Capítulos numerados sobre o agente quant de cripto. Sharpe, abstenção, drawdown."
-          cta: "Ler do começo"
-          sigil: "CA"
+        - color: sage
+          label: "IA aplicada"
+          title: "Agentes e LLMs que aguentam produção."
+          sub: "Harness, avaliação, custo e segurança, com o que quebrou no caminho."
+          cta: "Ver últimos"
+          sigil: "IA"
         - color: lavender
           label: "Zero to Expert"
           title: "Fundamentos antes da ferramenta."
-          sub: "Série didática progressiva de DE. Todo sábado, 10h BRT."
-          cta: "Episódio 01"
+          sub: "Série progressiva de fundamentos, um conceito por episódio."
+          cta: "Ver a série"
+          href: "series/zero-to-expert/"
           sigil: "ZTE"
   en:
     languageName: English
@@ -62,20 +63,21 @@ languages:
         - color: amber
           label: "DE Production"
           title: "Real anti-patterns in batch and streaming."
-          sub: "Technical decision with SLA at the center. Every Tuesday, 12h BRT."
+          sub: "Technical decisions with SLA, cost and the case where they fail."
           cta: "Latest posts"
           sigil: "DE"
-        - color: rose
-          label: "Crypto Chronicles"
-          title: "The saga of a quant agent losing money."
-          sub: "Numbered chapters on the crypto quant agent. Sharpe, abstention, drawdown."
-          cta: "Start from chapter 1"
-          sigil: "CA"
+        - color: sage
+          label: "Applied AI"
+          title: "Agents and LLMs that survive production."
+          sub: "Harness, evaluation, cost and security, with what broke along the way."
+          cta: "Latest posts"
+          sigil: "IA"
         - color: lavender
           label: "Zero to Expert"
           title: "Fundamentals before the tool."
-          sub: "Progressive didactic series on DE. Every Saturday, 10h BRT."
-          cta: "Episode 01"
+          sub: "Progressive fundamentals series, one concept per episode."
+          cta: "See the series"
+          href: "series/zero-to-expert/"
           sigil: "ZTE"
 
 markup:
@@ -92,30 +94,33 @@ outputs:
 
 menu:
   main:
+    - name: Comece aqui
+      pageRef: /comece
+      weight: 1
     - name: Sobre
       pageRef: /sobre
-      weight: 1
+      weight: 2
     - name: Séries
       pageRef: /series
-      weight: 2
-    - name: GitHub
       weight: 3
+    - name: GitHub
+      weight: 4
       url: https://github.com/thaiscvaz
       params:
         icon: github
     - name: LinkedIn
-      weight: 4
+      weight: 5
       url: https://linkedin.com/in/thacvaz
       params:
         icon: linkedin
     - name: Substack
-      weight: 5
-      url: https://vazdeng.substack.com
+      weight: 6
+      url: https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=menu&utm_campaign=fase1
       params:
         icon: substack
 
 params:
-  description: "Engenharia de dados de produção. Agente de IA para cripto. Mestrado traduzido para a prática."
+  description: "Engenharia de dados e IA em produção, com casos reais e contexto brasileiro. Para quem já sabe o básico e quer ver como funciona de verdade."
   author:
     name: Thais Vaz
     link: https://linkedin.com/in/thacvaz
@@ -197,6 +202,10 @@ params:
     zero-to-expert: lavender
     fundamentos: lavender
     ia: sage
+    agentes: sage
+    segundo-cerebro: sage
     machine-learning: sage
+    engenharia-de-dados: amber
+    ferramentas: amber
     tool-verdict: coral
     airflow: coral

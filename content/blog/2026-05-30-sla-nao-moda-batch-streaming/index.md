@@ -89,4 +89,4 @@ O erro não é escolher streaming. O erro é escolher streaming sem responder as
 
 ---
 
-Qual foi o pipeline que você escolheu errado e teve que refazer depois? Me conta no [LinkedIn](https://linkedin.com/in/thaisvaz) ou responde esse email. Quero ver quantos casos batem.
+Qual foi o pipeline que você escolheu errado e teve que refazer depois? Me conta no [LinkedIn](https://linkedin.com/in/thacvaz) ou responde esse email. Quero ver quantos casos batem.
