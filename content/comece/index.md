@@ -19,8 +19,9 @@ Decisões de arquitetura com custo, número e o caso em que a ideia falha.
 A série Zero to Expert, um conceito por episódio, antes de qualquer ferramenta.
 
 1. [Ep 01: o conceito que vem antes de qualquer ferramenta]({{< relref "blog/2026-05-30-data-flows-ep01" >}})
-2. [Ep 03: idempotência, por que rodar o pipeline duas vezes não pode mudar o resultado]({{< relref "blog/2026-06-27-idempotencia-reprocessar-sem-duplicar-zte-ep03" >}})
-3. [Ep 04: particionar errado custa mais caro que não particionar]({{< relref "blog/2026-07-04-particionar-errado-custa-mais-que-nao-particionar-zte-ep04" >}})
+2. [Ep 02: dependências, a lei que todo orquestrador segue]({{< relref "blog/2026-06-13-dependencias-dag-lei-orquestrador" >}})
+3. [Ep 03: idempotência, por que rodar o pipeline duas vezes não pode mudar o resultado]({{< relref "blog/2026-06-27-idempotencia-reprocessar-sem-duplicar-zte-ep03" >}})
+4. [Ep 04: particionar errado custa mais caro que não particionar]({{< relref "blog/2026-07-04-particionar-errado-custa-mais-que-nao-particionar-zte-ep04" >}})
 
 A série completa está em [Zero to Expert](/series/zero-to-expert/).
 

@@ -10,6 +10,9 @@ heroTitleB: "before"
 heroTitleC: "the tool."
 heroCtaStart: "Start here"
 heroCtaSubscribe: "Subscribe"
+heroByline: "By Thais Vaz · 10 years in data engineering · master's student at UFPR"
+trackTools: "Tools"
+trackArchived: "Crypto archive"
 heroLead: "Data engineering and AI in production, with real cases, sourced numbers and Brazilian context. For engineers past the basics who want to see how it really works."
 
 # Schedule

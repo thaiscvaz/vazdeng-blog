@@ -8,6 +8,8 @@ Pipeline que cai é sorte: alguém percebe. O prejuízo vem do pipeline que não
 
 Use assim: se você não consegue responder um item em uma frase, ele ainda não está resolvido.
 
+<div class="vz-offer"><p>Quer a versão para imprimir, com o link de cada caso? Ela vai no e-mail de boas-vindas da newsletter.</p><a class="vz-offer-btn" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist-topo&utm_campaign=fase1" target="_blank" rel="noopener">Receber o PDF</a></div>
+
 ## 1. Contrato com quem produz o dado
 
 - [ ] Existe um contrato versionado (não um DDL perdido num wiki) com schema, tipos e nulos de cada coluna?

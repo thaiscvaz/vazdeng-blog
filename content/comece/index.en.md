@@ -15,8 +15,9 @@ VazDEng is data engineering and AI in production, with real cases and Brazilian 
 ## If you want solid fundamentals
 
 1. [Ep 01: the concept that comes before any tool]({{< relref "blog/2026-05-30-data-flows-ep01" >}})
-2. [Ep 03: idempotency, why running the pipeline twice must not change the result]({{< relref "blog/2026-06-27-idempotencia-reprocessar-sem-duplicar-zte-ep03" >}})
-3. [Ep 04: partitioning wrong costs more than not partitioning]({{< relref "blog/2026-07-04-particionar-errado-custa-mais-que-nao-particionar-zte-ep04" >}})
+2. [Ep 02: dependencies, the law every orchestrator follows]({{< relref "blog/2026-06-13-dependencias-dag-lei-orquestrador" >}})
+3. [Ep 03: idempotency, why running the pipeline twice must not change the result]({{< relref "blog/2026-06-27-idempotencia-reprocessar-sem-duplicar-zte-ep03" >}})
+4. [Ep 04: partitioning wrong costs more than not partitioning]({{< relref "blog/2026-07-04-particionar-errado-custa-mais-que-nao-particionar-zte-ep04" >}})
 
 ## If you are putting AI in production
 

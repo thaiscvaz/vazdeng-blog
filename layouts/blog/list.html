@@ -36,6 +36,7 @@
       <a class="vz-hero-cta primary" href="{{ "comece/" | relLangURL }}">{{ T "heroCtaStart" }}</a>
       <a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=hero&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "heroCtaSubscribe" }}</a>
     </div>
+    <a class="vz-hero-byline" href="{{ "sobre/" | relLangURL }}"><img src="{{ "sobre/avatar.png" | relURL }}" alt="" width="28" height="28" loading="lazy"> {{ T "heroByline" }}</a>
   </section>
 
   {{/* ============ CRONOGRAMA ============ */}}
@@ -119,7 +120,9 @@
                 {{ .Title }}
                 {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}
               </div>
-              <div class="vz-post-track">{{ with $tag }}<span class="pill {{ $color }}">{{ . }}</span>{{ end }}</div>
+              {{ $label := $tag }}{{ range site.Params.tracks }}{{ if eq .color $color }}{{ $label = .label }}{{ end }}{{ end }}
+              {{ if eq $color "rose" }}{{ $label = T "trackArchived" }}{{ else if eq $color "coral" }}{{ $label = T "trackTools" }}{{ end }}
+              <div class="vz-post-track">{{ with $tag }}<span class="pill {{ $color }}">{{ $label }}</span>{{ end }}</div>
             </a>
           </li>
         {{ end }}
