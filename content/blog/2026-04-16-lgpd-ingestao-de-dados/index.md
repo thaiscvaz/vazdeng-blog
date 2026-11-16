@@ -87,4 +87,4 @@ Times que tratam LGPD como "resolvemos depois" pagam o retrabalho inteiro na pri
 
 A diferença entre um e outro não é jurídica. É de engenharia.
 
-Qual foi a requisição de titular mais cabulosa que você já viu chegar no seu time? Me responde no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina o [Substack](https://vazdeng.substack.com) pra receber os próximos posts.
+Qual foi a requisição de titular mais cabulosa que você já viu chegar no seu time? Me responde no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina o [Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=lgpd-ingestao-de-dados) pra receber os próximos posts.

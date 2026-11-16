@@ -1,25 +1,26 @@
 copyright: "© 2026 · vazdeng.pages.dev"
 poweredBy: ""
 siteSubtitle: "Engenharia de dados e IA em produção, com casos reais e contexto brasileiro."
+siteSubtitleShort: "Engenharia de dados e IA em produção"
 
 # Hero homepage
-heroPillCount: "posts ·"
+heroPillCount: "posts"
 heroPillNext: "próximo:"
-heroTitleA: "Pipeline robusto começa"
-heroTitleB: "antes"
-heroTitleC: "da ferramenta."
+heroTitleA: "Pipeline verde"
+heroTitleB: "não é"
+heroTitleC: "número certo."
 heroCtaStart: "Comece aqui"
 heroCtaSubscribe: "Assinar a newsletter"
-heroByline: "Por Thais Vaz · 10 anos em engenharia de dados · mestranda na UFPR"
+heroByline: "Por Thais Vaz · engenheira de dados sênior · 10 anos em produção · mestranda na UFPR"
 trackTools: "Ferramentas"
 trackArchived: "Arquivo cripto"
-heroLead: "Engenharia de dados e IA em produção, com casos reais, número com fonte e contexto brasileiro. Para quem já sabe o básico e quer ver como funciona de verdade."
+heroLead: "Para engenheiros de dados pleno e sênior que já rodam pipeline e querem ver como as decisões se pagam em produção. Casos reais, número com fonte e contexto brasileiro."
 
 # Cronograma
 scheduleLabel: "Próximos<br/>posts"
 
 # Trilhas ativas
-tracksEyebrow: "3 trilhas ativas"
+tracksEyebrow: "3 trilhas"
 tracksSeeAll: "Ver todas →"
 
 # Archive
@@ -27,6 +28,8 @@ archiveTitle: "Arquivo"
 archiveTitleAccent: "completo"
 archiveTitleHTML: 'Arquivo <em>completo</em>'
 footerBuiltBy: "construído por"
+latestTitleHTML: 'Últimos <em>posts</em>'
+archiveSeeAll: "Ver arquivo completo"
 archivePostsCount: "posts"
 archiveEmpty: "Nenhum post ainda."
 filterAll: "Tudo"
@@ -40,7 +43,7 @@ postBy: "Por"
 subscribeEyebrow: "Newsletter"
 subscribeHeadline: "O caso, o número e"
 subscribeHeadlineAccent: "o que deu errado"
-subscribeSub: "Uma edição por semana, no sábado. Quem assina recebe também a versão para imprimir do checklist de qualidade de dados e as atualizações dele."
+subscribeSub: "Cada post novo chega no seu e-mail. Quem assina também fica sabendo quando o checklist de qualidade de dados muda."
 subscribeCta: "Assinar a newsletter"
 subscribeAria: "Assinar a newsletter VazDEng"
 
@@ -68,3 +71,9 @@ notFoundCta: "Voltar pro início"
 navAria: "Principal"
 langAria: "Idioma"
 themeAria: "Trocar tema claro/escuro"
+
+# Checklist na home
+checklistKicker: "Checklist · PDF"
+checklistTitle: "Checklist: 28 perguntas antes de subir pipeline"
+checklistSub: "Oito blocos, cada um com o caso real. Versão online e em PDF para imprimir."
+checklistCta: "Abrir o checklist"

@@ -8,6 +8,8 @@ description: "Observability não é Grafana bonito. É log estruturado com corre
 tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 7
 ---
 O DAG falhou no MERGE às 3h da manhã. O dashboard estava todo verde às 2h58.
 

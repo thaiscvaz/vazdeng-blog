@@ -127,4 +127,4 @@ A escolha da arquitetura deveria começar pelo problema, não pelo padrão. O qu
 
 Se as respostas apontam para Medallion, ótimo. Se não apontam, uma arquitetura mais simples vai resolver melhor.
 
-Você já implementou Medallion num lugar que não precisava? O que aconteceu depois? Me conta no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com) para receber os próximos posts.
+Você já implementou Medallion num lugar que não precisava? O que aconteceu depois? Me conta no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=medallion-architecture-quando-nao) para receber os próximos posts.

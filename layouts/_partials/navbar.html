@@ -1,49 +1,51 @@
-{{/* VazDEng v5 — header centralizado boutique com brand mark + nav inline + toggle */}}
+{{/* VazDEng v5 — header centralizado: marca, nav inline e ações (assinar no mobile, idioma, tema) */}}
+{{ $page := . }}
 {{ $home := .Site.Home }}
 {{ $lang := .Language.Lang }}
+{{/* Idioma: traduções da própria página; sem tradução, cai na home */}}
+{{ $trans := $page.AllTranslations }}
+{{ if lt (len $trans) 2 }}{{ $trans = $home.AllTranslations }}{{ end }}
+{{ $here := strings.TrimSuffix "/" $page.RelPermalink }}
 <header class="vz-nav-wrap">
-  <svg class="vz-doodle vz-doodle-l" viewBox="0 0 48 48" aria-hidden="true">
-    <rect x="6" y="20" width="9" height="8" rx="0.5"/>
-    <rect x="19.5" y="20" width="9" height="8" rx="0.5"/>
-    <rect x="33" y="20" width="9" height="8" rx="0.5"/>
-    <line x1="15" y1="24" x2="19.5" y2="24"/>
-    <line x1="28.5" y1="24" x2="33" y2="24"/>
-  </svg>
-  <svg class="vz-doodle vz-doodle-r" viewBox="0 0 48 48" aria-hidden="true">
-    <ellipse cx="24" cy="14" rx="14" ry="4.5"/>
-    <path d="M 10 14 L 10 34 Q 10 38.5 24 38.5 Q 38 38.5 38 34 L 38 14"/>
-    <path d="M 10 22 Q 10 26.5 24 26.5 Q 38 26.5 38 22"/>
-  </svg>
-
-  <a class="vz-brand" href="{{ $home.RelPermalink }}" aria-label="VazDEng">
-    <span class="vz-brand-mark">V</span>
-    <span class="vz-brand-name">Vaz<em>D</em>Eng</span>
-  </a>
+  <div class="vz-nav-top">
+    <a class="vz-brand" href="{{ $home.RelPermalink }}" aria-label="VazDEng">
+      <span class="vz-brand-mark">V</span>
+      <span class="vz-brand-name">Vaz<em>D</em>Eng</span>
+    </a>
+    <div class="vz-nav-actions">
+      {{/* Só aparece abaixo de 640 px, onde os links externos (Substack incluso) somem */}}
+      <a class="vz-nav-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=menu-mobile&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "navCta" }}</a>
+      {{ if hugo.IsMultilingual }}
+        <span class="vz-lang-mobile" aria-label="{{ T "langAria" }}">
+          {{- range $trans }}{{ if ne .Language.Lang $lang }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ upper .Language.Lang }}</a>{{ end }}{{ end -}}
+        </span>
+      {{ end }}
+      <button class="vz-theme-toggle" onclick="vzToggleTheme()" aria-label="{{ T "themeAria" }}">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
 
   <nav class="vz-nav-inline" aria-label="{{ T "navAria" }}">
     {{ range .Site.Menus.main }}
-      {{ if .URL }}
-        <a href="{{ .URL }}" {{ if hasPrefix .URL "http" }}target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
-      {{ else if .PageRef }}
-        <a href="{{ .PageRef | relLangURL }}">{{ .Name }}</a>
-      {{ end }}
+      {{/* Entradas com pageRef também chegam com .URL preenchido (permalink da página) */}}
+      {{ $url := .URL | default (.PageRef | relLangURL) }}
+      {{ $ext := hasPrefix $url "http" }}
+      {{ $base := strings.TrimSuffix "/" $url }}
+      {{ $cur := and (not $ext) (ne $base "") (or (eq $here $base) (hasPrefix $here (printf "%s/" $base))) }}
+      <a href="{{ $url }}"{{ if $ext }} target="_blank" rel="noopener"{{ end }}{{ if $cur }} aria-current="page"{{ end }}>{{ .Name }}</a>
     {{ end }}
     {{ if hugo.IsMultilingual }}
       <span class="vz-lang" aria-label="{{ T "langAria" }}">
-        {{ range $i, $t := $home.AllTranslations }}
-          {{ if $i }} · {{ end }}
+        {{ range $t := $trans }}
           {{ if eq $t.Language.Lang $lang }}
-            <span class="cur">{{ upper $t.Language.Lang }}</span>
+            <span class="cur" aria-current="true">{{ upper $t.Language.Lang }}</span>
           {{ else }}
-            <a href="{{ $t.RelPermalink }}">{{ upper $t.Language.Lang }}</a>
+            <a href="{{ $t.RelPermalink }}" hreflang="{{ $t.Language.Lang }}">{{ upper $t.Language.Lang }}</a>
           {{ end }}
         {{ end }}
       </span>
     {{ end }}
   </nav>
-
-  <button class="vz-theme-toggle" onclick="vzToggleTheme()" aria-label="{{ T "themeAria" }}">
-    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-  </button>
 </header>

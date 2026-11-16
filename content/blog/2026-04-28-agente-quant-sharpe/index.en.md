@@ -345,4 +345,4 @@ If the goal was to learn how to build a robust, tested, auditable, scalable syst
 
 Your next objective is yours.
 
-Reply on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [Substack newsletter](https://vazdeng.substack.com) to get the next posts.
+Reply on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [Substack newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=agente-quant-sharpe) to get the next posts.

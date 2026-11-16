@@ -1,0 +1,74 @@
+{{- /* VazDEng override of Hextra v0.12.1 _markup/render-image.html (copied verbatim, plus one change):
+     when the page bundle has <name>.mobile.png next to <name>.png, serve it up to 720 px (= --content) through
+     <picture>, so post diagrams never show the desktop file below 1:1 (BRAND.md §4). The breakpoint
+     equals --content: from 721 px up the post column is 656 px and the desktop file shows 1:1.
+     Re-copy the theme file and re-apply the block marked VAZDENG when Hextra is upgraded. */ -}}
+{{- $alt := .PlainText | safeHTML -}}
+{{- $lazyLoading := .Page.Site.Params.enableImageLazyLoading | default true -}}
+{{- $enableImageZoom := .Page.Site.Params.imageZoom.enable | default false -}}
+{{- if not (eq .Page.Params.imageZoom nil) -}}
+  {{- $enableImageZoom = .Page.Params.imageZoom -}}
+{{- end -}}
+{{- $dest := .Destination -}}
+{{- $url := urls.Parse $dest -}}
+
+{{- $isLocal := not $url.Scheme -}}
+{{- $isPage := and (eq .Page.Kind "page") (not .Page.BundleType) -}}
+{{- $startsWithSlash := hasPrefix $dest "/" -}}
+{{- $startsWithRelative := hasPrefix $dest "../" -}}
+
+{{- if and $dest $isLocal -}}
+  {{- if $startsWithSlash -}}
+    {{- with or (.PageInner.Resources.Get $url.Path) (resources.Get $url.Path) -}}
+      {{/* Images under assets directory */}}
+      {{- $query := cond $url.RawQuery (printf "?%s" $url.RawQuery) "" -}}
+      {{- $fragment := cond $url.Fragment (printf "#%s" $url.Fragment) "" -}}
+      {{- $dest = printf "%s%s%s" .RelPermalink $query $fragment -}}
+    {{- else -}}
+      {{/* Images under static directory */}}
+      {{- $dest = (relURL (strings.TrimPrefix "/" $dest)) -}}
+    {{- end -}}
+  {{- else -}}
+    {{/* Resolve page bundle resource for multilingual permalink */}}
+    {{- with .PageInner.Resources.Get (strings.TrimPrefix "./" $url.Path) -}}
+      {{- $query := cond $url.RawQuery (printf "?%s" $url.RawQuery) "" -}}
+      {{- $fragment := cond $url.Fragment (printf "#%s" $url.Fragment) "" -}}
+      {{- $dest = printf "%s%s%s" .RelPermalink $query $fragment -}}
+    {{- else -}}
+      {{- if and $isPage (not $startsWithRelative) -}}
+        {{ $dest = (printf "../%s" $dest) }}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* VAZDENG: phone variant of a bundle image */ -}}
+{{- $mobile := "" -}}
+{{- if and $isLocal (not $startsWithSlash) (strings.HasSuffix $url.Path ".png") -}}
+  {{- with .PageInner.Resources.Get (printf "%s.mobile.png" (strings.TrimSuffix ".png" (strings.TrimPrefix "./" $url.Path))) -}}
+    {{- $mobile = .RelPermalink -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $attributes := "" -}}
+{{- range $key, $value := .Attributes -}}
+  {{- if $value -}}
+    {{- $pair := printf "%s=%q" $key ($value | transform.HTMLEscape) -}}
+    {{- $attributes = printf "%s %s" $attributes $pair -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $enableImageZoom -}}
+  {{- .Page.Store.Set "hasImageZoom" true -}}
+{{- end -}}
+
+{{- with .Title -}}
+  <figure>
+    {{ with $mobile }}<picture><source media="(max-width: 720px)" srcset="{{ . | safeURL }}" />{{ end }}<img src="{{ $dest | safeURL }}" title="{{ . }}" alt="{{ $alt }}" {{ $attributes | safeHTMLAttr }}{{ if $enableImageZoom }} data-zoomable{{ end }}{{ if $lazyLoading }} loading="lazy"{{ end }} />
+    {{ with $mobile }}</picture>{{ end }}
+    <figcaption>{{ . }}</figcaption>
+  </figure>
+{{- else -}}
+  {{ with $mobile }}<picture><source media="(max-width: 720px)" srcset="{{ . | safeURL }}" />{{ end }}<img src="{{ $dest | safeURL }}" alt="{{ $alt }}" {{ $attributes | safeHTMLAttr }}{{ if $enableImageZoom }} data-zoomable{{ end }}{{ if $lazyLoading }} loading="lazy"{{ end }} />
+{{ with $mobile }}</picture>{{ end }}
+{{- end -}}

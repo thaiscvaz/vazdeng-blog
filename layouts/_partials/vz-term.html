@@ -34,7 +34,7 @@
       <span class="vz-series-toc-title">{{ .Title }}</span>
       {{ with .Params.description }}<span class="vz-series-toc-desc">{{ . | truncate 140 }}</span>{{ end }}
     </span>
-    <span class="vz-series-toc-date">{{ .Date.Format "02 Jan 2006" }}</span>
+    <span class="vz-series-toc-date">{{ .Date | time.Format "02 Jan 2006" }}</span>
   </a>
   {{ end }}
 </div>

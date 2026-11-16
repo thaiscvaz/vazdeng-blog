@@ -101,4 +101,4 @@ Fourth, build a validation query that runs weekly against the system tables and 
 
 Lineage isn't a feature you turn on and forget. I use it as a continuous practice: for every new pipeline, I validate what Unity Catalog captured and what fell outside.
 
-What part of lineage gives you the most trouble today? Tell me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com).
+What part of lineage gives you the most trouble today? Tell me on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=databricks-unity-catalog-lineage).

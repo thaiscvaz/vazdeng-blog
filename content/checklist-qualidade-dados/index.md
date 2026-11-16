@@ -1,14 +1,22 @@
 ---
 title: "Checklist de qualidade de dados antes de subir pipeline"
-description: "As perguntas que eu faço antes de colocar qualquer pipeline em produção: contrato, idempotência, grão, partição, dado atrasado, observabilidade e LGPD."
+kicker: "Checklist · 28 perguntas"
+description: "28 perguntas em oito blocos para subir pipeline (contrato, idempotência, grão, partição, dado atrasado, observabilidade, SLA e LGPD) e quantas delas valem quando o número é só seu."
 type: default
+images:
+  - /images/og-checklist-qualidade-dados.png
+hideSubscribe: true
 ---
 
-Pipeline que cai é sorte: alguém percebe. O prejuízo vem do pipeline que não cai, roda verde e entrega número errado. Este checklist junta numa página as perguntas que eu faço antes de subir qualquer pipeline. Cada bloco aponta para o post onde a decisão está explicada com o caso real.
+<p class="vz-version">Versão 1 · atualizado em 16.11.2026</p>
+
+Quando o pipeline cai, alguém percebe. O prejuízo vem do pipeline que não cai, roda verde e entrega número errado. Este checklist junta numa página as 28 perguntas que eu uso antes de subir pipeline, em oito blocos, e cada bloco aponta para o post onde a decisão está explicada com o caso real.
+
+<div class="vz-offer"><p>Versão para imprimir em PDF, com o link de cada caso. Quem assina a newsletter fica sabendo quando o checklist muda.</p><span class="vz-offer-actions"><a class="vz-offer-btn" href="vazdeng-checklist-qualidade-dados.pdf" download>Baixar o PDF</a><a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist-topo&utm_campaign=fase1" target="_blank" rel="noopener">Assinar a newsletter</a></span></div>
+
+Quantas usar depende de quem vai usar o número. Se ele é só seu e temporário, comece por idempotência, grão e LGPD, e pela pergunta de contrato sobre o que cada coluna significa. Se alguém além de você vai decidir com ele, ou se ele vai ser consultado de novo, valem os oito blocos.
 
 Use assim: se você não consegue responder um item em uma frase, ele ainda não está resolvido.
-
-<div class="vz-offer"><p>Quer a versão para imprimir, com o link de cada caso? Ela vai no e-mail de boas-vindas da newsletter.</p><a class="vz-offer-btn" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist-topo&utm_campaign=fase1" target="_blank" rel="noopener">Receber o PDF</a></div>
 
 ## 1. Contrato com quem produz o dado
 
@@ -24,7 +32,7 @@ Por quê: [o produtor renomeou uma coluna e ninguém avisou]({{< relref "blog/20
 
 - [ ] Se eu rodar isso duas vezes seguidas, a tabela final continua igual?
 - [ ] Consigo nomear a chave natural em uma frase?
-- [ ] A carga é MERGE (upsert), não INSERT puro na tabela de destino?
+- [ ] A escrita impede duplicar ou alterar linha ao reexecutar a mesma entrada (por exemplo, MERGE pela chave natural, não INSERT puro), e eu já testei uma reexecução?
 - [ ] Um backfill de correção retroativa mantém os números certos?
 
 Por quê: [rodar o pipeline duas vezes não pode mudar o resultado]({{< relref "blog/2026-06-27-idempotencia-reprocessar-sem-duplicar-zte-ep03" >}}).
@@ -38,11 +46,11 @@ Por quê: [errar a linha custa mais caro que errar a coluna]({{< relref "blog/20
 
 ## 4. Partição
 
-- [ ] A tabela é grande o bastante para precisar de partição? Abaixo de 1 TB quase nunca precisa.
+- [ ] A tabela é grande o bastante para precisar de partição? Em tabelas Delta no Databricks, a [documentação](https://docs.databricks.com/aws/en/tables/partitions) diz para não particionar abaixo de 1 TB e, de 1 a 100 TB, recomenda liquid clustering em vez de partição.
 - [ ] A coluna de partição é a que as consultas de fato filtram?
 - [ ] Não é coluna de alta cardinalidade (CPF, ID, timestamp ao segundo)?
-- [ ] Cada partição fica perto de 1 GB ou mais, e o total fica bem abaixo de 10 mil partições?
-- [ ] Quando a resposta é "depende", considerei clustering em vez de chutar uma coluna?
+- [ ] Cada partição fica com pelo menos 1 GB (mesma documentação), em vez de milhares de partições pequenas?
+- [ ] Considerei liquid clustering antes de partição?
 
 Por quê: [particionar errado custa mais caro que não particionar]({{< relref "blog/2026-07-04-particionar-errado-custa-mais-que-nao-particionar-zte-ep04" >}}).
 
@@ -80,4 +88,4 @@ Por quê: [LGPD na ingestão de dados: 4 princípios que mudam sua arquitetura](
 
 ---
 
-Este checklist é aberto e cresce junto com o blog. Quem assina a newsletter recebe a versão para imprimir no e-mail de boas-vindas e fica sabendo quando entra pergunta nova. [Assinar no Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist&utm_campaign=fase1).
+Este checklist é aberto e cresce junto com o blog.

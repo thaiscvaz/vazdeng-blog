@@ -23,7 +23,7 @@ That's the gap I want to help fill.
 
 I won't list certificates. I'll tell you what I've shipped.
 
-I'm a senior data engineer with 8+ years of experience. I started in data quality at a retail bank, then moved to a payments fintech building ETL pipelines, worked on a big-tech project in Silicon Valley through a global consultancy, and today I'm a senior data engineer in banking. (Full résumé on the [/sobre/](/sobre/) page.)
+I've worked in data engineering for 10 years. I started in data quality at a retail bank, then moved to a payments fintech building ETL pipelines, worked on a big-tech project in Silicon Valley through a global consultancy, and today I'm a senior data engineer in banking. (Full résumé on the [/sobre/](/sobre/) page.)
 
 My core stack is Databricks. Not because I read the docs. Because it's what runs in production where I've worked.
 
@@ -53,4 +53,4 @@ Hit reply and tell me: what's the hardest data problem you're dealing with right
 
 Thais Vaz
 
-[Newsletter on Substack →](https://vazdeng.substack.com)
+[Newsletter on Substack →](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=engenharia-dados-em-portugues)

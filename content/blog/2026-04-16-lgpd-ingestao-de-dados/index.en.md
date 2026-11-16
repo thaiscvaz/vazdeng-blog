@@ -85,4 +85,4 @@ Teams that treat it as "we'll solve it later" pay the entire tech debt on the fi
 
 The difference between the two isn't legal. It's engineering.
 
-What's the trickiest data subject request your team has ever dealt with? Reply on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [Substack](https://vazdeng.substack.com) for the next posts.
+What's the trickiest data subject request your team has ever dealt with? Reply on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=lgpd-ingestao-de-dados) for the next posts.

@@ -122,4 +122,4 @@ If yes, you are ahead of most. If not, start there. Before Spark, before dbt, be
 
 The next episodes of the Zero to Expert series will go into each layer in depth: ingestion (formats, idempotency, CDC), transformation (SQL vs Python vs Spark), destination (warehouse vs lake vs lakehouse), orchestration. Each episode with a concrete case and a decision at the center, not theory.
 
-If there is a specific concept you want covered, send it to me on [LinkedIn](https://linkedin.com/in/thaisvaz) or subscribe to the [newsletter](https://vazdeng.substack.com) to get the next episodes.
+If there is a specific concept you want covered, send it to me on [LinkedIn](https://linkedin.com/in/thacvaz) or subscribe to the [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=data-flows-ep01) to get the next episodes.

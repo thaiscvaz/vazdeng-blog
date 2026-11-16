@@ -126,4 +126,4 @@ Se sim, está à frente da maioria. Se não, comece por aí. Antes de Spark, ant
 
 Os próximos episódios da série Zero to Expert vão entrar em cada camada com profundidade: ingestão (formatos, idempotência, CDC), transformação (SQL vs Python vs Spark), destino (warehouse vs lake vs lakehouse), orquestração. Cada episódio com caso concreto e decisão no centro, não teoria.
 
-Se tem algum conceito específico que você quer ver coberto, me manda no [LinkedIn](https://linkedin.com/in/thaisvaz) ou assina a [newsletter](https://vazdeng.substack.com) pra receber os próximos episódios.
+Se tem algum conceito específico que você quer ver coberto, me manda no [LinkedIn](https://linkedin.com/in/thacvaz) ou assina a [newsletter](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=data-flows-ep01) pra receber os próximos episódios.

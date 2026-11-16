@@ -8,6 +8,8 @@ description: "O que significa UMA linha da sua tabela fato? Se ninguém responde
 tags: ["zero-to-expert", "engenharia-de-dados"]
 images:
   - cover.png
+series: ["zero-to-expert"]
+episode: 5
 ---
 A pergunta que eu mais gosto de fazer numa revisão de modelo de dados tem sete palavras: o que significa uma linha dessa tabela? Quando a resposta sai em uma frase, o modelo costuma estar são. Quando vem um "depende" ou um silêncio, achei o problema antes de abrir uma query. Essa resposta tem nome: é o grão da tabela fato, e é a decisão de modelagem que menos recebe atenção e mais cobra depois.
 

@@ -61,4 +61,4 @@ Pega o infográfico. Salva no celular, imprime e cola na parede, joga no Notion.
 
 ---
 
-*Esse é o primeiro post da trilha IA Foundations no [VazDEng](https://vazdeng.substack.com). Por lá saem três posts por semana sobre engenharia de dados em português, no nível sênior que faltava na BR.*
+*Esse é o primeiro post da trilha IA Foundations no [VazDEng](https://vazdeng.substack.com/?utm_source=blog&utm_medium=post-corpo&utm_campaign=fase1&utm_content=20-conceitos-ia-2026). Por lá saem três posts por semana sobre engenharia de dados em português, no nível sênior que faltava na BR.*

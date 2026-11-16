@@ -57,4 +57,4 @@ Take the infographic. Save it on your phone, print it and put it on the wall, dr
 
 ---
 
-*This is the first post in the AI Foundations track at [VazDEng](https://vazdeng.substack.com). Three posts a week on data engineering in Portuguese (and English), at the senior level Brazil was missing.*
+*This is the first post in the AI Foundations track at [VazDEng](https://vazdeng.substack.com/?utm_source=blog&utm_medium=post-corpo-en&utm_campaign=fase1&utm_content=20-conceitos-ia-2026). Three posts a week on data engineering in Portuguese (and English), at the senior level Brazil was missing.*
