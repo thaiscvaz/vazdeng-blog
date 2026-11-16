@@ -3,11 +3,15 @@ title: Sobre
 type: default
 ---
 
-<div style="text-align: center; margin-bottom: 2rem;">
-  <img src="avatar.png" alt="Thais Vaz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
-</div>
+<p class="vz-about-lead">Engenharia de dados e IA em produção, escrita por quem opera isso há 10 anos: casos reais, número com fonte e o caso em que a ideia falha.</p>
+
+<div class="vz-about-id"><img src="avatar.png" alt="Thais Vaz" /><div>
 
 Meu nome é Thais Vaz. Sou engenheira de dados há 10 anos, hoje construindo com IA em produção.
+
+</div></div>
+
+<div class="vz-hero-ctas" style="justify-content:flex-start"><a class="vz-hero-cta primary" href="/comece/">Comece aqui</a><a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=sobre-topo&utm_campaign=fase1" target="_blank" rel="noopener">Assinar a newsletter</a></div>
 
 Comecei no **Itaú**, onde ganhei o Prêmio Mérito por trabalho em qualidade de dados. Passei pela **EBANX** construindo pipelines ETL em escala. Atuei em projeto de uma big tech americana no Vale do Silício, pela **HCL Technologies**. Hoje sou engenheira de dados sênior no **Bradesco**.
 

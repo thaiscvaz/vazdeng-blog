@@ -3,11 +3,15 @@ title: About
 type: default
 ---
 
-<div style="text-align: center; margin-bottom: 2rem;">
-  <img src="/sobre/avatar.png" alt="Thais Vaz" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover;" />
-</div>
+<p class="vz-about-lead">Data engineering and AI in production, written by someone who has run it for 10 years: real cases, sourced numbers and the case where the idea fails.</p>
+
+<div class="vz-about-id"><img src="/sobre/avatar.png" alt="Thais Vaz" /><div>
 
 My name is Thais Vaz. I've been a data engineer for 10 years, now building with AI in production.
+
+</div></div>
+
+<div class="vz-hero-ctas" style="justify-content:flex-start"><a class="vz-hero-cta primary" href="/en/comece/">Start here</a><a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=sobre-topo&utm_campaign=fase1" target="_blank" rel="noopener">Subscribe</a></div>
 
 I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, worked on a project for a US big tech company in Silicon Valley through **HCL Technologies**. Today I'm a senior data engineer at **Bradesco**.
 

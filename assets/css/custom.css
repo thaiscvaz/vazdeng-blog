@@ -1011,3 +1011,11 @@ a.vz-series-name:hover { text-decoration: underline; }
 .vz-offer { border:1.5px solid var(--amber); border-radius: var(--radius-card); padding:18px 20px; margin:20px 0 28px; display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
 .vz-offer p { margin:0 !important; }
 .vz-offer a.vz-offer-btn { font-family: var(--mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; padding:10px 16px; border-radius: var(--radius-pill); background: var(--amber); color:#0A0A0A !important; text-decoration:none !important; font-weight:700; white-space:nowrap; }
+
+.vz-about-lead { font-family: var(--serif); font-size: 26px; line-height: 1.3; letter-spacing: -.01em; margin: 8px 0 24px !important; }
+.vz-about-id { display:flex; gap:18px; align-items:flex-start; margin-bottom: 8px; }
+.vz-about-id img { width:84px; height:84px; border-radius:50%; object-fit:cover; flex:none; margin:0 !important; }
+.vz-about-id p { margin-top: 0 !important; }
+
+/* Fase 1: no modo claro o D do wordmark usa amber-ink (âmbar puro sobre papel fica ilegível) */
+html:not(.dark) .vz-brand-name em, html[data-theme="light"] .vz-brand-name em { color: var(--amber-ink); }
