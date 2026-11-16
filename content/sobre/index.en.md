@@ -1,19 +1,19 @@
 ---
-title: About
+title: "Who writes VazDEng"
 type: default
 ---
 
-<p class="vz-about-lead">Data engineering and AI in production, written by someone who has run it for 10 years: real cases, sourced numbers and the case where the idea fails.</p>
+<p class="vz-about-lead">Data engineering and AI in production, for engineers past the basics who want to see how it really works: real cases, sourced numbers and the case where the idea fails.</p>
 
 <div class="vz-about-id"><img src="/sobre/avatar.png" alt="Thais Vaz" /><div>
 
-My name is Thais Vaz. I've been a data engineer for 10 years, now building with AI in production.
+Thais Vaz · 10 years in data engineering · Itaú, EBANX, HCL, now Bradesco · master's student in Numerical Methods at UFPR
 
 </div></div>
 
 <div class="vz-hero-ctas" style="justify-content:flex-start"><a class="vz-hero-cta primary" href="/en/comece/">Start here</a><a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=sobre-topo&utm_campaign=fase1" target="_blank" rel="noopener">Subscribe</a></div>
 
-I started at **Itaú Unibanco**, where I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, worked on a project for a US big tech company in Silicon Valley through **HCL Technologies**. Today I'm a senior data engineer at **Bradesco**.
+At **Itaú Unibanco**, I received the MÉRITO Prize for data quality work. Then moved to **EBANX**, building ETL pipelines at scale. After that, worked on a project for a US big tech company in Silicon Valley through **HCL Technologies**. Today I'm a senior data engineer at **Bradesco**.
 
 My core stack is **Databricks**. Not because I read the docs. Because it's what runs in production where I've worked.
 
