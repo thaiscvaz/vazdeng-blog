@@ -10,7 +10,7 @@ O VazDEng é engenharia de dados e IA em produção, com casos reais e contexto 
 
 Decisões de arquitetura com custo, número e o caso em que a ideia falha.
 
-1. [Quando a Medallion Architecture atrapalha mais do que ajuda]({{< relref "blog/2026-05-12-medallion-architecture-quando-nao" >}}). O post mais lido do blog.
+1. [Quando a Medallion Architecture atrapalha mais do que ajuda]({{< relref "blog/2026-05-12-medallion-architecture-quando-nao" >}})
 2. [SLA, não moda: quando batch, quando streaming, quando ambos]({{< relref "blog/2026-05-30-sla-nao-moda-batch-streaming" >}})
 3. [Por que pipeline sem contrato de dados quebra no escuro]({{< relref "blog/2026-06-23-contrato-de-dados-schema-quebra-silencioso" >}})
 

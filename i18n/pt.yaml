@@ -8,6 +8,8 @@ heroPillNext: "próximo:"
 heroTitleA: "Pipeline robusto começa"
 heroTitleB: "antes"
 heroTitleC: "da ferramenta."
+heroCtaStart: "Comece aqui"
+heroCtaSubscribe: "Assinar a newsletter"
 heroLead: "Engenharia de dados e IA em produção, com casos reais, número com fonte e contexto brasileiro. Para quem já sabe o básico e quer ver como funciona de verdade."
 
 # Cronograma
@@ -33,10 +35,10 @@ postBy: "Por"
 
 # Subscribe (no fim do post + na CTA)
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Receba o checklist de"
-subscribeHeadlineAccent: "qualidade de dados"
-subscribeSub: "Uma edição por semana, no sábado: o caso, o número e o que deu errado. Ao assinar, você recebe o checklist que eu uso antes de subir pipeline."
-subscribeCta: "Assinar e receber o checklist"
+subscribeHeadline: "O caso, o número e"
+subscribeHeadlineAccent: "o que deu errado"
+subscribeSub: "Uma edição por semana, no sábado. Quem assina recebe também a versão para imprimir do checklist de qualidade de dados e as atualizações dele."
+subscribeCta: "Assinar a newsletter"
 subscribeAria: "Assinar a newsletter VazDEng"
 
 # Related

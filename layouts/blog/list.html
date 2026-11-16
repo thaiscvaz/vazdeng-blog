@@ -32,6 +32,10 @@
     </div>
     <h1 class="vz-hero-title">{{ T "heroTitleA" }} <em>{{ T "heroTitleB" }}</em> {{ T "heroTitleC" }}</h1>
     <p class="vz-hero-lead">{{ T "heroLead" }}</p>
+    <div class="vz-hero-ctas">
+      <a class="vz-hero-cta primary" href="{{ "comece/" | relLangURL }}">{{ T "heroCtaStart" }}</a>
+      <a class="vz-hero-cta" href="https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=hero&utm_campaign=fase1" target="_blank" rel="noopener">{{ T "heroCtaSubscribe" }}</a>
+    </div>
   </section>
 
   {{/* ============ CRONOGRAMA ============ */}}
@@ -110,7 +114,7 @@
           {{ end }}
           <li class="vz-post-item" data-filter="{{ $color }}">
             <a class="vz-post-link" href="{{ .RelPermalink }}">
-              <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan" }}</time>
+              <time class="vz-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "02 Jan" }}</time>
               <div class="vz-post-title">
                 {{ .Title }}
                 {{ with .Params.description }}<span class="vz-post-desc">{{ . }}</span>{{ end }}

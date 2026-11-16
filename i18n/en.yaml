@@ -8,6 +8,8 @@ heroPillNext: "next:"
 heroTitleA: "Robust pipelines start"
 heroTitleB: "before"
 heroTitleC: "the tool."
+heroCtaStart: "Start here"
+heroCtaSubscribe: "Subscribe"
 heroLead: "Data engineering and AI in production, with real cases, sourced numbers and Brazilian context. For engineers past the basics who want to see how it really works."
 
 # Schedule
@@ -33,10 +35,10 @@ postBy: "By"
 
 # Subscribe
 subscribeEyebrow: "Newsletter"
-subscribeHeadline: "Get the data quality"
-subscribeHeadlineAccent: "checklist"
-subscribeSub: "One issue a week, on Saturday: the case, the number and what went wrong. Subscribers get the checklist I run before shipping a pipeline (in Portuguese)."
-subscribeCta: "Subscribe and get the checklist"
+subscribeHeadline: "The case, the number,"
+subscribeHeadlineAccent: "what went wrong"
+subscribeSub: "One issue a week, on Saturday. Subscribers also get the printable data quality checklist and its updates (in Portuguese)."
+subscribeCta: "Subscribe"
 subscribeAria: "Subscribe to the VazDEng newsletter"
 
 # Related

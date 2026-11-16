@@ -78,4 +78,4 @@ Por quê: [LGPD na ingestão de dados: 4 princípios que mudam sua arquitetura](
 
 ---
 
-Este checklist cresce junto com o blog. Toda semana sai um post novo, e a newsletter chega aos sábados. [Assinar no Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist&utm_campaign=fase1).
+Este checklist é aberto e cresce junto com o blog. Quem assina a newsletter recebe a versão para imprimir no e-mail de boas-vindas e fica sabendo quando entra pergunta nova. [Assinar no Substack](https://vazdeng.substack.com/subscribe?utm_source=blog&utm_medium=checklist&utm_campaign=fase1).

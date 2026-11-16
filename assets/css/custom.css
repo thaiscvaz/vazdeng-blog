@@ -993,3 +993,10 @@ a.vz-series-name:hover { text-decoration: underline; }
 
 /* Legacy */
 .vazdeng-page { max-width: var(--max); margin: 0 auto; padding: 0; }
+
+/* Fase 1: CTAs do hero */
+.vz-hero-ctas { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:28px; }
+.vz-hero-cta { font-family: var(--mono); font-size:13px; letter-spacing:.08em; text-transform:uppercase; padding:12px 20px; border-radius: var(--radius-pill); border:1.5px solid var(--line-strong); color: var(--text); text-decoration:none; transition: border-color .15s, background .15s; }
+.vz-hero-cta:hover { border-color: var(--amber); }
+.vz-hero-cta.primary { background: var(--amber); border-color: var(--amber); color:#0A0A0A; font-weight:700; }
+.vz-hero-cta.primary:hover { background: var(--amber-deep); border-color: var(--amber-deep); }

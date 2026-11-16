@@ -8,7 +8,7 @@ VazDEng is data engineering and AI in production, with real cases and Brazilian 
 
 ## If you already run pipelines in production
 
-1. [When the Medallion Architecture hurts more than it helps]({{< relref "blog/2026-05-12-medallion-architecture-quando-nao" >}}). The most read post on the blog.
+1. [When the Medallion Architecture hurts more than it helps]({{< relref "blog/2026-05-12-medallion-architecture-quando-nao" >}})
 2. [SLA, not fashion: when batch, when streaming, when both]({{< relref "blog/2026-05-30-sla-nao-moda-batch-streaming" >}})
 3. [Why pipelines without a data contract break in the dark]({{< relref "blog/2026-06-23-contrato-de-dados-schema-quebra-silencioso" >}})
 
